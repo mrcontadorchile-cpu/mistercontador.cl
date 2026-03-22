@@ -154,53 +154,61 @@
 
   async function init() {
     try {
-      // Supabase puts tokens in the URL hash after verification
-      const hash = window.location.hash.substring(1);
-      const params = new URLSearchParams(hash);
-
-      const accessToken = params.get('access_token');
-      const refreshToken = params.get('refresh_token');
-      const type = params.get('type');
-
-      // Also check query params (some flows use these)
       const urlParams = new URLSearchParams(window.location.search);
-      const errorCode = urlParams.get('error');
-      const errorDescription = urlParams.get('error_description');
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
 
+      // Error en la URL
+      const errorCode = urlParams.get('error') || hashParams.get('error');
+      const errorDescription = urlParams.get('error_description') || hashParams.get('error_description');
       if (errorCode) {
         document.getElementById('error-detail').textContent = errorDescription || 'El enlace ha expirado o es invalido.';
         showSection('error');
         return;
       }
 
-      if (accessToken && refreshToken) {
-        // Set the session in Supabase client
-        const { data, error } = await supabase.auth.setSession({
-          access_token: accessToken,
-          refresh_token: refreshToken,
-        });
-
+      // ── PKCE flow (Supabase v2 por defecto): llega ?code=XXXX ──
+      const code = urlParams.get('code');
+      if (code) {
+        const { data, error } = await supabase.auth.exchangeCodeForSession(code);
         if (error) {
           document.getElementById('error-detail').textContent = error.message;
           showSection('error');
           return;
         }
-
+        const type = urlParams.get('type') || (data?.user ? 'signup' : '');
         if (type === 'recovery') {
-          // Password reset - show form
           showSection('reset-form');
         } else {
-          // Email confirmation or other - show success
           showSection('confirmed');
-          // Try to open the app
-          setTimeout(() => {
-            window.location.href = 'misterinventory://login-callback';
-          }, 1500);
+          setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
         }
-      } else {
-        // No tokens - might be a direct visit or expired link
-        showSection('error');
+        return;
       }
+
+      // ── Implicit flow (fallback): llega #access_token=XXXX ──
+      const accessToken  = hashParams.get('access_token');
+      const refreshToken = hashParams.get('refresh_token');
+      const type         = hashParams.get('type');
+
+      if (accessToken && refreshToken) {
+        const { error } = await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+        if (error) {
+          document.getElementById('error-detail').textContent = error.message;
+          showSection('error');
+          return;
+        }
+        if (type === 'recovery') {
+          showSection('reset-form');
+        } else {
+          showSection('confirmed');
+          setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
+        }
+        return;
+      }
+
+      // Sin tokens ni code → enlace inválido o visita directa
+      showSection('error');
+
     } catch (e) {
       document.getElementById('error-detail').textContent = 'Error inesperado: ' + e.message;
       showSection('error');
