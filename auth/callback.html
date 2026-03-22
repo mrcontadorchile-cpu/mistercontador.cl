@@ -142,123 +142,101 @@
 </div>
 
 <script>
-  const SUPABASE_URL = 'https://cbqgotgchxljznztyrhp.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWdvdGdjaHhsanpuenR5cmhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2ODIyOTYsImV4cCI6MjA4OTI1ODI5Nn0.0SsEmVvsMa-CMgpcXnaETeGNl3KO3FPpkwZ400sa8ow';
-
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
   function showSection(id) {
     document.querySelectorAll('.card > div').forEach(d => d.classList.add('hidden'));
     document.getElementById(id).classList.remove('hidden');
   }
 
-  // Timeout de seguridad: si en 10s no hay respuesta, muestra error con detalle
-  const safetyTimeout = setTimeout(() => {
+  function init() {
     const urlParams = new URLSearchParams(window.location.search);
-    const params = [];
-    for (const [k, v] of urlParams.entries()) params.push(k + '=' + v.substring(0, 12) + '...');
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+
+    // Error explícito en la URL
+    const errorCode = urlParams.get('error') || hashParams.get('error');
+    const errorDescription = urlParams.get('error_description') || hashParams.get('error_description');
+    if (errorCode) {
+      document.getElementById('error-detail').textContent = errorDescription || 'El enlace ha expirado o es invalido.';
+      showSection('error');
+      return;
+    }
+
+    const type = urlParams.get('type') || hashParams.get('type') || '';
+
+    // ── Implicit flow: #access_token=... ──
+    // Supabase ya verificó el email server-side antes de redirigir aquí.
+    // No necesitamos llamar ninguna API — solo confirmamos al usuario.
+    const accessToken = hashParams.get('access_token');
+    if (accessToken) {
+      if (type === 'recovery') {
+        // Para reset de contraseña sí necesitamos el SDK
+        initSupabaseAndShowReset(accessToken, hashParams.get('refresh_token'));
+      } else {
+        showSection('confirmed');
+        setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
+      }
+      return;
+    }
+
+    // ── token_hash flow: ?token_hash=... (sin pkce_) ──
+    const tokenHash = urlParams.get('token_hash');
+    if (tokenHash && !tokenHash.startsWith('pkce_')) {
+      verifyTokenHash(tokenHash, type);
+      return;
+    }
+
+    // Sin parámetros válidos
     document.getElementById('error-detail').textContent =
-      'Tiempo de espera agotado. Params recibidos: ' + (params.join(', ') || 'ninguno');
+      'Enlace invalido o expirado. Intenta registrarte nuevamente.';
     showSection('error');
-  }, 10000);
+  }
 
-  async function init() {
+  async function verifyTokenHash(tokenHash, type) {
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const hashParams = new URLSearchParams(window.location.hash.substring(1));
-
-      // Error en la URL
-      const errorCode = urlParams.get('error') || hashParams.get('error');
-      const errorDescription = urlParams.get('error_description') || hashParams.get('error_description');
-      if (errorCode) {
-        document.getElementById('error-detail').textContent = errorDescription || 'El enlace ha expirado o es invalido.';
+      const { createClient } = window.supabase;
+      const sb = createClient(
+        'https://cbqgotgchxljznztyrhp.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWdvdGdjaHhsanpuenR5cmhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2ODIyOTYsImV4cCI6MjA4OTI1ODI5Nn0.0SsEmVvsMa-CMgpcXnaETeGNl3KO3FPpkwZ400sa8ow'
+      );
+      const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type: type || 'signup' });
+      if (error) {
+        document.getElementById('error-detail').textContent = error.message;
         showSection('error');
         return;
       }
-
-      // ── 1. token_hash flow (sin PKCE): llega ?token_hash=XXXX&type=signup|recovery ──
-      // Este es el método recomendado cuando el auth se inicia desde una app nativa.
-      const tokenHash = urlParams.get('token_hash');
-      const typeParam  = urlParams.get('type') || hashParams.get('type');
-      if (tokenHash) {
-        const { data, error } = await supabase.auth.verifyOtp({
-          token_hash: tokenHash,
-          type: typeParam || 'signup',
-        });
-        if (error) {
-          document.getElementById('error-detail').textContent = error.message;
-          showSection('error');
-          return;
-        }
-        if (typeParam === 'recovery') {
-          showSection('reset-form');
-        } else {
-          showSection('confirmed');
-          setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
-        }
-        return;
+      if (type === 'recovery') {
+        showSection('reset-form');
+      } else {
+        showSection('confirmed');
+        setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
       }
-
-      // ── 2. PKCE flow (fallback): llega ?code=XXXX ──
-      const code = urlParams.get('code');
-      if (code) {
-        const { data, error } = await supabase.auth.exchangeCodeForSession(code);
-        if (error) {
-          document.getElementById('error-detail').textContent = error.message;
-          showSection('error');
-          return;
-        }
-        const type = typeParam || (data?.user ? 'signup' : '');
-        if (type === 'recovery') {
-          showSection('reset-form');
-        } else {
-          showSection('confirmed');
-          setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
-        }
-        return;
-      }
-
-      // ── 3. Implicit flow (fallback): llega #access_token=XXXX ──
-      const accessToken  = hashParams.get('access_token');
-      const refreshToken = hashParams.get('refresh_token');
-
-      if (accessToken && refreshToken) {
-        const { error } = await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
-        if (error) {
-          document.getElementById('error-detail').textContent = error.message;
-          showSection('error');
-          return;
-        }
-        if (typeParam === 'recovery') {
-          showSection('reset-form');
-        } else {
-          showSection('confirmed');
-          setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
-        }
-        return;
-      }
-
-      // Sin tokens ni code → enlace inválido o visita directa
-      document.getElementById('error-detail').textContent =
-        'Enlace inválido o expirado. No se encontraron parámetros de autenticación.';
-      showSection('error');
-
     } catch (e) {
-      document.getElementById('error-detail').textContent = 'Error inesperado: ' + e.message;
+      document.getElementById('error-detail').textContent = 'Error: ' + e.message;
       showSection('error');
-    } finally {
-      clearTimeout(safetyTimeout);
+    }
+  }
+
+  async function initSupabaseAndShowReset(accessToken, refreshToken) {
+    try {
+      const { createClient } = window.supabase;
+      const sb = createClient(
+        'https://cbqgotgchxljznztyrhp.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWdvdGdjaHhsanpuenR5cmhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2ODIyOTYsImV4cCI6MjA4OTI1ODI5Nn0.0SsEmVvsMa-CMgpcXnaETeGNl3KO3FPpkwZ400sa8ow'
+      );
+      window._supabaseClient = sb;
+      await sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+      showSection('reset-form');
+    } catch (e) {
+      document.getElementById('error-detail').textContent = 'Error al cargar el formulario: ' + e.message;
+      showSection('error');
     }
   }
 
   async function handlePasswordReset(event) {
     event.preventDefault();
-
     const newPass = document.getElementById('new-password').value;
     const confirmPass = document.getElementById('confirm-password').value;
     const errorEl = document.getElementById('error-msg');
     const submitBtn = document.getElementById('submit-btn');
-
     errorEl.style.display = 'none';
 
     if (newPass !== confirmPass) {
@@ -266,7 +244,6 @@
       errorEl.style.display = 'block';
       return;
     }
-
     if (newPass.length < 6) {
       errorEl.textContent = 'La contrasena debe tener al menos 6 caracteres.';
       errorEl.style.display = 'block';
@@ -277,8 +254,8 @@
     submitBtn.disabled = true;
 
     try {
-      const { error } = await supabase.auth.updateUser({ password: newPass });
-
+      const sb = window._supabaseClient;
+      const { error } = await sb.auth.updateUser({ password: newPass });
       if (error) {
         errorEl.textContent = error.message;
         errorEl.style.display = 'block';
@@ -286,7 +263,6 @@
         submitBtn.disabled = false;
         return;
       }
-
       showSection('reset-success');
     } catch (e) {
       errorEl.textContent = 'Error: ' + e.message;
@@ -296,7 +272,7 @@
     }
   }
 
-  // Run on page load
+  // Ejecutar al cargar
   init();
 </script>
 
