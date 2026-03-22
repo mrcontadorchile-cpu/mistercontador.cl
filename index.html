@@ -238,9 +238,32 @@
     footer p { font-size: 13px; color: #555; }
     footer a { color: #FFD700; text-decoration: none; }
 
+    /* ── Hamburger ───────────────────────── */
+    .hamburger {
+      display: none; background: none; border: none;
+      color: #FFD700; font-size: 26px; cursor: pointer; padding: 4px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 54px; left: 0; right: 0; z-index: 99;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+      padding: 16px 24px 20px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 16px; padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #FFD700; }
+
     /* ── Mobile ──────────────────────────── */
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .hamburger { display: block; }
       .hero { padding: 100px 20px 60px; }
       .section { padding: 60px 20px; }
       .features-grid { grid-template-columns: 1fr; }
@@ -260,8 +283,15 @@
       <a href="#pricing">Planes</a>
       <a href="#download">Descargar</a>
     </div>
+    <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">&#9776;</button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="document.getElementById('mobileMenu').classList.remove('open')">Funcionalidades</a>
+  <a href="#platforms" onclick="document.getElementById('mobileMenu').classList.remove('open')">Plataformas</a>
+  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Planes</a>
+  <a href="#download" onclick="document.getElementById('mobileMenu').classList.remove('open')">Descargar</a>
+</div>
 
 <!-- Hero -->
 <section class="hero">
