@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mister Inventory - Control de inventario y punto de venta</title>
+  <meta name="description" content="Software de inventario y punto de venta para negocios chilenos. Controla tu stock, registra ventas y genera reportes desde cualquier dispositivo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ─────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .logo-text {
+      font-size: 20px; font-weight: 800; color: #FFD700;
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: #fff; font-weight: 500; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: 14px;
+      margin-left: 28px; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #FFD700; }
+
+    /* ── Hero ────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.08) 0%, transparent 60%);
+    }
+    .hero-content { max-width: 720px; }
+    .badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.12);
+      border: 1px solid rgba(255,215,0,0.25);
+      color: #FFD700;
+      font-size: 12px; font-weight: 600;
+      padding: 6px 16px; border-radius: 50px;
+      margin-bottom: 28px;
+      letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1.5px;
+    }
+    .hero h1 .gold { color: #FFD700; }
+    .hero p {
+      font-size: 18px; color: #999;
+      line-height: 1.6; margin-bottom: 36px;
+    }
+    .hero-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+      cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: #FFD700; color: #000;
+    }
+    .btn-primary:hover { background: #e6c200; transform: translateY(-1px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+    .hero-note {
+      margin-top: 20px; font-size: 13px; color: #666;
+    }
+
+    /* ── Features ────────────────────────── */
+    .section {
+      padding: 100px 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 12px; font-weight: 700; color: #FFD700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800; letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      font-size: 16px; color: #888; max-width: 540px;
+      line-height: 1.6; margin-bottom: 56px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.3s;
+    }
+    .feature-card:hover { border-color: rgba(255,215,0,0.25); }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: rgba(255,215,0,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 18px;
+    }
+    .feature-card h3 {
+      font-size: 17px; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .feature-card p {
+      font-size: 14px; color: #888; line-height: 1.5;
+    }
+
+    /* ── Platforms ───────────────────────── */
+    .platforms {
+      text-align: center;
+      padding: 80px 24px;
+      background: rgba(255,215,0,0.02);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .platform-icons {
+      display: flex; gap: 40px; justify-content: center;
+      flex-wrap: wrap; margin-top: 40px;
+    }
+    .platform-item {
+      text-align: center;
+    }
+    .platform-item .icon-box {
+      width: 72px; height: 72px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 10px;
+    }
+    .platform-item span {
+      font-size: 13px; color: #888;
+    }
+
+    /* ── Pricing ─────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .price-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 36px 28px;
+      position: relative;
+    }
+    .price-card.popular {
+      border-color: rgba(255,215,0,0.4);
+      background: rgba(255,215,0,0.04);
+    }
+    .popular-badge {
+      position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%);
+      background: #FFD700; color: #000;
+      font-size: 11px; font-weight: 700;
+      padding: 4px 14px; border-radius: 50px;
+    }
+    .price-card h3 {
+      font-size: 20px; font-weight: 700; margin-bottom: 6px;
+    }
+    .price-card .price {
+      font-size: 36px; font-weight: 800; margin: 16px 0 4px;
+      letter-spacing: -1px;
+    }
+    .price-card .price span { font-size: 15px; font-weight: 500; color: #888; }
+    .price-card .price-note { font-size: 12px; color: #666; margin-bottom: 20px; }
+    .price-card ul {
+      list-style: none; margin-bottom: 28px;
+    }
+    .price-card ul li {
+      font-size: 14px; color: #bbb;
+      padding: 7px 0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .price-card ul li::before {
+      content: "\2713"; color: #FFD700;
+      font-weight: 700; font-size: 13px;
+    }
+    .price-card .btn { width: 100%; justify-content: center; }
+    .price-card.dev { opacity: 0.5; }
+    .price-card.dev .btn { pointer-events: none; background: #333; color: #666; }
+
+    /* ── CTA ─────────────────────────────── */
+    .cta {
+      text-align: center;
+      padding: 100px 24px;
+    }
+    .cta h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800; margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    .cta p { color: #888; font-size: 16px; margin-bottom: 32px; }
+
+    /* ── Footer ──────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: #555; }
+    footer a { color: #FFD700; text-decoration: none; }
+
+    /* ── Hamburger ───────────────────────── */
+    .hamburger {
+      display: none; background: none; border: none;
+      color: #FFD700; font-size: 26px; cursor: pointer; padding: 4px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 54px; left: 0; right: 0; z-index: 99;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,215,0,0.1);
+      padding: 16px 24px 20px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 16px; padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: #FFD700; }
+
+    /* ── Mobile ──────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 60px 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo-text">Mister <span>Inventory</span></div>
+    <div class="nav-links">
+      <a href="#features">Funcionalidades</a>
+      <a href="#platforms">Plataformas</a>
+      <a href="#pricing">Planes</a>
+      <a href="#download">Descargar</a>
+      <a href="/" style="background:#FFD700;color:#000;font-weight:600;padding:8px 16px;border-radius:8px;margin-left:8px;font-size:13px;">Mister Contador</a>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">&#9776;</button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="document.getElementById('mobileMenu').classList.remove('open')">Funcionalidades</a>
+  <a href="#platforms" onclick="document.getElementById('mobileMenu').classList.remove('open')">Plataformas</a>
+  <a href="#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Planes</a>
+  <a href="#download" onclick="document.getElementById('mobileMenu').classList.remove('open')">Descargar</a>
+  <a href="/" style="display:inline-block;margin-top:12px;background:#FFD700;color:#000;font-weight:600;padding:12px 20px;border-radius:10px;text-align:center;width:100%;" onclick="document.getElementById('mobileMenu').classList.remove('open')">Mister Contador</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="badge">Prueba gratis por 7 dias</div>
+    <h1>Tu inventario bajo <span class="gold">control total</span></h1>
+    <p>Software de inventario y punto de venta para negocios chilenos. Controla tu stock, registra ventas y genera reportes desde cualquier dispositivo.</p>
+    <div class="hero-buttons">
+      <a href="#download" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar gratis
+      </a>
+      <a href="#features" class="btn btn-secondary">Ver funcionalidades</a>
+    </div>
+    <p class="hero-note">Sin tarjeta de credito. Todas las funciones por 7 dias.</p>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="section-label">Funcionalidades</div>
+  <h2 class="section-title">Todo lo que necesitas para tu negocio</h2>
+  <p class="section-desc">Desde el control de stock hasta el cuadre de caja, Mister Inventory cubre cada aspecto de tu operacion.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">&#128230;</div>
+      <h3>Control de inventario</h3>
+      <p>Registra productos por codigo de barras o manualmente. Controla stock, precios de compra y venta por cada local.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128179;</div>
+      <h3>Punto de venta (POS)</h3>
+      <p>Cobra rapido con carrito de compras, multiples formas de pago (efectivo, tarjeta, transferencia) y comprobante con IVA.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128202;</div>
+      <h3>Reportes y exportacion</h3>
+      <p>Reportes de ventas, compras, inventario y cuadre de caja. Exporta a PDF y Excel para tu contabilidad.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128247;</div>
+      <h3>Escaner de codigo de barras</h3>
+      <p>Escanea con la camara de tu celular. Busca automaticamente en la base de datos global de productos.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9878;&#65039;</div>
+      <h3>Productos por peso</h3>
+      <p>Soporte para productos que se venden por kilo o gramo, con ingreso decimal de cantidades.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#128101;</div>
+      <h3>Multi-usuario y roles</h3>
+      <p>Invita a tu equipo con roles de bodeguero o cajero. Cada uno ve solo lo que necesita.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Platforms -->
+<section class="platforms" id="platforms">
+  <div class="section-label">Multiplataforma</div>
+  <h2 class="section-title">Disponible donde lo necesites</h2>
+  <p class="section-desc" style="margin: 0 auto 0;">Usa Mister Inventory en tu celular, computador o tablet.</p>
+
+  <div class="platform-icons">
+    <div class="platform-item">
+      <div class="icon-box">&#128241;</div>
+      <span>Android</span>
+    </div>
+    <div class="platform-item">
+      <div class="icon-box">&#63743;</div>
+      <span>macOS</span>
+    </div>
+    <div class="platform-item">
+      <div class="icon-box">&#128187;</div>
+      <span>Windows</span>
+    </div>
+    <div class="platform-item">
+      <div class="icon-box">&#128241;</div>
+      <span>iOS (pronto)</span>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="section-label">Planes</div>
+  <h2 class="section-title">Simple y transparente</h2>
+  <p class="section-desc">Elige el plan que se ajuste a tu negocio. Sin contratos, cancela cuando quieras.</p>
+
+  <div class="pricing-grid">
+    <!-- Basic -->
+    <div class="price-card">
+      <h3>Basico</h3>
+      <p style="font-size:13px; color:#888;">Para negocios pequenos</p>
+      <div class="price">$12.990 <span>/mes</span></div>
+      <div class="price-note">+ IVA | Pesos chilenos</div>
+      <ul>
+        <li>1 local</li>
+        <li>Hasta 500 productos</li>
+        <li>2 usuarios</li>
+        <li>Control de inventario</li>
+        <li>Reportes basicos</li>
+      </ul>
+      <a href="#download" class="btn btn-secondary">Comenzar gratis</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="price-card popular">
+      <div class="popular-badge">MAS POPULAR</div>
+      <h3>Pro</h3>
+      <p style="font-size:13px; color:#888;">Para negocios en crecimiento</p>
+      <div class="price">$24.990 <span>/mes</span></div>
+      <div class="price-note">+ IVA | Pesos chilenos</div>
+      <ul>
+        <li>1 local</li>
+        <li>Productos ilimitados</li>
+        <li>5 usuarios</li>
+        <li>Punto de venta (POS)</li>
+        <li>Reportes avanzados</li>
+        <li>Exportacion PDF</li>
+      </ul>
+      <a href="#download" class="btn btn-primary">Comenzar gratis</a>
+    </div>
+
+    <!-- Business -->
+    <div class="price-card dev">
+      <h3>Business</h3>
+      <p style="font-size:13px; color:#888;">Para empresas</p>
+      <div class="price">$99.990 <span>/mes</span></div>
+      <div class="price-note">+ IVA | Pesos chilenos | En desarrollo</div>
+      <ul>
+        <li>1 local incluido</li>
+        <li>Productos ilimitados</li>
+        <li>20 usuarios</li>
+        <li>Todo lo del plan Pro</li>
+        <li>Exportacion Excel</li>
+        <li>Boleta electronica (SII)</li>
+        <li>Locales adicionales</li>
+      </ul>
+      <a href="#" class="btn btn-secondary">Proximamente</a>
+    </div>
+  </div>
+</section>
+
+<!-- Download -->
+<section class="cta" id="download">
+  <h2>Descarga Mister Inventory</h2>
+  <p>Disponible para Android, macOS y Windows. Prueba gratis por 7 dias con todas las funciones.</p>
+  <div class="hero-buttons" style="flex-direction: column; align-items: center; gap: 12px;">
+    <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+      <a href="https://github.com/mrcontadorchile-cpu/mistercontador.cl/releases/latest/download/MisterInventory-Windows.zip" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Windows
+      </a>
+      <a href="https://github.com/mrcontadorchile-cpu/mistercontador.cl/releases/latest/download/MisterInventory-macOS.zip" class="btn btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        macOS
+      </a>
+      <span class="btn btn-secondary" style="opacity:0.5; cursor:default;">Android (pronto en Google Play)</span>
+    </div>
+  </div>
+  <p class="hero-note" style="margin-top:16px;">Prueba gratis por 7 dias con todas las funciones Pro.</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <p style="margin-top:8px;">
+    <a href="mailto:mrcontadorchile@gmail.com">Contacto</a>
+  </p>
+</footer>
+
+</body>
+</html>
