@@ -166,7 +166,30 @@
         return;
       }
 
-      // ── PKCE flow (Supabase v2 por defecto): llega ?code=XXXX ──
+      // ── 1. token_hash flow (sin PKCE): llega ?token_hash=XXXX&type=signup|recovery ──
+      // Este es el método recomendado cuando el auth se inicia desde una app nativa.
+      const tokenHash = urlParams.get('token_hash');
+      const typeParam  = urlParams.get('type') || hashParams.get('type');
+      if (tokenHash) {
+        const { data, error } = await supabase.auth.verifyOtp({
+          token_hash: tokenHash,
+          type: typeParam || 'signup',
+        });
+        if (error) {
+          document.getElementById('error-detail').textContent = error.message;
+          showSection('error');
+          return;
+        }
+        if (typeParam === 'recovery') {
+          showSection('reset-form');
+        } else {
+          showSection('confirmed');
+          setTimeout(() => { window.location.href = 'misterinventory://login-callback'; }, 1500);
+        }
+        return;
+      }
+
+      // ── 2. PKCE flow (fallback): llega ?code=XXXX ──
       const code = urlParams.get('code');
       if (code) {
         const { data, error } = await supabase.auth.exchangeCodeForSession(code);
@@ -175,7 +198,7 @@
           showSection('error');
           return;
         }
-        const type = urlParams.get('type') || (data?.user ? 'signup' : '');
+        const type = typeParam || (data?.user ? 'signup' : '');
         if (type === 'recovery') {
           showSection('reset-form');
         } else {
@@ -185,10 +208,9 @@
         return;
       }
 
-      // ── Implicit flow (fallback): llega #access_token=XXXX ──
+      // ── 3. Implicit flow (fallback): llega #access_token=XXXX ──
       const accessToken  = hashParams.get('access_token');
       const refreshToken = hashParams.get('refresh_token');
-      const type         = hashParams.get('type');
 
       if (accessToken && refreshToken) {
         const { error } = await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
@@ -197,7 +219,7 @@
           showSection('error');
           return;
         }
-        if (type === 'recovery') {
+        if (typeParam === 'recovery') {
           showSection('reset-form');
         } else {
           showSection('confirmed');
