@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mister Contador - Verificacion</title>
+  <link rel="icon" type="image/png" href="../img/icon-oficial.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #d4a800;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000; color: #fff;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.06) 0%, transparent 60%), #000;
+    }
+    .card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(245,194,0,0.15);
+      border-top: 3px solid var(--gold);
+      padding: 48px 36px;
+      max-width: 440px; width: 100%;
+      text-align: center;
+    }
+    .card img {
+      height: 40px; margin-bottom: 28px;
+      object-fit: contain;
+    }
+    .card h1 {
+      font-family: 'Bebas Neue', 'Inter', sans-serif;
+      font-size: 32px; font-weight: 400; margin-bottom: 12px;
+      letter-spacing: 1px; text-transform: uppercase;
+    }
+    .card p { font-size: 15px; color: #777; line-height: 1.6; margin-bottom: 24px; }
+    .card .status { font-size: 13px; color: #555; margin-top: 16px; }
+
+    .icon-success { font-size: 44px; margin-bottom: 16px; display: block; }
+    .icon-error { font-size: 44px; margin-bottom: 16px; display: block; color: #ff4444; }
+    .icon-loading { font-size: 44px; margin-bottom: 16px; display: block; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 4px;
+      font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: all 0.2s;
+      cursor: pointer; border: none;
+      margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .btn-primary { background: var(--gold); color: #000; }
+    .btn-primary:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.15);
+      color: #fff;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Password reset form */
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-size: 12px; color: #888; margin-bottom: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .form-group input {
+      width: 100%; padding: 13px 16px; border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04); color: #fff;
+      font-size: 15px; font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: var(--gold); }
+    .error-msg { color: #ff4444; font-size: 13px; margin-top: 8px; display: none; }
+    .success-msg { color: #4CAF50; font-size: 13px; margin-top: 8px; display: none; }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <img src="../img/logo-oficial.png" alt="Mister Contador">
+
+  <!-- Loading state -->
+  <div id="loading">
+    <span class="icon-loading">&#9203;</span>
+    <h1>Verificando...</h1>
+    <p>Estamos procesando tu solicitud. Espera un momento.</p>
+  </div>
+
+  <!-- Email confirmed -->
+  <div id="confirmed" class="hidden">
+    <span class="icon-success">&#9989;</span>
+    <h1>Correo confirmado</h1>
+    <p>Tu cuenta ha sido verificada exitosamente. Ya puedes iniciar sesion en Mister Inventory.</p>
+    <a href="misterinventory://login-callback" class="btn btn-primary">Abrir la app</a>
+    <p class="status">Si la app no se abre, inicia sesion manualmente.</p>
+  </div>
+
+  <!-- Password reset form -->
+  <div id="reset-form" class="hidden">
+    <span class="icon-success" style="color:#FFD700;">&#128274;</span>
+    <h1>Nueva contrasena</h1>
+    <p>Ingresa tu nueva contrasena para Mister Inventory.</p>
+    <form id="password-form" onsubmit="handlePasswordReset(event)">
+      <div class="form-group">
+        <label>Nueva contrasena</label>
+        <input type="password" id="new-password" placeholder="Minimo 6 caracteres" required minlength="6">
+      </div>
+      <div class="form-group">
+        <label>Confirmar contrasena</label>
+        <input type="password" id="confirm-password" placeholder="Repite tu contrasena" required minlength="6">
+      </div>
+      <div class="error-msg" id="error-msg"></div>
+      <div class="success-msg" id="success-msg"></div>
+      <button type="submit" class="btn btn-primary" id="submit-btn" style="width:100%; justify-content:center;">Cambiar contrasena</button>
+    </form>
+  </div>
+
+  <!-- Password reset success -->
+  <div id="reset-success" class="hidden">
+    <span class="icon-success">&#9989;</span>
+    <h1>Contrasena actualizada</h1>
+    <p>Tu contrasena ha sido cambiada exitosamente. Ya puedes iniciar sesion con tu nueva contrasena.</p>
+    <a href="misterinventory://login-callback" class="btn btn-primary">Abrir la app</a>
+    <p class="status">Si la app no se abre, inicia sesion manualmente.</p>
+  </div>
+
+  <!-- Error -->
+  <div id="error" class="hidden">
+    <span class="icon-error">&#10060;</span>
+    <h1>Algo salio mal</h1>
+    <p id="error-detail">No pudimos procesar tu solicitud. El enlace puede haber expirado.</p>
+    <a href="../index.html" class="btn btn-secondary">Volver al inicio</a>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = 'https://cbqgotgchxljznztyrhp.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWdvdGdjaHhsanpuenR5cmhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2ODIyOTYsImV4cCI6MjA4OTI1ODI5Nn0.0SsEmVvsMa-CMgpcXnaETeGNl3KO3FPpkwZ400sa8ow';
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  function showSection(id) {
+    document.querySelectorAll('.card > div').forEach(d => d.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  async function init() {
+    try {
+      // Supabase puts tokens in the URL hash after verification
+      const hash = window.location.hash.substring(1);
+      const params = new URLSearchParams(hash);
+
+      const accessToken = params.get('access_token');
+      const refreshToken = params.get('refresh_token');
+      const type = params.get('type');
+
+      // Also check query params (some flows use these)
+      const urlParams = new URLSearchParams(window.location.search);
+      const errorCode = urlParams.get('error');
+      const errorDescription = urlParams.get('error_description');
+
+      if (errorCode) {
+        document.getElementById('error-detail').textContent = errorDescription || 'El enlace ha expirado o es invalido.';
+        showSection('error');
+        return;
+      }
+
+      if (accessToken && refreshToken) {
+        // Set the session in Supabase client
+        const { data, error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+
+        if (error) {
+          document.getElementById('error-detail').textContent = error.message;
+          showSection('error');
+          return;
+        }
+
+        if (type === 'recovery') {
+          // Password reset - show form
+          showSection('reset-form');
+        } else {
+          // Email confirmation or other - show success
+          showSection('confirmed');
+          // Try to open the app
+          setTimeout(() => {
+            window.location.href = 'misterinventory://login-callback';
+          }, 1500);
+        }
+      } else {
+        // No tokens - might be a direct visit or expired link
+        showSection('error');
+      }
+    } catch (e) {
+      document.getElementById('error-detail').textContent = 'Error inesperado: ' + e.message;
+      showSection('error');
+    }
+  }
+
+  async function handlePasswordReset(event) {
+    event.preventDefault();
+
+    const newPass = document.getElementById('new-password').value;
+    const confirmPass = document.getElementById('confirm-password').value;
+    const errorEl = document.getElementById('error-msg');
+    const submitBtn = document.getElementById('submit-btn');
+
+    errorEl.style.display = 'none';
+
+    if (newPass !== confirmPass) {
+      errorEl.textContent = 'Las contrasenas no coinciden.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    if (newPass.length < 6) {
+      errorEl.textContent = 'La contrasena debe tener al menos 6 caracteres.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    submitBtn.textContent = 'Actualizando...';
+    submitBtn.disabled = true;
+
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPass });
+
+      if (error) {
+        errorEl.textContent = error.message;
+        errorEl.style.display = 'block';
+        submitBtn.textContent = 'Cambiar contrasena';
+        submitBtn.disabled = false;
+        return;
+      }
+
+      showSection('reset-success');
+    } catch (e) {
+      errorEl.textContent = 'Error: ' + e.message;
+      errorEl.style.display = 'block';
+      submitBtn.textContent = 'Cambiar contrasena';
+      submitBtn.disabled = false;
+    }
+  }
+
+  // Run on page load
+  init();
+</script>
+
+</body>
+</html>
