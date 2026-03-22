@@ -197,6 +197,7 @@
         'https://cbqgotgchxljznztyrhp.supabase.co',
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWdvdGdjaHhsanpuenR5cmhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2ODIyOTYsImV4cCI6MjA4OTI1ODI5Nn0.0SsEmVvsMa-CMgpcXnaETeGNl3KO3FPpkwZ400sa8ow'
       );
+      window._supabaseClient = sb; // guardar para handlePasswordReset
       const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type: type || 'signup' });
       if (error) {
         document.getElementById('error-detail').textContent = error.message;
