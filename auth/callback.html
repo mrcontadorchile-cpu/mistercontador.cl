@@ -152,6 +152,16 @@
     document.getElementById(id).classList.remove('hidden');
   }
 
+  // Timeout de seguridad: si en 10s no hay respuesta, muestra error con detalle
+  const safetyTimeout = setTimeout(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const params = [];
+    for (const [k, v] of urlParams.entries()) params.push(k + '=' + v.substring(0, 12) + '...');
+    document.getElementById('error-detail').textContent =
+      'Tiempo de espera agotado. Params recibidos: ' + (params.join(', ') || 'ninguno');
+    showSection('error');
+  }, 10000);
+
   async function init() {
     try {
       const urlParams = new URLSearchParams(window.location.search);
@@ -229,11 +239,15 @@
       }
 
       // Sin tokens ni code → enlace inválido o visita directa
+      document.getElementById('error-detail').textContent =
+        'Enlace inválido o expirado. No se encontraron parámetros de autenticación.';
       showSection('error');
 
     } catch (e) {
       document.getElementById('error-detail').textContent = 'Error inesperado: ' + e.message;
       showSection('error');
+    } finally {
+      clearTimeout(safetyTimeout);
     }
   }
 
