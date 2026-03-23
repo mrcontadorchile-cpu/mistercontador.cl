@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos y Condiciones de Uso — Mister Inventory</title>
+  <meta name="description" content="Términos y Condiciones de Uso del servicio Mister Inventory, de Mister Contador SpA. Conforme a la Ley 19.496 y el Decreto N°6 de Comercio Electrónico.">
+  <link rel="icon" type="image/png" href="img/icon-oficial.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #d4a800;
+      --gold-glow: rgba(245,194,0,0.12);
+      --black: #000000;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ─────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(245,194,0,0.2);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img {
+      height: 36px;
+      object-fit: contain;
+    }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500;
+      margin-left: 28px; transition: color 0.2s; letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav {
+      background: var(--gold); color: var(--black);
+      padding: 8px 18px; border-radius: 4px; font-weight: 700;
+      margin-left: 28px; letter-spacing: 0.5px; font-size: 13px;
+      text-transform: uppercase;
+    }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); color: var(--black); }
+
+    /* ── Hamburger ───────────────────────── */
+    .hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); margin: 5px 0;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(0,0,0,0.97); backdrop-filter: blur(16px);
+      padding: 20px 24px; border-bottom: 2px solid var(--gold);
+      z-index: 99;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 16px; font-weight: 600; padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      letter-spacing: 0.3px;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── Legal Content ───────────────────── */
+    .legal-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .legal-page-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(245,194,0,0.2);
+    }
+
+    .legal-page-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,194,0,0.1);
+      border: 1px solid rgba(245,194,0,0.3);
+      color: var(--gold);
+      font-size: 11px; font-weight: 700;
+      padding: 6px 16px; border-radius: 2px;
+      margin-bottom: 20px;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .legal-page-header h1 {
+      font-family: 'Bebas Neue', 'Inter', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .legal-last-update {
+      font-size: 13px;
+      color: #555;
+      letter-spacing: 0.3px;
+    }
+
+    .legal-section {
+      margin-bottom: 40px;
+    }
+
+    .legal-section h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .legal-section h2 .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+
+    .legal-section p {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .legal-section ul {
+      list-style: none;
+      margin: 12px 0 12px 0;
+    }
+
+    .legal-section ul li {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.7;
+      padding: 6px 0 6px 20px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .legal-section ul li:last-child { border-bottom: none; }
+
+    .legal-section ul li::before {
+      content: "—";
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+
+    .legal-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,194,0,0.2), transparent);
+      margin: 0 0 40px 0;
+    }
+
+    /* ── Footer ──────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 24px; text-align: center;
+      background: #000;
+    }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.8; }
+    .social-links { margin-top: 20px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .social-links a {
+      color: #555; font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    /* ── Mobile ──────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .legal-page { padding: 100px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="inventory.html">Mister Inventory</a>
+      <a href="privacidad.html">Privacidad</a>
+      <a href="inventory.html#download" class="btn-nav">Descargar</a>
+    </div>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" onclick="this.parentElement.classList.remove('active')">Inicio</a>
+  <a href="inventory.html" onclick="this.parentElement.classList.remove('active')">Mister Inventory</a>
+  <a href="privacidad.html" onclick="this.parentElement.classList.remove('active')">Privacidad</a>
+  <a href="inventory.html#download" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">Descargar</a>
+</div>
+
+<!-- Legal Content -->
+<main class="legal-page">
+
+  <div class="legal-page-header">
+    <div class="legal-page-eyebrow">Legal</div>
+    <h1>Términos y Condiciones de Uso</h1>
+    <p class="legal-last-update">Última actualización: Marzo 2026</p>
+  </div>
+
+  <div class="legal-section">
+    <p>El presente documento establece los Términos y Condiciones de Uso (en adelante, "los Términos") que rigen el acceso y uso del servicio de software Mister Inventory, ofrecido por Mister Contador SpA. Al registrarse y utilizar el servicio, el usuario acepta íntegramente estos Términos conforme a la Ley N°19.496 sobre Protección de los Derechos de los Consumidores y el Decreto N°6 del Ministerio de Economía sobre Comercio Electrónico.</p>
+  </div>
+
+  <div class="legal-divider"></div>
+
+  <!-- Sección 1 -->
+  <div class="legal-section">
+    <h2><span class="section-num">1.</span> Identificación del Prestador</h2>
+    <p>El servicio es prestado por:</p>
+    <ul>
+      <li><strong>Razón Social:</strong> Mister Contador SpA</li>
+      <li><strong>RUT:</strong> 78.343.698-1</li>
+      <li><strong>Domicilio:</strong> Los Militares 5620 Of. 905, Piso 9, Las Condes, Región Metropolitana, Chile</li>
+      <li><strong>Correo electrónico:</strong> mrcontadorchile@gmail.com</li>
+      <li><strong>WhatsApp:</strong> +56 9 4053 6523</li>
+      <li><strong>Sitio web:</strong> https://mistercontador.cl</li>
+    </ul>
+  </div>
+
+  <!-- Sección 2 -->
+  <div class="legal-section">
+    <h2><span class="section-num">2.</span> Objeto del Servicio</h2>
+    <p>Mister Inventory es un software de gestión de inventario y punto de venta (POS) entregado bajo la modalidad SaaS (Software as a Service), dirigido a negocios y empresas chilenas. El servicio permite:</p>
+    <ul>
+      <li>Control de stock de productos por local</li>
+      <li>Registro de ventas, compras, mermas y devoluciones</li>
+      <li>Operación de punto de venta con múltiples formas de pago</li>
+      <li>Generación de reportes de inventario y ventas</li>
+      <li>Gestión de múltiples locales y usuarios con roles diferenciados</li>
+    </ul>
+    <p>El servicio está disponible para plataformas macOS, Windows y, próximamente, iOS y Android.</p>
+  </div>
+
+  <!-- Sección 3 -->
+  <div class="legal-section">
+    <h2><span class="section-num">3.</span> Registro y Cuenta de Usuario</h2>
+    <p>Para acceder a Mister Inventory, el usuario debe crear una cuenta proporcionando información veraz, actualizada y completa. El usuario es el único responsable de:</p>
+    <ul>
+      <li>Mantener la confidencialidad de sus credenciales de acceso (correo y contraseña)</li>
+      <li>Todas las actividades realizadas bajo su cuenta</li>
+      <li>Notificar de inmediato a Mister Contador SpA ante cualquier uso no autorizado de su cuenta</li>
+    </ul>
+    <p>Mister Contador SpA se reserva el derecho de suspender o eliminar cuentas que infrinjan estos Términos, proporcionen información falsa o realicen actividades que perjudiquen el servicio o a otros usuarios.</p>
+  </div>
+
+  <!-- Sección 4 -->
+  <div class="legal-section">
+    <h2><span class="section-num">4.</span> Planes y Precios</h2>
+    <p>El servicio se ofrece bajo los siguientes planes de suscripción mensual, expresados en pesos chilenos y con IVA no incluido:</p>
+    <ul>
+      <li><strong>Básico:</strong> $15.990/mes — 1 local, hasta 500 productos, 2 usuarios</li>
+      <li><strong>Pro:</strong> $34.990/mes — 1 local, productos ilimitados, 5 usuarios, POS incluido</li>
+      <li><strong>Business:</strong> $115.990/mes — 1 local incluido, usuarios ilimitados, boleta electrónica SII, exportación Excel</li>
+    </ul>
+    <p>Los locales adicionales pueden agregarse en cualquier plan por <strong>$9.990/mes</strong> cada uno.</p>
+    <p>El cobro se realiza de forma mensual mediante Flow.cl, plataforma de pagos en línea debidamente autorizada. El precio se entiende vigente desde la fecha del primer cobro y se renovará automáticamente cada período, salvo que el usuario cancele con anterioridad.</p>
+    <p>Mister Contador SpA se reserva el derecho de modificar los precios, notificando al usuario con al menos 15 días de anticipación por correo electrónico.</p>
+    <p><strong>Período de prueba:</strong> Todo usuario nuevo tiene acceso a un período de prueba gratuito de 7 días con todas las funciones del plan activado, sin necesidad de ingresar datos de pago.</p>
+  </div>
+
+  <!-- Sección 5 -->
+  <div class="legal-section">
+    <h2><span class="section-num">5.</span> Política de Cancelación y Reembolso</h2>
+    <p>El usuario puede cancelar su suscripción en cualquier momento desde la configuración de su cuenta. La cancelación tendrá efecto al término del período mensual en curso, y el usuario podrá seguir usando el servicio hasta esa fecha.</p>
+    <p>Por la naturaleza digital del servicio, <strong>no se realizarán reembolsos proporcionales</strong> por períodos no utilizados dentro de un mes ya cobrado.</p>
+    <p><strong>Derecho a retracto:</strong> Conforme al artículo 3 bis de la Ley 19.496, el derecho a retracto aplica únicamente si el usuario no ha comenzado a utilizar el servicio. En caso de haber accedido al sistema o descargado la aplicación, se entiende que el servicio ha sido prestado y el derecho a retracto no es aplicable.</p>
+  </div>
+
+  <!-- Sección 6 -->
+  <div class="legal-section">
+    <h2><span class="section-num">6.</span> Propiedad Intelectual</h2>
+    <p>El software Mister Inventory, incluyendo su código fuente, diseño, interfaz, logotipos, marca, nombre comercial y toda la documentación asociada, son propiedad exclusiva de Mister Contador SpA y están protegidos por las leyes de propiedad intelectual e industrial vigentes en Chile.</p>
+    <p>El usuario recibe una licencia limitada, no exclusiva, no transferible y revocable para usar el software durante la vigencia de su suscripción. Queda expresamente prohibido:</p>
+    <ul>
+      <li>Copiar, modificar, distribuir o sublicenciar el software</li>
+      <li>Realizar ingeniería inversa o intentar acceder al código fuente</li>
+      <li>Usar la marca Mister Inventory o Mister Contador sin autorización escrita</li>
+      <li>Comercializar el software o cualquier parte de él</li>
+    </ul>
+  </div>
+
+  <!-- Sección 7 -->
+  <div class="legal-section">
+    <h2><span class="section-num">7.</span> Protección de Datos</h2>
+    <p>El tratamiento de los datos personales del usuario se realiza conforme a la Ley N°19.628 sobre Protección de la Vida Privada y a nuestra <a href="privacidad.html" style="color: var(--gold);">Política de Privacidad</a>, la cual forma parte integrante de estos Términos y Condiciones.</p>
+    <p>Al registrarse, el usuario otorga su consentimiento para que Mister Contador SpA trate sus datos con las finalidades descritas en dicha Política.</p>
+  </div>
+
+  <!-- Sección 8 -->
+  <div class="legal-section">
+    <h2><span class="section-num">8.</span> Limitación de Responsabilidad</h2>
+    <p>Mister Contador SpA se compromete a mantener una disponibilidad del servicio del 99% mensual. No obstante, no garantiza la disponibilidad ininterrumpida del servicio y no será responsable por:</p>
+    <ul>
+      <li>Interrupciones debidas a mantenimientos programados, debidamente avisados con anticipación</li>
+      <li>Fallas en infraestructura de terceros (servidores Supabase, Flow.cl, proveedores de internet)</li>
+      <li>Casos fortuitos o de fuerza mayor (desastres naturales, fallas masivas de energía, ciberataques de terceros)</li>
+      <li>Pérdidas de negocio, lucro cesante o daños indirectos derivados del uso o imposibilidad de uso del servicio</li>
+    </ul>
+    <p>En cualquier caso, la responsabilidad máxima de Mister Contador SpA se limitará al monto pagado por el usuario en el mes en que ocurrió el daño.</p>
+  </div>
+
+  <!-- Sección 9 -->
+  <div class="legal-section">
+    <h2><span class="section-num">9.</span> Modificaciones al Servicio</h2>
+    <p>Mister Contador SpA podrá modificar, actualizar o descontinuar funcionalidades del servicio en cualquier momento, con el propósito de mejorar la plataforma o cumplir con requisitos legales.</p>
+    <p>Cuando los cambios sean de carácter sustancial —incluyendo modificaciones a los precios o condiciones de uso— el usuario será notificado por correo electrónico con al menos <strong>15 días de anticipación</strong>. El uso continuado del servicio después de dicha notificación implica la aceptación de los cambios.</p>
+  </div>
+
+  <!-- Sección 10 -->
+  <div class="legal-section">
+    <h2><span class="section-num">10.</span> Ley Aplicable y Jurisdicción</h2>
+    <p>Estos Términos y Condiciones se rigen por las leyes de la República de Chile, incluyendo la Ley N°19.496 de Protección al Consumidor, el Decreto N°6 sobre Comercio Electrónico y demás normativa aplicable.</p>
+    <p>Cualquier disputa o controversia derivada de la interpretación o aplicación de estos Términos será sometida a los tribunales ordinarios de justicia de la ciudad de Santiago, Chile, renunciando las partes a cualquier otro fuero o domicilio.</p>
+  </div>
+
+  <!-- Sección 11 -->
+  <div class="legal-section">
+    <h2><span class="section-num">11.</span> Contacto</h2>
+    <p>Para consultas, reclamos o solicitudes relacionadas con estos Términos y Condiciones, puede contactarnos a través de los siguientes canales:</p>
+    <ul>
+      <li><strong>Correo electrónico:</strong> mrcontadorchile@gmail.com</li>
+      <li><strong>WhatsApp:</strong> +56 9 4053 6523</li>
+      <li><strong>Domicilio:</strong> Los Militares 5620 Of. 905, Piso 9, Las Condes, Región Metropolitana, Chile</li>
+    </ul>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:mrcontadorchile@gmail.com">Email</a>
+    <a href="index.html">Mister Contador</a>
+    <a href="inventory.html">Mister Inventory</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="privacidad.html">Política de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; mrcontadorchile@gmail.com</p>
+</footer>
+
+</body>
+</html>

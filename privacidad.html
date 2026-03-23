@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — Mister Inventory</title>
+  <meta name="description" content="Política de Privacidad de Mister Inventory, de Mister Contador SpA. Conforme a la Ley 19.628 sobre Protección de la Vida Privada.">
+  <link rel="icon" type="image/png" href="img/icon-oficial.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #d4a800;
+      --gold-glow: rgba(245,194,0,0.12);
+      --black: #000000;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ─────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(245,194,0,0.2);
+      padding: 12px 0;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img {
+      height: 36px;
+      object-fit: contain;
+    }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500;
+      margin-left: 28px; transition: color 0.2s; letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav {
+      background: var(--gold); color: var(--black);
+      padding: 8px 18px; border-radius: 4px; font-weight: 700;
+      margin-left: 28px; letter-spacing: 0.5px; font-size: 13px;
+      text-transform: uppercase;
+    }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); color: var(--black); }
+
+    /* ── Hamburger ───────────────────────── */
+    .hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); margin: 5px 0;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(0,0,0,0.97); backdrop-filter: blur(16px);
+      padding: 20px 24px; border-bottom: 2px solid var(--gold);
+      z-index: 99;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 16px; font-weight: 600; padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      letter-spacing: 0.3px;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── Legal Content ───────────────────── */
+    .legal-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    .legal-page-header {
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(245,194,0,0.2);
+    }
+
+    .legal-page-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,194,0,0.1);
+      border: 1px solid rgba(245,194,0,0.3);
+      color: var(--gold);
+      font-size: 11px; font-weight: 700;
+      padding: 6px 16px; border-radius: 2px;
+      margin-bottom: 20px;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+
+    .legal-page-header h1 {
+      font-family: 'Bebas Neue', 'Inter', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .legal-last-update {
+      font-size: 13px;
+      color: #555;
+      letter-spacing: 0.3px;
+    }
+
+    .legal-section {
+      margin-bottom: 40px;
+    }
+
+    .legal-section h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .legal-section h2 .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+
+    .legal-section p {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .legal-section ul {
+      list-style: none;
+      margin: 12px 0 12px 0;
+    }
+
+    .legal-section ul li {
+      font-size: 15px;
+      color: #aaa;
+      line-height: 1.7;
+      padding: 6px 0 6px 20px;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .legal-section ul li:last-child { border-bottom: none; }
+
+    .legal-section ul li::before {
+      content: "—";
+      color: var(--gold);
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+
+    .legal-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(245,194,0,0.2), transparent);
+      margin: 0 0 40px 0;
+    }
+
+    /* ── Footer ──────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 24px; text-align: center;
+      background: #000;
+    }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.8; }
+    .social-links { margin-top: 20px; display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .social-links a {
+      color: #555; font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    /* ── Mobile ──────────────────────────── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .legal-page { padding: 100px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="inventory.html">Mister Inventory</a>
+      <a href="terminos.html">Términos</a>
+      <a href="inventory.html#download" class="btn-nav">Descargar</a>
+    </div>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html" onclick="this.parentElement.classList.remove('active')">Inicio</a>
+  <a href="inventory.html" onclick="this.parentElement.classList.remove('active')">Mister Inventory</a>
+  <a href="terminos.html" onclick="this.parentElement.classList.remove('active')">Términos</a>
+  <a href="inventory.html#download" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">Descargar</a>
+</div>
+
+<!-- Legal Content -->
+<main class="legal-page">
+
+  <div class="legal-page-header">
+    <div class="legal-page-eyebrow">Legal</div>
+    <h1>Política de Privacidad</h1>
+    <p class="legal-last-update">Última actualización: Marzo 2026</p>
+  </div>
+
+  <div class="legal-section">
+    <p>Mister Contador SpA, responsable del servicio Mister Inventory, se compromete a proteger la privacidad de los datos personales de sus usuarios conforme a la Ley N°19.628 sobre Protección de la Vida Privada de la República de Chile. Esta Política describe qué datos recopilamos, cómo los utilizamos y cuáles son los derechos del titular de los datos.</p>
+  </div>
+
+  <div class="legal-divider"></div>
+
+  <!-- Sección 1 -->
+  <div class="legal-section">
+    <h2><span class="section-num">1.</span> Responsable del Tratamiento de Datos</h2>
+    <p>El responsable del tratamiento de datos personales es:</p>
+    <ul>
+      <li><strong>Razón Social:</strong> Mister Contador SpA</li>
+      <li><strong>RUT:</strong> 78.343.698-1</li>
+      <li><strong>Domicilio:</strong> Los Militares 5620 Of. 905, Piso 9, Las Condes, Región Metropolitana, Chile</li>
+      <li><strong>Correo de contacto:</strong> mrcontadorchile@gmail.com</li>
+    </ul>
+  </div>
+
+  <!-- Sección 2 -->
+  <div class="legal-section">
+    <h2><span class="section-num">2.</span> Datos que Recopilamos</h2>
+    <p>Con motivo de la prestación del servicio, recopilamos los siguientes datos:</p>
+    <ul>
+      <li><strong>Datos de registro:</strong> nombre completo, correo electrónico y contraseña (almacenada en formato cifrado)</li>
+      <li><strong>Datos de la empresa:</strong> nombre de la empresa, RUT de la empresa (opcional), dirección de los locales</li>
+      <li><strong>Datos de uso:</strong> productos, precios, stock, transacciones de inventario y ventas ingresadas por el usuario</li>
+      <li><strong>Datos técnicos:</strong> dirección IP, tipo de dispositivo y sistema operativo, utilizados para seguridad y diagnóstico</li>
+    </ul>
+    <p>No recopilamos datos de tarjetas de crédito ni información bancaria. Los pagos son procesados directamente por Flow.cl bajo sus propias políticas de privacidad.</p>
+  </div>
+
+  <!-- Sección 3 -->
+  <div class="legal-section">
+    <h2><span class="section-num">3.</span> Finalidad del Tratamiento</h2>
+    <p>Los datos personales recopilados son utilizados exclusivamente para las siguientes finalidades:</p>
+    <ul>
+      <li>Crear y gestionar la cuenta de usuario y el acceso al servicio</li>
+      <li>Operar y mantener las funcionalidades del software Mister Inventory</li>
+      <li>Enviar comunicaciones relacionadas con el servicio: confirmaciones de pago, notificaciones de actualización, avisos de seguridad</li>
+      <li>Brindar soporte técnico cuando el usuario lo solicite</li>
+      <li>Mejorar el servicio mediante análisis agregado y anonimizado del uso de la plataforma</li>
+      <li>Cumplir con obligaciones legales aplicables</li>
+    </ul>
+    <p>No utilizamos los datos del usuario para enviar publicidad de terceros ni para perfilamiento comercial.</p>
+  </div>
+
+  <!-- Sección 4 -->
+  <div class="legal-section">
+    <h2><span class="section-num">4.</span> Base Legal del Tratamiento</h2>
+    <p>El tratamiento de datos se realiza sobre la base del <strong>consentimiento libre e informado del usuario</strong>, otorgado al momento de crear su cuenta y aceptar estos términos, conforme al artículo 4° de la Ley N°19.628.</p>
+    <p>El usuario puede revocar su consentimiento en cualquier momento, lo que implicará la cancelación de la cuenta y la eliminación de sus datos conforme a lo descrito en la sección 9 de esta Política.</p>
+  </div>
+
+  <!-- Sección 5 -->
+  <div class="legal-section">
+    <h2><span class="section-num">5.</span> Almacenamiento y Seguridad</h2>
+    <p>Los datos son almacenados en la plataforma Supabase, proveedor de infraestructura de base de datos en la nube, con servidores ubicados en Estados Unidos y Europa. Supabase aplica cifrado en tránsito (TLS) y en reposo (AES-256) para proteger la información.</p>
+    <p>Mister Contador SpA implementa las siguientes medidas de seguridad:</p>
+    <ul>
+      <li>Autenticación de usuarios mediante credenciales cifradas</li>
+      <li>Control de acceso por roles (owner, bodeguero, cajero) mediante políticas de seguridad a nivel de fila (RLS)</li>
+      <li>Comunicaciones cifradas mediante HTTPS/TLS</li>
+      <li>Acceso restringido a los datos solo al personal autorizado de la empresa</li>
+    </ul>
+  </div>
+
+  <!-- Sección 6 -->
+  <div class="legal-section">
+    <h2><span class="section-num">6.</span> Derechos del Titular (ARCO)</h2>
+    <p>Conforme a la Ley N°19.628, el titular de los datos tiene derecho a:</p>
+    <ul>
+      <li><strong>Acceso:</strong> solicitar información sobre los datos personales que se encuentran en nuestros registros</li>
+      <li><strong>Rectificación:</strong> solicitar la corrección de datos inexactos o incompletos</li>
+      <li><strong>Cancelación:</strong> solicitar la eliminación de sus datos cuando ya no sean necesarios para los fines para los que fueron recopilados</li>
+      <li><strong>Oposición:</strong> oponerse al tratamiento de sus datos en determinadas circunstancias</li>
+    </ul>
+    <p>Para ejercer cualquiera de estos derechos, el titular debe enviar una solicitud escrita al correo <strong>mrcontadorchile@gmail.com</strong>, identificándose con nombre completo y correo de registro. Responderemos dentro de un plazo máximo de 10 días hábiles.</p>
+  </div>
+
+  <!-- Sección 7 -->
+  <div class="legal-section">
+    <h2><span class="section-num">7.</span> Cookies y Analítica</h2>
+    <p>El sitio web de Mister Inventory (mistercontador.cl) utiliza únicamente cookies técnicas estrictamente necesarias para el funcionamiento del servicio, tales como:</p>
+    <ul>
+      <li>Cookies de sesión para mantener al usuario autenticado</li>
+      <li>Cookies de preferencias de idioma o configuración</li>
+    </ul>
+    <p>No utilizamos cookies de seguimiento publicitario ni de terceros para perfilamiento de usuarios. En caso de implementar herramientas de analítica en el futuro, esta Política será actualizada con la debida anticipación.</p>
+  </div>
+
+  <!-- Sección 8 -->
+  <div class="legal-section">
+    <h2><span class="section-num">8.</span> Compartición de Datos con Terceros</h2>
+    <p>Mister Contador SpA no vende, arrienda ni comparte los datos personales de sus usuarios con terceros con fines comerciales. Los datos únicamente son compartidos con los siguientes proveedores de servicios, estrictamente necesarios para el funcionamiento de la plataforma:</p>
+    <ul>
+      <li><strong>Supabase Inc.:</strong> proveedor de base de datos y autenticación en la nube</li>
+      <li><strong>Flow.cl:</strong> plataforma de procesamiento de pagos en línea (no recibe datos de inventario)</li>
+      <li><strong>Resend:</strong> servicio de envío de correos transaccionales (notificaciones del sistema)</li>
+    </ul>
+    <p>Estos proveedores actúan como encargados del tratamiento y están sujetos a sus propias políticas de privacidad y a obligaciones de confidencialidad. No tienen autorización para utilizar los datos con fines distintos a los establecidos.</p>
+    <p>Los datos podrán ser divulgados a autoridades competentes cuando exista una obligación legal o requerimiento judicial vigente.</p>
+  </div>
+
+  <!-- Sección 9 -->
+  <div class="legal-section">
+    <h2><span class="section-num">9.</span> Retención y Eliminación de Datos</h2>
+    <p>Los datos personales se conservarán durante toda la vigencia de la cuenta del usuario y hasta <strong>30 días calendario</strong> después de la cancelación de la suscripción. Transcurrido dicho plazo, los datos serán eliminados de forma permanente de los sistemas de Mister Contador SpA.</p>
+    <p>El usuario puede solicitar la eliminación inmediata de sus datos enviando una solicitud a mrcontadorchile@gmail.com. En tal caso, la eliminación se realizará dentro de los 10 días hábiles siguientes a la solicitud, previa verificación de identidad.</p>
+    <p>Se podrán conservar ciertos datos por un período adicional cuando exista obligación legal de hacerlo (por ejemplo, registros contables exigidos por la legislación tributaria chilena).</p>
+  </div>
+
+  <!-- Sección 10 -->
+  <div class="legal-section">
+    <h2><span class="section-num">10.</span> Contacto — Responsable de Datos</h2>
+    <p>Para cualquier consulta, solicitud de derechos ARCO o reclamo relacionado con el tratamiento de datos personales, puede contactarnos a través de:</p>
+    <ul>
+      <li><strong>Correo electrónico (DPO):</strong> mrcontadorchile@gmail.com</li>
+      <li><strong>WhatsApp:</strong> +56 9 4053 6523</li>
+      <li><strong>Domicilio:</strong> Los Militares 5620 Of. 905, Piso 9, Las Condes, Región Metropolitana, Chile</li>
+    </ul>
+    <p>Mister Contador SpA dará respuesta a todas las solicitudes dentro del plazo establecido por la Ley N°19.628.</p>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:mrcontadorchile@gmail.com">Email</a>
+    <a href="index.html">Mister Contador</a>
+    <a href="inventory.html">Mister Inventory</a>
+    <a href="terminos.html">Términos y Condiciones</a>
+    <a href="privacidad.html">Política de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; mrcontadorchile@gmail.com</p>
+</footer>
+
+</body>
+</html>
