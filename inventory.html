@@ -107,10 +107,44 @@
 
     .hero-logo-wrap {
       margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
     }
-    .hero-logo-wrap img {
+    .hero-logo-wrap .app-icon {
       height: 52px;
+      width: 52px;
       object-fit: contain;
+      border-radius: 12px;
+    }
+    .brand-wordmark {
+      line-height: 1;
+      text-align: left;
+    }
+    .brand-mister {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .brand-inventario {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .brand-tie-svg {
+      width: 14px;
+      height: 24px;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 2px;
+      position: relative;
+      top: -1px;
     }
 
     .badge {
@@ -387,7 +421,8 @@
       .hamburger { display: block; }
       .hero { padding: 100px 20px 60px; }
       .hero h1 { letter-spacing: 1px; }
-      .hero-logo-wrap img { height: 44px; }
+      .hero-logo-wrap .app-icon { height: 40px; width: 40px; }
+      .hero-logo-wrap .brand-logo { height: 48px; }
       .section { padding: 70px 20px; }
       .features-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
@@ -431,7 +466,13 @@
 <section class="hero">
   <div class="hero-content">
     <div class="hero-logo-wrap">
-      <a href="https://mistercontador.cl/"><img src="img/logo-oficial.png" alt="Mister Inventario"></a>
+      <a href="https://mistercontador.cl/" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
+        <img src="img/logo-oficial.png" alt="ícono" class="app-icon">
+        <div class="brand-wordmark">
+          <div class="brand-mister">Mister</div>
+          <div class="brand-inventario">Inventari<svg class="brand-tie-svg" viewBox="0 0 18 32" xmlns="http://www.w3.org/2000/svg"><polygon points="3,0 15,0 18,8 0,8" fill="#F5C200"/><polygon points="0,8 18,8 20,26 -2,26" fill="#F5C200"/><polygon points="-2,26 20,26 9,32 9,32" fill="#F5C200"/></svg>o</div>
+        </div>
+      </a>
     </div>
     <div class="badge">Prueba gratis por 7 días</div>
     <h1>Tu inventario<br><span class="gold">bajo control</span><br><span class="outline">total</span></h1>

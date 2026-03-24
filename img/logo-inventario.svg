@@ -1,7 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" width="400" height="180">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 200" width="520" height="200">
   <defs>
     <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&amp;display=swap');</style>
   </defs>
-  <text x="20" y="72" font-family="'Inter', Arial, sans-serif" font-weight="800" font-size="60" fill="#2C3539">Mister</text>
-  <text x="20" y="150" font-family="'Inter', Arial, sans-serif" font-weight="800" font-size="60" fill="#2C3539">Inventario</text>
+
+  <!-- "Mister" en blanco -->
+  <text x="20" y="78" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="68" fill="#FFFFFF">Mister</text>
+
+  <!-- "Inventari" sin la "o" final -->
+  <text x="20" y="160" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="68" fill="#FFFFFF">Inventari</text>
+
+  <!-- Corbata dorada como el logo de la imagen -->
+  <g transform="translate(436, 94)">
+    <!-- Nudo -->
+    <polygon points="11,0 23,0 27,13 -1,13" fill="#F5C200"/>
+    <!-- Cuerpo -->
+    <polygon points="-1,13 27,13 31,52 -5,52" fill="#F5C200"/>
+    <!-- Punta -->
+    <polygon points="-5,52 31,52 13,68 13,68" fill="#F5C200"/>
+  </g>
+
+  <!-- "o" final en blanco -->
+  <text x="468" y="160" font-family="'Inter','Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="68" fill="#FFFFFF">o</text>
 </svg>
