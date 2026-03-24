@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Socios — Mister Inventario</title>
+  <meta name="description" content="Portal exclusivo para revendedores de Mister Inventario. Accede a tus métricas, clientes y comisiones.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="img/icon-oficial.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #d4a800;
+      --gold-glow: rgba(245,194,0,0.12);
+      --gold-glow-strong: rgba(245,194,0,0.2);
+      --black: #000000;
+      --surface: #0d0d0d;
+      --surface-2: #141414;
+      --surface-3: #1a1a1a;
+      --border: rgba(255,255,255,0.07);
+      --border-gold: rgba(245,194,0,0.25);
+      --white: #FFFFFF;
+      --muted: #888;
+      --muted-2: #555;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ─────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+    /* ── Loading overlay ─────────────────────────────── */
+    #loading-overlay {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.4s ease;
+    }
+    #loading-overlay.hidden { opacity: 0; pointer-events: none; }
+    .spinner {
+      width: 36px; height: 36px;
+      border: 2px solid rgba(245,194,0,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Login page ─────────────────────────────── */
+    #login-page {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.06) 0%, transparent 65%);
+    }
+
+    .login-card {
+      width: 100%; max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .login-logo {
+      display: block; margin: 0 auto 32px;
+      height: 44px; object-fit: contain;
+    }
+
+    .login-title {
+      font-size: 24px; font-weight: 800;
+      text-align: center; letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .login-subtitle {
+      font-size: 14px; color: var(--muted);
+      text-align: center; margin-bottom: 36px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 12px; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.5px;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    .form-group input::placeholder { color: var(--muted-2); }
+
+    .btn-login {
+      width: 100%; margin-top: 8px;
+      background: var(--gold);
+      color: var(--black);
+      border: none; border-radius: 10px;
+      padding: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-login:hover {
+      background: #ffd234;
+      box-shadow: 0 4px 20px rgba(245,194,0,0.35);
+    }
+    .btn-login:active { transform: scale(0.98); }
+    .btn-login:disabled {
+      opacity: 0.6; cursor: not-allowed; transform: none;
+    }
+    .btn-login .btn-spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(0,0,0,0.3);
+      border-top-color: var(--black);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto;
+    }
+    .btn-login.loading .btn-text { display: none; }
+    .btn-login.loading .btn-spinner { display: block; }
+
+    .login-error {
+      display: none;
+      background: rgba(255,59,48,0.1);
+      border: 1px solid rgba(255,59,48,0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px; color: #ff6b6b;
+      margin-top: 16px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .login-error.visible { display: block; }
+
+    .login-footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 13px; color: var(--muted);
+      line-height: 1.5;
+    }
+    .login-footer a {
+      color: var(--gold); text-decoration: none;
+      font-weight: 500;
+    }
+    .login-footer a:hover { text-decoration: underline; }
+
+    /* ── Dashboard ─────────────────────────────── */
+    #dashboard-page {
+      display: none;
+      min-height: 100vh;
+      background: var(--black);
+    }
+
+    /* Header */
+    .dash-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 0 24px;
+    }
+    .dash-header-inner {
+      max-width: 1160px; margin: 0 auto;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .dash-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .dash-logo img { height: 32px; object-fit: contain; }
+    .dash-logo-badge {
+      font-size: 10px; font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-glow);
+      border: 1px solid var(--border-gold);
+      padding: 3px 8px; border-radius: 20px;
+      letter-spacing: 0.8px; text-transform: uppercase;
+    }
+
+    .dash-header-right { display: flex; align-items: center; gap: 16px; }
+    .dash-user-name {
+      font-size: 13px; font-weight: 500;
+      color: var(--muted);
+    }
+    @media (max-width: 480px) { .dash-user-name { display: none; } }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 16px;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-logout:hover { border-color: #555; color: var(--white); }
+
+    /* Main content */
+    .dash-main {
+      max-width: 1160px; margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .dash-welcome {
+      margin-bottom: 40px;
+    }
+    .dash-welcome h1 {
+      font-size: 28px; font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .dash-welcome h1 span { color: var(--gold); }
+    .dash-welcome p {
+      font-size: 14px; color: var(--muted);
+    }
+
+    /* Metric cards */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 900px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .metric-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-2px);
+    }
+    .metric-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-glow-strong), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .metric-card:hover::after { opacity: 1; }
+
+    .metric-icon {
+      font-size: 22px; margin-bottom: 14px;
+      display: block;
+    }
+    .metric-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.6px;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 26px; font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--white);
+    }
+    .metric-value.gold { color: var(--gold); }
+    .metric-sub {
+      font-size: 11px; color: var(--muted-2);
+      margin-top: 4px;
+    }
+
+    /* Section header */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .section-count {
+      font-size: 12px; font-weight: 600;
+      background: var(--gold-glow);
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+      padding: 2px 8px; border-radius: 20px;
+    }
+
+    /* Table */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead tr {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+    }
+    thead th {
+      padding: 13px 16px;
+      font-size: 11px; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.6px;
+      text-transform: uppercase; text-align: left;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.025); }
+    tbody td {
+      padding: 14px 16px;
+      font-size: 14px; color: #ccc;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .badge-active {
+      background: rgba(52,199,89,0.12);
+      color: #4cd964;
+      border: 1px solid rgba(52,199,89,0.25);
+    }
+    .badge-free {
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-expired {
+      background: rgba(255,59,48,0.1);
+      color: #ff6b6b;
+      border: 1px solid rgba(255,59,48,0.2);
+    }
+    .badge-plan {
+      background: var(--gold-glow);
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+    }
+
+    .commission-cell {
+      font-weight: 600; color: var(--gold);
+      font-size: 13px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--muted);
+    }
+    .empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-state p { font-size: 14px; line-height: 1.5; }
+
+    /* Alert banner */
+    .alert-banner {
+      background: rgba(245,194,0,0.07);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 14px; color: #ccc;
+      margin-bottom: 32px;
+      display: flex; align-items: flex-start; gap: 12px;
+      line-height: 1.5;
+    }
+    .alert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* Referral code card */
+    .referral-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .referral-label {
+      font-size: 11px; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.6px;
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+    .referral-code {
+      font-size: 22px; font-weight: 800;
+      color: var(--gold); letter-spacing: 2px;
+      font-family: 'Courier New', monospace;
+    }
+    .btn-copy {
+      background: var(--gold);
+      color: var(--black);
+      border: none; border-radius: 8px;
+      padding: 10px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-copy:hover { background: #ffd234; }
+    .btn-copy:active { transform: scale(0.96); }
+
+    /* Setup message */
+    .setup-message {
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .setup-message .setup-icon { font-size: 48px; margin-bottom: 16px; }
+    .setup-message h2 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .setup-message p { font-size: 14px; color: var(--muted); line-height: 1.6; max-width: 400px; margin: 0 auto; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 24px;
+      text-align: center;
+      background: var(--black);
+    }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.8; }
+    .footer-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: center; }
+    .footer-links a { font-size: 13px; color: var(--muted); }
+    .footer-links a:hover { color: var(--gold); }
+    .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    /* Responsive tweaks */
+    @media (max-width: 640px) {
+      .login-card { padding: 36px 24px; }
+      .dash-main { padding: 28px 16px 60px; }
+      .dash-welcome h1 { font-size: 22px; }
+      .metric-value { font-size: 22px; }
+      .table-wrap { overflow-x: auto; }
+      table { min-width: 560px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div id="loading-overlay">
+  <div class="spinner"></div>
+</div>
+
+<!-- ══ LOGIN PAGE ══════════════════════════════════════ -->
+<div id="login-page" style="display:none">
+  <div class="login-card">
+    <img src="img/logo-oficial.png" alt="Mister Inventario" class="login-logo">
+    <h1 class="login-title">Portal de Socios</h1>
+    <p class="login-subtitle">Accede a tu panel de revendedor</p>
+
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" placeholder="tu@email.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn-login" id="login-btn">
+        <span class="btn-text">Ingresar</span>
+        <span class="btn-spinner"></span>
+      </button>
+    </form>
+
+    <div class="login-error" id="login-error"></div>
+
+    <p class="login-footer">
+      ¿Aún no eres socio?<br>
+      <a href="mailto:mrcontadorchile@gmail.com">Contáctanos para unirte al programa</a>
+    </p>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD PAGE ══════════════════════════════════════ -->
+<div id="dashboard-page">
+
+  <!-- Header -->
+  <header class="dash-header">
+    <div class="dash-header-inner">
+      <a href="inventory.html" class="dash-logo">
+        <img src="img/logo-oficial.png" alt="Mister Inventario">
+        <span class="dash-logo-badge">Socios</span>
+      </a>
+      <div class="dash-header-right">
+        <span class="dash-user-name" id="dash-user-name"></span>
+        <button class="btn-logout" onclick="handleLogout()">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="dash-main">
+
+    <!-- Welcome -->
+    <div class="dash-welcome">
+      <h1>Bienvenido, <span id="welcome-name">Socio</span> 👋</h1>
+      <p id="welcome-period">Resumen del período actual</p>
+    </div>
+
+    <!-- Setup message (shown when tables not ready) -->
+    <div id="setup-message" class="setup-message" style="display:none">
+      <div class="setup-icon">⚙️</div>
+      <h2>Panel en configuración</h2>
+      <p>Tu portal de socios está siendo configurado. En breve tendrás acceso completo a tus métricas y clientes. Contacta a <a href="mailto:mrcontadorchile@gmail.com">mrcontadorchile@gmail.com</a> si tienes preguntas.</p>
+    </div>
+
+    <!-- Dashboard content (shown when data is ready) -->
+    <div id="dashboard-content">
+
+      <!-- Referral code -->
+      <div class="referral-card" id="referral-card" style="display:none">
+        <div>
+          <div class="referral-label">Tu código de referido</div>
+          <div class="referral-code" id="referral-code-display">—</div>
+        </div>
+        <button class="btn-copy" onclick="copyReferralCode()">Copiar código</button>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-icon">💼</span>
+          <div class="metric-label">Clientes Activos</div>
+          <div class="metric-value" id="metric-active">—</div>
+          <div class="metric-sub" id="metric-active-sub">de 0 totales</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-icon">💰</span>
+          <div class="metric-label">MRR Generado</div>
+          <div class="metric-value gold" id="metric-mrr">—</div>
+          <div class="metric-sub">ingresos mensuales recurrentes</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-icon">🎯</span>
+          <div class="metric-label">Comisión del Mes</div>
+          <div class="metric-value gold" id="metric-commission">—</div>
+          <div class="metric-sub" id="metric-commission-rate">tasa: 10%</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-icon">📊</span>
+          <div class="metric-label">Tasa de Conversión</div>
+          <div class="metric-value" id="metric-conversion">—</div>
+          <div class="metric-sub">clientes activos / total</div>
+        </div>
+      </div>
+
+      <!-- Clients table -->
+      <div class="section-header">
+        <div class="section-title">
+          Mis Clientes
+          <span class="section-count" id="clients-count">0</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Empresa</th>
+              <th>Plan</th>
+              <th>Estado</th>
+              <th>Fecha de registro</th>
+              <th>Comisión</th>
+            </tr>
+          </thead>
+          <tbody id="clients-tbody">
+            <tr>
+              <td colspan="5">
+                <div class="empty-state">
+                  <div class="empty-icon">📋</div>
+                  <p>Cargando clientes...</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /dashboard-content -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-logo">
+      <img src="img/logo-oficial.png" alt="Mister Inventario">
+    </div>
+    <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+    <div class="footer-links">
+      <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+      <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+      <a href="mailto:mrcontadorchile@gmail.com">Email</a>
+      <a href="inventory.html">Mister Inventario</a>
+      <a href="terminos.html">Términos y Condiciones</a>
+      <a href="privacidad.html">Política de Privacidad</a>
+    </div>
+    <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; mrcontadorchile@gmail.com</p>
+  </footer>
+
+</div><!-- /dashboard-page -->
+
+<script>
+  // ── Supabase config ────────────────────────────────────────────────
+  const SUPABASE_URL = 'https://cbqgotgchxljznztyrhp.supabase.co'
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNicWdvdGdjaHhsanpuenR5cmhwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM2ODIyOTYsImV4cCI6MjA4OTI1ODI5Nn0.0SsEmVvsMa-CMgpcXnaETeGNl3KO3FPpkwZ400sa8ow'
+
+  const { createClient } = supabase
+  const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+  // ── Plan prices (CLP) ──────────────────────────────────────────────
+  const PLAN_PRICES = {
+    basic:    15990,
+    pro:      34990,
+    business: 115990
+  }
+
+  // ── Helpers ────────────────────────────────────────────────────────
+  function formatCLP(amount) {
+    return '$' + amount.toLocaleString('es-CL')
+  }
+
+  function isExpired(client) {
+    if (!client.plan_expires_at) return false
+    return new Date(client.plan_expires_at) < new Date()
+  }
+
+  function getClientStatus(client) {
+    if (!client.plan || client.plan === 'free') return 'free'
+    if (isExpired(client)) return 'expired'
+    return 'active'
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '—'
+    return new Date(dateStr).toLocaleDateString('es-CL', {
+      day: '2-digit', month: 'short', year: 'numeric'
+    })
+  }
+
+  function formatPlanName(plan) {
+    const names = { basic: 'Basic', pro: 'Pro', business: 'Business', free: 'Free' }
+    return names[plan] || plan || 'Free'
+  }
+
+  // ── Show / hide pages ──────────────────────────────────────────────
+  function showLogin() {
+    document.getElementById('login-page').style.display = 'flex'
+    document.getElementById('dashboard-page').style.display = 'none'
+  }
+
+  function showDashboard() {
+    document.getElementById('login-page').style.display = 'none'
+    document.getElementById('dashboard-page').style.display = 'block'
+  }
+
+  function hideLoading() {
+    const overlay = document.getElementById('loading-overlay')
+    overlay.classList.add('hidden')
+    setTimeout(() => { overlay.style.display = 'none' }, 400)
+  }
+
+  // ── Render dashboard ───────────────────────────────────────────────
+  function renderDashboard(reseller, clients) {
+    // Welcome
+    const name = reseller.name ? reseller.name.split(' ')[0] : 'Socio'
+    document.getElementById('welcome-name').textContent = name
+    document.getElementById('dash-user-name').textContent = reseller.name || ''
+
+    const now = new Date()
+    const monthName = now.toLocaleDateString('es-CL', { month: 'long', year: 'numeric' })
+    document.getElementById('welcome-period').textContent = `Resumen de ${monthName}`
+
+    // Referral code
+    if (reseller.referral_code) {
+      document.getElementById('referral-code-display').textContent = reseller.referral_code
+      document.getElementById('referral-card').style.display = 'flex'
+    }
+
+    // Metrics
+    const totalClients = (clients || []).length
+    const activeClients = (clients || []).filter(c =>
+      c.plan && c.plan !== 'free' && !isExpired(c)
+    )
+
+    const mrr = activeClients.reduce((sum, c) => sum + (PLAN_PRICES[c.plan] || 0), 0)
+    const commissionRate = parseFloat(reseller.commission_rate) || 0.10
+    const commission = mrr * commissionRate
+    const conversionRate = totalClients > 0
+      ? Math.round((activeClients.length / totalClients) * 100)
+      : 0
+
+    document.getElementById('metric-active').textContent = activeClients.length
+    document.getElementById('metric-active-sub').textContent = `de ${totalClients} totales`
+    document.getElementById('metric-mrr').textContent = totalClients > 0 ? formatCLP(mrr) : '$0'
+    document.getElementById('metric-commission').textContent = totalClients > 0 ? formatCLP(commission) : '$0'
+    document.getElementById('metric-commission-rate').textContent = `tasa: ${Math.round(commissionRate * 100)}%`
+    document.getElementById('metric-conversion').textContent = `${conversionRate}%`
+
+    // Table
+    document.getElementById('clients-count').textContent = totalClients
+
+    const tbody = document.getElementById('clients-tbody')
+    if (!clients || clients.length === 0) {
+      tbody.innerHTML = `
+        <tr><td colspan="5">
+          <div class="empty-state">
+            <div class="empty-icon">👥</div>
+            <p>Aún no tienes clientes registrados.<br>Comparte tu código de referido para comenzar.</p>
+          </div>
+        </td></tr>`
+      return
+    }
+
+    tbody.innerHTML = clients.map(client => {
+      const status = getClientStatus(client)
+      const planPrice = PLAN_PRICES[client.plan] || 0
+      const clientCommission = (status === 'active') ? planPrice * commissionRate : 0
+
+      const statusBadge = {
+        active:  `<span class="badge badge-active">Activo</span>`,
+        free:    `<span class="badge badge-free">Free</span>`,
+        expired: `<span class="badge badge-expired">Vencido</span>`
+      }[status] || `<span class="badge badge-free">${status}</span>`
+
+      const planBadge = client.plan && client.plan !== 'free'
+        ? `<span class="badge badge-plan">${formatPlanName(client.plan)}</span>`
+        : `<span class="badge badge-free">Free</span>`
+
+      return `
+        <tr>
+          <td style="font-weight:600;color:#fff">${client.name || '—'}</td>
+          <td>${planBadge}</td>
+          <td>${statusBadge}</td>
+          <td style="color:${client.created_at ? '#888' : '#555'}">${formatDate(client.created_at)}</td>
+          <td class="commission-cell">${clientCommission > 0 ? formatCLP(clientCommission) : '—'}</td>
+        </tr>`
+    }).join('')
+  }
+
+  // ── Load dashboard data ────────────────────────────────────────────
+  async function loadDashboard(user) {
+    try {
+      // Fetch reseller profile
+      const { data: reseller, error: resellerError } = await sb
+        .from('resellers')
+        .select('*')
+        .eq('user_id', user.id)
+        .single()
+
+      if (resellerError) {
+        // Table might not exist yet, or user is not a reseller
+        if (resellerError.code === 'PGRST116' || resellerError.message?.includes('does not exist') || resellerError.message?.includes('relation')) {
+          document.getElementById('setup-message').style.display = 'block'
+          document.getElementById('dashboard-content').style.display = 'none'
+          return
+        }
+        // Not a reseller
+        await sb.auth.signOut()
+        showLogin()
+        showError('No tienes acceso como socio. Contacta a mrcontadorchile@gmail.com')
+        return
+      }
+
+      if (!reseller) {
+        await sb.auth.signOut()
+        showLogin()
+        showError('No tienes acceso como socio. Contacta a mrcontadorchile@gmail.com')
+        return
+      }
+
+      // Fetch referred clients
+      let clients = []
+      if (reseller.referral_code) {
+        const { data: clientsData, error: clientsError } = await sb
+          .from('companies')
+          .select('id, name, plan, created_at, plan_expires_at')
+          .eq('referral_code', reseller.referral_code)
+          .order('created_at', { ascending: false })
+
+        if (!clientsError) {
+          clients = clientsData || []
+        } else if (clientsError.message?.includes('does not exist') || clientsError.message?.includes('relation')) {
+          // companies table might not have referral_code yet
+          clients = []
+        }
+      }
+
+      renderDashboard(reseller, clients)
+
+    } catch (err) {
+      console.error('Dashboard load error:', err)
+      document.getElementById('setup-message').style.display = 'block'
+      document.getElementById('dashboard-content').style.display = 'none'
+    }
+  }
+
+  // ── Login ──────────────────────────────────────────────────────────
+  function showError(msg) {
+    const el = document.getElementById('login-error')
+    el.textContent = msg
+    el.classList.add('visible')
+  }
+
+  function clearError() {
+    document.getElementById('login-error').classList.remove('visible')
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault()
+    clearError()
+
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+    const btn = document.getElementById('login-btn')
+
+    btn.classList.add('loading')
+    btn.disabled = true
+
+    try {
+      const { data, error } = await sb.auth.signInWithPassword({ email, password })
+
+      if (error) {
+        let msg = 'Credenciales incorrectas. Verifica tu email y contraseña.'
+        if (error.message?.includes('Email not confirmed')) {
+          msg = 'Debes confirmar tu email antes de ingresar.'
+        }
+        showError(msg)
+        return
+      }
+
+      // Check reseller access
+      const { data: reseller, error: resellerError } = await sb
+        .from('resellers')
+        .select('id')
+        .eq('user_id', data.user.id)
+        .single()
+
+      if (resellerError && !resellerError.message?.includes('does not exist')) {
+        if (resellerError.code === 'PGRST116') {
+          // No row found
+          await sb.auth.signOut()
+          showError('No tienes acceso como socio. Contacta a mrcontadorchile@gmail.com')
+          return
+        }
+      }
+
+      // All good — show dashboard
+      showDashboard()
+      await loadDashboard(data.user)
+
+    } catch (err) {
+      console.error('Login error:', err)
+      showError('Ocurrió un error. Intenta nuevamente.')
+    } finally {
+      btn.classList.remove('loading')
+      btn.disabled = false
+    }
+  }
+
+  // ── Logout ─────────────────────────────────────────────────────────
+  async function handleLogout() {
+    await sb.auth.signOut()
+    showLogin()
+  }
+
+  // ── Copy referral code ─────────────────────────────────────────────
+  async function copyReferralCode() {
+    const code = document.getElementById('referral-code-display').textContent
+    try {
+      await navigator.clipboard.writeText(code)
+      const btn = document.querySelector('.btn-copy')
+      btn.textContent = '¡Copiado!'
+      setTimeout(() => { btn.textContent = 'Copiar código' }, 2000)
+    } catch {
+      // Fallback
+      const el = document.createElement('textarea')
+      el.value = code
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+      document.body.removeChild(el)
+    }
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────
+  async function init() {
+    try {
+      const { data: { session } } = await sb.auth.getSession()
+
+      if (session) {
+        showDashboard()
+        await loadDashboard(session.user)
+      } else {
+        showLogin()
+      }
+    } catch (err) {
+      console.error('Init error:', err)
+      showLogin()
+    } finally {
+      hideLoading()
+    }
+  }
+
+  // Auth state listener (handles token refresh, external sign-outs, etc.)
+  sb.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_OUT') {
+      showLogin()
+    }
+  })
+
+  init()
+</script>
+</body>
+</html>
