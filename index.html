@@ -271,49 +271,147 @@
     /* ── Pricing ─────────────────────────── */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      border: 2px solid rgba(255,255,255,0.08);
     }
     .price-card {
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      padding: 36px 28px;
+      background: #0a0a0a;
+      border-right: 2px solid rgba(255,255,255,0.08);
+      padding: 36px 28px 32px;
       position: relative;
-      transition: border-color 0.3s;
+      transition: background 0.3s;
+      display: flex; flex-direction: column;
     }
+    .price-card:last-child { border-right: none; }
     .price-card.popular {
-      border-color: rgba(245,194,0,0.5);
-      background: rgba(245,194,0,0.03);
+      background: #0f0f0a;
+      border-right: 2px solid rgba(245,194,0,0.25);
+      border-left: 2px solid rgba(245,194,0,0.25);
+      outline: 2px solid rgba(245,194,0,0.4);
+      outline-offset: -2px;
+      z-index: 1;
+    }
+    .plan-icon {
+      font-size: 32px; margin-bottom: 14px; display: block;
+      line-height: 1;
     }
     .popular-badge {
-      position: absolute; top: -13px; left: 50%;
+      position: absolute; top: -14px; left: 50%;
       transform: translateX(-50%);
       background: var(--gold); color: var(--black);
-      font-size: 10px; font-weight: 800;
-      padding: 4px 16px; border-radius: 2px;
-      letter-spacing: 2px; text-transform: uppercase;
-      white-space: nowrap;
+      font-size: 9px; font-weight: 900;
+      padding: 5px 18px; border-radius: 0;
+      letter-spacing: 3px; text-transform: uppercase;
+      white-space: nowrap; font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px; letter-spacing: 2px;
+    }
+    .plan-for {
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-bottom: 8px; display: block;
     }
     .price-card h3 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px; font-weight: 400; margin-bottom: 6px;
-      letter-spacing: 1px; text-transform: uppercase;
+      font-size: 30px; font-weight: 400; margin-bottom: 4px;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--white);
+    }
+    .price-card .plan-desc {
+      font-size: 13px; color: #555; margin-bottom: 0; line-height: 1.5;
     }
     .price-card .price {
-      font-size: 40px; font-weight: 800; margin: 16px 0 4px;
-      letter-spacing: -1px; color: var(--white);
+      font-size: 44px; font-weight: 900; margin: 20px 0 2px;
+      letter-spacing: -2px; color: var(--white); line-height: 1;
     }
-    .price-card .price span { font-size: 15px; font-weight: 500; color: #666; }
-    .price-card .price-note { font-size: 12px; color: #555; margin-bottom: 24px; }
-    .price-card ul { list-style: none; margin-bottom: 28px; }
+    .price-card .price sup { font-size: 20px; font-weight: 700; vertical-align: super; letter-spacing: 0; }
+    .price-card .price span { font-size: 14px; font-weight: 500; color: #444; letter-spacing: 0; }
+    .price-card .price-note { font-size: 11px; color: #444; margin-bottom: 24px; }
+    .price-card .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 0 20px; }
+    .price-card ul { list-style: none; margin-bottom: 28px; flex: 1; }
     .price-card ul li {
-      font-size: 14px; color: #aaa; padding: 8px 0;
+      font-size: 13.5px; color: #999; padding: 9px 0;
       display: flex; align-items: flex-start; gap: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
+      line-height: 1.4;
     }
     .price-card ul li:last-child { border-bottom: none; }
-    .price-card ul li::before { content: "✓"; color: var(--gold); font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-    .price-card .btn { width: 100%; justify-content: center; }
+    .price-card ul li .li-icon {
+      color: var(--gold); font-size: 14px; flex-shrink: 0;
+      margin-top: 1px; font-style: normal;
+    }
+    .price-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+
+    /* ── Escalabilidad ───────────────────── */
+    .scale-box {
+      max-width: 1000px; margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-top: 3px solid var(--gold);
+      background: #080808;
+      padding: 32px 36px;
+    }
+    .scale-box h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px; letter-spacing: 1px; color: var(--gold);
+      margin-bottom: 20px; text-transform: uppercase;
+    }
+    .scale-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .scale-item {
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .scale-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px; color: var(--gold); line-height: 1; flex-shrink: 0;
+    }
+    .scale-item p { font-size: 13px; color: #777; line-height: 1.5; }
+    .scale-item strong { color: #ccc; display: block; font-size: 13px; margin-bottom: 2px; }
+
+    /* ── Consultoría Avanzada ─────────────── */
+    .consulting-section {
+      max-width: 1000px; margin: 40px auto 0;
+    }
+    .consulting-label {
+      font-size: 10px; font-weight: 800; color: #444; text-transform: uppercase;
+      letter-spacing: 3px; margin-bottom: 24px; display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 16px;
+    }
+    .consulting-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .consulting-card {
+      background: #080808; border: 1px solid rgba(255,255,255,0.06);
+      padding: 20px 22px; position: relative; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .consulting-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--gold); opacity: 0.5;
+    }
+    .consulting-card:hover { border-color: rgba(245,194,0,0.25); }
+    .consulting-card:hover::before { opacity: 1; }
+    .consulting-card .c-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px; color: var(--white); letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .consulting-card .c-name {
+      font-size: 12px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .consulting-card .c-desc {
+      font-size: 12px; color: #555; line-height: 1.5;
+    }
+    .consulting-cta {
+      margin-top: 24px; text-align: center;
+      font-size: 13px; color: #555;
+    }
+    .consulting-cta a { color: var(--gold); text-decoration: none; font-weight: 600; }
+    .consulting-cta a:hover { text-decoration: underline; }
 
     /* ── CTA ─────────────────────────────── */
     .cta {
@@ -398,7 +496,13 @@
       .hero-logo-wrap img { height: 44px; }
       .section { padding: 70px 20px; }
       .services-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; border: none; }
+      .price-card { border-right: none; border-bottom: 2px solid rgba(255,255,255,0.08); }
+      .price-card:last-child { border-bottom: none; }
+      .price-card.popular { border-left: none; border-right: none; outline: none; border-bottom: 2px solid rgba(245,194,0,0.25); border-top: 2px solid rgba(245,194,0,0.25); }
+      .scale-box { padding: 24px 20px; }
+      .consulting-grid { grid-template-columns: 1fr; }
+      .scale-grid { grid-template-columns: 1fr 1fr; }
       .inventory-banner { padding: 70px 20px; }
       .stats-strip { padding: 48px 20px; }
       .stat-number { font-size: 44px; }
@@ -518,58 +622,131 @@
 
 <!-- Pricing -->
 <section class="section" id="planes">
-  <div class="section-label">Planes</div>
-  <h2 class="section-title">Planes contables a tu medida</h2>
-  <p class="section-desc">Elige el plan que se ajuste a las necesidades de tu empresa. Sin contratos de permanencia.</p>
+  <div class="section-label">Planes & Precios</div>
+  <h2 class="section-title">La contabilidad que<br>tu empresa necesita</h2>
+  <p class="section-desc">Sin contratos de permanencia. Sin letras chicas. Pagas mes a mes y creces con nosotros.</p>
 
+  <!-- ── Tarjetas de Planes ── -->
   <div class="pricing-grid">
-    <!-- Basico Inactivo -->
+
+    <!-- Plan 1: Básico Inactivo -->
     <div class="price-card">
+      <span class="plan-icon">🏢</span>
+      <span class="plan-for">Estás partiendo</span>
       <h3>Básico Inactivo</h3>
-      <p style="font-size:13px; color:#666; margin-bottom:0;">Para empresas sin movimiento</p>
-      <div class="price">$15.000 <span>/mes</span></div>
-      <div class="price-note">+ IVA | Pesos chilenos</div>
+      <p class="plan-desc">Tu empresa está constituida pero aún no tiene movimientos. Igual tienes obligaciones con el SII — nosotros las manejamos.</p>
+      <div class="price"><sup>$</sup>15.000<span> /mes</span></div>
+      <div class="price-note">+ IVA &nbsp;·&nbsp; Pesos chilenos</div>
+      <div class="divider"></div>
       <ul>
-        <li>F29 sin movimientos</li>
-        <li>Declaración mensual ante SII</li>
-        <li>Soporte por WhatsApp</li>
+        <li><i class="li-icon">📋</i> Declaración mensual F29 sin movimiento</li>
+        <li><i class="li-icon">🏛️</i> Gestión de obligaciones ante el SII</li>
+        <li><i class="li-icon">💬</i> Soporte por WhatsApp para tus dudas iniciales</li>
+        <li><i class="li-icon">🛡️</i> Tranquilidad: nunca quedarás en mora con el SII</li>
       </ul>
-      <a href="https://wa.me/56940536523?text=Hola%2C%20me%20interesa%20el%20Plan%20Basico%20Inactivo" class="btn btn-secondary" target="_blank">Contratar</a>
+      <a href="https://wa.me/56940536523?text=Hola%2C%20me%20interesa%20el%20Plan%20B%C3%A1sico%20Inactivo" class="btn btn-secondary" target="_blank">Comenzar →</a>
     </div>
 
-    <!-- Esencial F29 -->
+    <!-- Plan 2: Esencial F29 — RECOMENDADO -->
     <div class="price-card popular">
-      <div class="popular-badge">Más popular</div>
+      <div class="popular-badge">⭐ Recomendado</div>
+      <span class="plan-icon">🚀</span>
+      <span class="plan-for">Ya estás vendiendo</span>
       <h3>Esencial F29</h3>
-      <p style="font-size:13px; color:#666; margin-bottom:0;">Para empresas activas</p>
-      <div class="price">$35.000 <span>/mes</span></div>
-      <div class="price-note">+ IVA | Pesos chilenos</div>
+      <p class="plan-desc">Tu negocio está activo, emites facturas y boletas. Nosotros llevamos tu contabilidad mes a mes para que tú te concentres en vender.</p>
+      <div class="price"><sup>$</sup>35.000<span> /mes</span></div>
+      <div class="price-note">+ IVA &nbsp;·&nbsp; Pesos chilenos</div>
+      <div class="divider"></div>
       <ul>
-        <li>Formulario 29 mensual</li>
-        <li>Revisión de facturas y boletas</li>
-        <li>Libro de compra y venta</li>
-        <li>Soporte prioritario</li>
+        <li><i class="li-icon">📊</i> Declaración mensual F29 con tu actividad real</li>
+        <li><i class="li-icon">🧾</i> Revisión de tus facturas y boletas emitidas/recibidas</li>
+        <li><i class="li-icon">📚</i> Mantención de tu Libro de Compra y Venta</li>
+        <li><i class="li-icon">⚡</i> Soporte prioritario — respondemos primero</li>
+        <li><i class="li-icon">🔔</i> Alertas de vencimientos tributarios</li>
       </ul>
-      <a href="https://wa.me/56940536523?text=Hola%2C%20me%20interesa%20el%20Plan%20Esencial%20F29" class="btn btn-primary" target="_blank">Contratar ahora</a>
+      <a href="https://wa.me/56940536523?text=Hola%2C%20me%20interesa%20el%20Plan%20Esencial%20F29" class="btn btn-primary" target="_blank">Contratar ahora →</a>
     </div>
 
-    <!-- Pyme Laboral -->
+    <!-- Plan 3: PyME Laboral -->
     <div class="price-card">
+      <span class="plan-icon">👥</span>
+      <span class="plan-for">Tienes equipo</span>
       <h3>PyME Laboral</h3>
-      <p style="font-size:13px; color:#666; margin-bottom:0;">Para empresas con trabajadores</p>
-      <div class="price">$80.000 <span>/mes</span></div>
-      <div class="price-note">+ IVA | Pesos chilenos | Hasta 3 trabajadores</div>
+      <p class="plan-desc">Ya tienes trabajadores y las responsabilidades se multiplican. Liquidaciones, cotizaciones, contratos — todo en un solo lugar.</p>
+      <div class="price"><sup>$</sup>80.000<span> /mes</span></div>
+      <div class="price-note">+ IVA &nbsp;·&nbsp; Hasta 3 trabajadores incluidos</div>
+      <div class="divider"></div>
       <ul>
-        <li>Todo lo del plan Esencial</li>
-        <li>Liquidaciones de sueldo</li>
-        <li>Previred y cotizaciones</li>
-        <li>Contratos de trabajo</li>
-        <li>Finiquitos</li>
-        <li>Soporte dedicado</li>
+        <li><i class="li-icon">✅</i> Todo lo del Plan Esencial F29</li>
+        <li><i class="li-icon">💰</i> Liquidaciones de sueldo mensuales</li>
+        <li><i class="li-icon">🏥</i> Declaración y pago en Previred</li>
+        <li><i class="li-icon">📝</i> Redacción de contratos de trabajo</li>
+        <li><i class="li-icon">🤝</i> Finiquitos y gestión de salidas</li>
+        <li><i class="li-icon">📞</i> Soporte dedicado con contador asignado</li>
       </ul>
-      <a href="https://wa.me/56940536523?text=Hola%2C%20me%20interesa%20el%20Plan%20Pyme%20Laboral" class="btn btn-secondary" target="_blank">Contratar</a>
+      <a href="https://wa.me/56940536523?text=Hola%2C%20me%20interesa%20el%20Plan%20PyME%20Laboral" class="btn btn-secondary" target="_blank">Contratar →</a>
+    </div>
+
+  </div>
+
+  <!-- ── Reglas de escalabilidad ── -->
+  <div class="scale-box" style="margin-top: 0; border-top: 3px solid rgba(245,194,0,0.4);">
+    <h4>📈 &nbsp;¿Creces? El precio crece contigo, sin sorpresas</h4>
+    <div class="scale-grid">
+      <div class="scale-item">
+        <div class="scale-num">+3</div>
+        <div>
+          <strong>4 a 10 trabajadores</strong>
+          <p>$12.000 + IVA por trabajador adicional al mes. Simple y proporcional.</p>
+        </div>
+      </div>
+      <div class="scale-item">
+        <div class="scale-num">+10</div>
+        <div>
+          <strong>11 a 20 trabajadores</strong>
+          <p>$10.000 + IVA por trabajador adicional. El precio baja mientras creces.</p>
+        </div>
+      </div>
+      <div class="scale-item">
+        <div class="scale-num">+20</div>
+        <div>
+          <strong>Más de 20 trabajadores</strong>
+          <p>Hacemos un plan a tu medida. Te llamamos y conversamos sin compromiso.</p>
+        </div>
+      </div>
+      <div class="scale-item">
+        <div class="scale-num">★</div>
+        <div>
+          <strong>Operación Renta (anual)</strong>
+          <p>Se evalúa por separado según complejidad. Desde $70.000. Sin letra chica.</p>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- ── Consultoría Avanzada ── -->
+  <div class="consulting-section">
+    <span class="consulting-label">Servicios especializados para empresas que necesitan más</span>
+    <div class="consulting-grid">
+      <div class="consulting-card">
+        <div class="c-name">Contabilidad Integral · Tramo 1</div>
+        <div class="c-price">$120.000<small style="font-size:14px;color:#555"> + IVA</small></div>
+        <p class="c-desc">Contabilidad completa para empresas con operación regular. Informes mensuales, balances y gestión tributaria integrada.</p>
+      </div>
+      <div class="consulting-card">
+        <div class="c-name">Contabilidad Integral · Tramo 2</div>
+        <div class="c-price">$180.000<small style="font-size:14px;color:#555"> + IVA</small></div>
+        <p class="c-desc">Para empresas de mayor volumen o complejidad. Mayor profundidad de análisis, reportes detallados y atención preferencial.</p>
+      </div>
+      <div class="consulting-card">
+        <div class="c-name">Dirección Financiera · Outsourcing</div>
+        <div class="c-price">Desde $750.000<small style="font-size:14px;color:#555"> + IVA</small></div>
+        <p class="c-desc">Tu CFO externo. Gestión financiera estratégica, proyecciones, control de gestión y apoyo en decisiones de alto nivel.</p>
+      </div>
+    </div>
+    <p class="consulting-cta">¿Necesitas un servicio a medida? <a href="https://wa.me/56940536523?text=Hola%2C%20quiero%20cotizar%20un%20servicio%20especializado" target="_blank">Conversemos por WhatsApp →</a></p>
+  </div>
+
 </section>
 
 <!-- Mister Inventario Banner -->
