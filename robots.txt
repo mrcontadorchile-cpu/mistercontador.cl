@@ -1,9 +1,3 @@
 User-agent: *
 Allow: /
-
-# No indexar páginas de autenticación o portales privados
-Disallow: /auth/
-Disallow: /socios.html
-
-# Sitemap
 Sitemap: https://mistercontador.cl/sitemap.xml

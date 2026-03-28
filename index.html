@@ -7,6 +7,7 @@
   <meta name="description" content="Servicios contables profesionales para empresas chilenas. F29, liquidaciones de sueldo, Previred y mas. Planes desde $15.000/mes.">
   <link rel="icon" type="image/png" href="img/icon-oficial.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -168,8 +169,8 @@
       color: var(--white);
     }
     .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-    .btn-whatsapp { background: #25D366; color: var(--white); border-radius: 4px; }
-    .btn-whatsapp:hover { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.25); }
+    .btn-whatsapp { background: #127a36; color: var(--white); border-radius: 4px; }
+    .btn-whatsapp:hover { background: #0d6029; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(18,122,54,0.35); }
 
     /* ── Divider ─────────────────────────── */
     .divider-gold {
@@ -266,7 +267,7 @@
       font-size: 56px; color: var(--gold);
       line-height: 1; letter-spacing: 1px;
     }
-    .stat-label { font-size: 13px; color: #666; margin-top: 4px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+    .stat-label { font-size: 13px; color: #888; margin-top: 4px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
 
     /* ── Pricing ─────────────────────────── */
     .pricing-grid {
@@ -525,7 +526,7 @@
       <a href="#contacto">Contacto</a>
       <a href="inventory.html" class="btn-nav">Mister Inventario</a>
     </div>
-    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-label="Abrir menú de navegación" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -537,11 +538,13 @@
   <a href="inventory.html" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">Mister Inventario</a>
 </div>
 
+<main id="main-content">
+
 <!-- Hero -->
 <section class="hero">
   <div class="hero-content">
     <div class="hero-logo-wrap">
-      <a href="https://mistercontador.cl/"><img src="img/logo-oficial.png" alt="Mister Contador"></a>
+      <a href="https://mistercontador.cl/"><img src="img/logo-oficial.png" alt="Mister Contador" width="359" height="84"></a>
     </div>
     <div class="hero-eyebrow">El héroe financiero de tu PyME</div>
     <h1>Tu contabilidad<br><span class="gold">en manos</span><br><span class="outline">expertas</span></h1>
@@ -771,6 +774,8 @@
     </a>
   </div>
 </section>
+
+</main>
 
 <!-- Footer -->
 <footer>
