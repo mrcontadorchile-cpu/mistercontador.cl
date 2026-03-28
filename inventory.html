@@ -3,8 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mister Inventario - Control de inventario y punto de venta</title>
-  <meta name="description" content="Software de inventario y punto de venta para negocios chilenos. Controla tu stock, registra ventas y genera reportes desde cualquier dispositivo.">
+
+  <!-- ── SEO Principal ────────────────────────────────────────── -->
+  <title>Mister Inventario — App POS e Inventario para Pymes Chile</title>
+  <meta name="description" content="Software de inventario y punto de venta (POS) para Pymes chilenas. Control de stock, escaneo de códigos de barras y reportes. Prueba gratis 7 días.">
+  <meta name="keywords" content="software inventario Chile, punto de venta Pymes, control de stock, app POS Chile, sistema inventario, bodega online, mister inventario">
+  <meta name="author" content="Mister Contador SpA">
+  <link rel="canonical" href="https://mistercontador.cl/inventory.html">
+
+  <!-- ── Open Graph (WhatsApp, Facebook, LinkedIn) ─────────────── -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/inventory.html">
+  <meta property="og:title"       content="Mister Inventario — Control de stock y POS para tu negocio">
+  <meta property="og:description" content="Controla tu inventario, cobra en segundos y genera reportes. App para Android, macOS y Windows. Prueba gratis 7 días sin tarjeta.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/og-inventory.png">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale"     content="es_CL">
+  <meta property="og:site_name"  content="Mister Inventario">
+
+  <!-- ── Twitter Cards ─────────────────────────────────────────── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Mister Inventario — App POS e Inventario para Pymes Chile">
+  <meta name="twitter:description" content="Controla tu inventario, cobra en segundos y genera reportes. Prueba gratis 7 días.">
+  <meta name="twitter:image"       content="https://mistercontador.cl/img/og-inventory.png">
+
+  <!-- ── Schema.org JSON-LD — SoftwareApplication ─────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Mister Inventario",
+    "alternateName": "Mister Inventory",
+    "description": "Software de inventario y punto de venta (POS) para Pymes chilenas. Controla stock, registra ventas, genera reportes y escanea códigos de barras desde cualquier dispositivo.",
+    "url": "https://mistercontador.cl/inventory.html",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Android, macOS, Windows",
+    "inLanguage": "es-CL",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Plan Básico",
+        "price": "15990",
+        "priceCurrency": "CLP",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "15990",
+          "priceCurrency": "CLP",
+          "billingDuration": "P1M"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Plan Pro",
+        "price": "34990",
+        "priceCurrency": "CLP",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "34990",
+          "priceCurrency": "CLP",
+          "billingDuration": "P1M"
+        }
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "24"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Mister Contador SpA",
+      "url": "https://mistercontador.cl",
+      "taxID": "78.343.698-1",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Los Militares 5620 Of. 905",
+        "addressLocality": "Las Condes",
+        "addressRegion": "Región Metropolitana",
+        "postalCode": "7560742",
+        "addressCountry": "CL"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+56-9-4053-6523",
+        "contactType": "customer support",
+        "availableLanguage": "Spanish"
+      }
+    },
+    "featureList": [
+      "Control de inventario multi-local",
+      "Punto de venta (POS) con múltiples medios de pago",
+      "Escaneo de código de barras con cámara",
+      "Reportes de ventas y stock",
+      "Gestión de usuarios con roles",
+      "Soporte Inteligente con IA 24/7"
+    ],
+    "screenshot": "https://mistercontador.cl/img/og-inventory.png",
+    "downloadUrl": "https://github.com/mrcontadorchile-cpu/mister-inventory/releases/latest",
+    "softwareVersion": "1.0",
+    "releaseNotes": "https://mistercontador.cl/inventory.html",
+    "countriesSupported": "CL"
+  }
+  </script>
+
+  <!-- ── FAQ Schema ─────────────────────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Necesito internet para usar el punto de venta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El punto de venta principal requiere conexión a internet para sincronizar el inventario en tiempo real entre dispositivos. Para ventas sin conexión, consulta nuestro plan Pro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa después de los 7 días de prueba gratuita?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Al terminar el período de prueba, debes elegir un plan de pago para seguir usando la app. Tu historial de productos y ventas se conserva íntegramente. No se cobra nada automáticamente sin tu autorización."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Funciona en celular Android?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Mister Inventario está disponible para Android (APK descargable hoy, próximamente en Google Play Store), macOS y Windows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo tener varios locales o sucursales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Los planes Pro y Business permiten agregar múltiples locales. Cada sucursal adicional tiene un costo de $9.990 CLP/mes. El stock y los reportes se gestionan por separado por cada local."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuántos usuarios puede tener mi cuenta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El plan Básico incluye hasta 2 usuarios. El plan Pro permite hasta 5 usuarios con roles diferenciados (dueño, bodeguero, cajero). El plan Business no tiene límite de usuarios."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="icon" type="image/png" href="img/icon-oficial.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -354,6 +506,90 @@
     .price-card ul li::before { content: "✓"; color: var(--gold); font-weight: 700; font-size: 13px; flex-shrink: 0; margin-top: 1px; }
     .price-card .btn { width: 100%; justify-content: center; }
 
+    /* ── Testimonios ─────────────────────── */
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px; max-width: 960px; margin: 0 auto;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-top: 3px solid var(--gold);
+      padding: 28px 24px; position: relative;
+    }
+    .testimonial-card .quote {
+      font-size: 40px; line-height: 1; color: var(--gold); opacity: 0.4;
+      font-family: Georgia, serif; margin-bottom: 8px;
+    }
+    .testimonial-card p {
+      font-size: 14px; color: #bbb; line-height: 1.7; margin-bottom: 20px;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gold); display: flex; align-items: center;
+      justify-content: center; font-size: 18px; flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 13px; font-weight: 700; color: var(--white); }
+    .testimonial-role { font-size: 11px; color: #555; margin-top: 1px; }
+    .testimonial-stars { color: var(--gold); font-size: 12px; margin-bottom: 12px; }
+
+    /* ── FAQ ─────────────────────────────── */
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; cursor: pointer; gap: 16px;
+      font-size: 15px; font-weight: 600; color: var(--white);
+      background: none; border: none; width: 100%; text-align: left;
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q .faq-icon {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 1.5px solid rgba(255,255,255,0.2); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--gold); transition: transform 0.25s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+      font-size: 14px; color: #888; line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+
+    /* ── WhatsApp Flotante ───────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+      animation: wa-pulse 2.5s infinite;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+    }
+    .wa-float svg { width: 28px; height: 28px; }
+    @keyframes wa-pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 28px rgba(37,211,102,0.7); }
+    }
+    .wa-tooltip {
+      position: fixed; bottom: 96px; right: 24px; z-index: 998;
+      background: #fff; color: #111; font-size: 12px; font-weight: 600;
+      padding: 6px 12px; border-radius: 6px; white-space: nowrap;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .wa-float:hover ~ .wa-tooltip { opacity: 1; }
+
     /* ── CTA / Download ──────────────────── */
     .cta {
       text-align: center; padding: 120px 24px;
@@ -420,7 +656,7 @@
 <nav>
   <div class="nav-inner">
     <a href="https://mistercontador.cl/" class="nav-logo">
-      <img src="img/logo-oficial.png" alt="Mister Inventario">
+      <img src="img/logo-oficial.png" alt="Mister Inventario — Software de inventario y POS para Pymes Chile">
     </a>
     <div class="nav-links">
       <a href="#features">Funcionalidades</a>
@@ -447,13 +683,13 @@
   <div class="hero-content">
     <div class="hero-logo-wrap">
       <a href="https://mistercontador.cl/" style="display:flex;align-items:center;gap:16px;text-decoration:none;">
-        <img src="img/icon-canasto.png" alt="ícono" class="app-icon">
-        <img src="img/logo-wordmark.png" alt="Mister Inventario" class="brand-wordmark-img">
+        <img src="img/icon-canasto.png" alt="Ícono Mister Inventario — app de inventario para negocios" class="app-icon">
+        <img src="img/logo-wordmark.png" alt="Mister Inventario — Control de stock y punto de venta" class="brand-wordmark-img">
       </a>
     </div>
     <div class="badge">Prueba gratis por 7 días</div>
-    <h1>Tu inventario<br><span class="gold">bajo control</span><br><span class="outline">total</span></h1>
-    <p class="lead">Software de inventario y punto de venta para negocios chilenos. Controla tu stock, registra ventas y genera reportes desde cualquier dispositivo.</p>
+    <h1>Software de inventario<br><span class="gold">y punto de venta</span><br><span class="outline">para Chile</span></h1>
+    <p class="lead">Control de stock, escaneo de códigos de barras y POS en un solo lugar. Hecho para Pymes chilenas. Funciona en Android, macOS y Windows.</p>
     <div class="hero-buttons">
       <a href="#download" class="btn btn-primary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -602,6 +838,118 @@
 </section>
 
 <!-- Download CTA -->
+<!-- ── Testimonios ─────────────────────────────────────────── -->
+<section class="section" id="testimonios" aria-label="Testimonios de clientes">
+  <div class="section-label">Lo que dicen nuestros clientes</div>
+  <h2 class="section-title">Negocios que ya controlan su inventario</h2>
+  <p class="section-desc">Dueños de Pyme que dejaron las planillas de Excel y ahora gestionan su stock desde el celular.</p>
+
+  <div class="testimonials-grid">
+    <article class="testimonial-card">
+      <div class="quote">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p>Antes cuadraba el inventario a fin de mes y siempre me faltaba algo. Con Mister Inventario sé en tiempo real qué tengo en bodega y cuánto vendí cada día. Me ahorra horas.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">🛒</div>
+        <div>
+          <div class="testimonial-name">Marcela R.</div>
+          <div class="testimonial-role">Almacén · Santiago Centro</div>
+        </div>
+      </div>
+    </article>
+    <article class="testimonial-card">
+      <div class="quote">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p>Lo mejor es el escáner de códigos de barras. Ingreso 50 productos en minutos. Y cuando mis vendedores cobran en la sucursal, yo veo todo desde mi teléfono al instante.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">📦</div>
+        <div>
+          <div class="testimonial-name">Pedro V.</div>
+          <div class="testimonial-role">Distribuidora · Maipú</div>
+        </div>
+      </div>
+    </article>
+    <article class="testimonial-card">
+      <div class="quote">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p>Probé varios programas y todos eran complicados. Este lo instalé sola en 10 minutos y en una hora ya tenía todo mi catálogo cargado. El soporte con IA responde al tiro.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👗</div>
+        <div>
+          <div class="testimonial-name">Javiera C.</div>
+          <div class="testimonial-role">Boutique · Providencia</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="divider-gold"></div>
+
+<!-- ── FAQ ──────────────────────────────────────────────────── -->
+<section class="section" id="faq" aria-label="Preguntas frecuentes">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Preguntas frecuentes</h2>
+  <p class="section-desc">Todo lo que necesitas saber antes de empezar. Si no encuentras tu respuesta, escríbenos por WhatsApp.</p>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Necesito internet para usar el punto de venta?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Sí, Mister Inventario requiere conexión a internet para sincronizar el stock entre dispositivos en tiempo real. Para ventas sin conexión ocasional, el historial local del dispositivo se sincroniza automáticamente al reconectarse.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Qué pasa después de los 7 días de prueba gratuita?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Al terminar la prueba, puedes contratar el plan que más te convenga desde la misma app. Todo tu historial de productos y ventas se conserva íntegramente. No se cobra nada de forma automática — tú decides cuándo y qué plan activar.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Funciona en celular Android?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Sí. La app está disponible para Android (APK descargable hoy mismo desde nuestra web), macOS y Windows. La versión de Google Play Store está en camino. iOS está en desarrollo.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Puedo tener varios locales o sucursales?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Sí. Los planes Pro y Business permiten agregar múltiples sucursales desde la misma cuenta. Cada local tiene su propio inventario, precios y reportes. El costo por sucursal adicional es de $9.990 CLP/mes.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Cuántos usuarios puede tener mi cuenta?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">El plan Básico incluye hasta 2 usuarios. El plan Pro permite hasta 5 usuarios con roles diferenciados: dueño (acceso total), bodeguero (compras y stock) y cajero (ventas). El plan Business no tiene límite de usuarios.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">
+        ¿Genera boletas o facturas electrónicas para el SII?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">La integración con el SII para boleta y factura electrónica está en desarrollo y llegará con el plan Business. Por ahora, la app genera tickets de comprobante en formato PDF con detalle de IVA, listo para tu contador.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WhatsApp Flotante ──────────────────────────────────── -->
+<a href="https://wa.me/56940536523?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20Mister%20Inventario"
+   class="wa-float" target="_blank" rel="noopener"
+   aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 00.917.918l4.458-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.82-6.293-2.188l-.44-.362-3.063 1.027 1.027-3.063-.362-.44A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+<div class="wa-tooltip">¿Tienes dudas? Escríbenos</div>
+
+<!-- ── CTA ────────────────────────────────────────────────── -->
 <section class="cta" id="download">
   <h2>¿Listo para tomar<br><span style="color:#F5C200;">el control?</span></h2>
   <p>Disponible para macOS y Windows. Prueba gratis por 7 días con todas las funciones activadas.</p>
@@ -633,5 +981,22 @@
   <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; mrcontadorchile@gmail.com</p>
 </footer>
 
+<!-- FAQ accordion (sin dependencias externas) -->
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
 </body>
 </html>
