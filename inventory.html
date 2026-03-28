@@ -629,6 +629,38 @@
       vertical-align: middle; text-transform: uppercase;
     }
 
+    /* ── Video Section ───────────────────── */
+    .video-section {
+      padding: 100px 24px;
+      max-width: 900px; margin: 0 auto;
+      text-align: center;
+    }
+    .video-wrapper {
+      position: relative; width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0; overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(245,194,0,0.25);
+      box-shadow: 0 0 48px rgba(245,194,0,0.08);
+      background: #0a0a0a;
+      margin-top: 40px;
+    }
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none; border-radius: 12px;
+    }
+    .video-placeholder {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px; color: rgba(245,194,0,0.5);
+    }
+    .video-placeholder svg { width: 56px; height: 56px; opacity: 0.5; }
+    .video-placeholder p { font-size: 14px; color: #555; letter-spacing: 0.5px; }
+
     /* ── CTA / Download ──────────────────── */
     .cta {
       text-align: center; padding: 120px 24px;
@@ -699,6 +731,7 @@
     </a>
     <div class="nav-links">
       <a href="#features">Funcionalidades</a>
+      <a href="#video">Demo</a>
       <a href="#platforms">Plataformas</a>
       <a href="#pricing">Planes</a>
       <a href="#download">Descargar</a>
@@ -711,6 +744,7 @@
 </nav>
 <div class="mobile-menu">
   <a href="#features" onclick="this.parentElement.classList.remove('active')">Funcionalidades</a>
+  <a href="#video" onclick="this.parentElement.classList.remove('active')">Demo</a>
   <a href="#platforms" onclick="this.parentElement.classList.remove('active')">Plataformas</a>
   <a href="#pricing" onclick="this.parentElement.classList.remove('active')">Planes</a>
   <a href="#download" onclick="this.parentElement.classList.remove('active')">Descargar</a>
@@ -781,8 +815,45 @@
     </div>
     <div class="feature-card">
       <div class="feature-icon">&#129302;</div>
-      <h3>Escáner de facturas con IA</h3>
-      <p>Fotografía tus facturas de compra y la IA extrae automáticamente el emisor, fecha y monto. Historial de gastos siempre ordenado.</p>
+      <h3>Escáner de facturas con IA <span class="badge-new">NUEVO</span></h3>
+      <p>Fotografía o importa tus facturas de compra (JPG, PNG o PDF) y la IA extrae automáticamente el emisor, fecha y monto total. Historial de gastos siempre ordenado.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider-gold"></div>
+
+<!-- Video Demo -->
+<section class="video-section" id="video" aria-label="Video demostrativo">
+  <div class="section-label" style="justify-content:center;">
+    <span>Demo</span>
+  </div>
+  <h2 class="section-title">Míralo en acción</h2>
+  <p class="section-desc" style="margin-left:auto;margin-right:auto;text-align:center;">
+    Mira cómo Mister Inventario transforma la gestión de tu negocio en minutos.
+  </p>
+  <div class="video-wrapper">
+    <!-- ══════════════════════════════════════════════════════
+         INSTRUCCIONES PARA ACTIVAR EL VIDEO:
+
+         OPCIÓN A — YouTube (recomendado):
+         Reemplaza este bloque por:
+         <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID"
+                 title="Mister Inventario — Demo"
+                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                 allowfullscreen></iframe>
+
+         OPCIÓN B — Video propio (.mp4 en /downloads/):
+         <video controls poster="img/og-inventory.png">
+           <source src="downloads/demo-mister-inventario.mp4" type="video/mp4">
+         </video>
+         ══════════════════════════════════════════════════════ -->
+    <div class="video-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/>
+      </svg>
+      <p>Video demostrativo próximamente</p>
     </div>
   </div>
 </section>
