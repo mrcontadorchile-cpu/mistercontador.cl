@@ -519,7 +519,7 @@
 
     <p class="login-footer">
       ¿Aún no eres socio?<br>
-      <a href="mailto:mrcontadorchile@gmail.com">Contáctanos para unirte al programa</a>
+      <a href="mailto:contacto@mistercontador.cl">Contáctanos para unirte al programa</a>
     </p>
   </div>
 </div>
@@ -554,7 +554,7 @@
     <div id="setup-message" class="setup-message" style="display:none">
       <div class="setup-icon">⚙️</div>
       <h2>Panel en configuración</h2>
-      <p>Tu portal de socios está siendo configurado. En breve tendrás acceso completo a tus métricas y clientes. Contacta a <a href="mailto:mrcontadorchile@gmail.com">mrcontadorchile@gmail.com</a> si tienes preguntas.</p>
+      <p>Tu portal de socios está siendo configurado. En breve tendrás acceso completo a tus métricas y clientes. Contacta a <a href="mailto:contacto@mistercontador.cl">contacto@mistercontador.cl</a> si tienes preguntas.</p>
     </div>
 
     <!-- Dashboard content (shown when data is ready) -->
@@ -642,12 +642,12 @@
     <div class="footer-links">
       <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
       <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
-      <a href="mailto:mrcontadorchile@gmail.com">Email</a>
+      <a href="mailto:contacto@mistercontador.cl">Email</a>
       <a href="inventory.html">Mister Inventario</a>
       <a href="terminos.html">Términos y Condiciones</a>
       <a href="privacidad.html">Política de Privacidad</a>
     </div>
-    <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; mrcontadorchile@gmail.com</p>
+    <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
   </footer>
 
 </div><!-- /dashboard-page -->
@@ -810,14 +810,14 @@
         // Not a reseller
         await sb.auth.signOut()
         showLogin()
-        showError('No tienes acceso como socio. Contacta a mrcontadorchile@gmail.com')
+        showError('No tienes acceso como socio. Contacta a contacto@mistercontador.cl')
         return
       }
 
       if (!reseller) {
         await sb.auth.signOut()
         showLogin()
-        showError('No tienes acceso como socio. Contacta a mrcontadorchile@gmail.com')
+        showError('No tienes acceso como socio. Contacta a contacto@mistercontador.cl')
         return
       }
 
@@ -892,7 +892,7 @@
         if (resellerError.code === 'PGRST116') {
           // No row found
           await sb.auth.signOut()
-          showError('No tienes acceso como socio. Contacta a mrcontadorchile@gmail.com')
+          showError('No tienes acceso como socio. Contacta a contacto@mistercontador.cl')
           return
         }
       }
