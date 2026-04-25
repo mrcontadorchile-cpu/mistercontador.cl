@@ -61,10 +61,10 @@
     .btn-manga {
       font-family: 'Bangers', cursive;
       letter-spacing: 3px;
-      background: #FFD700;
-      color: #1A1A1A;
-      border: 3px solid #1A1A1A;
-      box-shadow: 5px 5px 0px #1A1A1A;
+      background: transparent;
+      color: #FFFFFF;
+      border: 2px solid rgba(255,255,255,0.75);
+      box-shadow: 4px 4px 0px rgba(255,255,255,0.25);
       padding: 6px 16px;
       margin-left: 16px;
       font-size: 15px;
@@ -75,9 +75,11 @@
       line-height: 1.4;
     }
     .btn-manga:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #FFFFFF;
+      box-shadow: 6px 6px 0px rgba(255,255,255,0.35);
       transform: translate(-2px, -2px);
-      box-shadow: 9px 9px 0px #1A1A1A;
-      color: #1A1A1A;
+      color: #FFFFFF;
     }
 
     /* ── Hamburger ───────────────────────── */
