@@ -15,8 +15,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4;
-            color: var(--mc-black);
+            background-color: #0a0a0a;
+            color: #e5e5e5;
         }
 
         .manga-header {
@@ -26,14 +26,14 @@
         }
 
         .manga-border {
-            border: 3px solid var(--mc-black);
-            box-shadow: 6px 6px 0px var(--mc-black);
+            border: 3px solid var(--mc-yellow);
+            box-shadow: 6px 6px 0px var(--mc-yellow);
             transition: all 0.2s ease;
         }
 
         .manga-border:hover {
             transform: translate(-2px, -2px);
-            box-shadow: 10px 10px 0px var(--mc-black);
+            box-shadow: 10px 10px 0px var(--mc-yellow);
         }
 
         .manga-panel-title {
@@ -50,6 +50,7 @@
         .manga-badge {
             background-color: var(--mc-yellow);
             border: 2px solid var(--mc-black);
+            color: #1A1A1A;
             font-weight: bold;
             padding: 2px 8px;
             font-size: 0.8rem;
@@ -80,19 +81,20 @@
         .full-width { grid-column: 1 / -1; }
 
         .mister-avatar {
-            border: 4px solid var(--mc-black);
-            background: white;
+            border: 4px solid var(--mc-yellow);
+            background: #1A1A1A;
             padding: 10px;
             transform: rotate(-2deg);
         }
 
         .speech-bubble {
             position: relative;
-            background: white;
-            border: 3px solid black;
+            background: #1A1A1A;
+            border: 3px solid var(--mc-yellow);
             border-radius: 20px;
             padding: 15px;
             margin-bottom: 20px;
+            color: #e5e5e5;
         }
 
         .speech-bubble::after {
@@ -103,31 +105,60 @@
             width: 0;
             height: 0;
             border: 20px solid transparent;
-            border-top-color: black;
+            border-top-color: var(--mc-yellow);
             border-bottom: 0;
             border-left: 0;
             margin-left: -10px;
             margin-bottom: -20px;
         }
+
+        .dark-card {
+            background: #1a1a1a;
+            color: #e5e5e5;
+        }
+
+        .btn-manga-back {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 3px;
+            font-size: 15px;
+            background: transparent;
+            color: var(--mc-yellow);
+            border: 2px solid var(--mc-yellow);
+            box-shadow: 4px 4px 0 var(--mc-yellow);
+            padding: 8px 18px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-manga-back:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 var(--mc-yellow);
+        }
     </style>
 </head>
 <body class="p-4 md:p-10">
 
+    <!-- Back button -->
+    <div class="max-w-7xl mx-auto pt-2 pb-6">
+        <a href="https://mistercontador.cl/" class="btn-manga-back">◄ Volver al Cuartel General</a>
+    </div>
+
     <header class="max-w-7xl mx-auto mb-12 text-center">
         <div class="flex flex-col md:flex-row items-center justify-center gap-8">
             <div class="mister-avatar w-32 h-32 flex items-center justify-center overflow-hidden">
-                <!-- Fallback Icon if no image -->
                 <svg viewBox="0 0 100 100" class="w-full h-full">
-                    <rect x="25" y="40" width="50" height="50" fill="black" /> <!-- Traje -->
-                    <rect x="45" y="40" width="10" height="20" fill="white" /> <!-- Camisa -->
-                    <path d="M48 40 L52 40 L50 60 Z" fill="#FFD700" /> <!-- Corbata -->
-                    <circle cx="50" cy="30" r="15" fill="#f4d0a3" /> <!-- Cara -->
-                    <path d="M35 25 Q50 10 65 25" fill="black" /> <!-- Pelo Manga -->
+                    <rect x="25" y="40" width="50" height="50" fill="#FFD700" />
+                    <rect x="45" y="40" width="10" height="20" fill="white" />
+                    <path d="M48 40 L52 40 L50 60 Z" fill="#1A1A1A" />
+                    <circle cx="50" cy="30" r="15" fill="#f4d0a3" />
+                    <path d="M35 25 Q50 10 65 25" fill="black" />
                 </svg>
             </div>
             <div class="text-left">
-                <h1 class="manga-header text-5xl md:text-7xl mb-2">Mister Contador</h1>
-                <p class="text-xl font-bold italic border-l-4 border-yellow-400 pl-4 bg-white p-2">"Profesionalizando el sueño de las Pymes con espíritu Shonen"</p>
+                <h1 class="manga-header text-5xl md:text-7xl mb-2" style="color:#FFD700;">Mister Contador</h1>
+                <p class="text-xl font-bold italic border-l-4 border-yellow-400 pl-4 dark-card p-2">"Profesionalizando el sueño de las Pymes con espíritu Shonen"</p>
             </div>
         </div>
     </header>
@@ -136,7 +167,7 @@
 
         <!-- Misión y Visión Section -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div class="manga-border bg-white p-6">
+            <div class="manga-border dark-card p-6">
                 <div class="manga-panel-title">Nuestra Misión</div>
                 <p class="text-lg leading-relaxed font-medium">
                     Empoderar a las Pymes chilenas a través de una gestión financiera-contable clara e innovadora, transformando números complejos en herramientas estratégicas para su crecimiento sostenible.
@@ -193,10 +224,10 @@
                 <!-- Columna derecha: Lore 2x2 -->
                 <div style="display:grid; grid-template-columns: repeat(2,1fr); gap:1.5rem;">
 
-                    <div class="manga-border bg-white p-5" style="position:relative;">
-                        <div style="position:absolute;top:-12px;left:16px; background:#1A1A1A; color:#FFD700; font-family:'Bangers',cursive; font-size:2rem; padding:0 8px; line-height:1.1;">01</div>
+                    <div class="manga-border dark-card p-5" style="position:relative;">
+                        <div style="position:absolute;top:-12px;left:16px; background:#1A1A1A; color:#FFD700; font-family:'Bangers',cursive; font-size:2rem; padding:0 8px; line-height:1.1; border:2px solid #FFD700;">01</div>
                         <div class="manga-panel-title mt-3">El Salto de Fe</div>
-                        <p class="text-xs leading-relaxed mt-2">Rompí con el trabajo tradicional que frenaba la innovación. Decidí dar un salto de fe con un propósito claro: <strong>democratizar el control financiero para las Pymes.</strong></p>
+                        <p class="text-xs leading-relaxed mt-2">Rompí con el trabajo tradicional que frenaba la innovación. Decidí dar un salto de fe con un propósito claro: <strong style="color:#FFD700;">democratizar el control financiero para las Pymes.</strong></p>
                     </div>
 
                     <div class="manga-border p-5" style="background:#1A1A1A; color:#fff; position:relative;">
@@ -205,16 +236,16 @@
                         <p class="text-xs leading-relaxed mt-2 opacity-90">El traje negro y corbata amarilla representan <strong style="color:#FFD700;">compromiso inquebrantable</strong>, honestidad con tus números y la energía para impulsar tu negocio.</p>
                     </div>
 
-                    <div class="manga-border p-5" style="background:#FFD700; position:relative;">
+                    <div class="manga-border p-5" style="background:#FFD700; color:#1A1A1A; position:relative;">
                         <div style="position:absolute;top:-12px;left:16px; background:#1A1A1A; color:#FFD700; font-family:'Bangers',cursive; font-size:2rem; padding:0 8px; line-height:1.1;">03</div>
                         <div class="manga-panel-title mt-3">El Arma Secreta</div>
                         <p class="text-xs leading-relaxed mt-2">Contador Auditor + programador autodidacta + Ciencia de Datos. La fusión que origina <strong>Mister Inventario</strong> y te da dominio total sobre tu local.</p>
                     </div>
 
-                    <div class="manga-border bg-white p-5" style="position:relative;">
-                        <div style="position:absolute;top:-12px;left:16px; background:#1A1A1A; color:#FFD700; font-family:'Bangers',cursive; font-size:2rem; padding:0 8px; line-height:1.1;">04</div>
+                    <div class="manga-border dark-card p-5" style="position:relative;">
+                        <div style="position:absolute;top:-12px;left:16px; background:#1A1A1A; color:#FFD700; font-family:'Bangers',cursive; font-size:2rem; padding:0 8px; line-height:1.1; border:2px solid #FFD700;">04</div>
                         <div class="manga-panel-title mt-3">Nuestro Juramento</div>
-                        <p class="text-xs leading-relaxed mt-2">Erradicar la ceguera financiera. Números en lenguaje cercano para que <strong>nunca más sufras abusos</strong>. El ecosistema de <strong>Mister Group</strong> crecerá contigo.</p>
+                        <p class="text-xs leading-relaxed mt-2">Erradicar la ceguera financiera. Números en lenguaje cercano para que <strong style="color:#FFD700;">nunca más sufras abusos</strong>. El ecosistema de <strong style="color:#FFD700;">Mister Group</strong> crecerá contigo.</p>
                     </div>
 
                 </div>
@@ -222,18 +253,18 @@
         </section>
 
         <!-- Canvas Grid -->
-        <h2 class="manga-header text-4xl mb-8 text-center">Modelo de Negocio de Triple Impacto (Canvas B)</h2>
+        <h2 class="manga-header text-4xl mb-8 text-center" style="color:#FFD700;">Modelo de Negocio de Triple Impacto (Canvas B)</h2>
 
         <div class="canvas-grid">
 
             <!-- 1. Propósito (Central en Canvas B) -->
-            <div class="manga-border bg-yellow-400 p-4 span-2-cols flex flex-col justify-center text-center">
+            <div class="manga-border bg-yellow-400 p-4 span-2-cols flex flex-col justify-center text-center" style="color:#1A1A1A;">
                 <div class="manga-panel-title">1. Propósito</div>
                 <p class="font-bold text-xl uppercase tracking-tighter">Profesionalizar Pymes mediante claridad financiera e innovación técnica.</p>
             </div>
 
             <!-- 2. Problema -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">2. Problema</div>
                 <ul class="text-sm list-disc pl-4 space-y-1">
                     <li>Complejidad contable.</li>
@@ -243,7 +274,7 @@
             </div>
 
             <!-- 3. Segmentos -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">3. Segmentos</div>
                 <ul class="text-sm list-disc pl-4 space-y-1">
                     <li>Pymes chilenas.</li>
@@ -264,13 +295,13 @@
             </div>
 
             <!-- 5. Relación con Clientes -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">5. Relaciones</div>
                 <p class="text-sm italic">Co-creación de estrategias y seguimiento personalizado.</p>
             </div>
 
             <!-- 6. Canales -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">6. Canales</div>
                 <div class="flex flex-wrap gap-1">
                     <span class="manga-badge">Web</span>
@@ -280,7 +311,7 @@
             </div>
 
             <!-- 7. Actividades Clave -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">7. Actividades</div>
                 <ul class="text-xs space-y-1">
                     <li>• Gestión Contable/Tributaria.</li>
@@ -290,35 +321,35 @@
             </div>
 
             <!-- 8. Recursos Clave -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">8. Recursos</div>
                 <p class="text-xs font-bold">Identidad de Marca + Tech Stack (Supabase/Flutter).</p>
             </div>
 
             <!-- 9. Socios Clave -->
-            <div class="manga-border bg-white p-4">
+            <div class="manga-border dark-card p-4">
                 <div class="manga-panel-title">9. Socios</div>
-                <p class="text-xs">Organismos de Fomento, Proveedores Cloud y Backend, .</p>
+                <p class="text-xs">Organismos de Fomento, Proveedores Cloud y Backend.</p>
             </div>
 
             <!-- 10. Estructura de Costos -->
-            <div class="manga-border bg-gray-100 p-4">
+            <div class="manga-border p-4" style="background:#1a1a1a; color:#e5e5e5;">
                 <div class="manga-panel-title">10. Costos</div>
                 <p class="text-xs">Infraestructura digital, Marketing, Talento Técnico(RR.HH.).</p>
             </div>
 
             <!-- 11. Flujo de Ingresos -->
-            <div class="manga-border bg-yellow-100 p-4">
+            <div class="manga-border p-4" style="background:#2a2000; color:#FFD700;">
                 <div class="manga-panel-title">11. Ingresos</div>
                 <p class="text-xs font-bold">Planes mensuales + Suscripciones SaaS + Consultoría.</p>
             </div>
 
             <!-- 12. Métricas de Impacto -->
-            <div class="manga-border bg-green-50 p-4 span-2-cols">
-                <div class="manga-panel-title !bg-green-600">12. Métricas de Impacto</div>
+            <div class="manga-border p-4 span-2-cols" style="background:#0f1a0f; color:#e5e5e5;">
+                <div class="manga-panel-title" style="background:#16a34a; color:white;">12. Métricas de Impacto</div>
                 <div class="grid grid-cols-2 gap-2 text-xs">
-                    <div><strong>Económica:</strong> % ROI de clientes.</div>
-                    <div><strong>Ambiental:</strong> Ahorro papel (digitalización).</div>
+                    <div><strong style="color:#4ade80;">Económica:</strong> % ROI de clientes.</div>
+                    <div><strong style="color:#4ade80;">Ambiental:</strong> Ahorro papel (digitalización).</div>
                 </div>
             </div>
 
@@ -346,7 +377,7 @@
 
     <footer class="max-w-7xl mx-auto mt-12 pb-10 text-center">
         <div class="speech-bubble inline-block max-w-lg">
-            <p class="font-bold">¡Este es el camino del éxito! Si tu empresa crece, Chile crece. <strong>¡A por ello!</strong></p>
+            <p class="font-bold">¡Este es el camino del éxito! Si tu empresa crece, Chile crece. <strong style="color:#FFD700;">¡A por ello!</strong></p>
         </div>
         <p class="text-gray-500 text-sm mt-4">Generado para Mister Contador - Estrategia Sostenible 2026</p>
     </footer>
