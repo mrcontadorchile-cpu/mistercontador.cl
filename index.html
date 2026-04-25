@@ -228,6 +228,105 @@
       max-width: 1100px; margin: 0 auto;
     }
 
+    /* ── 1. Chapter Dividers ─────────────── */
+    .chapter-divider {
+      width: 100%; background: #111;
+      border-top: 3px solid var(--gold);
+      border-bottom: 1px solid rgba(245,194,0,0.1);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: center; gap: 0;
+      overflow: hidden; user-select: none;
+    }
+    .ch-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px; letter-spacing: 5px; color: #444;
+      padding: 14px 20px 14px 0; white-space: nowrap;
+    }
+    .ch-sep {
+      color: rgba(245,194,0,0.3); padding: 0 16px; font-size: 18px;
+    }
+    .ch-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px; letter-spacing: 4px; color: var(--gold);
+      padding: 12px 24px; white-space: nowrap;
+      background: rgba(245,194,0,0.07);
+      border-left: 3px solid var(--gold);
+      border-right: 3px solid var(--gold);
+    }
+    .ch-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(245,194,0,0.2), transparent);
+    }
+    .ch-line.right { background: linear-gradient(270deg, rgba(245,194,0,0.2), transparent); }
+
+    /* ── 3. Service Card Manga Borders ───── */
+    .service-card {
+      background: #0b0b0b;
+      border: 2px solid rgba(245,194,0,0.2);
+      box-shadow: 5px 5px 0 rgba(245,194,0,0.12);
+      padding: 32px 28px;
+      transition: all 0.2s ease;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before { display: none; }
+    .service-card:hover {
+      transform: translate(-3px, -3px);
+      border-color: var(--gold);
+      box-shadow: 8px 8px 0 var(--gold);
+    }
+
+    /* ── 2. Testimonial Speech Bubbles ───── */
+    .testimonial-card {
+      background: #fff;
+      border: 3px solid #1A1A1A;
+      box-shadow: 6px 6px 0 var(--gold);
+      padding: 22px 22px 20px;
+      position: relative; color: #1A1A1A;
+      margin-bottom: 18px;
+    }
+    .testimonial-card::after {
+      content: ''; position: absolute;
+      bottom: -20px; left: 28px;
+      border: 11px solid transparent;
+      border-top: 20px solid #1A1A1A;
+    }
+    .testimonial-card::before {
+      content: ''; position: absolute;
+      bottom: -12px; left: 33px;
+      border: 7px solid transparent;
+      border-top: 13px solid #fff;
+      z-index: 1;
+    }
+    .testimonial-card .quote { display: none; }
+    .testimonial-stars { color: #F5C200; font-size: 13px; margin-bottom: 10px; }
+    .testimonial-card p { font-size: 14px; color: #222; line-height: 1.65; margin-bottom: 0; }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 12px;
+      border-top: 2px solid #1A1A1A; margin-top: 46px; padding-top: 12px;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 0;
+      background: var(--gold); border: 2px solid #1A1A1A;
+      box-shadow: 2px 2px 0 #1A1A1A;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 13px; font-weight: 700; color: #1A1A1A; }
+    .testimonial-role { font-size: 11px; color: #666; margin-top: 2px; }
+
+    /* ── 4. Onomatopeyas decorativas ─────── */
+    .section[data-sfx] { position: relative; overflow: hidden; }
+    .section[data-sfx]::after {
+      content: attr(data-sfx);
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-12deg);
+      font-family: 'Bebas Neue', sans-serif; font-size: 18vw;
+      color: rgba(245,194,0,0.035);
+      white-space: nowrap; pointer-events: none; z-index: 0;
+      user-select: none; letter-spacing: -2px;
+    }
+    .section[data-sfx] > * { position: relative; z-index: 1; }
+
     /* ── Sections ────────────────────────── */
     .section {
       padding: 100px 24px;
@@ -744,7 +843,7 @@
 <div class="stats-strip">
   <div class="stats-inner">
     <div class="stat-item">
-      <div class="stat-number">100%</div>
+      <div class="stat-number" data-count="100" data-suffix="%">100%</div>
       <div class="stat-label">Digital y remoto</div>
     </div>
     <div class="stat-item">
@@ -752,7 +851,7 @@
       <div class="stat-label">Declaración mensual SII</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">$15.000.-</div>
+      <div class="stat-number" data-count="15000" data-prefix="$" data-suffix=".-">$15.000.-</div>
       <div class="stat-label">Desde al mes</div>
     </div>
     <div class="stat-item">
@@ -763,7 +862,7 @@
 </div>
 
 <!-- Services -->
-<section class="section" id="servicios">
+<section class="section" id="servicios" data-sfx="¡MISIÓN!">
   <div class="section-label">Servicios</div>
   <h2 class="section-title">Soluciones contables para tu empresa</h2>
   <p class="section-desc">Desde la declaración mensual hasta la gestión laboral completa, nos encargamos de todo para que tú no tengas que preocuparte.</p>
@@ -802,10 +901,16 @@
   </div>
 </section>
 
-<div class="divider-gold"></div>
+<div class="chapter-divider">
+  <div class="ch-line"></div>
+  <span class="ch-num">CAPÍTULO 02</span>
+  <span class="ch-sep">—</span>
+  <span class="ch-title">ELIGE TU PODER</span>
+  <div class="ch-line right"></div>
+</div>
 
 <!-- Pricing -->
-<section class="section" id="planes">
+<section class="section" id="planes" data-sfx="¡NIVEL UP!">
   <div class="section-label">Planes & Precios</div>
   <h2 class="section-title">La contabilidad que<br>tu empresa necesita</h2>
   <p class="section-desc">Sin contratos de permanencia. Sin letras chicas. Pagas mes a mes y creces con nosotros.</p>
@@ -957,7 +1062,13 @@
 </section>
 
 <!-- Video -->
-<div class="divider-gold"></div>
+<div class="chapter-divider">
+  <div class="ch-line"></div>
+  <span class="ch-num">CAPÍTULO 03</span>
+  <span class="ch-sep">—</span>
+  <span class="ch-title">ASÍ TRABAJAMOS</span>
+  <div class="ch-line right"></div>
+</div>
 <section class="video-section" id="video" aria-label="Video presentación Mister Contador">
   <div class="section-label" style="justify-content:center;"><span>Cómo trabajamos</span></div>
   <h2 class="section-title" style="text-align:center;">Conoce a Mister Contador</h2>
@@ -970,7 +1081,13 @@
   </div>
 </section>
 
-<div class="divider-gold"></div>
+<div class="chapter-divider">
+  <div class="ch-line"></div>
+  <span class="ch-num">CAPÍTULO 04</span>
+  <span class="ch-sep">—</span>
+  <span class="ch-title">LOS ALIADOS</span>
+  <div class="ch-line right"></div>
+</div>
 
 <!-- Testimonios -->
 <section class="testimonials-section" id="testimonios" aria-label="Testimonios de clientes">
@@ -1017,7 +1134,13 @@
   </div>
 </section>
 
-<div class="divider-gold"></div>
+<div class="chapter-divider">
+  <div class="ch-line"></div>
+  <span class="ch-num">CAPÍTULO 05</span>
+  <span class="ch-sep">—</span>
+  <span class="ch-title">DUDAS DEL HÉROE</span>
+  <div class="ch-line right"></div>
+</div>
 
 <!-- FAQ -->
 <section class="faq-section" id="faq" aria-label="Preguntas frecuentes">
@@ -1052,7 +1175,13 @@
   </div>
 </section>
 
-<div class="divider-gold"></div>
+<div class="chapter-divider">
+  <div class="ch-line"></div>
+  <span class="ch-num">CAPÍTULO 06</span>
+  <span class="ch-sep">—</span>
+  <span class="ch-title">EL ARSENAL</span>
+  <div class="ch-line right"></div>
+</div>
 
 <!-- Mister Inventario Banner -->
 <section class="inventory-banner">
@@ -1094,6 +1223,34 @@
       }
     });
   });
+</script>
+
+<!-- 5. Stats count-up -->
+<script>
+(function(){
+  var els = document.querySelectorAll('.stat-number[data-count]');
+  if (!els.length) return;
+  function fmt(n, prefix, suffix) {
+    var s = n >= 1000 ? Math.floor(n/1000) + '.' + String(n%1000).padStart(3,'0') : String(n);
+    return (prefix||'') + s + (suffix||'');
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target, target = +el.dataset.count, t0 = null, dur = 1400;
+      function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min((t-t0)/dur, 1), ease = 1-Math.pow(1-p,3);
+        el.textContent = fmt(Math.floor(ease*target), el.dataset.prefix, el.dataset.suffix);
+        if (p < 1) requestAnimationFrame(step);
+        else el.textContent = fmt(target, el.dataset.prefix, el.dataset.suffix);
+      }
+      requestAnimationFrame(step);
+      obs.unobserve(el);
+    });
+  }, {threshold: 0.6});
+  els.forEach(function(el){ obs.observe(el); });
+})();
 </script>
 
 <!-- Hero mouse parallax -->
