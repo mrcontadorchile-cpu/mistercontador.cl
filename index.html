@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="img/icon-oficial.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #F5C200;
@@ -58,6 +58,27 @@
       text-transform: uppercase;
     }
     .nav-links .btn-nav:hover { background: var(--gold-dark); color: var(--black); }
+    .btn-manga {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 3px;
+      background: #FFD700;
+      color: #1A1A1A;
+      border: 3px solid #1A1A1A;
+      box-shadow: 5px 5px 0px #1A1A1A;
+      padding: 6px 16px;
+      margin-left: 16px;
+      font-size: 15px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+    }
+    .btn-manga:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 9px 9px 0px #1A1A1A;
+      color: #1A1A1A;
+    }
 
     /* ── Hamburger ───────────────────────── */
     .hamburger {
@@ -596,6 +617,7 @@
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
       <a href="inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
     </div>
     <button class="hamburger" aria-label="Abrir menú de navegación" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
       <span></span><span></span><span></span>
@@ -609,6 +631,7 @@
   <a href="#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
   <a href="#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
   <a href="inventory.html" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">Mister Inventario</a>
+  <a href="https://mistercontador.cl/triple-impacto" class="btn-manga" style="margin: 14px 0 4px; display:block; text-align:center;" onclick="this.closest('.mobile-menu').classList.remove('active')">★ Sobre Nosotros</a>
 </div>
 
 <main id="main-content">
