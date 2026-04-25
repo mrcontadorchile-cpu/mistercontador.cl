@@ -78,6 +78,11 @@
       margin-left: 28px; transition: color 0.2s; letter-spacing: 0.3px;
     }
     .nav-links a:hover { color: var(--gold); }
+    .nav-links a.nav-active {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 2px;
+    }
     .nav-links .btn-nav {
       background: var(--gold); color: var(--black);
       padding: 8px 18px; border-radius: 4px; font-weight: 700;
@@ -1328,6 +1333,31 @@
   </div>
   <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
 </footer>
+
+<!-- Navbar activa por scroll -->
+<script>
+(function(){
+  var sections = ['servicios','planes','testimonios','faq','contacto'];
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+  function setActive(id) {
+    navLinks.forEach(function(a){
+      a.classList.toggle('nav-active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) setActive(e.target.id);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+})();
+</script>
 
 <!-- Scroll reveal -->
 <script>
