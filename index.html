@@ -483,6 +483,61 @@
     }
     .cta p { color: #777; font-size: 17px; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
+    /* ── Fundador ────────────────────────── */
+    .founder-section {
+      padding: 100px 24px;
+      background: #0d0d0d;
+      border-top: 1px solid rgba(245,194,0,0.15);
+      border-bottom: 1px solid rgba(245,194,0,0.15);
+    }
+    .founder-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 60px; align-items: center;
+    }
+    .founder-img-wrap {
+      position: relative;
+    }
+    .founder-img-placeholder {
+      width: 100%; aspect-ratio: 3/4;
+      background: #1a1a1a;
+      border: 4px solid var(--gold);
+      box-shadow: 10px 10px 0px var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+      color: #555; font-size: 13px; text-align: center;
+      padding: 20px;
+    }
+    .founder-img-placeholder svg { opacity: 0.3; }
+    .founder-tag {
+      position: absolute; top: -14px; left: 16px;
+      background: var(--gold); color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px; letter-spacing: 2px;
+      padding: 3px 12px;
+      border: 2px solid var(--black);
+    }
+    .founder-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px; display: block;
+    }
+    .founder-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 5vw, 58px);
+      color: var(--gold); line-height: 1.05;
+      margin-bottom: 24px; letter-spacing: 1px;
+    }
+    .founder-text {
+      font-size: 16px; color: #bbb; line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .founder-text strong { color: var(--white); }
+    @media (max-width: 768px) {
+      .founder-inner { grid-template-columns: 1fr; gap: 40px; }
+      .founder-img-placeholder { aspect-ratio: 4/3; max-width: 320px; margin: 0 auto; }
+    }
+
     /* ── Video ───────────────────────────── */
     .video-section {
       padding: 100px 24px; max-width: 900px; margin: 0 auto; text-align: center;
@@ -876,6 +931,29 @@
     <p class="consulting-cta">¿Necesitas un servicio a medida? <a href="https://wa.me/56940536523?text=Hola%2C%20quiero%20cotizar%20un%20servicio%20especializado" target="_blank">Conversemos por WhatsApp →</a></p>
   </div>
 
+</section>
+
+<!-- Fundador -->
+<section class="founder-section">
+  <div class="founder-inner">
+    <div class="founder-img-wrap">
+      <div class="founder-tag">Fundador</div>
+      <div class="founder-img-placeholder">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>Tu foto aquí<br><small style="opacity:.5">Recomendado: 600×800px</small></span>
+      </div>
+    </div>
+    <div class="founder-copy">
+      <span class="founder-label">El origen</span>
+      <h2 class="founder-title">El Origen de<br>Mister Contador</h2>
+      <p class="founder-text">
+        <strong>Rompiendo el sistema para potenciar el tuyo.</strong> Soy Contador Auditor e Ingeniero en Control de Gestión con mención en Ciencia de Datos. Mi misión es democratizar el control financiero fusionando la contabilidad tradicional con tecnología de vanguardia. En <strong>Mister Group</strong>, no somos solo contadores; somos tus aliados estratégicos.
+      </p>
+      <a href="/triple-impacto/" class="btn-manga" style="font-size:17px; padding:10px 24px;">★ Conoce nuestra historia</a>
+    </div>
+  </div>
 </section>
 
 <!-- Video -->
