@@ -127,7 +127,36 @@
       height: 3px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
     }
-    .hero-content { max-width: 760px; position: relative; z-index: 1; }
+    .hero-content { max-width: 760px; position: relative; z-index: 2; }
+
+    /* Scanlines */
+    .hero-scanlines {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent 0px, transparent 2px,
+        rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px
+      );
+      animation: scanline-flicker 6s steps(1) infinite;
+    }
+    @keyframes scanline-flicker {
+      0%,93%,100% { opacity: 1; }
+      94% { opacity: 0.8; }
+      95% { opacity: 1; }
+      97% { opacity: 0.85; }
+    }
+
+    /* Grid parallax */
+    .hero-grid {
+      position: absolute; inset: -15%;
+      background-image:
+        linear-gradient(rgba(245,194,0,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,194,0,0.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none; z-index: 0;
+      transition: transform 0.12s ease-out;
+      will-change: transform;
+    }
 
     .hero-logo-wrap {
       margin-bottom: 32px;
@@ -640,6 +669,8 @@
 
 <!-- Hero -->
 <section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-scanlines"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap">
       <a href="https://mistercontador.cl/"><img src="img/logo-oficial.png" alt="Mister Contador" width="359" height="84"></a>
@@ -988,6 +1019,24 @@
       }
     });
   });
+</script>
+
+<!-- Hero mouse parallax -->
+<script>
+  (function() {
+    const hero = document.querySelector('.hero');
+    const grid = document.querySelector('.hero-grid');
+    if (!hero || !grid) return;
+    hero.addEventListener('mousemove', function(e) {
+      const r = hero.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      grid.style.transform = 'translate(' + (x * 24) + 'px, ' + (y * 24) + 'px)';
+    });
+    hero.addEventListener('mouseleave', function() {
+      grid.style.transform = 'translate(0,0)';
+    });
+  })();
 </script>
 
 <!-- Footer -->
