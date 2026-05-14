@@ -278,12 +278,13 @@
     .section-sfx[data-sfx]::after {
       content: attr(data-sfx);
       position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, calc(-50% + var(--sfx-y, 0px)));
       font-family: 'Bangers', cursive;
       font-size: clamp(80px, 18vw, 180px);
       color: rgba(245,194,0,0.03);
       letter-spacing: 8px; white-space: nowrap;
       pointer-events: none; z-index: 0;
+      will-change: transform;
     }
 
     /* ── Pain Bubbles ────────────────────── */
@@ -1284,6 +1285,29 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+})();
+</script>
+
+<script>
+// Parallax suave en SFX de fondo
+(function() {
+  var sfxSections = document.querySelectorAll('.section-sfx');
+  if (!sfxSections.length) return;
+  var ticking = false;
+  function updateParallax() {
+    var vh = window.innerHeight;
+    sfxSections.forEach(function(section) {
+      var rect = section.getBoundingClientRect();
+      var centerOffset = (rect.top + rect.height / 2) - vh / 2;
+      var y = centerOffset * 0.12;
+      section.style.setProperty('--sfx-y', y + 'px');
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+  }, { passive: true });
+  updateParallax();
 })();
 </script>
 

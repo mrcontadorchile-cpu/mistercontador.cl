@@ -861,9 +861,56 @@
   .reveal-d5 { transition-delay: 0.5s; }
   .reveal-d6 { transition-delay: 0.6s; }
 
+  /* ── Splash intro ──────────────────────── */
+  .splash-overlay {
+    position: fixed; inset: 0; background: #0a0a0a;
+    z-index: 10000; display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.55s ease;
+  }
+  .splash-overlay.splash-out { opacity: 0; pointer-events: none; }
+  .splash-overlay.splash-hidden { display: none; }
+  .splash-lines {
+    position: absolute; inset: 0;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 8deg, rgba(245,194,0,0.05) 8deg, rgba(245,194,0,0.05) 9deg);
+    animation: splash-spin 2s linear forwards;
+  }
+  @keyframes splash-spin {
+    from { transform: rotate(0deg) scale(1); }
+    to   { transform: rotate(12deg) scale(1.05); }
+  }
+  .splash-content {
+    position: relative; z-index: 1; text-align: center;
+    animation: splash-pop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+  @keyframes splash-pop {
+    from { transform: scale(0.65); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+  .splash-logo { height: 52px; width: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; }
+  .splash-sfx {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(52px, 12vw, 108px);
+    letter-spacing: 4px; color: var(--gold);
+    text-shadow: 5px 5px 0 rgba(0,0,0,0.6); line-height: 1;
+  }
+  .splash-tagline {
+    font-family: 'Inter', sans-serif; font-size: 13px;
+    color: #555; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px;
+  }
+
   </style>
 </head>
 <body>
+
+<!-- Splash intro — solo primera visita -->
+<div id="splash" class="splash-overlay">
+  <div class="splash-lines"></div>
+  <div class="splash-content">
+    <img src="img/logo-oficial.png" alt="Mister Contador" class="splash-logo">
+    <div class="splash-sfx">¡MISTER CONTADOR!</div>
+    <div class="splash-tagline">Tu héroe financiero</div>
+  </div>
+</div>
 
 <!-- Nav -->
 <nav>
@@ -1504,6 +1551,23 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     50% { transform: scale(1.08); }
   }
 </style>
+
+<script>
+// Splash — solo primera visita
+(function() {
+  var splash = document.getElementById('splash');
+  if (!splash) return;
+  if (localStorage.getItem('mc_visited')) {
+    splash.classList.add('splash-hidden');
+    return;
+  }
+  localStorage.setItem('mc_visited', '1');
+  setTimeout(function() {
+    splash.classList.add('splash-out');
+    setTimeout(function() { splash.classList.add('splash-hidden'); }, 600);
+  }, 1900);
+})();
+</script>
 
 </body>
 </html>
