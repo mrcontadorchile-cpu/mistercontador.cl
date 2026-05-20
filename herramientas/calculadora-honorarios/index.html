@@ -95,6 +95,24 @@
     .uf-loading { font-size: 13px; color: var(--text-muted); font-style: italic; }
     .uf-error { font-size: 13px; color: #f87171; }
 
+    /* Date picker row */
+    .uf-date-row { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+    .uf-date-input {
+      background: var(--surface2); border: 1.5px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px;
+      padding: 6px 10px; border-radius: 3px; outline: none;
+      transition: border-color .2s; cursor: pointer;
+      color-scheme: dark;
+    }
+    .uf-date-input:focus { border-color: var(--gold); }
+    .uf-today-btn {
+      font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px;
+      background: none; color: var(--gold); border: 1px solid rgba(245,194,0,.35);
+      padding: 5px 10px; border-radius: 3px; cursor: pointer; white-space: nowrap;
+      transition: background .18s;
+    }
+    .uf-today-btn:hover { background: rgba(245,194,0,.1); }
+
     /* ── Currency toggle ─────────────────── */
     .currency-toggle {
       display: flex; border: 2px solid var(--border); border-radius: 2px; overflow: hidden;
@@ -258,9 +276,13 @@
   <!-- UF Banner (valor del día) -->
   <div class="uf-banner">
     <div class="uf-banner-left">
-      <span class="uf-label">VALOR UF HOY</span>
+      <span class="uf-label">VALOR UF</span>
       <span class="uf-value" id="uf-value"><span class="uf-loading">Cargando...</span></span>
       <span class="uf-date" id="uf-date"></span>
+      <div class="uf-date-row">
+        <input type="date" id="uf-date-input" class="uf-date-input" title="Selecciona fecha para consultar valor UF">
+        <button class="uf-today-btn" onclick="setUFToday()">Hoy</button>
+      </div>
     </div>
     <div class="currency-toggle" role="group" aria-label="Unidad de cálculo">
       <button class="currency-btn active" id="btn-clp" onclick="setCurrency('clp')">$ Pesos</button>
@@ -393,27 +415,56 @@
   var fLiquido   = document.getElementById('f-liquido');
   var allFields  = [fBruto, fRetencion, fLiquido];
 
-  // ── Fetch UF from mindicador.cl
-  (function fetchUF() {
-    fetch('https://mindicador.cl/api/uf')
+  // Fetch UF from mindicador.cl (fechaISO = 'YYYY-MM-DD' | null para hoy)
+  function fetchUF(fechaISO) {
+    var url = fechaISO
+      ? 'https://mindicador.cl/api/uf/' + fechaISO.split('-').reverse().join('-')
+      : 'https://mindicador.cl/api/uf';
+
+    document.getElementById('uf-value').innerHTML = '<span class="uf-loading">Cargando...</span>';
+    document.getElementById('uf-date').textContent = '';
+
+    fetch(url)
       .then(function(r) { return r.json(); })
       .then(function(data) {
         var serie = data.serie && data.serie[0];
         if (!serie) throw new Error('sin datos');
         ufValue = serie.valor;
         var fecha = new Date(serie.fecha);
-        var opts  = { day: 'numeric', month: 'long', year: 'numeric' };
-        document.getElementById('uf-value').textContent = '$ ' + ufValue.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        var opts  = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Santiago' };
+        document.getElementById('uf-value').textContent = '$ ' + ufValue.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         document.getElementById('uf-date').textContent  = fecha.toLocaleDateString('es-CL', opts);
-        // Unlock UF button
         document.getElementById('btn-uf').disabled = false;
+        if (currentCurrency === 'uf' && activeFieldId) recalc(activeFieldId);
       })
       .catch(function() {
-        document.getElementById('uf-value').innerHTML = '<span class="uf-error">No disponible</span>';
-        document.getElementById('uf-date').textContent = 'Inténtalo más tarde';
+        document.getElementById('uf-value').innerHTML = '<span class="uf-error">No disponible para esa fecha</span>';
+        document.getElementById('uf-date').textContent = '';
         document.getElementById('btn-uf').disabled = true;
+        ufValue = null;
       });
+  }
+
+  // Inicializar date input y cargar UF de hoy
+  (function initUF() {
+    var today = new Date();
+    var iso   = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    var input = document.getElementById('uf-date-input');
+    input.value = iso;
+    input.max   = iso;
+    input.min   = '1990-01-01';
+    input.addEventListener('change', function() {
+      if (this.value) fetchUF(this.value);
+    });
+    fetchUF(null);
   })();
+
+  function setUFToday() {
+    var today = new Date();
+    var iso = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    document.getElementById('uf-date-input').value = iso;
+    fetchUF(null);
+  }
 
   // ── Formatting helpers
   function fmtCLP(n) {
