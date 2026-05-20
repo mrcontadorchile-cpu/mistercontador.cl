@@ -950,7 +950,7 @@
 <!-- Progress bar -->
 <div id="read-progress"></div>
 <!-- Splash intro — solo primera visita -->
-<div id="splash" class="splash-overlay">
+<div id="splash" class="splash-overlay splash-hidden">
   <div class="splash-lines"></div>
   <div class="splash-content">
     <img src="img/logo-oficial.png" alt="Mister Contador" class="splash-logo">
@@ -1689,9 +1689,10 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   var splash = document.getElementById('splash');
   if (!splash) return;
   if (localStorage.getItem('mc_visited')) {
-    splash.classList.add('splash-hidden');
-    return;
+    return; // ya oculto por defecto en HTML
   }
+  // Primera visita: mostrar
+  splash.classList.remove('splash-hidden');
   localStorage.setItem('mc_visited', '1');
   setTimeout(function() {
     splash.classList.add('splash-out');
