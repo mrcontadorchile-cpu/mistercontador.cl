@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Boleta de Honorarios Chile 2026 | Mister Contador</title>
-  <meta name="description" content="Calcula tu boleta de honorarios al instante. Retención 14.5%, bruto, líquido y retención. Gratis.">
+  <meta name="description" content="Calcula tu boleta de honorarios al instante. Retención 15.25% vigente 2026, bruto, líquido y retención. Gratis.">
   <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-honorarios/">
   <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
 
@@ -20,7 +20,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root {
@@ -28,257 +27,213 @@
       --gold-dark: #D4A800;
       --black: #0a0a0a;
       --surface: #111111;
+      --surface2: #161616;
       --border: #1e1e1e;
       --text: #ffffff;
       --text-muted: #777777;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--black);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.65;
-    }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.65; }
 
-    /* Nav */
+    /* ── Nav ─────────────────────────────── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
       background: transparent; backdrop-filter: blur(0px);
       border-bottom: 1px solid transparent; padding: 12px 0;
-      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+      transition: background .35s, border-color .35s, backdrop-filter .35s;
     }
-    nav.nav-scrolled {
-      background: rgba(6,6,6,0.88); backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(245,194,0,0.2);
-    }
-    .nav-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px;
-    }
+    nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
     .nav-logo img { height: 36px; object-fit: contain; }
     .nav-links { display: flex; align-items: center; }
-    .nav-links a {
-      color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500;
-      margin-left: 28px; transition: color 0.2s; letter-spacing: 0.3px;
-    }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
     .nav-links a:hover { color: var(--gold); }
-    .nav-links .btn-nav {
-      background: var(--gold); color: var(--black);
-      padding: 8px 18px; border-radius: 4px; font-weight: 700;
-      margin-left: 28px; letter-spacing: 0.5px; font-size: 13px; text-transform: uppercase;
-    }
+    .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
     .nav-links .btn-nav:hover { background: var(--gold-dark); }
-    .btn-manga {
-      font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px;
-      color: var(--text); border: 2px solid var(--text);
-      padding: 8px 20px; border-radius: 2px; text-decoration: none;
-      display: inline-block; box-shadow: 4px 4px 0 var(--text);
-      transition: transform 0.15s, box-shadow 0.15s, color 0.15s, border-color 0.15s;
-    }
+    .btn-manga { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px; color: var(--text); border: 2px solid var(--text); padding: 8px 20px; border-radius: 2px; text-decoration: none; display: inline-block; box-shadow: 4px 4px 0 var(--text); transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; }
     .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
     .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
-    .mobile-menu {
-      display: none; position: fixed; top: 65px; left: 0; right: 0;
-      background: rgba(0,0,0,0.97); backdrop-filter: blur(16px);
-      padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99;
-    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all .3s; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
     .mobile-menu.active { display: block; }
-    .mobile-menu a {
-      display: block; color: #ccc; text-decoration: none;
-      font-size: 16px; font-weight: 600; padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06); letter-spacing: 0.3px;
-    }
+    .mobile-menu a { display: block; color: #ccc; text-decoration: none; font-size: 16px; font-weight: 600; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
     .mobile-menu a:hover { color: var(--gold); }
 
-    /* Page header */
+    /* ── Page header ─────────────────────── */
     .page-header {
-      padding: 110px 24px 48px;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(245,194,0,0.05) 0%, transparent 100%);
+      padding: 110px 24px 48px; text-align: center;
+      background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%);
       border-bottom: 1px solid var(--border);
     }
-    .breadcrumb {
-      font-size: 12px; color: var(--text-muted);
-      margin-bottom: 16px; letter-spacing: 0.5px;
-    }
+    .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
     .breadcrumb a { color: var(--gold); text-decoration: none; }
-    .page-header h1 {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(36px, 6vw, 64px);
-      letter-spacing: 4px; text-transform: uppercase; line-height: 1;
-      margin-bottom: 10px;
-    }
+    .page-header h1 { font-family: 'Bangers', cursive; font-size: clamp(36px,6vw,64px); letter-spacing: 4px; text-transform: uppercase; line-height: 1; margin-bottom: 10px; }
     .page-header h1 .gold { color: var(--gold); }
     .page-header .subtitle { font-size: 15px; color: var(--text-muted); }
 
-    /* AdSense placeholders */
-    .adsense-slot {
-      max-width: 740px; margin: 0 auto;
-      /* Remove next line when pasting real ins tag */
-      min-height: 0;
-    }
+    /* ── Calc wrapper ────────────────────── */
+    .calc-wrapper { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
 
-    /* Calculator wrapper */
-    .calc-wrapper {
-      max-width: 740px; margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
+    /* AdSense */
+    .adsense-slot { max-width: 740px; margin: 0 auto; min-height: 0; }
 
     /* Speech bubble */
     .speech-bubble {
-      background: #fff; color: #0a0a0a;
-      border: 3px solid #0a0a0a;
+      background: #fff; color: #0a0a0a; border: 3px solid #0a0a0a;
       border-radius: 8px; padding: 18px 22px 18px 16px;
       position: relative; display: flex; align-items: center; gap: 14px;
       margin-bottom: 32px;
     }
-    .speech-bubble::after {
-      content: '';
-      position: absolute; bottom: -14px; left: 28px;
-      border-left: 10px solid transparent;
-      border-right: 10px solid transparent;
-      border-top: 14px solid #0a0a0a;
-    }
-    .speech-bubble::before {
-      content: '';
-      position: absolute; bottom: -11px; left: 29px;
-      border-left: 9px solid transparent;
-      border-right: 9px solid transparent;
-      border-top: 13px solid #fff;
-      z-index: 1;
-    }
+    .speech-bubble::after { content:''; position:absolute; bottom:-14px; left:28px; border-left:10px solid transparent; border-right:10px solid transparent; border-top:14px solid #0a0a0a; }
+    .speech-bubble::before { content:''; position:absolute; bottom:-11px; left:29px; border-left:9px solid transparent; border-right:9px solid transparent; border-top:13px solid #fff; z-index:1; }
     .speech-bubble img { height: 36px; object-fit: contain; flex-shrink: 0; }
-    .speech-bubble p {
-      font-size: 14px; font-weight: 600; line-height: 1.45;
-      color: #111;
+    .speech-bubble p { font-size: 14px; font-weight: 600; line-height: 1.45; color: #111; }
+
+    /* Year selector */
+    .year-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .year-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 12px; letter-spacing: 3px; color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .year-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+    .year-tab {
+      font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px;
+      background: var(--surface); color: #555; border: 2px solid var(--border);
+      padding: 7px 16px; border-radius: 2px; cursor: pointer; transition: all .18s;
+    }
+    .year-tab:hover { color: var(--text); border-color: #444; }
+    .year-tab.active { background: var(--gold); color: var(--black); border-color: var(--gold); box-shadow: 3px 3px 0 var(--gold-dark); }
+
+    /* Rate badge */
+    .rate-badge {
+      margin-left: auto;
+      font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px;
+      background: rgba(245,194,0,.12); color: var(--gold);
+      border: 1.5px solid rgba(245,194,0,.4);
+      padding: 6px 14px; border-radius: 2px; white-space: nowrap;
     }
 
-    /* Mode tabs */
-    .mode-tabs {
-      display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap;
-    }
-    .mode-tab {
-      font-family: 'Bangers', cursive;
-      font-size: 17px; letter-spacing: 2px;
-      background: var(--surface); color: #555;
-      border: 2px solid var(--border);
-      padding: 10px 20px; border-radius: 2px;
-      cursor: pointer; transition: all 0.18s;
-      flex: 1; text-align: center; white-space: nowrap;
-    }
-    .mode-tab:hover { color: var(--gold); border-color: rgba(245,194,0,0.4); }
-    .mode-tab.active {
-      background: var(--gold); color: var(--black);
-      border-color: var(--gold);
-      box-shadow: 4px 4px 0 var(--gold-dark);
-    }
-
-    /* AdSense mid slot */
+    /* AdSense mid */
     #adsense-mid { margin-bottom: 24px; }
 
-    /* Input area */
-    .input-label {
+    /* Three-field calculator */
+    .fields-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 560px) { .fields-grid { grid-template-columns: 1fr; } }
+
+    .field-block { display: flex; flex-direction: column; gap: 8px; }
+    .field-label {
       font-family: 'Bebas Neue', cursive;
-      font-size: 13px; letter-spacing: 3px; color: var(--gold);
-      margin-bottom: 8px; display: block;
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--text-muted);
     }
-    .input-wrap { position: relative; margin-bottom: 32px; }
-    .input-prefix {
-      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-      font-family: 'Bangers', cursive; font-size: 28px; color: #555;
+    .field-label.active-label { color: var(--gold); }
+
+    .field-wrap { position: relative; }
+    .field-prefix {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      font-family: 'Bangers', cursive; font-size: 20px; color: #555; pointer-events: none;
     }
-    .calc-input {
+    .field-input {
       width: 100%; background: var(--surface);
-      border: 2px solid var(--border);
-      color: var(--text);
-      font-family: 'Bangers', cursive; font-size: clamp(32px, 6vw, 48px);
-      letter-spacing: 2px; text-align: right;
-      padding: 18px 20px 18px 52px;
-      border-radius: 4px;
-      outline: none;
-      transition: border-color 0.2s;
+      border: 2px solid var(--border); color: var(--text);
+      font-family: 'Bangers', cursive; font-size: clamp(22px, 3.5vw, 30px);
+      letter-spacing: 1px; text-align: right;
+      padding: 14px 14px 14px 36px;
+      border-radius: 4px; outline: none;
+      transition: border-color .2s, background .2s;
       -moz-appearance: textfield;
     }
-    .calc-input::-webkit-outer-spin-button,
-    .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-    .calc-input:focus { border-color: var(--gold); }
-    .calc-input::placeholder { color: #333; }
+    .field-input::-webkit-outer-spin-button,
+    .field-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .field-input:focus { border-color: var(--gold); background: var(--surface2); }
+    .field-input.is-source { border-color: var(--gold); background: var(--surface2); }
+    .field-input::placeholder { color: #2a2a2a; }
 
-    /* Results */
-    .results-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
+    /* Copy per-field */
+    .field-copy {
+      position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer;
+      color: #333; font-size: 14px; padding: 4px;
+      transition: color .2s; opacity: 0;
     }
-    @media (max-width: 480px) { .results-grid { grid-template-columns: 1fr; } }
+    .field-wrap:hover .field-copy { opacity: 1; }
+    .field-copy:hover { color: var(--gold); }
+    .field-copy.copied-ok { color: #4ade80 !important; opacity: 1; }
 
-    .result-card {
-      border: 3px solid var(--gold);
-      box-shadow: 6px 6px 0 var(--gold);
-      background: var(--surface);
-      padding: 22px 20px;
+    /* Results note */
+    .result-note {
+      font-size: 11px; color: #444; text-align: center;
+      margin-bottom: 4px; line-height: 1.5;
     }
-    .result-card.full-width { grid-column: 1 / -1; }
-    .result-card .rc-label {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 11px; letter-spacing: 3px; color: var(--text-muted);
-      text-transform: uppercase; margin-bottom: 6px;
-    }
-    .result-card .rc-value {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(28px, 5vw, 38px); letter-spacing: 2px;
-      color: var(--gold); line-height: 1;
-    }
-    .result-card .rc-note {
-      font-size: 11px; color: var(--text-muted); margin-top: 6px;
-    }
-    .result-empty .rc-value { color: #333; }
 
-    /* Copy button */
+    /* Divider */
+    .calc-divider {
+      border: none; border-top: 1px solid var(--border); margin: 24px 0;
+    }
+
+    /* Copy-all button */
     .btn-copy {
-      font-family: 'Bangers', cursive;
-      font-size: 17px; letter-spacing: 2px;
-      background: transparent; color: var(--text);
-      border: 2px solid var(--text);
-      padding: 12px 28px; border-radius: 2px;
-      cursor: pointer; width: 100%;
+      font-family: 'Bangers', cursive; font-size: 17px; letter-spacing: 2px;
+      background: transparent; color: var(--text); border: 2px solid var(--text);
+      padding: 12px 28px; border-radius: 2px; cursor: pointer; width: 100%;
       box-shadow: 4px 4px 0 var(--text);
-      transition: transform 0.15s, box-shadow 0.15s, color 0.15s, border-color 0.15s;
+      transition: transform .15s, box-shadow .15s, color .15s, border-color .15s;
       display: flex; align-items: center; justify-content: center; gap: 8px;
     }
     .btn-copy:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
     .btn-copy.copied { color: #4ade80; border-color: #4ade80; box-shadow: 4px 4px 0 #4ade80; }
 
     /* Info note */
-    .info-note {
-      font-size: 12px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6;
-    }
+    .info-note { font-size: 12px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6; }
     .info-note a { color: var(--gold); text-decoration: none; }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 48px 24px; text-align: center; background: #000;
+    /* ── Rates table ─────────────────────── */
+    .rates-table-wrap {
+      margin-top: 48px;
+      border: 2px solid var(--border);
+      border-radius: 4px; overflow: hidden;
     }
+    .rates-table-head {
+      background: var(--surface);
+      padding: 16px 20px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px; letter-spacing: 3px; color: var(--gold);
+    }
+    .rates-table { width: 100%; border-collapse: collapse; }
+    .rates-table tr { border-bottom: 1px solid var(--border); }
+    .rates-table tr:last-child { border-bottom: none; }
+    .rates-table td { padding: 12px 20px; font-size: 13px; color: #888; }
+    .rates-table td:first-child { font-weight: 700; color: var(--text); }
+    .rates-table tr.current-year td { background: rgba(245,194,0,.06); color: var(--gold); }
+    .rates-table tr.current-year td:first-child { color: var(--gold); }
+
+    /* ── Footer ──────────────────────────── */
+    footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
     .footer-logo { margin-bottom: 20px; }
     .footer-logo img { height: 36px; object-fit: contain; }
     footer p { font-size: 13px; color: #444; }
-    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
-    footer a:hover { opacity: 0.8; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+    footer a:hover { opacity: .8; }
     .social-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
-    .social-links a { color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+    .social-links a { color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color .2s; }
     .social-links a:hover { color: var(--gold); }
     footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hamburger { display: block; }
-      .mode-tabs { flex-direction: column; }
+      .year-row { gap: 8px; }
+      .rate-badge { margin-left: 0; }
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
     }
   </style>
@@ -322,11 +277,11 @@
     Calculadora Honorarios
   </div>
   <h1>CALCULADORA<br><span class="gold">HONORARIOS 2026</span></h1>
-  <p class="subtitle">Retención 14.5% · Cálculo en tiempo real · Gratis</p>
+  <p class="subtitle">Escribe en cualquier campo — el resto se calcula solo</p>
 </div>
 
-<!-- AdSense TOP (728×90 / responsive) -->
-<div style="max-width:740px;margin:24px auto 0;padding:0 20px;">
+<!-- AdSense TOP -->
+<div style="max-width:780px;margin:24px auto 0;padding:0 20px;">
   <div id="adsense-top" class="adsense-slot">
     <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (728×90 / auto responsive) -->
   </div>
@@ -337,75 +292,93 @@
   <!-- Speech bubble -->
   <div class="speech-bubble">
     <img src="../../img/logo-oficial.png" alt="Mister Contador">
-    <p>Ingresa cualquier valor y calculo el resto al instante. ¡Sin enredos!</p>
+    <p>Escribe en cualquier campo — bruto, líquido o retención — y calculo el resto al instante. ¡Sin enredos!</p>
   </div>
 
-  <!-- Mode tabs -->
-  <div class="mode-tabs" role="tablist">
-    <button class="mode-tab active" data-mode="bruto" role="tab" aria-selected="true">
-      Desde BRUTO
-    </button>
-    <button class="mode-tab" data-mode="liquido" role="tab" aria-selected="false">
-      Desde LÍQUIDO
-    </button>
-    <button class="mode-tab" data-mode="retencion" role="tab" aria-selected="false">
-      Desde RETENCIÓN
-    </button>
+  <!-- Year selector + rate badge -->
+  <div class="year-row">
+    <span class="year-label">AÑO:</span>
+    <div class="year-tabs" id="year-tabs">
+      <button class="year-tab" data-year="2022" data-rate="0.1225">2022</button>
+      <button class="year-tab" data-year="2023" data-rate="0.13">2023</button>
+      <button class="year-tab" data-year="2024" data-rate="0.1375">2024</button>
+      <button class="year-tab" data-year="2025" data-rate="0.145">2025</button>
+      <button class="year-tab active" data-year="2026" data-rate="0.1525">2026</button>
+    </div>
+    <div class="rate-badge" id="rate-badge">RETENCIÓN 15.25%</div>
   </div>
 
   <!-- AdSense MID -->
   <div id="adsense-mid" class="adsense-slot">
-    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (mid — zona entre tabs e input) -->
+    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (mid — entre selector e inputs) -->
   </div>
 
-  <!-- Input -->
-  <label class="input-label" id="input-label" for="main-input">MONTO BRUTO</label>
-  <div class="input-wrap">
-    <span class="input-prefix">$</span>
-    <input
-      id="main-input"
-      class="calc-input"
-      type="text"
-      inputmode="numeric"
-      placeholder="0"
-      autocomplete="off"
-    >
+  <!-- Three simultaneous fields -->
+  <div class="fields-grid">
+
+    <!-- Bruto -->
+    <div class="field-block">
+      <label class="field-label" for="f-bruto">Monto Bruto</label>
+      <div class="field-wrap">
+        <span class="field-prefix">$</span>
+        <input id="f-bruto" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off" data-field="bruto">
+        <button class="field-copy" data-for="f-bruto" title="Copiar" onclick="copyField('f-bruto', this)">⧉</button>
+      </div>
+      <span class="result-note">Valor total de la boleta</span>
+    </div>
+
+    <!-- Retención -->
+    <div class="field-block">
+      <label class="field-label" for="f-retencion">Retención SII</label>
+      <div class="field-wrap">
+        <span class="field-prefix">$</span>
+        <input id="f-retencion" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off" data-field="retencion">
+        <button class="field-copy" data-for="f-retencion" title="Copiar" onclick="copyField('f-retencion', this)">⧉</button>
+      </div>
+      <span class="result-note">Retiene el pagador → SII</span>
+    </div>
+
+    <!-- Líquido -->
+    <div class="field-block">
+      <label class="field-label" for="f-liquido">Monto Líquido</label>
+      <div class="field-wrap">
+        <span class="field-prefix">$</span>
+        <input id="f-liquido" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off" data-field="liquido">
+        <button class="field-copy" data-for="f-liquido" title="Copiar" onclick="copyField('f-liquido', this)">⧉</button>
+      </div>
+      <span class="result-note">Lo que recibes en tu cuenta</span>
+    </div>
+
   </div>
 
-  <!-- Results -->
-  <div class="results-grid" id="results">
-    <div class="result-card" id="card-bruto">
-      <div class="rc-label">Monto Bruto</div>
-      <div class="rc-value" id="val-bruto">—</div>
-      <div class="rc-note">Valor total de la boleta</div>
-    </div>
-    <div class="result-card" id="card-retencion">
-      <div class="rc-label">Retención (14.5%)</div>
-      <div class="rc-value" id="val-retencion">—</div>
-      <div class="rc-note">Retiene el pagador → SII</div>
-    </div>
-    <div class="result-card full-width" id="card-liquido">
-      <div class="rc-label">Monto Líquido</div>
-      <div class="rc-value" id="val-liquido">—</div>
-      <div class="rc-note">Lo que recibes tú en tu cuenta</div>
-    </div>
-  </div>
-
-  <!-- AdSense BOTTOM (zona caliente) -->
+  <!-- AdSense BOTTOM -->
   <div id="adsense-bottom" class="adsense-slot" style="margin-bottom:20px;">
-    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (bottom — debajo de resultados) -->
+    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (bottom — zona caliente) -->
   </div>
 
-  <!-- Copy button -->
-  <button class="btn-copy" id="btn-copy" onclick="copyResults()">
-    <span>📋</span> COPIAR RESULTADOS
+  <!-- Copy all -->
+  <button class="btn-copy" id="btn-copy" onclick="copyAll()">
+    <span id="btn-icon">📋</span><span id="btn-text"> COPIAR RESULTADOS</span>
   </button>
 
   <p class="info-note">
-    Retención provisional 14.5% vigente para año tributario 2026 (Ley 21.133).<br>
-    Porcentaje único aplicable independiente del monto.<br>
-    ¿Tienes dudas? <a href="https://mistercontador.cl/#contacto">Consúltanos gratis →</a>
+    Tasas según Ley 21.133 (aumento gradual anual).<br>
+    ¿Tienes dudas sobre tu boleta? <a href="https://mistercontador.cl/#contacto">Consúltanos gratis →</a>
   </p>
+
+  <!-- Rates reference table -->
+  <div class="rates-table-wrap">
+    <div class="rates-table-head">TABLA DE RETENCIONES — LEY 21.133</div>
+    <table class="rates-table">
+      <tr><td>2022</td><td>12.25%</td><td>+0.75% respecto año anterior</td></tr>
+      <tr><td>2023</td><td>13.00%</td><td>+0.75% respecto año anterior</td></tr>
+      <tr><td>2024</td><td>13.75%</td><td>+0.75% respecto año anterior</td></tr>
+      <tr><td>2025</td><td>14.50%</td><td>+0.75% respecto año anterior</td></tr>
+      <tr class="current-year"><td>2026 ★</td><td>15.25%</td><td>Tasa vigente este año</td></tr>
+      <tr><td>2027</td><td>16.00%</td><td>Próximo año</td></tr>
+      <tr><td>2028</td><td>17.00%</td><td>Tasa máxima establecida</td></tr>
+    </table>
+  </div>
 
 </div>
 
@@ -429,120 +402,149 @@
 
 <script>
   // Nav scroll
-  var nav = document.querySelector('nav');
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+  document.addEventListener('scroll', function() {
+    document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
   }, { passive: true });
 
   // State
-  var currentMode = 'bruto';
-  var RETENCION_RATE = 0.145;
-  var LIQUIDO_RATE   = 0.855; // 1 - 0.145
+  var currentRate = 0.1525;
+  var activeField = null;
+  var isUpdating  = false;
 
-  var labels = {
-    bruto:     'MONTO BRUTO',
-    liquido:   'MONTO LÍQUIDO',
-    retencion: 'MONTO RETENCIÓN',
-  };
-
-  // Format: $1.234.567
-  function fmt(n) {
-    if (!n && n !== 0) return '—';
-    return '$' + Math.round(n).toLocaleString('es-CL');
+  // Format CLP
+  function fmtCLP(n) {
+    return Math.round(n).toLocaleString('es-CL');
   }
-
-  // Parse input (remove non-digits)
-  function parseVal(str) {
-    var digits = str.replace(/\D/g, '');
+  function parseField(el) {
+    var digits = el.value.replace(/\D/g, '');
     return digits === '' ? null : parseInt(digits, 10);
   }
-
-  function calculate() {
-    var raw = document.getElementById('main-input').value;
-    var val = parseVal(raw);
-
-    var bruto = null, retencion = null, liquido = null;
-
-    if (val !== null && val > 0) {
-      if (currentMode === 'bruto') {
-        bruto     = val;
-        retencion = bruto * RETENCION_RATE;
-        liquido   = bruto * LIQUIDO_RATE;
-      } else if (currentMode === 'liquido') {
-        liquido   = val;
-        bruto     = liquido / LIQUIDO_RATE;
-        retencion = bruto * RETENCION_RATE;
-      } else {
-        retencion = val;
-        bruto     = retencion / RETENCION_RATE;
-        liquido   = bruto - retencion;
-      }
-    }
-
-    document.getElementById('val-bruto').textContent     = fmt(bruto);
-    document.getElementById('val-retencion').textContent = fmt(retencion);
-    document.getElementById('val-liquido').textContent   = fmt(liquido);
+  function setField(el, val) {
+    if (val === null || val === undefined) { el.value = ''; return; }
+    el.value = fmtCLP(val);
   }
 
-  // Tab switching
-  document.querySelectorAll('.mode-tab').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.mode-tab').forEach(function(b) {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
+  var fBruto     = document.getElementById('f-bruto');
+  var fRetencion = document.getElementById('f-retencion');
+  var fLiquido   = document.getElementById('f-liquido');
+
+  function recalc(sourceId) {
+    if (isUpdating) return;
+    isUpdating = true;
+
+    var val = parseField(document.getElementById(sourceId));
+
+    if (val === null || val <= 0) {
+      // clear others
+      [fBruto, fRetencion, fLiquido].forEach(function(f) {
+        if (f.id !== sourceId) f.value = '';
       });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      currentMode = btn.dataset.mode;
-      document.getElementById('input-label').textContent = labels[currentMode];
-      document.getElementById('main-input').value = '';
-      document.getElementById('main-input').placeholder = '0';
-      document.getElementById('val-bruto').textContent     = '—';
-      document.getElementById('val-retencion').textContent = '—';
-      document.getElementById('val-liquido').textContent   = '—';
-      document.getElementById('main-input').focus();
-    });
-  });
-
-  // Live calc + formatted display
-  document.getElementById('main-input').addEventListener('input', function() {
-    var digits = this.value.replace(/\D/g, '');
-    // Format as CL thousands while typing
-    if (digits) {
-      this.value = parseInt(digits, 10).toLocaleString('es-CL');
-    }
-    calculate();
-  });
-
-  // Copy results
-  function copyResults() {
-    var bruto     = document.getElementById('val-bruto').textContent;
-    var retencion = document.getElementById('val-retencion').textContent;
-    var liquido   = document.getElementById('val-liquido').textContent;
-
-    if (bruto === '—') {
-      alert('Ingresa un monto primero.');
+      isUpdating = false;
       return;
     }
 
-    var text =
-      'Calculadora Honorarios 2026 — Mister Contador\n' +
-      '----------------------------------------------\n' +
-      'Monto Bruto:        ' + bruto + '\n' +
-      'Retención (14.5%):  ' + retencion + '\n' +
-      'Monto Líquido:      ' + liquido + '\n' +
-      '----------------------------------------------\n' +
-      'mistercontador.cl/herramientas/calculadora-honorarios/';
+    var bruto, retencion, liquido;
+    if (sourceId === 'f-bruto') {
+      bruto     = val;
+      retencion = bruto * currentRate;
+      liquido   = bruto - retencion;
+    } else if (sourceId === 'f-retencion') {
+      retencion = val;
+      bruto     = retencion / currentRate;
+      liquido   = bruto - retencion;
+    } else {
+      liquido   = val;
+      bruto     = liquido / (1 - currentRate);
+      retencion = bruto * currentRate;
+    }
 
+    if (sourceId !== 'f-bruto')     setField(fBruto,     bruto);
+    if (sourceId !== 'f-retencion') setField(fRetencion, retencion);
+    if (sourceId !== 'f-liquido')   setField(fLiquido,   liquido);
+
+    isUpdating = false;
+  }
+
+  // Attach input listeners
+  [fBruto, fRetencion, fLiquido].forEach(function(el) {
+    el.addEventListener('focus', function() {
+      el.classList.add('is-source');
+      activeField = el.id;
+    });
+    el.addEventListener('blur', function() {
+      el.classList.remove('is-source');
+    });
+    el.addEventListener('input', function() {
+      // Format with thousands separator while typing
+      var raw    = el.value.replace(/\D/g, '');
+      var cursor = el.selectionStart;
+      var prevLen = el.value.length;
+      if (raw) {
+        el.value = parseInt(raw, 10).toLocaleString('es-CL');
+        // Adjust cursor position
+        var diff = el.value.length - prevLen;
+        el.setSelectionRange(cursor + diff, cursor + diff);
+      } else {
+        el.value = '';
+      }
+      recalc(el.id);
+    });
+  });
+
+  // Year tabs
+  document.getElementById('year-tabs').addEventListener('click', function(e) {
+    var btn = e.target.closest('.year-tab');
+    if (!btn) return;
+    document.querySelectorAll('.year-tab').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentRate = parseFloat(btn.dataset.rate);
+    var pct = (currentRate * 100).toFixed(2).replace('.', ',') + '%';
+    document.getElementById('rate-badge').textContent = 'RETENCIÓN ' + pct;
+    // Recalc with active field
+    if (activeField) {
+      recalc(activeField);
+    } else if (fBruto.value) {
+      recalc('f-bruto');
+    }
+  });
+
+  // Copy individual field
+  function copyField(fieldId, btn) {
+    var el  = document.getElementById(fieldId);
+    var val = el.value;
+    if (!val) return;
+    navigator.clipboard.writeText('$' + val).then(function() {
+      var orig = btn.textContent;
+      btn.textContent = '✓';
+      btn.classList.add('copied-ok');
+      setTimeout(function() { btn.textContent = orig; btn.classList.remove('copied-ok'); }, 1800);
+    });
+  }
+
+  // Copy all
+  function copyAll() {
+    var b = fBruto.value, r = fRetencion.value, l = fLiquido.value;
+    if (!b && !r && !l) { alert('Ingresa un monto primero.'); return; }
+    var yearBtn = document.querySelector('.year-tab.active');
+    var year = yearBtn ? yearBtn.dataset.year : '2026';
+    var pct  = (currentRate * 100).toFixed(2) + '%';
+    var text =
+      'Calculadora Honorarios ' + year + ' — Mister Contador\n' +
+      '─────────────────────────────────────────\n' +
+      'Monto Bruto:             $' + b + '\n' +
+      'Retención SII (' + pct + '): $' + r + '\n' +
+      'Monto Líquido:           $' + l + '\n' +
+      '─────────────────────────────────────────\n' +
+      'mistercontador.cl/herramientas/calculadora-honorarios/';
     navigator.clipboard.writeText(text).then(function() {
       var btn = document.getElementById('btn-copy');
       btn.classList.add('copied');
-      btn.querySelector('span').textContent = '✓';
-      btn.childNodes[1].textContent = ' ¡COPIADO!';
+      document.getElementById('btn-icon').textContent = '✓';
+      document.getElementById('btn-text').textContent = ' ¡COPIADO!';
       setTimeout(function() {
         btn.classList.remove('copied');
-        btn.querySelector('span').textContent = '📋';
-        btn.childNodes[1].textContent = ' COPIAR RESULTADOS';
+        document.getElementById('btn-icon').textContent = '📋';
+        document.getElementById('btn-text').textContent = ' COPIAR RESULTADOS';
       }, 2500);
     }).catch(function() {
       alert('No se pudo copiar. Selecciona los resultados manualmente.');
