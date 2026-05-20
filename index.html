@@ -1419,6 +1419,7 @@
 <script>
   (function() {
     if (typeof VANTA === 'undefined' || typeof THREE === 'undefined') return;
+    if (window.innerWidth < 768) return;
     VANTA.NET({
       el: '#vanta-hero',
       THREE: THREE,
