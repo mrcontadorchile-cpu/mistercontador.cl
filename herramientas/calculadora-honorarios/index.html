@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Boleta de Honorarios Chile 2026 | Mister Contador</title>
+  <meta name="description" content="Calcula tu boleta de honorarios al instante. Retención 14.5%, bruto, líquido y retención. Gratis.">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-honorarios/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: transparent; backdrop-filter: blur(0px);
+      border-bottom: 1px solid transparent; padding: 12px 0;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    nav.nav-scrolled {
+      background: rgba(6,6,6,0.88); backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(245,194,0,0.2);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500;
+      margin-left: 28px; transition: color 0.2s; letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav {
+      background: var(--gold); color: var(--black);
+      padding: 8px 18px; border-radius: 4px; font-weight: 700;
+      margin-left: 28px; letter-spacing: 0.5px; font-size: 13px; text-transform: uppercase;
+    }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); }
+    .btn-manga {
+      font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px;
+      color: var(--text); border: 2px solid var(--text);
+      padding: 8px 20px; border-radius: 2px; text-decoration: none;
+      display: inline-block; box-shadow: 4px 4px 0 var(--text);
+      transition: transform 0.15s, box-shadow 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(0,0,0,0.97); backdrop-filter: blur(16px);
+      padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 16px; font-weight: 600; padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06); letter-spacing: 0.3px;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* Page header */
+    .page-header {
+      padding: 110px 24px 48px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(245,194,0,0.05) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 16px; letter-spacing: 0.5px;
+    }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-header h1 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: 4px; text-transform: uppercase; line-height: 1;
+      margin-bottom: 10px;
+    }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle { font-size: 15px; color: var(--text-muted); }
+
+    /* AdSense placeholders */
+    .adsense-slot {
+      max-width: 740px; margin: 0 auto;
+      /* Remove next line when pasting real ins tag */
+      min-height: 0;
+    }
+
+    /* Calculator wrapper */
+    .calc-wrapper {
+      max-width: 740px; margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* Speech bubble */
+    .speech-bubble {
+      background: #fff; color: #0a0a0a;
+      border: 3px solid #0a0a0a;
+      border-radius: 8px; padding: 18px 22px 18px 16px;
+      position: relative; display: flex; align-items: center; gap: 14px;
+      margin-bottom: 32px;
+    }
+    .speech-bubble::after {
+      content: '';
+      position: absolute; bottom: -14px; left: 28px;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 14px solid #0a0a0a;
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute; bottom: -11px; left: 29px;
+      border-left: 9px solid transparent;
+      border-right: 9px solid transparent;
+      border-top: 13px solid #fff;
+      z-index: 1;
+    }
+    .speech-bubble img { height: 36px; object-fit: contain; flex-shrink: 0; }
+    .speech-bubble p {
+      font-size: 14px; font-weight: 600; line-height: 1.45;
+      color: #111;
+    }
+
+    /* Mode tabs */
+    .mode-tabs {
+      display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .mode-tab {
+      font-family: 'Bangers', cursive;
+      font-size: 17px; letter-spacing: 2px;
+      background: var(--surface); color: #555;
+      border: 2px solid var(--border);
+      padding: 10px 20px; border-radius: 2px;
+      cursor: pointer; transition: all 0.18s;
+      flex: 1; text-align: center; white-space: nowrap;
+    }
+    .mode-tab:hover { color: var(--gold); border-color: rgba(245,194,0,0.4); }
+    .mode-tab.active {
+      background: var(--gold); color: var(--black);
+      border-color: var(--gold);
+      box-shadow: 4px 4px 0 var(--gold-dark);
+    }
+
+    /* AdSense mid slot */
+    #adsense-mid { margin-bottom: 24px; }
+
+    /* Input area */
+    .input-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 13px; letter-spacing: 3px; color: var(--gold);
+      margin-bottom: 8px; display: block;
+    }
+    .input-wrap { position: relative; margin-bottom: 32px; }
+    .input-prefix {
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      font-family: 'Bangers', cursive; font-size: 28px; color: #555;
+    }
+    .calc-input {
+      width: 100%; background: var(--surface);
+      border: 2px solid var(--border);
+      color: var(--text);
+      font-family: 'Bangers', cursive; font-size: clamp(32px, 6vw, 48px);
+      letter-spacing: 2px; text-align: right;
+      padding: 18px 20px 18px 52px;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.2s;
+      -moz-appearance: textfield;
+    }
+    .calc-input::-webkit-outer-spin-button,
+    .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .calc-input:focus { border-color: var(--gold); }
+    .calc-input::placeholder { color: #333; }
+
+    /* Results */
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 480px) { .results-grid { grid-template-columns: 1fr; } }
+
+    .result-card {
+      border: 3px solid var(--gold);
+      box-shadow: 6px 6px 0 var(--gold);
+      background: var(--surface);
+      padding: 22px 20px;
+    }
+    .result-card.full-width { grid-column: 1 / -1; }
+    .result-card .rc-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px; letter-spacing: 3px; color: var(--text-muted);
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .result-card .rc-value {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(28px, 5vw, 38px); letter-spacing: 2px;
+      color: var(--gold); line-height: 1;
+    }
+    .result-card .rc-note {
+      font-size: 11px; color: var(--text-muted); margin-top: 6px;
+    }
+    .result-empty .rc-value { color: #333; }
+
+    /* Copy button */
+    .btn-copy {
+      font-family: 'Bangers', cursive;
+      font-size: 17px; letter-spacing: 2px;
+      background: transparent; color: var(--text);
+      border: 2px solid var(--text);
+      padding: 12px 28px; border-radius: 2px;
+      cursor: pointer; width: 100%;
+      box-shadow: 4px 4px 0 var(--text);
+      transition: transform 0.15s, box-shadow 0.15s, color 0.15s, border-color 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-copy:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .btn-copy.copied { color: #4ade80; border-color: #4ade80; box-shadow: 4px 4px 0 #4ade80; }
+
+    /* Info note */
+    .info-note {
+      font-size: 12px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6;
+    }
+    .info-note a { color: var(--gold); text-decoration: none; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 24px; text-align: center; background: #000;
+    }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.8; }
+    .social-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
+    .social-links a { color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s; }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mode-tabs { flex-direction: column; }
+      .social-links { flex-direction: column; align-items: center; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="../../inventory.html" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">Mister Inventario</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="https://mistercontador.cl/">Inicio</a> &rsaquo;
+    <a href="/herramientas/">Herramientas</a> &rsaquo;
+    Calculadora Honorarios
+  </div>
+  <h1>CALCULADORA<br><span class="gold">HONORARIOS 2026</span></h1>
+  <p class="subtitle">Retención 14.5% · Cálculo en tiempo real · Gratis</p>
+</div>
+
+<!-- AdSense TOP (728×90 / responsive) -->
+<div style="max-width:740px;margin:24px auto 0;padding:0 20px;">
+  <div id="adsense-top" class="adsense-slot">
+    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (728×90 / auto responsive) -->
+  </div>
+</div>
+
+<div class="calc-wrapper">
+
+  <!-- Speech bubble -->
+  <div class="speech-bubble">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    <p>Ingresa cualquier valor y calculo el resto al instante. ¡Sin enredos!</p>
+  </div>
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs" role="tablist">
+    <button class="mode-tab active" data-mode="bruto" role="tab" aria-selected="true">
+      Desde BRUTO
+    </button>
+    <button class="mode-tab" data-mode="liquido" role="tab" aria-selected="false">
+      Desde LÍQUIDO
+    </button>
+    <button class="mode-tab" data-mode="retencion" role="tab" aria-selected="false">
+      Desde RETENCIÓN
+    </button>
+  </div>
+
+  <!-- AdSense MID -->
+  <div id="adsense-mid" class="adsense-slot">
+    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (mid — zona entre tabs e input) -->
+  </div>
+
+  <!-- Input -->
+  <label class="input-label" id="input-label" for="main-input">MONTO BRUTO</label>
+  <div class="input-wrap">
+    <span class="input-prefix">$</span>
+    <input
+      id="main-input"
+      class="calc-input"
+      type="text"
+      inputmode="numeric"
+      placeholder="0"
+      autocomplete="off"
+    >
+  </div>
+
+  <!-- Results -->
+  <div class="results-grid" id="results">
+    <div class="result-card" id="card-bruto">
+      <div class="rc-label">Monto Bruto</div>
+      <div class="rc-value" id="val-bruto">—</div>
+      <div class="rc-note">Valor total de la boleta</div>
+    </div>
+    <div class="result-card" id="card-retencion">
+      <div class="rc-label">Retención (14.5%)</div>
+      <div class="rc-value" id="val-retencion">—</div>
+      <div class="rc-note">Retiene el pagador → SII</div>
+    </div>
+    <div class="result-card full-width" id="card-liquido">
+      <div class="rc-label">Monto Líquido</div>
+      <div class="rc-value" id="val-liquido">—</div>
+      <div class="rc-note">Lo que recibes tú en tu cuenta</div>
+    </div>
+  </div>
+
+  <!-- AdSense BOTTOM (zona caliente) -->
+  <div id="adsense-bottom" class="adsense-slot" style="margin-bottom:20px;">
+    <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (bottom — debajo de resultados) -->
+  </div>
+
+  <!-- Copy button -->
+  <button class="btn-copy" id="btn-copy" onclick="copyResults()">
+    <span>📋</span> COPIAR RESULTADOS
+  </button>
+
+  <p class="info-note">
+    Retención provisional 14.5% vigente para año tributario 2026 (Ley 21.133).<br>
+    Porcentaje único aplicable independiente del monto.<br>
+    ¿Tienes dudas? <a href="https://mistercontador.cl/#contacto">Consúltanos gratis →</a>
+  </p>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">Términos y Condiciones</a>
+    <a href="../../privacidad.html">Política de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  // Nav scroll
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // State
+  var currentMode = 'bruto';
+  var RETENCION_RATE = 0.145;
+  var LIQUIDO_RATE   = 0.855; // 1 - 0.145
+
+  var labels = {
+    bruto:     'MONTO BRUTO',
+    liquido:   'MONTO LÍQUIDO',
+    retencion: 'MONTO RETENCIÓN',
+  };
+
+  // Format: $1.234.567
+  function fmt(n) {
+    if (!n && n !== 0) return '—';
+    return '$' + Math.round(n).toLocaleString('es-CL');
+  }
+
+  // Parse input (remove non-digits)
+  function parseVal(str) {
+    var digits = str.replace(/\D/g, '');
+    return digits === '' ? null : parseInt(digits, 10);
+  }
+
+  function calculate() {
+    var raw = document.getElementById('main-input').value;
+    var val = parseVal(raw);
+
+    var bruto = null, retencion = null, liquido = null;
+
+    if (val !== null && val > 0) {
+      if (currentMode === 'bruto') {
+        bruto     = val;
+        retencion = bruto * RETENCION_RATE;
+        liquido   = bruto * LIQUIDO_RATE;
+      } else if (currentMode === 'liquido') {
+        liquido   = val;
+        bruto     = liquido / LIQUIDO_RATE;
+        retencion = bruto * RETENCION_RATE;
+      } else {
+        retencion = val;
+        bruto     = retencion / RETENCION_RATE;
+        liquido   = bruto - retencion;
+      }
+    }
+
+    document.getElementById('val-bruto').textContent     = fmt(bruto);
+    document.getElementById('val-retencion').textContent = fmt(retencion);
+    document.getElementById('val-liquido').textContent   = fmt(liquido);
+  }
+
+  // Tab switching
+  document.querySelectorAll('.mode-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.mode-tab').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      currentMode = btn.dataset.mode;
+      document.getElementById('input-label').textContent = labels[currentMode];
+      document.getElementById('main-input').value = '';
+      document.getElementById('main-input').placeholder = '0';
+      document.getElementById('val-bruto').textContent     = '—';
+      document.getElementById('val-retencion').textContent = '—';
+      document.getElementById('val-liquido').textContent   = '—';
+      document.getElementById('main-input').focus();
+    });
+  });
+
+  // Live calc + formatted display
+  document.getElementById('main-input').addEventListener('input', function() {
+    var digits = this.value.replace(/\D/g, '');
+    // Format as CL thousands while typing
+    if (digits) {
+      this.value = parseInt(digits, 10).toLocaleString('es-CL');
+    }
+    calculate();
+  });
+
+  // Copy results
+  function copyResults() {
+    var bruto     = document.getElementById('val-bruto').textContent;
+    var retencion = document.getElementById('val-retencion').textContent;
+    var liquido   = document.getElementById('val-liquido').textContent;
+
+    if (bruto === '—') {
+      alert('Ingresa un monto primero.');
+      return;
+    }
+
+    var text =
+      'Calculadora Honorarios 2026 — Mister Contador\n' +
+      '----------------------------------------------\n' +
+      'Monto Bruto:        ' + bruto + '\n' +
+      'Retención (14.5%):  ' + retencion + '\n' +
+      'Monto Líquido:      ' + liquido + '\n' +
+      '----------------------------------------------\n' +
+      'mistercontador.cl/herramientas/calculadora-honorarios/';
+
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('btn-copy');
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = '✓';
+      btn.childNodes[1].textContent = ' ¡COPIADO!';
+      setTimeout(function() {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = '📋';
+        btn.childNodes[1].textContent = ' COPIAR RESULTADOS';
+      }, 2500);
+    }).catch(function() {
+      alert('No se pudo copiar. Selecciona los resultados manualmente.');
+    });
+  }
+</script>
+</body>
+</html>

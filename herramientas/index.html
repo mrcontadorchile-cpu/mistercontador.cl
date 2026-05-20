@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herramientas Gratuitas para PyMEs | Mister Contador</title>
+  <meta name="description" content="Herramientas gratuitas para pymes chilenas — Mister Contador">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/">
+  <link rel="icon" type="image/png" href="../img/icon-oficial.png">
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: transparent;
+      backdrop-filter: blur(0px);
+      border-bottom: 1px solid transparent;
+      padding: 12px 0;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+    }
+    nav.nav-scrolled {
+      background: rgba(6,6,6,0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(245,194,0,0.2);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500;
+      margin-left: 28px; transition: color 0.2s; letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav {
+      background: var(--gold); color: var(--black);
+      padding: 8px 18px; border-radius: 4px; font-weight: 700;
+      margin-left: 28px; letter-spacing: 0.5px; font-size: 13px;
+      text-transform: uppercase;
+    }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); color: var(--black); }
+    .btn-manga {
+      font-family: 'Bangers', cursive;
+      font-size: 15px; letter-spacing: 1.5px;
+      color: var(--text); border: 2px solid var(--text);
+      padding: 8px 20px; border-radius: 2px;
+      text-decoration: none; display: inline-block;
+      box-shadow: 4px 4px 0 var(--text);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-manga:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--text); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .hamburger {
+      display: none; background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: #fff; margin: 5px 0; transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(0,0,0,0.97); backdrop-filter: blur(16px);
+      padding: 20px 24px; border-bottom: 2px solid var(--gold);
+      z-index: 99;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      font-size: 16px; font-weight: 600; padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06); letter-spacing: 0.3px;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* Page */
+    .page-hero {
+      padding: 120px 24px 64px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(245,194,0,0.04) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero h1 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(48px, 8vw, 80px);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .page-hero h1 .gold { color: var(--gold); }
+    .page-hero p {
+      font-size: 16px; color: var(--text-muted); max-width: 520px; margin: 0 auto;
+    }
+    .chapter-badge {
+      display: inline-block;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 12px; letter-spacing: 3px;
+      color: var(--gold); border: 1px solid rgba(245,194,0,0.3);
+      padding: 4px 12px; border-radius: 2px; margin-bottom: 20px;
+    }
+
+    /* Tools grid */
+    .tools-section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 0;
+    }
+    .tool-card {
+      border: 3px solid var(--gold);
+      box-shadow: 6px 6px 0 var(--gold);
+      background: var(--surface);
+      padding: 32px 28px;
+      text-decoration: none;
+      color: var(--text);
+      display: flex; flex-direction: column; gap: 12px;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+    }
+    .tool-card:hover { transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--gold); }
+    .tool-card .tool-icon {
+      font-size: 36px; line-height: 1;
+    }
+    .tool-card .tool-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px; letter-spacing: 3px; color: var(--gold);
+      text-transform: uppercase;
+    }
+    .tool-card h2 {
+      font-family: 'Bangers', cursive;
+      font-size: 26px; letter-spacing: 2px;
+      text-transform: uppercase; line-height: 1.1;
+    }
+    .tool-card p {
+      font-size: 14px; color: var(--text-muted); line-height: 1.6;
+    }
+    .tool-card .tool-cta {
+      margin-top: auto;
+      font-family: 'Bangers', cursive;
+      font-size: 15px; letter-spacing: 1.5px;
+      color: var(--gold); display: flex; align-items: center; gap: 6px;
+    }
+
+    /* Próximamente card */
+    .tool-card.soon {
+      border-color: var(--border);
+      box-shadow: 6px 6px 0 var(--border);
+      opacity: 0.5; cursor: default; pointer-events: none;
+    }
+    .tool-card.soon:hover { transform: none; box-shadow: 6px 6px 0 var(--border); }
+    .soon-badge {
+      position: absolute; top: 16px; right: 16px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 10px; letter-spacing: 2px;
+      background: var(--border); color: #555;
+      padding: 3px 8px; border-radius: 2px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 24px; text-align: center;
+      background: #000;
+    }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.8; }
+    .social-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
+    .social-links a {
+      color: #555; font-size: 13px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px; transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .social-links { flex-direction: column; align-items: center; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="../inventory.html" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">Mister Inventario</a>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">MISTER CONTADOR — RECURSOS</div>
+  <h1>HERRAMIENTAS<br><span class="gold">GRATUITAS</span></h1>
+  <p>Calculadoras y utilidades para que gestiones tu negocio sin enredos. Gratis. Sin registro.</p>
+</div>
+
+<div class="tools-section">
+  <div class="tools-grid">
+
+    <!-- Calculadora Honorarios -->
+    <a href="/herramientas/calculadora-honorarios/" class="tool-card">
+      <div class="tool-icon">🧮</div>
+      <div class="tool-label">Tributario · 2026</div>
+      <h2>Calculadora de<br>Honorarios</h2>
+      <p>Calcula bruto, líquido y retención al instante. Retención 14.5% vigente para 2026.</p>
+      <div class="tool-cta">Usar calculadora →</div>
+    </a>
+
+    <!-- Próximamente 1 -->
+    <div class="tool-card soon">
+      <div class="soon-badge">PRÓXIMAMENTE</div>
+      <div class="tool-icon">📊</div>
+      <div class="tool-label">Tributario · 2026</div>
+      <h2>Calculadora<br>IVA</h2>
+      <p>Separa el IVA de cualquier monto o agrégalo en un clic.</p>
+    </div>
+
+    <!-- Próximamente 2 -->
+    <div class="tool-card soon">
+      <div class="soon-badge">PRÓXIMAMENTE</div>
+      <div class="tool-icon">💼</div>
+      <div class="tool-label">Laboral · 2026</div>
+      <h2>Liquidador<br>de Sueldo</h2>
+      <p>Calcula descuentos legales, AFP, Isapre y sueldo líquido.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../inventory.html">Mister Inventario</a>
+    <a href="../socios.html">Portal Socios</a>
+    <a href="../terminos.html">Términos y Condiciones</a>
+    <a href="../privacidad.html">Política de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+</script>
+</body>
+</html>
