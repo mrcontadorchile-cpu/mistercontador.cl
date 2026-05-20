@@ -5,8 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora Boleta de Honorarios Chile 2026 | Mister Contador</title>
   <meta name="description" content="Calcula tu boleta de honorarios al instante. Retención 15.25% vigente 2026, bruto, líquido y retención en pesos o UF. Gratis.">
+  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-honorarios/">
   <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/calculadora-honorarios/">
+  <meta property="og:title"       content="Calculadora Boleta de Honorarios Chile 2026 | Mister Contador">
+  <meta property="og:description" content="Calcula bruto, líquido y retención al instante. Tasa 15.25% vigente 2026. Gratis, sin registro.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/og-calculadora.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Calculadora Honorarios 2026 — Mister Contador">
+  <meta name="twitter:description" content="Calcula bruto, líquido y retención al instante. Gratis.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/og-calculadora.png">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Calcular Boleta de Honorarios Chile 2026",
+    "description": "Calcula bruto, líquido y retención de una boleta de honorarios con la tasa vigente 2026.",
+    "step": [
+      { "@type": "HowToStep", "name": "Selecciona el año", "text": "Elige el año tributario (por defecto 2026, tasa 15.25%)." },
+      { "@type": "HowToStep", "name": "Ingresa el monto", "text": "Escribe el monto bruto, líquido o retención. Los demás se calculan automáticamente." },
+      { "@type": "HowToStep", "name": "Obtén el resultado", "text": "Los tres valores (bruto, retención SII y líquido) aparecen al instante." }
+    ]
+  }
+  </script>
 
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
@@ -36,13 +63,8 @@
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.65; }
 
-    /* ── Nav ─────────────────────────────── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: transparent; backdrop-filter: blur(0px);
-      border-bottom: 1px solid transparent; padding: 12px 0;
-      transition: background .35s, border-color .35s, backdrop-filter .35s;
-    }
+    /* Nav */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
     nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
     .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
     .nav-logo { display: flex; align-items: center; text-decoration: none; }
@@ -61,7 +83,7 @@
     .mobile-menu a { display: block; color: #ccc; text-decoration: none; font-size: 16px; font-weight: 600; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
     .mobile-menu a:hover { color: var(--gold); }
 
-    /* ── Page header ─────────────────────── */
+    /* Page header */
     .page-header { padding: 110px 24px 48px; text-align: center; background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); }
     .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
     .breadcrumb a { color: var(--gold); text-decoration: none; }
@@ -69,7 +91,6 @@
     .page-header h1 .gold { color: var(--gold); }
     .page-header .subtitle { font-size: 15px; color: var(--text-muted); }
 
-    /* ── Calc wrapper ────────────────────── */
     .calc-wrapper { max-width: 780px; margin: 0 auto; padding: 40px 20px 80px; }
     .adsense-slot { max-width: 740px; margin: 0 auto; min-height: 0; }
 
@@ -80,52 +101,27 @@
     .speech-bubble img { height: 36px; object-fit: contain; flex-shrink: 0; }
     .speech-bubble p { font-size: 14px; font-weight: 600; line-height: 1.45; color: #111; }
 
-    /* ── UF Banner ───────────────────────── */
-    .uf-banner {
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--surface); border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-      border-radius: 4px; padding: 14px 18px;
-      margin-bottom: 24px; gap: 12px; flex-wrap: wrap;
-    }
+    /* UF Banner */
+    .uf-banner { display: flex; align-items: flex-start; justify-content: space-between; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; padding: 14px 18px; margin-bottom: 24px; gap: 12px; flex-wrap: wrap; }
     .uf-banner-left { display: flex; flex-direction: column; gap: 2px; }
     .uf-label { font-family: 'Bebas Neue', cursive; font-size: 10px; letter-spacing: 3px; color: var(--text-muted); }
     .uf-value { font-family: 'Bangers', cursive; font-size: 28px; letter-spacing: 1px; color: var(--gold); line-height: 1; }
     .uf-date { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
     .uf-loading { font-size: 13px; color: var(--text-muted); font-style: italic; }
     .uf-error { font-size: 13px; color: #f87171; }
-
-    /* Date picker row */
     .uf-date-row { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
-    .uf-date-input {
-      background: var(--surface2); border: 1.5px solid var(--border);
-      color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px;
-      padding: 6px 10px; border-radius: 3px; outline: none;
-      transition: border-color .2s; cursor: pointer;
-      color-scheme: dark;
-    }
+    .uf-date-input { background: var(--surface2); border: 1.5px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; padding: 6px 10px; border-radius: 3px; outline: none; transition: border-color .2s; cursor: pointer; color-scheme: dark; }
     .uf-date-input:focus { border-color: var(--gold); }
-    .uf-today-btn {
-      font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px;
-      background: none; color: var(--gold); border: 1px solid rgba(245,194,0,.35);
-      padding: 5px 10px; border-radius: 3px; cursor: pointer; white-space: nowrap;
-      transition: background .18s;
-    }
+    .uf-today-btn { font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px; background: none; color: var(--gold); border: 1px solid rgba(245,194,0,.35); padding: 5px 10px; border-radius: 3px; cursor: pointer; white-space: nowrap; transition: background .18s; }
     .uf-today-btn:hover { background: rgba(245,194,0,.1); }
 
-    /* ── Currency toggle ─────────────────── */
-    .currency-toggle {
-      display: flex; border: 2px solid var(--border); border-radius: 2px; overflow: hidden;
-    }
-    .currency-btn {
-      font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px;
-      background: var(--surface2); color: #555; border: none;
-      padding: 10px 20px; cursor: pointer; transition: all .18s;
-    }
+    /* Currency toggle */
+    .currency-toggle { display: flex; border: 2px solid var(--border); border-radius: 2px; overflow: hidden; align-self: center; }
+    .currency-btn { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px; background: var(--surface2); color: #555; border: none; padding: 10px 20px; cursor: pointer; transition: all .18s; }
     .currency-btn.active { background: var(--gold); color: var(--black); }
     .currency-btn:hover:not(.active) { color: var(--text); }
 
-    /* ── Controls row ────────────────────── */
+    /* Controls row */
     .controls-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
     .year-label { font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 3px; color: var(--text-muted); white-space: nowrap; }
     .year-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -134,37 +130,40 @@
     .year-tab.active { background: var(--gold); color: var(--black); border-color: var(--gold); box-shadow: 3px 3px 0 var(--gold-dark); }
     .rate-badge { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px; background: rgba(245,194,0,.12); color: var(--gold); border: 1.5px solid rgba(245,194,0,.4); padding: 6px 14px; border-radius: 2px; white-space: nowrap; margin-left: auto; }
 
-    /* ── Three-field grid ────────────────── */
-    .fields-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-    @media (max-width: 560px) { .fields-grid { grid-template-columns: 1fr; } }
+    /* Field animation */
+    @keyframes field-updated {
+      0%   { box-shadow: 0 0 0 3px rgba(245,194,0,.5); border-color: var(--gold); }
+      100% { box-shadow: none; border-color: var(--border); }
+    }
+    .field-input.just-updated { animation: field-updated .55s ease-out forwards; }
+
+    /* Fields */
+    .fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    @media (max-width: 500px) { .fields-grid { grid-template-columns: 1fr; } }
 
     .field-block { display: flex; flex-direction: column; gap: 8px; }
     .field-label { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
 
     .field-wrap { position: relative; }
     .field-prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-family: 'Bangers', cursive; font-size: 20px; color: #555; pointer-events: none; transition: opacity .2s; }
-    .field-input {
-      width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text);
-      font-family: 'Bangers', cursive; font-size: clamp(22px, 3.5vw, 30px);
-      letter-spacing: 1px; text-align: right;
-      padding: 14px 14px 14px 36px; border-radius: 4px; outline: none;
-      transition: border-color .2s, background .2s;
-      -moz-appearance: textfield;
-    }
-    .field-input::-webkit-outer-spin-button,
-    .field-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .field-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Bangers', cursive; font-size: clamp(22px, 3.5vw, 30px); letter-spacing: 1px; text-align: right; padding: 14px 38px 14px 36px; border-radius: 4px; outline: none; transition: border-color .2s, background .2s; -moz-appearance: textfield; }
+    .field-input::-webkit-outer-spin-button, .field-input::-webkit-inner-spin-button { -webkit-appearance: none; }
     .field-input:focus { border-color: var(--gold); background: var(--surface2); }
-    .field-input.is-source { border-color: var(--gold); background: var(--surface2); }
     .field-input::placeholder { color: #2a2a2a; }
 
-    /* UF mode: smaller font to fit decimals */
-    body.mode-uf .field-input { font-size: clamp(18px, 3vw, 24px); }
+    /* Líquido — destacado */
+    .field-block.is-liquido { grid-column: 1 / -1; }
+    .field-block.is-liquido .field-input { font-size: clamp(28px, 5vw, 40px); border-color: rgba(245,194,0,.25); background: rgba(245,194,0,.04); padding-top: 18px; padding-bottom: 18px; }
+    .field-block.is-liquido .field-input:focus { border-color: var(--gold); background: rgba(245,194,0,.07); }
+    .field-block.is-liquido .field-label { color: var(--gold); }
+    .field-block.is-liquido .field-label::after { content: ' ← lo que recibes'; font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0; text-transform: none; color: var(--text-muted); font-weight: 400; }
+
+    /* UF mode */
     body.mode-uf .field-prefix { opacity: 0; }
+    body.mode-uf .field-suffix { display: block; }
+    body.mode-uf .field-input { font-size: clamp(18px, 3vw, 24px); }
 
     .field-suffix { position: absolute; right: 36px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px; color: #444; pointer-events: none; display: none; }
-    body.mode-uf .field-suffix { display: block; }
-
-    /* CLP equivalent below field in UF mode */
     .field-clp-equiv { font-size: 11px; color: #444; min-height: 16px; transition: color .2s; }
     .field-clp-equiv.has-val { color: var(--text-muted); }
 
@@ -175,10 +174,29 @@
 
     .result-note { font-size: 11px; color: #444; line-height: 1.5; }
 
-    /* Copy-all button */
-    .btn-copy { font-family: 'Bangers', cursive; font-size: 17px; letter-spacing: 2px; background: transparent; color: var(--text); border: 2px solid var(--text); padding: 12px 28px; border-radius: 2px; cursor: pointer; width: 100%; box-shadow: 4px 4px 0 var(--text); transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    /* Action buttons row */
+    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 480px) { .action-row { grid-template-columns: 1fr; } }
+
+    .btn-action { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 2px; background: transparent; border: 2px solid; padding: 12px 20px; border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; box-shadow: 4px 4px 0; }
+
+    .btn-copy { color: var(--text); border-color: var(--text); box-shadow-color: var(--text); box-shadow: 4px 4px 0 var(--text); }
     .btn-copy:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
     .btn-copy.copied { color: #4ade80; border-color: #4ade80; box-shadow: 4px 4px 0 #4ade80; }
+
+    .btn-share { color: var(--gold); border-color: var(--gold); box-shadow: 4px 4px 0 var(--gold-dark); display: none; }
+    .btn-share.visible { display: flex; }
+    .btn-share:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--gold-dark); }
+    .btn-share.shared { color: #4ade80; border-color: #4ade80; box-shadow: 4px 4px 0 #2d9e5e; }
+
+    /* Compartir tooltip */
+    .share-hint { font-size: 12px; color: var(--text-muted); text-align: center; margin-bottom: 16px; display: none; }
+    .share-hint.visible { display: block; }
+
+    /* Clear link */
+    .clear-row { text-align: right; margin-bottom: 20px; }
+    .btn-clear { background: none; border: none; font-size: 12px; color: #444; cursor: pointer; transition: color .2s; letter-spacing: 0.3px; }
+    .btn-clear:hover { color: var(--text-muted); }
 
     .info-note { font-size: 12px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6; }
     .info-note a { color: var(--gold); text-decoration: none; }
@@ -212,7 +230,7 @@
       .controls-row { gap: 8px; }
       .rate-badge { margin-left: 0; }
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
-      .uf-banner { flex-direction: column; align-items: flex-start; }
+      .uf-banner { flex-direction: column; }
     }
   </style>
 </head>
@@ -273,14 +291,14 @@
     <p>Escribe en cualquier campo — bruto, líquido o retención — y calculo el resto al instante. ¡Sin enredos!</p>
   </div>
 
-  <!-- UF Banner (valor del día) -->
+  <!-- UF Banner -->
   <div class="uf-banner">
     <div class="uf-banner-left">
       <span class="uf-label">VALOR UF</span>
       <span class="uf-value" id="uf-value"><span class="uf-loading">Cargando...</span></span>
       <span class="uf-date" id="uf-date"></span>
       <div class="uf-date-row">
-        <input type="date" id="uf-date-input" class="uf-date-input" title="Selecciona fecha para consultar valor UF">
+        <input type="date" id="uf-date-input" class="uf-date-input" title="Selecciona fecha para consultar UF histórica">
         <button class="uf-today-btn" onclick="setUFToday()">Hoy</button>
       </div>
     </div>
@@ -290,7 +308,7 @@
     </div>
   </div>
 
-  <!-- Year + rate controls -->
+  <!-- Year + rate -->
   <div class="controls-row">
     <span class="year-label">AÑO:</span>
     <div class="year-tabs" id="year-tabs">
@@ -308,45 +326,53 @@
     <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (mid) -->
   </div>
 
-  <!-- Three simultaneous fields -->
-  <div class="fields-grid">
+  <!-- Fields — aria-live para lectores de pantalla -->
+  <div aria-live="polite" aria-atomic="false" aria-label="Resultados del cálculo">
+    <div class="fields-grid">
 
-    <div class="field-block">
-      <label class="field-label" for="f-bruto">Monto Bruto</label>
-      <div class="field-wrap">
-        <span class="field-prefix">$</span>
-        <input id="f-bruto" class="field-input" type="text" inputmode="decimal" placeholder="0" autocomplete="off" data-field="bruto">
-        <span class="field-suffix">UF</span>
-        <button class="field-copy" title="Copiar" onclick="copyField('f-bruto', this)">⧉</button>
+      <div class="field-block">
+        <label class="field-label" for="f-bruto">Monto Bruto</label>
+        <div class="field-wrap">
+          <span class="field-prefix">$</span>
+          <input id="f-bruto" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
+          <span class="field-suffix">UF</span>
+          <button class="field-copy" title="Copiar" onclick="copyField('f-bruto',this)">⧉</button>
+        </div>
+        <span class="field-clp-equiv" id="eq-bruto" aria-label="Equivalente en pesos"></span>
+        <span class="result-note">Valor total de la boleta</span>
       </div>
-      <span class="field-clp-equiv" id="eq-bruto"></span>
-      <span class="result-note">Valor total de la boleta</span>
-    </div>
 
-    <div class="field-block">
-      <label class="field-label" for="f-retencion">Retención SII</label>
-      <div class="field-wrap">
-        <span class="field-prefix">$</span>
-        <input id="f-retencion" class="field-input" type="text" inputmode="decimal" placeholder="0" autocomplete="off" data-field="retencion">
-        <span class="field-suffix">UF</span>
-        <button class="field-copy" title="Copiar" onclick="copyField('f-retencion', this)">⧉</button>
+      <div class="field-block">
+        <label class="field-label" for="f-retencion">Retención SII</label>
+        <div class="field-wrap">
+          <span class="field-prefix">$</span>
+          <input id="f-retencion" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
+          <span class="field-suffix">UF</span>
+          <button class="field-copy" title="Copiar" onclick="copyField('f-retencion',this)">⧉</button>
+        </div>
+        <span class="field-clp-equiv" id="eq-retencion" aria-label="Equivalente en pesos"></span>
+        <span class="result-note">Retiene el pagador → SII</span>
       </div>
-      <span class="field-clp-equiv" id="eq-retencion"></span>
-      <span class="result-note">Retiene el pagador → SII</span>
-    </div>
 
-    <div class="field-block">
-      <label class="field-label" for="f-liquido">Monto Líquido</label>
-      <div class="field-wrap">
-        <span class="field-prefix">$</span>
-        <input id="f-liquido" class="field-input" type="text" inputmode="decimal" placeholder="0" autocomplete="off" data-field="liquido">
-        <span class="field-suffix">UF</span>
-        <button class="field-copy" title="Copiar" onclick="copyField('f-liquido', this)">⧉</button>
+      <!-- Líquido: full-width, destacado -->
+      <div class="field-block is-liquido">
+        <label class="field-label" for="f-liquido">Monto Líquido</label>
+        <div class="field-wrap">
+          <span class="field-prefix">$</span>
+          <input id="f-liquido" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
+          <span class="field-suffix">UF</span>
+          <button class="field-copy" title="Copiar" onclick="copyField('f-liquido',this)">⧉</button>
+        </div>
+        <span class="field-clp-equiv" id="eq-liquido" aria-label="Equivalente en pesos"></span>
+        <span class="result-note">Lo que recibes en tu cuenta</span>
       </div>
-      <span class="field-clp-equiv" id="eq-liquido"></span>
-      <span class="result-note">Lo que recibes en tu cuenta</span>
-    </div>
 
+    </div>
+  </div>
+
+  <!-- Clear -->
+  <div class="clear-row">
+    <button class="btn-clear" onclick="clearAll()">✕ Limpiar campos</button>
   </div>
 
   <!-- AdSense BOTTOM -->
@@ -354,16 +380,23 @@
     <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (bottom — zona caliente) -->
   </div>
 
-  <button class="btn-copy" id="btn-copy" onclick="copyAll()">
-    <span id="btn-icon">📋</span><span id="btn-text"> COPIAR RESULTADOS</span>
-  </button>
+  <!-- Action buttons -->
+  <div class="action-row">
+    <button class="btn-action btn-copy" id="btn-copy" onclick="copyAll()">
+      <span id="btn-copy-icon">📋</span><span id="btn-copy-text"> COPIAR RESULTADOS</span>
+    </button>
+    <button class="btn-action btn-share" id="btn-share" onclick="shareCalc()">
+      <span id="btn-share-icon">🔗</span><span id="btn-share-text"> COMPARTIR CÁLCULO</span>
+    </button>
+  </div>
+  <p class="share-hint" id="share-hint">✓ Link copiado — pégalo en WhatsApp o email y el destinatario verá tu cálculo cargado.</p>
 
   <p class="info-note">
     Tasas según Ley 21.133 · Valor UF vía <a href="https://mindicador.cl" target="_blank" rel="noopener">mindicador.cl</a><br>
     ¿Tienes dudas sobre tu boleta? <a href="https://mistercontador.cl/#contacto">Consúltanos gratis →</a>
   </p>
 
-  <!-- Rates reference table -->
+  <!-- Rates table -->
   <div class="rates-table-wrap">
     <div class="rates-table-head">TABLA DE RETENCIONES — LEY 21.133</div>
     <table class="rates-table">
@@ -398,41 +431,178 @@
 </footer>
 
 <script>
-  // ── Nav scroll
+  // Nav scroll
   document.addEventListener('scroll', function() {
     document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
   }, { passive: true });
 
-  // ── State
-  var currentRate = 0.1525;
-  var currentCurrency = 'clp'; // 'clp' | 'uf'
-  var ufValue = null;           // fetched from mindicador.cl
-  var isUpdating = false;
-  var activeFieldId = null;
+  // State
+  var currentRate     = 0.1525;
+  var currentCurrency = 'clp';
+  var ufValue         = null;
+  var isUpdating      = false;
+  var activeFieldId   = null;
 
   var fBruto     = document.getElementById('f-bruto');
   var fRetencion = document.getElementById('f-retencion');
   var fLiquido   = document.getElementById('f-liquido');
   var allFields  = [fBruto, fRetencion, fLiquido];
 
-  // Fetch UF from mindicador.cl (fechaISO = 'YYYY-MM-DD' | null para hoy)
+  // Helpers
+  function fmtCLP(n) { return '$ ' + Math.round(n).toLocaleString('es-CL'); }
+  function parseCLP(s) { var d = s.replace(/\D/g,''); return d==='' ? null : parseInt(d,10); }
+  function parseUF(s)  { var c = s.replace(/[^\d,\.]/g,'').replace(',','.'); var v=parseFloat(c); return isNaN(v)?null:v; }
+
+  function setInputCLP(el, val) { el.value = Math.round(val).toLocaleString('es-CL'); }
+  function setInputUF(el, val)  { el.value = val.toLocaleString('es-CL',{minimumFractionDigits:4,maximumFractionDigits:4}); }
+
+  function triggerAnimation(el) {
+    el.classList.remove('just-updated');
+    void el.offsetWidth; // reflow
+    el.classList.add('just-updated');
+    el.addEventListener('animationend', function(){ el.classList.remove('just-updated'); }, { once: true });
+  }
+
+  function showShareBtn(show) {
+    document.getElementById('btn-share').classList.toggle('visible', show);
+  }
+
+  // Recalc
+  function recalc(sourceId) {
+    if (isUpdating) return;
+    isUpdating = true;
+
+    var sourceEl = document.getElementById(sourceId);
+    var val = currentCurrency === 'clp' ? parseCLP(sourceEl.value) : parseUF(sourceEl.value);
+
+    if (!val || val <= 0) {
+      allFields.forEach(function(f){ if(f.id !== sourceId) f.value = ''; });
+      clearEquiv();
+      showShareBtn(false);
+      isUpdating = false;
+      return;
+    }
+
+    var bruto, retencion, liquido;
+    if (sourceId === 'f-bruto') {
+      bruto = val; retencion = bruto * currentRate; liquido = bruto - retencion;
+    } else if (sourceId === 'f-retencion') {
+      retencion = val; bruto = retencion / currentRate; liquido = bruto - retencion;
+    } else {
+      liquido = val; bruto = liquido / (1 - currentRate); retencion = bruto * currentRate;
+    }
+
+    if (currentCurrency === 'clp') {
+      if (sourceId !== 'f-bruto')     { setInputCLP(fBruto, bruto);         triggerAnimation(fBruto); }
+      if (sourceId !== 'f-retencion') { setInputCLP(fRetencion, retencion); triggerAnimation(fRetencion); }
+      if (sourceId !== 'f-liquido')   { setInputCLP(fLiquido, liquido);     triggerAnimation(fLiquido); }
+      clearEquiv();
+    } else {
+      if (sourceId !== 'f-bruto')     { setInputUF(fBruto, bruto);         triggerAnimation(fBruto); }
+      if (sourceId !== 'f-retencion') { setInputUF(fRetencion, retencion); triggerAnimation(fRetencion); }
+      if (sourceId !== 'f-liquido')   { setInputUF(fLiquido, liquido);     triggerAnimation(fLiquido); }
+      showEquiv(bruto, retencion, liquido);
+    }
+
+    showShareBtn(true);
+    isUpdating = false;
+  }
+
+  function clearEquiv() {
+    ['eq-bruto','eq-retencion','eq-liquido'].forEach(function(id){
+      var el = document.getElementById(id);
+      el.textContent = ''; el.classList.remove('has-val');
+    });
+  }
+  function showEquiv(b, r, l) {
+    if (!ufValue) return;
+    [['eq-bruto',b],['eq-retencion',r],['eq-liquido',l]].forEach(function(p){
+      var el = document.getElementById(p[0]);
+      el.textContent = '≈ ' + fmtCLP(p[1] * ufValue);
+      el.classList.add('has-val');
+    });
+  }
+
+  // Input listeners
+  allFields.forEach(function(el) {
+    el.addEventListener('focus', function() { el.classList.add('is-source'); activeFieldId = el.id; });
+    el.addEventListener('blur',  function() { el.classList.remove('is-source'); });
+    el.addEventListener('input', function() {
+      if (currentCurrency === 'clp') {
+        var raw = el.value.replace(/\D/g,'');
+        var prev = el.selectionStart, prevLen = el.value.length;
+        if (raw) {
+          el.value = parseInt(raw,10).toLocaleString('es-CL');
+          try { var diff = el.value.length - prevLen; el.setSelectionRange(prev+diff, prev+diff); } catch(e){}
+        } else { el.value = ''; }
+      }
+      recalc(el.id);
+    });
+    el.addEventListener('blur', function() {
+      if (currentCurrency === 'uf') {
+        var v = parseUF(el.value);
+        if (v !== null) el.value = v.toLocaleString('es-CL',{minimumFractionDigits:4,maximumFractionDigits:4});
+      }
+    });
+  });
+
+  // Year tabs
+  document.getElementById('year-tabs').addEventListener('click', function(e) {
+    var btn = e.target.closest('.year-tab');
+    if (!btn) return;
+    document.querySelectorAll('.year-tab').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentRate = parseFloat(btn.dataset.rate);
+    var pct = (currentRate*100).toFixed(2).replace('.',',') + '%';
+    document.getElementById('rate-badge').textContent = 'RETENCIÓN ' + pct;
+    if (activeFieldId) recalc(activeFieldId);
+    else if (fBruto.value) recalc('f-bruto');
+  });
+
+  // Currency toggle
+  function setCurrency(mode) {
+    if (mode === currentCurrency) return;
+    if (mode === 'uf' && !ufValue) { alert('El valor de la UF no está disponible aún.'); return; }
+    var vals = {};
+    allFields.forEach(function(el) {
+      vals[el.id] = currentCurrency === 'clp' ? parseCLP(el.value) : (parseUF(el.value) !== null && ufValue ? Math.round(parseUF(el.value)*ufValue) : null);
+    });
+    currentCurrency = mode;
+    document.body.classList.toggle('mode-uf', mode === 'uf');
+    document.getElementById('btn-clp').classList.toggle('active', mode === 'clp');
+    document.getElementById('btn-uf').classList.toggle('active',  mode === 'uf');
+    // Update inputmode
+    allFields.forEach(function(el) {
+      el.setAttribute('inputmode', mode === 'uf' ? 'decimal' : 'numeric');
+    });
+    allFields.forEach(function(el) {
+      var clp = vals[el.id];
+      if (clp === null || clp === undefined) { el.value = ''; return; }
+      if (mode === 'clp') el.value = clp.toLocaleString('es-CL');
+      else { var uf = clp / ufValue; el.value = uf.toLocaleString('es-CL',{minimumFractionDigits:4,maximumFractionDigits:4}); }
+    });
+    if (mode === 'uf') {
+      var b=parseUF(fBruto.value), r=parseUF(fRetencion.value), l=parseUF(fLiquido.value);
+      if (b||r||l) showEquiv(b||0, r||0, l||0);
+    } else { clearEquiv(); }
+  }
+
+  // UF fetch
   function fetchUF(fechaISO) {
     var url = fechaISO
       ? 'https://mindicador.cl/api/uf/' + fechaISO.split('-').reverse().join('-')
       : 'https://mindicador.cl/api/uf';
-
     document.getElementById('uf-value').innerHTML = '<span class="uf-loading">Cargando...</span>';
     document.getElementById('uf-date').textContent = '';
-
     fetch(url)
-      .then(function(r) { return r.json(); })
+      .then(function(r){ return r.json(); })
       .then(function(data) {
         var serie = data.serie && data.serie[0];
-        if (!serie) throw new Error('sin datos');
+        if (!serie) throw new Error();
         ufValue = serie.valor;
         var fecha = new Date(serie.fecha);
-        var opts  = { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Santiago' };
-        document.getElementById('uf-value').textContent = '$ ' + ufValue.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        var opts  = { day:'numeric', month:'long', year:'numeric', timeZone:'America/Santiago' };
+        document.getElementById('uf-value').textContent = '$ ' + ufValue.toLocaleString('es-CL',{minimumFractionDigits:2,maximumFractionDigits:2});
         document.getElementById('uf-date').textContent  = fecha.toLocaleDateString('es-CL', opts);
         document.getElementById('btn-uf').disabled = false;
         if (currentCurrency === 'uf' && activeFieldId) recalc(activeFieldId);
@@ -445,255 +615,168 @@
       });
   }
 
-  // Inicializar date input y cargar UF de hoy
-  (function initUF() {
-    var today = new Date();
-    var iso   = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
-    var input = document.getElementById('uf-date-input');
-    input.value = iso;
-    input.max   = iso;
-    input.min   = '1990-01-01';
-    input.addEventListener('change', function() {
-      if (this.value) fetchUF(this.value);
-    });
-    fetchUF(null);
-  })();
-
   function setUFToday() {
     var today = new Date();
-    var iso = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    var iso = today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
     document.getElementById('uf-date-input').value = iso;
     fetchUF(null);
   }
 
-  // ── Formatting helpers
-  function fmtCLP(n) {
-    return '$ ' + Math.round(n).toLocaleString('es-CL');
-  }
-  function fmtUF(n) {
-    // UF with 4 decimals, comma decimal separator
-    return n.toLocaleString('es-CL', { minimumFractionDigits: 4, maximumFractionDigits: 4 }) + ' UF';
-  }
-  function parseCLP(str) {
-    var d = str.replace(/\D/g, '');
-    return d === '' ? null : parseInt(d, 10);
-  }
-  function parseUF(str) {
-    // Accept comma or dot as decimal
-    var clean = str.replace(/[^\d,\.]/g, '').replace(',', '.');
-    var v = parseFloat(clean);
-    return isNaN(v) ? null : v;
-  }
+  // Init UF + date input
+  (function initUF() {
+    var today = new Date();
+    var iso = today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+    var input = document.getElementById('uf-date-input');
+    input.value = iso; input.max = iso; input.min = '1990-01-01';
+    input.addEventListener('change', function(){ if(this.value) fetchUF(this.value); });
+    fetchUF(null);
+  })();
 
-  // ── Recalc
-  function recalc(sourceId) {
-    if (isUpdating) return;
-    isUpdating = true;
-
-    var sourceEl = document.getElementById(sourceId);
-    var raw = sourceEl.value;
-    var val = currentCurrency === 'clp' ? parseCLP(raw) : parseUF(raw);
-
-    if (!val || val <= 0) {
-      allFields.forEach(function(f) { if (f.id !== sourceId) f.value = ''; });
-      clearEquiv();
-      isUpdating = false;
-      return;
-    }
-
-    var bruto, retencion, liquido;
-    if (sourceId === 'f-bruto') {
-      bruto     = val;
-      retencion = bruto * currentRate;
-      liquido   = bruto - retencion;
-    } else if (sourceId === 'f-retencion') {
-      retencion = val;
-      bruto     = retencion / currentRate;
-      liquido   = bruto - retencion;
-    } else {
-      liquido   = val;
-      bruto     = liquido / (1 - currentRate);
-      retencion = bruto * currentRate;
-    }
-
-    if (currentCurrency === 'clp') {
-      if (sourceId !== 'f-bruto')     setInputCLP(fBruto, bruto);
-      if (sourceId !== 'f-retencion') setInputCLP(fRetencion, retencion);
-      if (sourceId !== 'f-liquido')   setInputCLP(fLiquido, liquido);
-      clearEquiv();
-    } else {
-      if (sourceId !== 'f-bruto')     setInputUF(fBruto, bruto);
-      if (sourceId !== 'f-retencion') setInputUF(fRetencion, retencion);
-      if (sourceId !== 'f-liquido')   setInputUF(fLiquido, liquido);
-      showEquiv(bruto, retencion, liquido);
-    }
-
-    isUpdating = false;
+  // Clear all
+  function clearAll() {
+    allFields.forEach(function(el){ el.value = ''; el.classList.remove('just-updated'); });
+    clearEquiv();
+    showShareBtn(false);
+    document.getElementById('share-hint').classList.remove('visible');
+    // Clean URL
+    history.replaceState(null, '', window.location.pathname);
   }
 
-  function setInputCLP(el, val) {
-    el.value = Math.round(val).toLocaleString('es-CL');
-  }
-  function setInputUF(el, val) {
-    el.value = val.toLocaleString('es-CL', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-  }
-
-  function clearEquiv() {
-    ['eq-bruto','eq-retencion','eq-liquido'].forEach(function(id) {
-      var el = document.getElementById(id);
-      el.textContent = '';
-      el.classList.remove('has-val');
-    });
-  }
-  function showEquiv(b, r, l) {
-    if (!ufValue) return;
-    var pairs = [['eq-bruto', b], ['eq-retencion', r], ['eq-liquido', l]];
-    pairs.forEach(function(p) {
-      var el  = document.getElementById(p[0]);
-      var clp = p[1] * ufValue;
-      el.textContent = '≈ ' + fmtCLP(clp);
-      el.classList.add('has-val');
-    });
-  }
-
-  // ── Input listeners
-  allFields.forEach(function(el) {
-    el.addEventListener('focus', function() {
-      el.classList.add('is-source');
-      activeFieldId = el.id;
-    });
-    el.addEventListener('blur', function() {
-      el.classList.remove('is-source');
-    });
-    el.addEventListener('input', function() {
-      if (currentCurrency === 'clp') {
-        // Format with thousands separator
-        var raw    = el.value.replace(/\D/g, '');
-        var cursor = el.selectionStart;
-        var prevLen = el.value.length;
-        if (raw) {
-          el.value = parseInt(raw, 10).toLocaleString('es-CL');
-          var diff = el.value.length - prevLen;
-          try { el.setSelectionRange(cursor + diff, cursor + diff); } catch(e){}
-        } else {
-          el.value = '';
-        }
-      }
-      // UF mode: let user type freely (decimals), format on blur
-      recalc(el.id);
-    });
-    el.addEventListener('blur', function() {
-      if (currentCurrency === 'uf') {
-        var v = parseUF(el.value);
-        if (v !== null) el.value = v.toLocaleString('es-CL', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-      }
-    });
-  });
-
-  // ── Year tabs
-  document.getElementById('year-tabs').addEventListener('click', function(e) {
-    var btn = e.target.closest('.year-tab');
-    if (!btn) return;
-    document.querySelectorAll('.year-tab').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-    currentRate = parseFloat(btn.dataset.rate);
-    var pct = (currentRate * 100).toFixed(2).replace('.', ',') + '%';
-    document.getElementById('rate-badge').textContent = 'RETENCIÓN ' + pct;
-    if (activeFieldId) recalc(activeFieldId);
-    else if (fBruto.value) recalc('f-bruto');
-  });
-
-  // ── Currency toggle
-  function setCurrency(mode) {
-    if (mode === currentCurrency) return;
-    if (mode === 'uf' && !ufValue) { alert('El valor de la UF no está disponible.'); return; }
-
-    // Convert current values
-    var vals = {};
-    allFields.forEach(function(el) {
-      if (currentCurrency === 'clp') {
-        vals[el.id] = parseCLP(el.value);
-      } else {
-        var v = parseUF(el.value);
-        vals[el.id] = v !== null && ufValue ? Math.round(v * ufValue) : null;
-      }
-    });
-
-    currentCurrency = mode;
-    document.body.classList.toggle('mode-uf', mode === 'uf');
-    document.getElementById('btn-clp').classList.toggle('active', mode === 'clp');
-    document.getElementById('btn-uf').classList.toggle('active',  mode === 'uf');
-
-    // Re-fill fields in new unit
-    allFields.forEach(function(el) {
-      var clpVal = vals[el.id];
-      if (clpVal === null || clpVal === undefined) { el.value = ''; return; }
-      if (mode === 'clp') {
-        el.value = clpVal.toLocaleString('es-CL');
-      } else {
-        var ufVal = clpVal / ufValue;
-        el.value = ufVal.toLocaleString('es-CL', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-      }
-    });
-
-    if (mode === 'uf') {
-      var b = parseUF(fBruto.value), r = parseUF(fRetencion.value), l = parseUF(fLiquido.value);
-      if (b || r || l) showEquiv(b||0, r||0, l||0);
-    } else {
-      clearEquiv();
-    }
-  }
-
-  // ── Copy individual field
+  // Copy field
   function copyField(fieldId, btn) {
-    var el  = document.getElementById(fieldId);
-    var val = el.value;
+    var val = document.getElementById(fieldId).value;
     if (!val) return;
-    var unit = currentCurrency === 'uf' ? ' UF' : '';
-    var prefix = currentCurrency === 'clp' ? '$' : '';
-    navigator.clipboard.writeText(prefix + val + unit).then(function() {
+    var text = currentCurrency === 'clp' ? '$' + val : val + ' UF';
+    navigator.clipboard.writeText(text).then(function(){
       var orig = btn.textContent;
-      btn.textContent = '✓';
-      btn.classList.add('copied-ok');
-      setTimeout(function() { btn.textContent = orig; btn.classList.remove('copied-ok'); }, 1800);
+      btn.textContent = '✓'; btn.classList.add('copied-ok');
+      setTimeout(function(){ btn.textContent = orig; btn.classList.remove('copied-ok'); }, 1800);
     });
   }
 
-  // ── Copy all
+  // Copy all
   function copyAll() {
-    var b = fBruto.value, r = fRetencion.value, l = fLiquido.value;
-    if (!b && !r && !l) { alert('Ingresa un monto primero.'); return; }
+    var b=fBruto.value, r=fRetencion.value, l=fLiquido.value;
+    if (!b&&!r&&!l) { alert('Ingresa un monto primero.'); return; }
     var yearBtn = document.querySelector('.year-tab.active');
     var year = yearBtn ? yearBtn.dataset.year : '2026';
-    var pct  = (currentRate * 100).toFixed(2).replace('.', ',') + '%';
+    var pct  = (currentRate*100).toFixed(2).replace('.',',') + '%';
     var unit = currentCurrency === 'uf' ? 'UF' : 'CLP';
     var pre  = currentCurrency === 'clp' ? '$' : '';
     var suf  = currentCurrency === 'uf'  ? ' UF' : '';
-
-    var ufLine = ufValue ? '\nValor UF: $ ' + ufValue.toLocaleString('es-CL', {minimumFractionDigits:2, maximumFractionDigits:2}) : '';
-
+    var ufLine = ufValue ? '\nValor UF: $'+ufValue.toLocaleString('es-CL',{minimumFractionDigits:2,maximumFractionDigits:2}) : '';
     var text =
-      'Calculadora Honorarios ' + year + ' — Mister Contador\n' +
-      '─────────────────────────────────────────\n' +
-      'Unidad: ' + unit + ufLine + '\n' +
-      'Monto Bruto:             ' + pre + b + suf + '\n' +
-      'Retención SII (' + pct + '): ' + pre + r + suf + '\n' +
-      'Monto Líquido:           ' + pre + l + suf + '\n' +
-      '─────────────────────────────────────────\n' +
+      'Calculadora Honorarios '+year+' — Mister Contador\n'+
+      '─────────────────────────────────────────\n'+
+      'Unidad: '+unit+ufLine+'\n'+
+      'Monto Bruto:             '+pre+b+suf+'\n'+
+      'Retención SII ('+pct+'): '+pre+r+suf+'\n'+
+      'Monto Líquido:           '+pre+l+suf+'\n'+
+      '─────────────────────────────────────────\n'+
       'mistercontador.cl/herramientas/calculadora-honorarios/';
-
-    navigator.clipboard.writeText(text).then(function() {
+    navigator.clipboard.writeText(text).then(function(){
       var btn = document.getElementById('btn-copy');
       btn.classList.add('copied');
-      document.getElementById('btn-icon').textContent = '✓';
-      document.getElementById('btn-text').textContent = ' ¡COPIADO!';
-      setTimeout(function() {
+      document.getElementById('btn-copy-icon').textContent = '✓';
+      document.getElementById('btn-copy-text').textContent = ' ¡COPIADO!';
+      setTimeout(function(){
         btn.classList.remove('copied');
-        document.getElementById('btn-icon').textContent = '📋';
-        document.getElementById('btn-text').textContent = ' COPIAR RESULTADOS';
+        document.getElementById('btn-copy-icon').textContent = '📋';
+        document.getElementById('btn-copy-text').textContent = ' COPIAR RESULTADOS';
       }, 2500);
-    }).catch(function() { alert('No se pudo copiar.'); });
+    }).catch(function(){ alert('No se pudo copiar.'); });
   }
+
+  // Share calc — build URL with params and copy it
+  function shareCalc() {
+    var b=fBruto.value, r=fRetencion.value, l=fLiquido.value;
+    if (!b&&!r&&!l) return;
+    var yearBtn = document.querySelector('.year-tab.active');
+    var year = yearBtn ? yearBtn.dataset.year : '2026';
+    // Find source field (whichever was last typed — use bruto as fallback)
+    var sourceField = activeFieldId || 'f-bruto';
+    var sourceMap = { 'f-bruto':'b', 'f-retencion':'r', 'f-liquido':'l' };
+    var sourceEl = document.getElementById(sourceField);
+    var rawVal = currentCurrency === 'clp'
+      ? parseCLP(sourceEl.value)
+      : parseUF(sourceEl.value);
+    if (!rawVal) return;
+
+    var params = new URLSearchParams({
+      campo:  sourceMap[sourceField],
+      valor:  rawVal,
+      año:    year,
+      moneda: currentCurrency
+    });
+    var shareURL = window.location.origin + window.location.pathname + '?' + params.toString();
+
+    // Update browser URL without reload
+    history.replaceState(null, '', '?' + params.toString());
+
+    navigator.clipboard.writeText(shareURL).then(function(){
+      var btn = document.getElementById('btn-share');
+      btn.classList.add('shared');
+      document.getElementById('btn-share-icon').textContent = '✓';
+      document.getElementById('btn-share-text').textContent = ' ¡LINK COPIADO!';
+      document.getElementById('share-hint').classList.add('visible');
+      setTimeout(function(){
+        btn.classList.remove('shared');
+        document.getElementById('btn-share-icon').textContent = '🔗';
+        document.getElementById('btn-share-text').textContent = ' COMPARTIR CÁLCULO';
+      }, 3000);
+    }).catch(function(){ alert('No se pudo copiar el link.'); });
+  }
+
+  // Load from URL params on init
+  (function loadFromURL() {
+    var params = new URLSearchParams(window.location.search);
+    var campo  = params.get('campo');
+    var valor  = params.get('valor');
+    var año    = params.get('año');
+    var moneda = params.get('moneda');
+    if (!campo || !valor) return;
+
+    // Set year
+    if (año) {
+      var yearBtn = document.querySelector('.year-tab[data-year="'+año+'"]');
+      if (yearBtn) {
+        document.querySelectorAll('.year-tab').forEach(function(b){ b.classList.remove('active'); });
+        yearBtn.classList.add('active');
+        currentRate = parseFloat(yearBtn.dataset.rate);
+        var pct = (currentRate*100).toFixed(2).replace('.',',')+'%';
+        document.getElementById('rate-badge').textContent = 'RETENCIÓN '+pct;
+      }
+    }
+
+    // Set currency and field
+    var fieldMap = { b:'f-bruto', r:'f-retencion', l:'f-liquido' };
+    var fieldId  = fieldMap[campo];
+    if (!fieldId) return;
+
+    if (moneda === 'uf') {
+      // Wait for UF to load, then fill
+      var attempt = 0;
+      var interval = setInterval(function(){
+        attempt++;
+        if (ufValue || attempt > 20) {
+          clearInterval(interval);
+          if (ufValue) {
+            setCurrency('uf');
+            var el = document.getElementById(fieldId);
+            el.value = parseFloat(valor).toLocaleString('es-CL',{minimumFractionDigits:4,maximumFractionDigits:4});
+            activeFieldId = fieldId;
+            recalc(fieldId);
+          }
+        }
+      }, 300);
+    } else {
+      var el = document.getElementById(fieldId);
+      el.value = parseInt(valor,10).toLocaleString('es-CL');
+      activeFieldId = fieldId;
+      recalc(fieldId);
+      showShareBtn(true);
+    }
+  })();
 </script>
 </body>
 </html>
