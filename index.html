@@ -109,15 +109,19 @@
       text-transform: uppercase;
       text-decoration: none;
       display: inline-block;
-      transition: all 0.2s ease;
+      transition: transform 0.2s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s cubic-bezier(0.23,1,0.32,1), background 0.2s;
       line-height: 1.4;
     }
     .btn-manga:hover {
       background: rgba(255,255,255,0.1);
       border-color: #FFFFFF;
-      box-shadow: 6px 6px 0px rgba(255,255,255,0.35);
-      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px rgba(255,255,255,0.4);
+      transform: translate(-3px, -3px);
       color: #FFFFFF;
+    }
+    .btn-manga:active {
+      transform: translate(1px, 1px);
+      box-shadow: 2px 2px 0px rgba(255,255,255,0.2);
     }
 
     /* ── Hamburger ───────────────────────── */
@@ -226,11 +230,11 @@
 
     .hero h1 {
       font-family: 'Bebas Neue', 'Inter', sans-serif;
-      font-size: clamp(56px, 9vw, 96px);
+      font-size: clamp(72px, 13vw, 132px);
       font-weight: 400;
-      line-height: 0.95;
-      margin-bottom: 24px;
-      letter-spacing: 2px;
+      line-height: 0.9;
+      margin-bottom: 28px;
+      letter-spacing: 3px;
       text-transform: uppercase;
     }
     .hero h1 .gold { color: var(--gold); }
@@ -284,12 +288,13 @@
       overflow: hidden; user-select: none;
     }
     .ch-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 11px; letter-spacing: 5px; color: #444;
+      font-family: 'Bangers', cursive;
+      font-size: 13px; letter-spacing: 5px; color: var(--gold);
       padding: 14px 20px 14px 0; white-space: nowrap;
+      opacity: 0.8;
     }
     .ch-sep {
-      color: rgba(245,194,0,0.3); padding: 0 16px; font-size: 18px;
+      color: rgba(245,194,0,0.5); padding: 0 16px; font-size: 20px;
     }
     .ch-title {
       font-family: 'Bebas Neue', sans-serif;
@@ -311,14 +316,15 @@
       border: 2px solid rgba(245,194,0,0.2);
       box-shadow: 5px 5px 0 rgba(245,194,0,0.12);
       padding: 32px 28px;
-      transition: all 0.2s ease;
+      transition: border-color 0.25s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s cubic-bezier(0.23,1,0.32,1);
       position: relative; overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
     .service-card::before { display: none; }
     .service-card:hover {
-      transform: translate(-3px, -3px);
       border-color: var(--gold);
-      box-shadow: 8px 8px 0 var(--gold);
+      box-shadow: 10px 10px 0 var(--gold);
     }
 
     /* ── 2. Testimonial Speech Bubbles ───── */
@@ -457,9 +463,10 @@
     }
     .stat-item {}
     .stat-number {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 56px; color: var(--gold);
-      line-height: 1; letter-spacing: 1px;
+      font-family: 'Bangers', cursive;
+      font-size: clamp(60px, 9vw, 88px); color: var(--gold);
+      line-height: 1; letter-spacing: 2px;
+      text-shadow: 3px 3px 0 rgba(245,194,0,0.15);
     }
     .stat-label { font-size: 13px; color: #888; margin-top: 4px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
 
@@ -1629,6 +1636,23 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 </style>
 
 <script>
+// Tilt 3D en service cards
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  document.querySelectorAll('.service-card').forEach(function(card) {
+    card.style.transition = 'border-color 0.25s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s cubic-bezier(0.23,1,0.32,1), transform 0.15s cubic-bezier(0.23,1,0.32,1)';
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'perspective(600px) rotateX(' + (y * -8) + 'deg) rotateY(' + (x * 8) + 'deg) translate(-2px,-2px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) translate(0,0)';
+    });
+  });
+})();
+
 // 1. Navbar glass + 2. Progress bar
 (function() {
   var nav = document.querySelector('nav');

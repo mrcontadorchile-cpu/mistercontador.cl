@@ -214,8 +214,8 @@
     .badge::before { content: '▶'; font-size: 8px; }
     .hero h1 {
       font-family: 'Bangers', cursive;
-      font-size: clamp(52px, 9vw, 92px);
-      font-weight: 400; line-height: 0.95; margin-bottom: 24px;
+      font-size: clamp(68px, 12vw, 118px);
+      font-weight: 400; line-height: 0.9; margin-bottom: 28px;
       letter-spacing: 3px; text-transform: uppercase;
     }
     .hero h1 .gold { color: var(--gold); }
@@ -364,9 +364,11 @@
       box-shadow: 6px 6px 0 var(--gold);
       background: var(--surface);
       padding: 28px 24px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: box-shadow 0.25s cubic-bezier(0.23,1,0.32,1);
+      transform-style: preserve-3d;
+      will-change: transform;
     }
-    .manga-card:hover { transform: translate(-2px,-2px); box-shadow: 10px 10px 0 var(--gold); }
+    .manga-card:hover { box-shadow: 10px 10px 0 var(--gold); }
     .manga-card-icon { font-size: 32px; margin-bottom: 14px; }
     .manga-card h3 {
       font-family: 'Bebas Neue', cursive;
@@ -385,18 +387,20 @@
       box-shadow: 6px 6px 0 var(--gold);
       background: var(--surface);
       padding: 36px 32px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: box-shadow 0.25s cubic-bezier(0.23,1,0.32,1);
       position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
-    .impact-panel:hover { transform: translate(-2px,-2px); box-shadow: 10px 10px 0 var(--gold); }
+    .impact-panel:hover { box-shadow: 10px 10px 0 var(--gold); }
     .impact-panel-num {
       font-family: 'Bangers', cursive;
-      font-size: 64px; color: rgba(245,194,0,0.12);
-      line-height: 1; margin-bottom: -10px;
+      font-size: 80px; color: rgba(245,194,0,0.08);
+      line-height: 1; margin-bottom: -16px;
     }
     .impact-panel h3 {
       font-family: 'Bangers', cursive;
-      font-size: 32px; letter-spacing: 2px; color: var(--gold);
+      font-size: 36px; letter-spacing: 2px; color: var(--gold);
       margin-bottom: 12px; text-transform: uppercase;
     }
     .impact-panel p { font-size: 15px; color: #aaa; line-height: 1.6; }
@@ -435,7 +439,7 @@
       border: 1px solid rgba(255,255,255,0.07);
       border-left: 3px solid transparent;
       padding: 28px 24px;
-      transition: border-color 0.3s, border-left-color 0.3s;
+      transition: border-color 0.25s cubic-bezier(0.23,1,0.32,1), border-left-color 0.25s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s cubic-bezier(0.23,1,0.32,1);
       position: relative; overflow: hidden;
     }
     .feature-card::before {
@@ -1328,6 +1332,26 @@
 </script>
 
 <script>
+// Tilt 3D en manga-cards e impact-panels
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  document.querySelectorAll('.manga-card, .impact-panel').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'perspective(700px) rotateX(' + (y * -7) + 'deg) rotateY(' + (x * 7) + 'deg) translate(-2px,-2px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translate(0,0)';
+      card.style.transition = 'transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.25s cubic-bezier(0.23,1,0.32,1)';
+    });
+    card.addEventListener('mouseenter', function() {
+      card.style.transition = 'box-shadow 0.25s cubic-bezier(0.23,1,0.32,1)';
+    });
+  });
+})();
+
 // 1. Navbar glass + 2. Progress bar
 (function() {
   var nav = document.querySelector('nav');
