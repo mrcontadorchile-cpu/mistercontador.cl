@@ -231,7 +231,13 @@
 
   <!-- AdSense TOP -->
   <div id="adsense-top" class="adsense-block">
-    <!-- AdSense Top -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5930774950622246"
+         data-ad-slot="SLOT_TOP"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <!-- EMISOR -->
@@ -244,7 +250,7 @@
       </div>
       <div class="form-group">
         <label for="em-rut">RUT Emisor *</label>
-        <input type="text" id="em-rut" placeholder="76.XXX.XXX-X">
+        <input type="text" id="em-rut" placeholder="76.XXX.XXX-X" oninput="formatRUT(this)">
       </div>
       <div class="form-group">
         <label for="em-email">Email</label>
@@ -271,7 +277,7 @@
       </div>
       <div class="form-group">
         <label for="cl-rut">RUT Cliente</label>
-        <input type="text" id="cl-rut" placeholder="XX.XXX.XXX-X">
+        <input type="text" id="cl-rut" placeholder="XX.XXX.XXX-X" oninput="formatRUT(this)">
       </div>
     </div>
   </div>
@@ -320,7 +326,13 @@
 
   <!-- AdSense BOTTOM -->
   <div id="adsense-bottom" class="adsense-block" style="margin-top:32px;">
-    <!-- AdSense Bottom -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5930774950622246"
+         data-ad-slot="SLOT_BOTTOM"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <!-- SEO ARTICLE -->
@@ -406,6 +418,7 @@
       '<div class="item-total" id="total-' + id + '">$0</div>' +
       '<button class="btn-remove" onclick="removeItem(\'' + id + '\')" title="Eliminar fila">&#10005;</button>';
     container.appendChild(row);
+    setTimeout(function() { document.querySelector('#' + id + ' input').focus(); }, 50);
     recalculate();
   }
 
@@ -436,6 +449,15 @@
       subtotal += total;
     });
     return subtotal;
+  }
+
+  function formatRUT(el) {
+    var valor = el.value.replace(/[^0-9kK]/g, '').toUpperCase();
+    if (valor.length <= 1) { el.value = valor; return; }
+    var cuerpo = valor.slice(0, -1);
+    var dv = valor.slice(-1);
+    cuerpo = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    el.value = cuerpo + '-' + dv;
   }
 
   function recalculate() {
