@@ -167,22 +167,20 @@
     .field-clp-equiv { font-size: 11px; color: #444; min-height: 16px; transition: color .2s; }
     .field-clp-equiv.has-val { color: var(--text-muted); }
 
-    .field-copy { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #333; font-size: 14px; padding: 4px; transition: color .2s; opacity: 0; }
-    .field-wrap:hover .field-copy { opacity: 1; }
-    .field-copy:hover { color: var(--gold); }
-    .field-copy.copied-ok { color: #4ade80 !important; opacity: 1; }
+    .btn-field-copy {
+      align-self: flex-start;
+      font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 2px;
+      background: none; border: 1px solid var(--border); color: #555;
+      padding: 4px 10px; border-radius: 2px; cursor: pointer;
+      transition: color .18s, border-color .18s; white-space: nowrap;
+    }
+    .btn-field-copy:hover { color: var(--gold); border-color: rgba(245,194,0,.4); }
+    .btn-field-copy.copied-ok { color: #4ade80 !important; border-color: #4ade80 !important; }
 
     .result-note { font-size: 11px; color: #444; line-height: 1.5; }
 
     /* Action buttons row */
-    .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    @media (max-width: 480px) { .action-row { grid-template-columns: 1fr; } }
-
-    .btn-action { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 2px; background: transparent; border: 2px solid; padding: 12px 20px; border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; box-shadow: 4px 4px 0; }
-
-    .btn-copy { color: var(--text); border-color: var(--text); box-shadow-color: var(--text); box-shadow: 4px 4px 0 var(--text); }
-    .btn-copy:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
-    .btn-copy.copied { color: #4ade80; border-color: #4ade80; box-shadow: 4px 4px 0 #4ade80; }
+    .btn-action { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 2px; background: transparent; border: 2px solid; padding: 12px 20px; border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; width: 100%; margin-bottom: 16px; }
 
     .btn-share { color: var(--gold); border-color: var(--gold); box-shadow: 4px 4px 0 var(--gold-dark); display: none; }
     .btn-share.visible { display: flex; }
@@ -336,10 +334,10 @@
           <span class="field-prefix">$</span>
           <input id="f-bruto" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
           <span class="field-suffix">UF</span>
-          <button class="field-copy" title="Copiar" onclick="copyField('f-bruto',this)">⧉</button>
         </div>
         <span class="field-clp-equiv" id="eq-bruto" aria-label="Equivalente en pesos"></span>
         <span class="result-note">Valor total de la boleta</span>
+        <button class="btn-field-copy" onclick="copyField('f-bruto',this)">📋 COPIAR BRUTO</button>
       </div>
 
       <div class="field-block">
@@ -348,10 +346,10 @@
           <span class="field-prefix">$</span>
           <input id="f-retencion" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
           <span class="field-suffix">UF</span>
-          <button class="field-copy" title="Copiar" onclick="copyField('f-retencion',this)">⧉</button>
         </div>
         <span class="field-clp-equiv" id="eq-retencion" aria-label="Equivalente en pesos"></span>
         <span class="result-note">Retiene el pagador → SII</span>
+        <button class="btn-field-copy" onclick="copyField('f-retencion',this)">📋 COPIAR RETENCIÓN</button>
       </div>
 
       <!-- Líquido: full-width, destacado -->
@@ -361,10 +359,10 @@
           <span class="field-prefix">$</span>
           <input id="f-liquido" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
           <span class="field-suffix">UF</span>
-          <button class="field-copy" title="Copiar" onclick="copyField('f-liquido',this)">⧉</button>
         </div>
         <span class="field-clp-equiv" id="eq-liquido" aria-label="Equivalente en pesos"></span>
         <span class="result-note">Lo que recibes en tu cuenta</span>
+        <button class="btn-field-copy" onclick="copyField('f-liquido',this)">📋 COPIAR LÍQUIDO</button>
       </div>
 
     </div>
@@ -380,15 +378,10 @@
     <!-- ADSENSE: pegar aquí el bloque <ins> de Google AdSense (bottom — zona caliente) -->
   </div>
 
-  <!-- Action buttons -->
-  <div class="action-row">
-    <button class="btn-action btn-copy" id="btn-copy" onclick="copyAll()">
-      <span id="btn-copy-icon">📋</span><span id="btn-copy-text"> COPIAR RESULTADOS</span>
-    </button>
-    <button class="btn-action btn-share" id="btn-share" onclick="shareCalc()">
-      <span id="btn-share-icon">🔗</span><span id="btn-share-text"> COMPARTIR CÁLCULO</span>
-    </button>
-  </div>
+  <!-- Share button -->
+  <button class="btn-action btn-share" id="btn-share" onclick="shareCalc()">
+    <span id="btn-share-icon">🔗</span><span id="btn-share-text"> COMPARTIR CÁLCULO</span>
+  </button>
   <p class="share-hint" id="share-hint">✓ Link copiado — pégalo en WhatsApp o email y el destinatario verá tu cálculo cargado.</p>
 
   <p class="info-note">
