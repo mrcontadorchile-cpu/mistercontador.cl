@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de Cotizaciones PDF Gratis para PyMEs Chile 2026 | Mister Contador</title>
+  <meta name="description" content="Crea cotizaciones profesionales en PDF al instante. Con IVA o exentas. Para PyMEs chilenas. Sin registro, gratis.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/generador-cotizaciones/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/generador-cotizaciones/">
+  <meta property="og:title"       content="Generador de Cotizaciones PDF Gratis Chile 2026 | Mister Contador">
+  <meta property="og:description" content="Crea cotizaciones profesionales en PDF al instante. Con IVA o exentas. Sin registro.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/og-calculadora.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Generador de Cotizaciones PDF — Mister Contador">
+  <meta name="twitter:description" content="Crea cotizaciones profesionales en PDF al instante. Gratis, sin registro.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/og-calculadora.png">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Generador de Cotizaciones PDF",
+    "description": "Herramienta gratuita para crear cotizaciones profesionales en PDF para PyMEs chilenas. Calcula IVA 19% o exento automáticamente.",
+    "url": "https://mistercontador.cl/herramientas/generador-cotizaciones/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CLP" },
+    "provider": {
+      "@type": "Organization",
+      "name": "Mister Contador SpA",
+      "url": "https://mistercontador.cl/"
+    }
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5930774950622246" crossorigin="anonymous"></script>
+
+  <!-- jsPDF + AutoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
+    nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); }
+    .nav-links .btn-manga { border: 2px solid #333; color: #aaa; padding: 7px 14px; border-radius: 4px; font-weight: 600; font-size: 13px; transition: all .2s; }
+    .nav-links .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 4px 4px 0 var(--gold); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: all .3s; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
+    .mobile-menu.active { display: flex; flex-direction: column; gap: 16px; }
+    .mobile-menu a { color: #ccc; text-decoration: none; font-size: 16px; font-weight: 500; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* PAGE HEADER */
+    .page-header { padding: 110px 24px clamp(16px,3vw,48px); text-align: center; background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-header-sfx { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bangers', cursive; font-size: clamp(80px, 20vw, 180px); letter-spacing: 8px; color: rgba(245,194,0,.04); pointer-events: none; user-select: none; white-space: nowrap; }
+    .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; position: relative; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-header h1 { font-family: 'Bangers', cursive; font-size: clamp(36px,6vw,64px); letter-spacing: 4px; text-transform: uppercase; line-height: 1; margin-bottom: 10px; position: relative; }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle { font-size: 15px; color: var(--text-muted); position: relative; }
+
+    /* MAIN LAYOUT */
+    .main-wrap { max-width: 820px; margin: 0 auto; padding: 40px 20px 60px; }
+
+    /* ADSENSE */
+    .adsense-block { background: var(--surface); border: 1px dashed var(--border); border-radius: 4px; padding: 16px; text-align: center; color: var(--text-muted); font-size: 12px; margin-bottom: 32px; min-height: 90px; display: flex; align-items: center; justify-content: center; }
+
+    /* FORM SECTIONS */
+    .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px; margin-bottom: 24px; }
+    .section-title { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 3px; color: var(--gold); margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    input[type="text"], input[type="email"], input[type="tel"] {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 14px; padding: 10px 14px; outline: none; transition: border-color .2s;
+      width: 100%;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus { border-color: var(--gold); background: #1e1e1e; }
+
+    /* ITEMS TABLE */
+    .items-section { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px; margin-bottom: 24px; }
+    .items-header { display: grid; grid-template-columns: 1fr 90px 140px 110px 36px; gap: 8px; margin-bottom: 8px; }
+    .items-header span { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .item-row { display: grid; grid-template-columns: 1fr 90px 140px 110px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
+    .item-row input { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; padding: 9px 10px; outline: none; transition: border-color .2s; width: 100%; }
+    .item-row input:focus { border-color: var(--gold); }
+    .item-row input.price-input { text-align: right; }
+    .item-row .item-total { font-size: 13px; font-weight: 600; color: var(--text); text-align: right; padding-right: 4px; white-space: nowrap; }
+    .btn-remove { background: none; border: 1px solid #333; border-radius: 4px; color: #555; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all .15s; flex-shrink: 0; }
+    .btn-remove:hover { border-color: #ff4444; color: #ff4444; background: rgba(255,68,68,.08); }
+    .btn-add-item { background: none; border: 2px solid var(--border); border-radius: 4px; color: var(--text-muted); font-family: 'Bebas Neue', cursive; font-size: 15px; letter-spacing: 2px; padding: 10px 20px; cursor: pointer; transition: all .2s; margin-top: 8px; }
+    .btn-add-item:hover { border-color: var(--gold); color: var(--gold); box-shadow: 4px 4px 0 var(--gold-dark); transform: translate(-2px,-2px); }
+
+    /* TOTALS */
+    .totals-section { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin-bottom: 24px; }
+    .totals-inner { max-width: 320px; margin-left: auto; }
+    .total-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 14px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .total-row:last-child { border-bottom: none; }
+    .total-row.final { padding-top: 14px; border-top: 2px solid var(--gold); border-bottom: none; }
+    .total-row.final .tl { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 2px; color: var(--gold); }
+    .total-row.final .tv { font-family: 'Bangers', cursive; font-size: clamp(26px,4vw,36px); color: var(--gold); letter-spacing: 2px; }
+    .total-row .tv { font-weight: 700; color: var(--text); }
+
+    /* IVA TOGGLE */
+    .iva-toggle-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .toggle-label { font-family: 'Bebas Neue', cursive; font-size: 16px; letter-spacing: 2px; color: var(--text-muted); cursor: pointer; transition: color .2s; }
+    .toggle-label.active { color: var(--gold); }
+    .toggle-switch { position: relative; width: 48px; height: 26px; cursor: pointer; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-track { position: absolute; inset: 0; background: #333; border-radius: 26px; transition: background .2s; border: 1px solid var(--border); }
+    .toggle-track::after { content: ''; position: absolute; width: 18px; height: 18px; background: #666; border-radius: 50%; top: 3px; left: 3px; transition: transform .2s, background .2s; }
+    .toggle-switch input:checked + .toggle-track { background: rgba(245,194,0,.2); border-color: var(--gold); }
+    .toggle-switch input:checked + .toggle-track::after { transform: translateX(22px); background: var(--gold); }
+
+    /* GENERATE BUTTON */
+    .btn-generate { display: block; width: 100%; background: var(--black); border: 3px solid var(--gold); color: var(--gold); font-family: 'Bangers', cursive; font-size: clamp(20px,3vw,28px); letter-spacing: 3px; padding: 18px 32px; cursor: pointer; border-radius: 4px; text-transform: uppercase; box-shadow: 6px 6px 0 var(--gold); transition: transform .12s, box-shadow .12s; margin-bottom: 0; }
+    .btn-generate:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--gold); }
+    .btn-generate:active { transform: translate(1px,1px); box-shadow: 4px 4px 0 var(--gold-dark); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+    footer a:hover { opacity: .8; }
+    .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 16px 0; }
+    .social-links a { font-size: 13px; color: #555; }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .items-header { display: none; }
+      .item-row { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 6px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 10px; }
+      .item-row input:first-child { grid-column: 1 / -1; }
+      .item-row .item-total { font-size: 14px; display: flex; align-items: center; }
+      .btn-remove { justify-self: end; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="/herramientas/" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">&larr; Volver a Herramientas</a>
+</div>
+
+<div class="page-header">
+  <div class="page-header-sfx">PDF</div>
+  <p class="breadcrumb"><a href="/herramientas/">Herramientas</a> &rsaquo; Generador de Cotizaciones</p>
+  <h1>GENERADOR DE <span class="gold">COTIZACIONES</span> PDF</h1>
+  <p class="subtitle">Crea presupuestos profesionales al instante &mdash; con IVA o exentos &mdash; sin registro</p>
+</div>
+
+<div class="main-wrap">
+
+  <!-- AdSense TOP -->
+  <div id="adsense-top" class="adsense-block">
+    <!-- AdSense Top -->
+  </div>
+
+  <!-- EMISOR -->
+  <div class="section-card">
+    <div class="section-title">&#128190; Datos del Emisor</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="em-nombre">Nombre / Razón Social *</label>
+        <input type="text" id="em-nombre" placeholder="Mi Empresa SpA">
+      </div>
+      <div class="form-group">
+        <label for="em-rut">RUT Emisor *</label>
+        <input type="text" id="em-rut" placeholder="76.XXX.XXX-X">
+      </div>
+      <div class="form-group">
+        <label for="em-email">Email</label>
+        <input type="email" id="em-email" placeholder="contacto@miempresa.cl">
+      </div>
+      <div class="form-group">
+        <label for="em-telefono">Teléfono (opcional)</label>
+        <input type="tel" id="em-telefono" placeholder="+56 9 XXXX XXXX">
+      </div>
+      <div class="form-group full">
+        <label for="em-numero">N° Cotización</label>
+        <input type="text" id="em-numero" placeholder="">
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTE -->
+  <div class="section-card">
+    <div class="section-title">&#128101; Datos del Cliente</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="cl-nombre">Nombre / Razón Social *</label>
+        <input type="text" id="cl-nombre" placeholder="Empresa Cliente Ltda.">
+      </div>
+      <div class="form-group">
+        <label for="cl-rut">RUT Cliente</label>
+        <input type="text" id="cl-rut" placeholder="XX.XXX.XXX-X">
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEMS -->
+  <div class="items-section">
+    <div class="section-title">&#128203; Ítems / Servicios</div>
+    <div class="items-header">
+      <span>Descripción</span>
+      <span style="text-align:center">Cantidad</span>
+      <span style="text-align:right">P. Unitario (neto)</span>
+      <span style="text-align:right">Total</span>
+      <span></span>
+    </div>
+    <div id="items-container"></div>
+    <button class="btn-add-item" onclick="addItem()">&#65291; AGREGAR ÍTEM</button>
+  </div>
+
+  <!-- TOTALES -->
+  <div class="totals-section">
+    <div class="iva-toggle-wrap">
+      <span class="toggle-label" id="lbl-exenta">EXENTA</span>
+      <label class="toggle-switch" title="Activar IVA 19%">
+        <input type="checkbox" id="iva-toggle" onchange="recalculate()">
+        <div class="toggle-track"></div>
+      </label>
+      <span class="toggle-label active" id="lbl-afecta">AFECTA IVA (19%)</span>
+    </div>
+    <div class="totals-inner">
+      <div class="total-row">
+        <span class="tl">Subtotal neto</span>
+        <span class="tv" id="t-subtotal">$0</span>
+      </div>
+      <div class="total-row" id="row-iva" style="display:none">
+        <span class="tl">IVA 19%</span>
+        <span class="tv" id="t-iva">$0</span>
+      </div>
+      <div class="total-row final">
+        <span class="tl">TOTAL FINAL</span>
+        <span class="tv" id="t-total">$0</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-generate" onclick="generatePDF()">GENERAR PDF &#9889;</button>
+
+  <!-- AdSense BOTTOM -->
+  <div id="adsense-bottom" class="adsense-block" style="margin-top:32px;">
+    <!-- AdSense Bottom -->
+  </div>
+
+  <!-- SEO ARTICLE -->
+  <section style="max-width:780px; margin:48px auto; padding:32px 16px 0; border-top: 1px solid var(--border); font-family:'Inter', sans-serif;">
+    <h2 style="font-family:'Bebas Neue', sans-serif; font-size:28px; color:var(--gold); letter-spacing:2px; margin-bottom:16px;">¿CÓMO HACER UNA COTIZACIÓN LEGAL Y EFECTIVA PARA TU PYME EN CHILE?</h2>
+    <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">En el mundo de los negocios en Chile, una cotización o presupuesto es el primer paso formal para cerrar una venta de servicios o productos. Aunque no constituye un documento tributario emitido ante el Servicio de Impuestos Internos (SII) —como sí lo son las facturas electrónicas o las boletas de ventas y servicios—, la cotización opera como un contrato previo de carácter comercial. Al ser aceptada por escrito por tu cliente (ya sea por correo electrónico o firma física), establece un acuerdo vinculante sobre el precio neto, las condiciones de pago y los plazos de entrega, protegiendo el flujo de caja de tu empresa ante eventuales malentendidos o disputas posteriores.</p>
+    <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">LA IMPORTANCIA DE DESGLOSAR EL NETO Y EL IVA (19%)</h3>
+    <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Uno de los errores más costosos y recurrentes entre los nuevos emprendedores chilenos es entregar valores "totales" sin especificar si incluyen o no el Impuesto al Valor Agregado (IVA). En Chile, la tasa del IVA es del 19% (según el Decreto Ley 825). Si envías un presupuesto por un valor global y luego tu cliente exige factura, te verás obligado a descontar el 19% de tu propio margen de ganancia para enterarlo al Fisco en el Formulario 29 (F29). Al utilizar este generador gratuito, el sistema separa de forma transparente el valor neto, el impuesto aplicable y el total final, dándole un aspecto corporativo a tu negocio y evitando pérdidas financieras.</p>
+    <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">CÓMO TRANSFORMAR ESTA COTIZACIÓN EN UNA FACTURA ELECTRÓNICA</h3>
+    <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Una vez que tu cliente aprueba el presupuesto generado en esta plataforma y se realiza la entrega del bien o la prestación del servicio, debes emitir el documento tributario definitivo. Si tu PyME está registrada en el SII en primera categoría y está afecta a impuestos mensuales, deberás ingresar al Portal de Facturación Electrónica del SII (o a tu software de facturación e inventario privado como <a href="../../inventory.html" style="color:var(--gold); text-decoration:none; border-bottom:1px dashed var(--gold);">Mister Inventario</a>) y copiar exactamente los mismos datos de emisor, receptor e ítems que estructuraste en este PDF. Recuerda que el plazo legal para emitir la factura suele ser dentro del mismo período tributario (mes calendario) en el que se devengó el servicio o se despachó la mercadería.</p>
+    <div style="background:var(--surface2); border-left:3px solid var(--gold); padding:16px; border-radius:4px; margin-top:24px;">
+      <strong style="font-family:'Bebas Neue', sans-serif; font-size:14px; color:var(--gold); letter-spacing:2px; display:block; margin-bottom:6px;">&#9889; CONSEJO DE MISTER CONTADOR</strong>
+      <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Mantener un correlativo ordenado de tus presupuestos te permite proyectar tus ventas futuras y gestionar tu capital de trabajo de manera profesional. Si los números de tu negocio se están volviendo un caos o el pago del F29 te quita el sueño, recuerda que en <a href="https://mistercontador.cl/" style="color:var(--gold); text-decoration:none; font-weight:700;">Mister Contador</a> nos encargamos de toda tu gestión financiera y contable para que tú solo te preocupes de hacer crecer tu PyME.</p>
+    </div>
+  </section>
+
+</div><!-- /main-wrap -->
+
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">T&eacute;rminos y Condiciones</a>
+    <a href="../../privacidad.html">Pol&iacute;tica de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Regi&oacute;n Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  // NAV SCROLL
+  document.addEventListener('scroll', function() {
+    document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.setAttribute('aria-expanded', open);
+  }
+
+  // AUTO N° COTIZACIÓN
+  function genNumero() {
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = String(d.getMonth()+1).padStart(2,'0');
+    var day = String(d.getDate()).padStart(2,'0');
+    var r = String(Math.floor(Math.random()*900)+100);
+    return 'COT-' + y + m + day + '-' + r;
+  }
+  document.getElementById('em-numero').value = genNumero();
+
+  // CURRENCY FORMAT
+  function fmtCLP(n) {
+    if (isNaN(n) || n === '') return '$0';
+    return '$' + Math.round(n).toLocaleString('es-CL');
+  }
+
+  function parsePrecio(v) {
+    return parseFloat(String(v).replace(/\./g,'').replace(',','.')) || 0;
+  }
+
+  // ITEMS
+  var itemCount = 0;
+
+  function addItem(desc, qty, precio) {
+    itemCount++;
+    var id = 'item-' + itemCount;
+    var container = document.getElementById('items-container');
+    var row = document.createElement('div');
+    row.className = 'item-row';
+    row.id = id;
+    row.innerHTML =
+      '<input type="text" placeholder="Descripción del servicio o producto" value="' + (desc||'') + '" oninput="recalculate()">' +
+      '<input type="text" class="price-input" placeholder="1" value="' + (qty||'1') + '" oninput="recalculate()" style="text-align:center">' +
+      '<input type="text" class="price-input" placeholder="0" value="' + (precio||'') + '" oninput="formatPrecioInput(this); recalculate();">' +
+      '<div class="item-total" id="total-' + id + '">$0</div>' +
+      '<button class="btn-remove" onclick="removeItem(\'' + id + '\')" title="Eliminar fila">&#10005;</button>';
+    container.appendChild(row);
+    recalculate();
+  }
+
+  function formatPrecioInput(el) {
+    var raw = el.value.replace(/\./g,'').replace(/[^0-9]/g,'');
+    if (raw === '') { el.value = ''; return; }
+    el.value = parseInt(raw,10).toLocaleString('es-CL');
+  }
+
+  function removeItem(id) {
+    var rows = document.querySelectorAll('.item-row');
+    if (rows.length <= 1) return;
+    var el = document.getElementById(id);
+    if (el) el.remove();
+    recalculate();
+  }
+
+  function getItemTotals() {
+    var rows = document.querySelectorAll('.item-row');
+    var subtotal = 0;
+    rows.forEach(function(row) {
+      var inputs = row.querySelectorAll('input');
+      var qty = parseFloat(inputs[1].value) || 0;
+      var precio = parsePrecio(inputs[2].value);
+      var total = qty * precio;
+      var totalEl = row.querySelector('.item-total');
+      if (totalEl) totalEl.textContent = fmtCLP(total);
+      subtotal += total;
+    });
+    return subtotal;
+  }
+
+  function recalculate() {
+    var subtotal = getItemTotals();
+    var afecta = document.getElementById('iva-toggle').checked;
+    var iva = afecta ? Math.round(subtotal * 0.19) : 0;
+    var total = subtotal + iva;
+
+    document.getElementById('t-subtotal').textContent = fmtCLP(subtotal);
+    document.getElementById('t-iva').textContent = fmtCLP(iva);
+    document.getElementById('t-total').textContent = fmtCLP(total);
+    document.getElementById('row-iva').style.display = afecta ? '' : 'none';
+
+    var lblEx = document.getElementById('lbl-exenta');
+    var lblAf = document.getElementById('lbl-afecta');
+    if (afecta) {
+      lblEx.classList.remove('active'); lblAf.classList.add('active');
+    } else {
+      lblAf.classList.remove('active'); lblEx.classList.add('active');
+    }
+  }
+
+  // INIT
+  addItem();
+
+  // PDF GENERATION
+  function generatePDF() {
+    var emNombre = document.getElementById('em-nombre').value.trim();
+    var emRut    = document.getElementById('em-rut').value.trim();
+    var emEmail  = document.getElementById('em-email').value.trim();
+    var emTel    = document.getElementById('em-telefono').value.trim();
+    var emNum    = document.getElementById('em-numero').value.trim();
+    var clNombre = document.getElementById('cl-nombre').value.trim();
+    var clRut    = document.getElementById('cl-rut').value.trim();
+    var afecta   = document.getElementById('iva-toggle').checked;
+
+    if (!emNombre) { alert('Ingresa el nombre del emisor.'); return; }
+    if (!clNombre) { alert('Ingresa el nombre del cliente.'); return; }
+
+    var rows = document.querySelectorAll('.item-row');
+    var bodyRows = [];
+    var subtotal = 0;
+    rows.forEach(function(row) {
+      var inputs = row.querySelectorAll('input');
+      var desc   = inputs[0].value.trim() || '—';
+      var qty    = parseFloat(inputs[1].value) || 0;
+      var precio = parsePrecio(inputs[2].value);
+      var total  = qty * precio;
+      subtotal += total;
+      bodyRows.push([
+        desc,
+        qty % 1 === 0 ? qty.toFixed(0) : qty.toFixed(2),
+        fmtCLP(precio),
+        fmtCLP(total)
+      ]);
+    });
+
+    var iva   = afecta ? Math.round(subtotal * 0.19) : 0;
+    var total = subtotal + iva;
+
+    var { jsPDF } = window.jspdf;
+    var doc = new jsPDF({ format: 'a4', unit: 'mm' });
+
+    // HEADER background
+    doc.setFillColor(245, 194, 0);
+    doc.rect(0, 0, 210, 42, 'F');
+
+    // Empresa nombre
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.setTextColor(10, 10, 10);
+    doc.text(emNombre || 'Sin nombre', 14, 16);
+
+    // RUT + email en header
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    var headerLine2 = 'RUT: ' + (emRut || '—');
+    if (emEmail) headerLine2 += '   |   ' + emEmail;
+    if (emTel)   headerLine2 += '   |   ' + emTel;
+    doc.text(headerLine2, 14, 24);
+
+    // N° cotización + fecha
+    var today = new Date();
+    var fechaStr = today.toLocaleDateString('es-CL', { day:'2-digit', month:'long', year:'numeric' });
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.text('N° ' + (emNum || '—'), 14, 33);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    doc.text('Fecha: ' + fechaStr, 14, 39);
+
+    // DESTINATARIO
+    doc.setTextColor(255, 255, 255);
+    doc.setFillColor(20, 20, 20);
+    doc.rect(0, 42, 210, 22, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(245, 194, 0);
+    doc.text('SEÑORES:', 14, 51);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'normal');
+    doc.text(clNombre + (clRut ? '   RUT: ' + clRut : ''), 14, 58);
+
+    // TABLE
+    doc.autoTable({
+      startY: 68,
+      head: [['Descripción', 'Cant.', 'P. Unitario', 'Total']],
+      body: bodyRows,
+      theme: 'grid',
+      headStyles: {
+        fillColor: [245, 194, 0],
+        textColor: [10, 10, 10],
+        fontStyle: 'bold',
+        fontSize: 10,
+        halign: 'center'
+      },
+      columnStyles: {
+        0: { cellWidth: 90, halign: 'left' },
+        1: { cellWidth: 20, halign: 'center' },
+        2: { cellWidth: 40, halign: 'right' },
+        3: { cellWidth: 40, halign: 'right' }
+      },
+      alternateRowStyles: { fillColor: [249, 249, 249] },
+      bodyStyles: { textColor: [30, 30, 30], fontSize: 9 },
+      margin: { left: 14, right: 14 }
+    });
+
+    var finalY = doc.lastAutoTable.finalY + 8;
+
+    // TOTALES
+    var totalsData = [['Subtotal neto', fmtCLP(subtotal)]];
+    if (afecta) totalsData.push(['IVA 19%', fmtCLP(iva)]);
+    totalsData.push(['TOTAL', fmtCLP(total)]);
+
+    doc.autoTable({
+      startY: finalY,
+      body: totalsData,
+      theme: 'plain',
+      columnStyles: {
+        0: { cellWidth: 140, halign: 'right', fontStyle: 'bold', fontSize: 10, textColor: [80,80,80] },
+        1: { cellWidth: 50, halign: 'right', fontStyle: 'bold', fontSize: 10, textColor: [30,30,30] }
+      },
+      bodyStyles: { fontSize: 10 },
+      didDrawCell: function(data) {
+        if (data.row.index === totalsData.length - 1) {
+          doc.setFillColor(245, 194, 0);
+          doc.rect(data.cell.x, data.cell.y, data.cell.width, data.cell.height, 'F');
+          doc.setFont('helvetica', 'bold');
+          doc.setFontSize(12);
+          doc.setTextColor(10, 10, 10);
+          if (data.column.index === 0) {
+            doc.text('TOTAL', data.cell.x + data.cell.width - 4, data.cell.y + data.cell.height / 2 + 4, { align: 'right' });
+          } else {
+            doc.text(fmtCLP(total), data.cell.x + data.cell.width - 4, data.cell.y + data.cell.height / 2 + 4, { align: 'right' });
+          }
+        }
+      },
+      margin: { left: 14, right: 14 }
+    });
+
+    // FOOTER PDF
+    var pageH = doc.internal.pageSize.getHeight();
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Documento generado con Mister Contador · mistercontador.cl', 105, pageH - 8, { align: 'center' });
+
+    // DOWNLOAD
+    var safeName = (clNombre || 'cliente').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'');
+    var safeNum  = (emNum || 'cot').replace(/[^a-zA-Z0-9\-]/g,'');
+    doc.save('cotizacion-' + safeNum + '-' + safeName + '.pdf');
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'generate_pdf', { event_category: 'cotizaciones', event_label: emNum });
+    }
+  }
+</script>
+</body>
+</html>
