@@ -141,12 +141,16 @@
       padding: 64px 24px 80px;
     }
     .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 28px;
       margin-top: 0;
     }
     .tool-card {
+      flex: 0 0 calc(33.333% - 20px);
+      max-width: 340px;
+      min-width: 280px;
       border: 3px solid var(--gold);
       box-shadow: 6px 6px 0 var(--gold);
       background: var(--surface);
@@ -225,7 +229,8 @@
     @media (max-width: 640px) {
       .nav-links { display: none; }
       .hamburger { display: block; }
-      .tools-grid { grid-template-columns: 1fr; }
+      .tools-grid { flex-direction: column; align-items: stretch; }
+      .tool-card { max-width: 100%; min-width: 0; flex: 1 1 100%; }
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
     }
   </style>
