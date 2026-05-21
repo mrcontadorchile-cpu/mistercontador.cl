@@ -215,30 +215,59 @@
 
     /* Rates table */
     /* CTA Banner */
-    .cta-banner {
-      margin-top: 0;
-      margin-bottom: 28px;
-      position: relative;
-      border-radius: 6px;
-      padding: 2px; /* space for the glow border */
-      background: linear-gradient(90deg, var(--gold) 0%, #fff8cc 40%, var(--gold) 70%, var(--gold-dark) 100%);
-      background-size: 200% 100%;
-      animation: banner-glow 4s linear infinite;
+    /* Rotating plasma border */
+    @keyframes spin-border { to { transform: rotate(360deg); } }
+    @keyframes banner-outer-pulse {
+      0%, 100% { box-shadow: 0 0 18px rgba(245,194,0,.35), 0 0 40px rgba(245,194,0,.1); }
+      50%       { box-shadow: 0 0 32px rgba(245,194,0,.65), 0 0 60px rgba(245,194,0,.25); }
     }
-    @keyframes banner-glow {
-      0%   { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+    .cta-banner {
+      margin-top: 0; margin-bottom: 28px;
+      position: relative; border-radius: 8px;
+      padding: 2px; overflow: hidden;
+      background: transparent;
+      animation: banner-outer-pulse 2.5s ease-in-out infinite;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: -60%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        #D4A800 60deg,
+        #F5C200 90deg,
+        #fff8cc 120deg,
+        #F5C200 150deg,
+        #D4A800 180deg,
+        transparent 240deg,
+        #F5C200 300deg,
+        #fff8cc 330deg,
+        #F5C200 360deg
+      );
+      animation: spin-border 3.5s linear infinite;
+      z-index: 0;
+      border-radius: 50%;
     }
     .cta-banner-inner {
+      position: relative; z-index: 1;
       background: #0d0d0d;
-      border-radius: 5px;
-      padding: 20px 24px;
+      border-radius: 7px;
+      padding: 22px 24px;
       display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      /* sutil patrón diagonal manga */
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 18px,
+        rgba(245,194,0,.025) 18px,
+        rgba(245,194,0,.025) 19px
+      );
     }
     .cta-banner-icon { font-size: 32px; flex-shrink: 0; }
     .cta-banner-text { flex: 1; min-width: 180px; }
     .cta-banner-text strong {
-      font-family: 'Bangers', cursive; font-size: 20px; letter-spacing: 2px;
+      font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px;
       color: var(--text); display: block; line-height: 1.1; margin-bottom: 4px;
     }
     .cta-banner-text strong span { color: var(--gold); }
@@ -249,12 +278,9 @@
       background: var(--gold); color: var(--black);
       padding: 2px 7px; border-radius: 2px; margin-bottom: 6px;
     }
-    .cta-banner-text strong {
-      font-size: 22px;
-    }
     @keyframes btn-pulse {
       0%, 100% { box-shadow: 3px 3px 0 #128C7E, 0 0 0 0 rgba(37,211,102,0); }
-      50%       { box-shadow: 3px 3px 0 #128C7E, 0 0 0 8px rgba(37,211,102,0.25); }
+      50%       { box-shadow: 3px 3px 0 #128C7E, 0 0 0 8px rgba(37,211,102,.3); }
     }
     .cta-banner-btn {
       font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px;
