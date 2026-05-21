@@ -325,6 +325,53 @@
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
       .uf-banner { flex-direction: column; }
     }
+
+    /* Halftone dots background */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(circle, rgba(245,194,0,.07) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Comic panel wrapper */
+    .comic-panel {
+      border: 4px solid #fff;
+      box-shadow: 8px 8px 0 var(--gold);
+      border-radius: 4px;
+      padding: 24px;
+      background: var(--surface);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    /* Stamp effect on líquido result */
+    .result-stamp {
+      position: absolute; top: 12px; right: 12px;
+      font-family: 'Bangers', cursive; font-size: 11px; letter-spacing: 3px;
+      color: var(--gold); border: 2px solid var(--gold);
+      padding: 2px 8px; border-radius: 2px;
+      transform: rotate(3deg);
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* SEO explanation section */
+    .explain-section { margin-top: 48px; }
+    .explain-section h2 { font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 3px; color: var(--gold); margin-bottom: 20px; }
+    .explain-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .explain-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; padding: 16px 18px; }
+    .explain-card h3 { font-family: 'Bangers', cursive; font-size: 17px; letter-spacing: 1.5px; color: var(--text); margin-bottom: 6px; }
+    .explain-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -344,7 +391,7 @@
       <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
       <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
     </div>
-    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" id="hamburger-btn" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -384,12 +431,12 @@
       <div class="cta-banner-icon">🧾</div>
       <div class="cta-banner-text">
         <div class="cta-banner-badge">★ SERVICIO PROFESIONAL</div>
-        <strong>¿TIENES DUDAS CON TU <span>BOLETA O TRIBUTACIÓN</span>?</strong>
-        <p>Un contador real te responde en minutos — sin letra chica, sin cobros sorpresa.</p>
+        <strong>¿TU BOLETA TE QUITA MÁS DE LO QUE <span>PENSABAS</span>?</strong>
+        <p>Te orientamos por WhatsApp y vemos tu caso sin enredos — sin letra chica.</p>
       </div>
       <a href="https://wa.me/56940536523?text=Hola%2C%20calculé%20mi%20boleta%20de%20honorarios%20y%20tengo%20algunas%20dudas%2C%20%C2%BFme%20pueden%20ayudar%3F" target="_blank" rel="noopener" class="cta-banner-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        CONSULTAR GRATIS
+        HABLAR CON MISTER CONTADOR
       </a>
     </div>
   </div>
@@ -400,6 +447,8 @@
     <p>Escribe en cualquier campo — bruto, líquido o retención — y calculo el resto al instante. ¡Sin enredos!</p>
   </div>
 
+  <!-- Comic panel start -->
+  <div class="comic-panel">
   <!-- UF Banner -->
   <div class="uf-banner">
     <div class="uf-banner-left">
@@ -440,7 +489,7 @@
     <div class="fields-grid">
 
       <div class="field-block">
-        <label class="field-label" for="f-bruto">Monto Bruto</label>
+        <label class="field-label" for="f-bruto">Total de la Boleta</label>
         <div class="field-wrap">
           <span class="field-prefix">$</span>
           <input id="f-bruto" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
@@ -452,7 +501,7 @@
       </div>
 
       <div class="field-block">
-        <label class="field-label" for="f-retencion">Retención SII</label>
+        <label class="field-label" for="f-retencion">Lo que se va al SII</label>
         <div class="field-wrap">
           <span class="field-prefix">$</span>
           <input id="f-retencion" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
@@ -464,8 +513,9 @@
       </div>
 
       <!-- Líquido: full-width, destacado -->
-      <div class="field-block is-liquido">
-        <label class="field-label" for="f-liquido">Monto Líquido</label>
+      <div class="field-block is-liquido" style="position:relative;">
+        <span class="result-stamp">LÍQUIDO</span>
+        <label class="field-label" for="f-liquido">Lo que Recibes</label>
         <div class="field-wrap">
           <span class="field-prefix">$</span>
           <input id="f-liquido" class="field-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
@@ -478,6 +528,7 @@
 
     </div>
   </div>
+  </div><!-- /.comic-panel -->
 
   <!-- Clear -->
   <div class="clear-row">
@@ -499,6 +550,26 @@
     Tasas según Ley 21.133 · Valor UF vía <a href="https://mindicador.cl" target="_blank" rel="noopener">mindicador.cl</a><br>
     ¿Tienes dudas sobre tu boleta? <a href="https://mistercontador.cl/#contacto">Consúltanos gratis →</a>
   </p>
+
+
+  <!-- SEO: Explanation section -->
+  <div class="explain-section">
+    <h2>¿Qué significa cada valor?</h2>
+    <div class="explain-grid">
+      <div class="explain-card">
+        <h3>Monto Bruto</h3>
+        <p>Es el valor total acordado por tu servicio — lo que figura en la boleta de honorarios antes de cualquier descuento.</p>
+      </div>
+      <div class="explain-card">
+        <h3>Retención SII</h3>
+        <p>El pagador retiene este porcentaje (15,25% en 2026) y lo entera directamente al SII. Es un pago anticipado de tu impuesto a la renta.</p>
+      </div>
+      <div class="explain-card">
+        <h3>Monto Líquido</h3>
+        <p>Lo que efectivamente recibes en tu cuenta bancaria. Es el bruto menos la retención que ya fue pagada al Fisco.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Rates table -->
   <div class="rates-table-wrap">
@@ -535,6 +606,13 @@
 </footer>
 
 <script>
+
+  // Hamburger menu toggle with aria-expanded
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
   // Nav scroll
   document.addEventListener('scroll', function() {
     document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
@@ -555,7 +633,13 @@
   // Helpers
   function fmtCLP(n) { return '$ ' + Math.round(n).toLocaleString('es-CL'); }
   function parseCLP(s) { var d = s.replace(/\D/g,''); return d==='' ? null : parseInt(d,10); }
-  function parseUF(s)  { var c = s.replace(/[^\d,\.]/g,'').replace(',','.'); var v=parseFloat(c); return isNaN(v)?null:v; }
+  function parseUF(s) {
+    var clean = String(s).trim().replace(/[^\d.,]/g, '');
+    if (!clean) return null;
+    if (clean.includes(',')) { clean = clean.replace(/\./g, '').replace(',', '.'); }
+    var v = Number(clean);
+    return Number.isFinite(v) ? v : null;
+  }
 
   function setInputCLP(el, val) { el.value = Math.round(val).toLocaleString('es-CL'); }
   function setInputUF(el, val)  { el.value = val.toLocaleString('es-CL',{minimumFractionDigits:4,maximumFractionDigits:4}); }
@@ -757,11 +841,6 @@
       setTimeout(function(){ btn.textContent = orig; btn.classList.remove('copied-ok'); }, 1800);
     });
   }
-
-  // Copy all
-  function copyAll() {
-    var b=fBruto.value, r=fRetencion.value, l=fLiquido.value;
-    if (!b&&!r&&!l) { alert('Ingresa un monto primero.'); return; }
     var yearBtn = document.querySelector('.year-tab.active');
     var year = yearBtn ? yearBtn.dataset.year : '2026';
     var pct  = (currentRate*100).toFixed(2).replace('.',',') + '%';
