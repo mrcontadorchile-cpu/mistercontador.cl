@@ -395,6 +395,25 @@
     .explain-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; padding: 16px 18px; }
     .explain-card h3 { font-family: 'Bangers', cursive; font-size: 17px; letter-spacing: 1.5px; color: var(--text); margin-bottom: 6px; }
     .explain-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .calc-wrapper { padding: 18px 14px 64px; }
+      .comic-panel { padding: 14px; box-shadow: 4px 4px 0 rgba(245,194,0,.18); }
+      .hero-row { align-items: center; gap: 8px; margin-bottom: 20px; }
+      .hero-row .hero-img { width: 90px; height: 120px; }
+      .hero-row .speech-bubble { margin-bottom: 10px; padding: 14px; }
+      .hero-row .speech-bubble p { font-size: 13px; }
+      .currency-toggle { width: 100%; }
+      .currency-btn { flex: 1; padding: 10px 8px; }
+      .rates-table-wrap { overflow-x: auto; }
+      .rates-table { min-width: 520px; }
+      .result-stamp { position: static; align-self: flex-start; transform: rotate(-2deg); margin-bottom: 2px; }
+    }
+    @media (max-width: 380px) {
+      .hero-row { flex-direction: column; align-items: flex-start; }
+      .hero-row .speech-bubble::before, .hero-row .speech-bubble::after { display: none; }
+      .hero-row .hero-img { align-self: center; }
+    }
   </style>
 </head>
 <body>
@@ -883,34 +902,6 @@
       btn.textContent = '✓'; btn.classList.add('copied-ok');
       setTimeout(function(){ btn.textContent = orig; btn.classList.remove('copied-ok'); }, 1800);
     });
-  }
-    var yearBtn = document.querySelector('.year-tab.active');
-    var year = yearBtn ? yearBtn.dataset.year : '2026';
-    var pct  = (currentRate*100).toFixed(2).replace('.',',') + '%';
-    var unit = currentCurrency === 'uf' ? 'UF' : 'CLP';
-    var pre  = currentCurrency === 'clp' ? '$' : '';
-    var suf  = currentCurrency === 'uf'  ? ' UF' : '';
-    var ufLine = ufValue ? '\nValor UF: $'+ufValue.toLocaleString('es-CL',{minimumFractionDigits:2,maximumFractionDigits:2}) : '';
-    var text =
-      'Calculadora Honorarios '+year+' — Mister Contador\n'+
-      '─────────────────────────────────────────\n'+
-      'Unidad: '+unit+ufLine+'\n'+
-      'Monto Bruto:             '+pre+b+suf+'\n'+
-      'Retención SII ('+pct+'): '+pre+r+suf+'\n'+
-      'Monto Líquido:           '+pre+l+suf+'\n'+
-      '─────────────────────────────────────────\n'+
-      'mistercontador.cl/herramientas/calculadora-honorarios/';
-    navigator.clipboard.writeText(text).then(function(){
-      var btn = document.getElementById('btn-copy');
-      btn.classList.add('copied');
-      document.getElementById('btn-copy-icon').textContent = '✓';
-      document.getElementById('btn-copy-text').textContent = ' ¡COPIADO!';
-      setTimeout(function(){
-        btn.classList.remove('copied');
-        document.getElementById('btn-copy-icon').textContent = '📋';
-        document.getElementById('btn-copy-text').textContent = ' COPIAR RESULTADOS';
-      }, 2500);
-    }).catch(function(){ alert('No se pudo copiar.'); });
   }
 
   // Share calc — build URL with params and copy it
