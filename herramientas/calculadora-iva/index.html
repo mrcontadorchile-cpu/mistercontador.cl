@@ -120,9 +120,9 @@
     .main-input::placeholder { color: #222; }
 
     /* Results grid */
-    .results-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 20px; }
     .result-full { grid-column: auto; }
-    @media (max-width: 640px) { .results-grid { grid-template-columns: 1fr; } }
+    #block-total { grid-column: 1 / -1; }
 
     .result-block { background: var(--surface); border: 2px solid var(--border); border-radius: 4px; padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 8px; transition: border-color .2s; }
     .result-block.highlighted { background: rgba(245,194,0,.07); border: 3px solid var(--gold); box-shadow: 6px 6px 0 var(--gold-dark); }
@@ -211,7 +211,41 @@
   details > summary::before { content: '▶ '; color: var(--gold); }
   details[open] > summary::before { content: '▼ '; }
   details:hover { border-color: var(--gold) !important; }
+  .comic-callout { background:#fff; color:#111; border:3px solid #111; box-shadow:6px 6px 0 var(--gold); padding:16px 18px; margin-bottom:24px; border-radius:6px; }
+  .comic-stamp { display:inline-block; font-family:'Bangers',cursive; background:var(--gold); color:#111; border:2px solid #111; padding:2px 10px; transform:rotate(-3deg); margin-bottom:8px; font-size:18px; letter-spacing:2px; }
+  .comic-callout p { font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:#111; }
+  @media (max-width: 480px) {
+    .mode-toggle { flex-direction: column; }
+    .mode-btn { width: 100%; font-size: 15px; padding: 12px 10px; }
+    .calc-wrapper { padding: 18px 14px 64px; }
+    .page-header { padding-left: 16px; padding-right: 16px; }
+    .page-header h1 { letter-spacing: 2px; }
+    .main-input { font-size: 30px; padding: 16px 16px 16px 42px; }
+    .input-prefix { font-size: 20px; left: 12px; }
+    .result-block { padding: 16px 14px; }
+    .result-block-value { font-size: 28px; word-break: break-word; }
+    .speech-bubble { padding: 14px; }
+    .speech-bubble p { font-size: 13px; }
+    .cta-banner-inner { padding: 18px 16px; }
+    .cta-banner-text strong { font-size: 20px; }
+    .cta-banner, .cta-banner::before, .cta-banner-btn { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Cómo calcular el IVA en Chile?","acceptedAnswer":{"@type":"Answer","text":"El IVA en Chile es del 19%. Para calcularlo, multiplica el precio neto por 0,19. El total se obtiene multiplicando el neto por 1,19."}},
+    {"@type":"Question","name":"¿Cómo sacar el IVA incluido de un precio?","acceptedAnswer":{"@type":"Answer","text":"Si tienes el precio con IVA incluido, divide el total por 1,19 para obtener el neto. El IVA es la diferencia entre el total y el neto."}},
+    {"@type":"Question","name":"¿Cuál es la diferencia entre neto, IVA y total?","acceptedAnswer":{"@type":"Answer","text":"El neto es el precio antes del impuesto, el IVA es el 19% agregado y el total es el precio final que paga el cliente."}},
+    {"@type":"Question","name":"¿El IVA de mis compras siempre se puede usar como crédito fiscal?","acceptedAnswer":{"@type":"Answer","text":"No siempre. Solo aplica para contribuyentes afectos a IVA, por compras relacionadas al giro y respaldadas con documentos tributarios válidos."}}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -230,7 +264,7 @@
       <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
       <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
     </div>
-    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -288,11 +322,15 @@
   </div>
 
   <!-- Mode toggle -->
+  <div class="comic-callout">
+    <div class="comic-stamp">¡CALC!</div>
+    <p>Dime el precio y te separo neto, IVA y total altiro.</p>
+  </div>
   <div class="mode-toggle-wrap">
     <div class="mode-label">MODO DE C&#193;LCULO</div>
     <div class="mode-toggle" role="group" aria-label="Modo de cálculo">
-      <button class="mode-btn active" id="btn-neto" onclick="setMode('neto')">Precio sin IVA (neto)</button>
-      <button class="mode-btn" id="btn-total" onclick="setMode('total')">Precio con IVA incluido</button>
+      <button class="mode-btn active" id="btn-neto" onclick="setMode('neto')" aria-pressed="true">Precio sin IVA (neto)</button>
+      <button class="mode-btn" id="btn-total" onclick="setMode('total')" aria-pressed="false">Precio con IVA incluido</button>
     </div>
   </div>
 
@@ -388,6 +426,7 @@
     </ul>
   </div>
 
+  <p class="info-note" style="color:#333;margin-bottom:6px;">Esta calculadora es referencial y no reemplaza una revisión contable de tu caso específico.</p>
   <p class="info-note">
     Tasa IVA vigente: 19% (Art. 14 DL 825 de 1974)<br>
     &#191;Tienes dudas sobre c&#243;mo declarar el IVA? <a href="https://mistercontador.cl/#contacto">Cons&#250;ltanos gratis &rarr;</a>
@@ -439,6 +478,8 @@
     currentMode = mode;
     document.getElementById('btn-neto').classList.toggle('active', mode === 'neto');
     document.getElementById('btn-total').classList.toggle('active', mode === 'total');
+    document.getElementById('btn-neto').setAttribute('aria-pressed', mode === 'neto');
+    document.getElementById('btn-total').setAttribute('aria-pressed', mode === 'total');
     document.getElementById('input-label').textContent = modeConfig[mode].label;
     mainInput.placeholder = modeConfig[mode].placeholder;
     mainInput.value = '';
@@ -463,10 +504,10 @@
     return '$ ' + Math.round(n).toLocaleString('es-CL');
   }
 
-  function parseInput(s) {
-    var raw = s.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
-    var n = parseFloat(raw);
-    return isNaN(n) ? null : n;
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   function animateBlock(id) {
