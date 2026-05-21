@@ -789,30 +789,48 @@
   }
 
   // UF fetch
-  function fetchUF(fechaISO) {
+  var UF_FALLBACK = 40424.99; // valor de respaldo actualizado manualmente si la API falla
+
+  function setUFDisplay(valor, fechaStr) {
+    document.getElementById('uf-value').textContent = '$ ' + valor.toLocaleString('es-CL',{minimumFractionDigits:2,maximumFractionDigits:2});
+    document.getElementById('uf-date').textContent = fechaStr || '';
+    document.getElementById('btn-uf').disabled = false;
+  }
+
+  function fetchUF(fechaISO, retry) {
     var url = fechaISO
       ? 'https://mindicador.cl/api/uf/' + fechaISO.split('-').reverse().join('-')
       : 'https://mindicador.cl/api/uf';
-    document.getElementById('uf-value').innerHTML = '<span class="uf-loading">Cargando...</span>';
-    document.getElementById('uf-date').textContent = '';
-    fetch(url)
+    if (!retry) {
+      document.getElementById('uf-value').innerHTML = '<span class="uf-loading">Cargando...</span>';
+      document.getElementById('uf-date').textContent = '';
+    }
+    var timeout = new Promise(function(_, reject){ setTimeout(function(){ reject(new Error('timeout')); }, 6000); });
+    Promise.race([fetch(url), timeout])
       .then(function(r){ return r.json(); })
       .then(function(data) {
         var serie = data.serie && data.serie[0];
-        if (!serie) throw new Error();
+        if (!serie) throw new Error('no serie');
         ufValue = serie.valor;
         var fecha = new Date(serie.fecha);
         var opts  = { day:'numeric', month:'long', year:'numeric', timeZone:'America/Santiago' };
-        document.getElementById('uf-value').textContent = '$ ' + ufValue.toLocaleString('es-CL',{minimumFractionDigits:2,maximumFractionDigits:2});
-        document.getElementById('uf-date').textContent  = fecha.toLocaleDateString('es-CL', opts);
-        document.getElementById('btn-uf').disabled = false;
+        setUFDisplay(ufValue, fecha.toLocaleDateString('es-CL', opts));
         if (currentCurrency === 'uf' && activeFieldId) recalc(activeFieldId);
       })
-      .catch(function() {
-        document.getElementById('uf-value').innerHTML = '<span class="uf-error">No disponible para esa fecha</span>';
-        document.getElementById('uf-date').textContent = '';
-        document.getElementById('btn-uf').disabled = true;
-        ufValue = null;
+      .catch(function(err) {
+        if (!retry && !fechaISO) {
+          // reintento automático tras 3 segundos
+          setTimeout(function(){ fetchUF(null, true); }, 3000);
+        } else if (fechaISO) {
+          document.getElementById('uf-value').innerHTML = '<span class="uf-error">No disponible para esa fecha</span>';
+          document.getElementById('uf-date').textContent = '';
+          document.getElementById('btn-uf').disabled = true;
+          ufValue = null;
+        } else {
+          // fallback al valor hardcodeado
+          ufValue = UF_FALLBACK;
+          setUFDisplay(ufValue, 'valor referencial — API no disponible');
+        }
       });
   }
 
