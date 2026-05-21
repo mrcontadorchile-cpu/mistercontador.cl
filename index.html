@@ -793,24 +793,42 @@
     #herramientas {
       position: relative; overflow: hidden;
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.10) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 100%, rgba(245,194,0,0.05) 0%, transparent 50%);
-      border-top: 1px solid rgba(245,194,0,0.18);
-      border-bottom: 1px solid rgba(245,194,0,0.18);
+        radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 110%, rgba(245,194,0,0.06) 0%, transparent 50%);
+      border-top: 1px solid rgba(245,194,0,0.2);
+      border-bottom: 1px solid rgba(245,194,0,0.2);
     }
-    /* 3D perspective grid floor */
+    /* Moving 3D grid floor */
     #herramientas::before {
       content: '';
-      position: absolute; bottom: 0; left: -30%; right: -30%; height: 65%;
+      position: absolute; bottom: 0; left: -40%; right: -40%; height: 70%;
       background:
-        linear-gradient(rgba(245,194,0,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(245,194,0,0.07) 1px, transparent 1px);
-      background-size: 48px 48px;
-      transform: perspective(280px) rotateX(60deg);
+        linear-gradient(rgba(245,194,0,0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,194,0,0.09) 1px, transparent 1px);
+      background-size: 52px 52px;
+      transform: perspective(260px) rotateX(62deg);
       transform-origin: bottom center;
       pointer-events: none;
-      mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+      mask-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 85%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 85%);
+      animation: grid-march 1s linear infinite;
+    }
+    @keyframes grid-march {
+      from { background-position: 0 0; }
+      to   { background-position: 0 52px; }
+    }
+    /* Scanning light beam */
+    .tools-beam {
+      position: absolute; top: 0; bottom: 0; width: 180px;
+      background: linear-gradient(90deg, transparent 0%, rgba(245,194,0,0.07) 50%, transparent 100%);
+      pointer-events: none; z-index: 0;
+      animation: beam-sweep 4s ease-in-out infinite;
+    }
+    @keyframes beam-sweep {
+      0%   { left: -200px; opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { left: 110%; opacity: 0; }
     }
     /* watermark text */
     #herramientas::after {
@@ -818,21 +836,24 @@
       position: absolute;
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(140px, 22vw, 220px);
-      color: rgba(245,194,0,0.03);
+      color: rgba(245,194,0,0.04);
       top: 42%; left: 50%; transform: translate(-50%, -50%);
       white-space: nowrap; letter-spacing: 14px; pointer-events: none;
     }
-    /* 3D card reveal animation */
+    /* 3D card reveal — spring keyframe triggered by .visible */
     .reveal-3d {
       opacity: 0;
-      transform: perspective(800px) rotateX(28deg) translateY(60px) scale(0.94);
-      transition:
-        opacity 0.75s cubic-bezier(0.23,1,0.32,1),
-        transform 0.75s cubic-bezier(0.23,1,0.32,1);
+      transform: perspective(900px) rotateX(42deg) translateY(160px) scale(0.82);
+      will-change: transform, opacity;
     }
     .reveal-3d.visible {
-      opacity: 1;
-      transform: perspective(800px) rotateX(0deg) translateY(0) scale(1);
+      animation: card-spring-up 0.85s cubic-bezier(0.23,1,0.32,1) forwards;
+    }
+    @keyframes card-spring-up {
+      0%   { opacity: 0;   transform: perspective(900px) rotateX(42deg)  translateY(160px) scale(0.82); }
+      55%  { opacity: 1;   transform: perspective(900px) rotateX(-5deg)  translateY(-14px) scale(1.03); }
+      75%  { transform: perspective(900px) rotateX(2deg)   translateY(5px)   scale(0.99); }
+      100% { opacity: 1;   transform: perspective(900px) rotateX(0deg)   translateY(0)     scale(1); }
     }
     .tools-grid-home {
       display: grid;
@@ -1441,6 +1462,7 @@
 </div>
 
 <section class="section" id="herramientas" style="text-align:center;">
+  <div class="tools-beam"></div>
   <div style="position:relative;z-index:1;">
     <h2 class="section-title" style="margin-bottom:12px;">Calculadoras y utilidades<br><span style="color:var(--gold)">sin registro ni letra chica</span></h2>
     <p style="color:var(--muted);font-size:15px;max-width:500px;margin:0 auto 40px;line-height:1.65;">Herramientas gratuitas pensadas para pymes y trabajadores independientes en Chile.</p>
