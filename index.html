@@ -859,10 +859,11 @@
     }
     .tools-grid-home {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px; max-width: 900px; margin: 0 auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 1000px; margin: 0 auto;
       position: relative; z-index: 1;
     }
+    @media (max-width: 860px) { .tools-grid-home { grid-template-columns: 1fr; } }
     .tool-card {
       background: var(--surface);
       border: 3px solid var(--gold);
@@ -890,7 +891,6 @@
     }
     .tool-card p { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
     .tool-card-cta { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 2px; color: var(--gold); }
-    @media (max-width: 600px) { .tools-grid-home { grid-template-columns: 1fr; } }
 
     /* ── Inventory Banner ────────────────── */
     .inventory-banner {
