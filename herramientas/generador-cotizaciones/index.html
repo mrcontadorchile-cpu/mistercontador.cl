@@ -498,110 +498,176 @@
 
     var { jsPDF } = window.jspdf;
     var doc = new jsPDF({ format: 'a4', unit: 'mm' });
-
-    // HEADER background
-    doc.setFillColor(245, 194, 0);
-    doc.rect(0, 0, 210, 42, 'F');
-
-    // Empresa nombre
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(22);
-    doc.setTextColor(10, 10, 10);
-    doc.text(emNombre || 'Sin nombre', 14, 16);
-
-    // RUT + email en header
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    var headerLine2 = 'RUT: ' + (emRut || '—');
-    if (emEmail) headerLine2 += '   |   ' + emEmail;
-    if (emTel)   headerLine2 += '   |   ' + emTel;
-    doc.text(headerLine2, 14, 24);
-
-    // N° cotización + fecha
+    var pageW = doc.internal.pageSize.getWidth();   // 210
+    var pageH = doc.internal.pageSize.getHeight();  // 297
     var today = new Date();
     var fechaStr = today.toLocaleDateString('es-CL', { day:'2-digit', month:'long', year:'numeric' });
+
+    // ── BARRA LATERAL DORADA (acento izquierdo) ──────────────────────
+    doc.setFillColor(245, 194, 0);
+    doc.rect(0, 0, 4, pageH, 'F');
+
+    // ── HEADER — fondo blanco, dos columnas ──────────────────────────
+    // Columna izquierda: datos emisor
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.text('N° ' + (emNum || '—'), 14, 33);
+    doc.setFontSize(20);
+    doc.setTextColor(20, 20, 20);
+    doc.text(emNombre || 'Sin nombre', 14, 22);
+
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
-    doc.text('Fecha: ' + fechaStr, 14, 39);
+    doc.setTextColor(110, 110, 110);
+    var yInfo = 29;
+    if (emRut)   { doc.text('RUT: ' + emRut, 14, yInfo);   yInfo += 5.5; }
+    if (emEmail) { doc.text(emEmail, 14, yInfo);            yInfo += 5.5; }
+    if (emTel)   { doc.text('Tel: ' + emTel, 14, yInfo); }
 
-    // DESTINATARIO
-    doc.setTextColor(255, 255, 255);
-    doc.setFillColor(20, 20, 20);
-    doc.rect(0, 42, 210, 22, 'F');
+    // Columna derecha: etiqueta COTIZACIÓN + número + fecha
+    doc.setFillColor(245, 194, 0);
+    doc.roundedRect(pageW - 70, 10, 60, 10, 2, 2, 'F');
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
-    doc.setTextColor(245, 194, 0);
-    doc.text('SEÑORES:', 14, 51);
-    doc.setTextColor(255, 255, 255);
-    doc.setFont('helvetica', 'normal');
-    doc.text(clNombre + (clRut ? '   RUT: ' + clRut : ''), 14, 58);
+    doc.setFontSize(9);
+    doc.setTextColor(20, 20, 20);
+    doc.text('COTIZACIÓN', pageW - 10, 16.5, { align: 'right' });
 
-    // TABLE
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.setTextColor(20, 20, 20);
+    doc.text(emNum || '—', pageW - 10, 28, { align: 'right' });
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8.5);
+    doc.setTextColor(130, 130, 130);
+    doc.text(fechaStr, pageW - 10, 34, { align: 'right' });
+
+    // Línea divisoria header
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.3);
+    doc.line(14, 42, pageW - 10, 42);
+
+    // ── BLOQUE DESTINATARIO ───────────────────────────────────────────
+    // Fondo gris muy suave
+    doc.setFillColor(248, 248, 248);
+    doc.roundedRect(14, 47, pageW - 24, 20, 2, 2, 'F');
+    doc.setDrawColor(230, 230, 230);
+    doc.setLineWidth(0.25);
+    doc.roundedRect(14, 47, pageW - 24, 20, 2, 2, 'S');
+
+    // Label "SEÑORES" con acento dorado
+    doc.setFillColor(245, 194, 0);
+    doc.rect(14, 47, 3, 20, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(150, 120, 0);
+    doc.text('SEÑORES', 21, 54);
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(20, 20, 20);
+    doc.text(clNombre || '—', 21, 61);
+
+    if (clRut) {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8.5);
+      doc.setTextColor(110, 110, 110);
+      doc.text('RUT: ' + clRut, 21, 66);
+    }
+
+    // ── TABLA DE ÍTEMS ────────────────────────────────────────────────
     doc.autoTable({
-      startY: 68,
-      head: [['Descripción', 'Cant.', 'P. Unitario', 'Total']],
+      startY: 74,
+      head: [['Descripción', 'Cant.', 'P. Unitario (neto)', 'Total']],
       body: bodyRows,
-      theme: 'grid',
-      headStyles: {
-        fillColor: [245, 194, 0],
-        textColor: [10, 10, 10],
-        fontStyle: 'bold',
-        fontSize: 10,
-        halign: 'center'
-      },
-      columnStyles: {
-        0: { cellWidth: 90, halign: 'left' },
-        1: { cellWidth: 20, halign: 'center' },
-        2: { cellWidth: 40, halign: 'right' },
-        3: { cellWidth: 40, halign: 'right' }
-      },
-      alternateRowStyles: { fillColor: [249, 249, 249] },
-      bodyStyles: { textColor: [30, 30, 30], fontSize: 9 },
-      margin: { left: 14, right: 14 }
-    });
-
-    var finalY = doc.lastAutoTable.finalY + 8;
-
-    // TOTALES
-    var totalsData = [['Subtotal neto', fmtCLP(subtotal)]];
-    if (afecta) totalsData.push(['IVA 19%', fmtCLP(iva)]);
-    totalsData.push(['TOTAL', fmtCLP(total)]);
-
-    doc.autoTable({
-      startY: finalY,
-      body: totalsData,
       theme: 'plain',
-      columnStyles: {
-        0: { cellWidth: 140, halign: 'right', fontStyle: 'bold', fontSize: 10, textColor: [80,80,80] },
-        1: { cellWidth: 50, halign: 'right', fontStyle: 'bold', fontSize: 10, textColor: [30,30,30] }
+      headStyles: {
+        fillColor: [26, 26, 26],
+        textColor: [245, 194, 0],
+        fontStyle: 'bold',
+        fontSize: 9,
+        cellPadding: { top: 5, bottom: 5, left: 4, right: 4 }
       },
-      bodyStyles: { fontSize: 10 },
-      didDrawCell: function(data) {
-        if (data.row.index === totalsData.length - 1) {
-          doc.setFillColor(245, 194, 0);
-          doc.rect(data.cell.x, data.cell.y, data.cell.width, data.cell.height, 'F');
-          doc.setFont('helvetica', 'bold');
-          doc.setFontSize(12);
-          doc.setTextColor(10, 10, 10);
-          if (data.column.index === 0) {
-            doc.text('TOTAL', data.cell.x + data.cell.width - 4, data.cell.y + data.cell.height / 2 + 4, { align: 'right' });
-          } else {
-            doc.text(fmtCLP(total), data.cell.x + data.cell.width - 4, data.cell.y + data.cell.height / 2 + 4, { align: 'right' });
-          }
-        }
+      columnStyles: {
+        0: { cellWidth: 88, halign: 'left' },
+        1: { cellWidth: 18, halign: 'center' },
+        2: { cellWidth: 42, halign: 'right' },
+        3: { cellWidth: 34, halign: 'right', fontStyle: 'bold' }
+      },
+      alternateRowStyles: { fillColor: [250, 250, 250] },
+      bodyStyles: {
+        textColor: [40, 40, 40],
+        fontSize: 9,
+        lineColor: [235, 235, 235],
+        lineWidth: 0.2,
+        cellPadding: { top: 4, bottom: 4, left: 4, right: 4 }
       },
       margin: { left: 14, right: 14 }
     });
 
-    // FOOTER PDF
-    var pageH = doc.internal.pageSize.getHeight();
-    doc.setFontSize(8);
-    doc.setTextColor(150, 150, 150);
+    var finalY = doc.lastAutoTable.finalY;
+
+    // Línea bajo la tabla
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.3);
+    doc.line(14, finalY + 2, pageW - 14, finalY + 2);
+
+    // ── TOTALES ───────────────────────────────────────────────────────
+    var totY = finalY + 12;
+    var colLabel = 130;
+    var colValue = pageW - 14;
+
+    // Subtotal
     doc.setFont('helvetica', 'normal');
-    doc.text('Documento generado con Mister Contador · mistercontador.cl', 105, pageH - 8, { align: 'center' });
+    doc.setFontSize(9);
+    doc.setTextColor(120, 120, 120);
+    doc.text('Subtotal neto', colLabel, totY, { align: 'right' });
+    doc.setTextColor(40, 40, 40);
+    doc.text(fmtCLP(subtotal), colValue, totY, { align: 'right' });
+
+    // IVA
+    if (afecta) {
+      totY += 7;
+      doc.setTextColor(120, 120, 120);
+      doc.text('IVA (19%)', colLabel, totY, { align: 'right' });
+      doc.setTextColor(40, 40, 40);
+      doc.text(fmtCLP(iva), colValue, totY, { align: 'right' });
+    }
+
+    // Línea antes del total
+    totY += 4;
+    doc.setDrawColor(200, 200, 200);
+    doc.setLineWidth(0.25);
+    doc.line(colLabel - 40, totY, pageW - 14, totY);
+
+    // Caja TOTAL
+    totY += 2;
+    doc.setFillColor(26, 26, 26);
+    doc.roundedRect(colLabel - 42, totY, pageW - 14 - (colLabel - 42), 12, 2, 2, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(245, 194, 0);
+    doc.text('TOTAL', colLabel, totY + 8, { align: 'right' });
+    doc.setFontSize(12);
+    doc.setTextColor(255, 255, 255);
+    doc.text(fmtCLP(total), colValue, totY + 8.5, { align: 'right' });
+
+    // ── NOTA VALIDEZ (opcional, pie antes del footer) ─────────────────
+    var notaY = totY + 22;
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(7.5);
+    doc.setTextColor(170, 170, 170);
+    var tipoDoc = afecta ? 'Valores en pesos chilenos (CLP). IVA incluido según DL 825.' : 'Valores en pesos chilenos (CLP). Operación exenta de IVA.';
+    doc.text(tipoDoc, 14, notaY);
+
+    // ── FOOTER ────────────────────────────────────────────────────────
+    doc.setDrawColor(235, 235, 235);
+    doc.setLineWidth(0.3);
+    doc.line(14, pageH - 16, pageW - 14, pageH - 16);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(180, 180, 180);
+    doc.text('Documento generado con Mister Contador · mistercontador.cl', pageW / 2, pageH - 10, { align: 'center' });
 
     // DOWNLOAD
     var safeName = (clNombre || 'cliente').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9\-]/g,'');
