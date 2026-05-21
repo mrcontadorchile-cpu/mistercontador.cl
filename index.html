@@ -790,10 +790,37 @@
     .faq-item.open .faq-a { max-height: 220px; padding-bottom: 20px; }
 
     /* ── Herramientas ────────────────── */
+    #herramientas {
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.09) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(245,194,0,0.04) 0%, transparent 50%);
+      border-top: 1px solid rgba(245,194,0,0.18);
+      border-bottom: 1px solid rgba(245,194,0,0.18);
+    }
+    /* halftone dots layer */
+    #herramientas::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(circle, rgba(245,194,0,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      animation: halftone-breathe 5s ease-in-out infinite;
+    }
+    /* watermark text */
+    #herramientas::after {
+      content: 'GRATIS';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(140px, 22vw, 220px);
+      color: rgba(245,194,0,0.035);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      white-space: nowrap; letter-spacing: 14px; pointer-events: none;
+    }
     .tools-grid-home {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 20px; max-width: 900px; margin: 0 auto;
+      position: relative; z-index: 1;
     }
     .tool-card {
       background: var(--surface);
@@ -805,7 +832,10 @@
       position: relative;
       transition: box-shadow 0.25s cubic-bezier(0.23,1,0.32,1), transform 0.25s cubic-bezier(0.23,1,0.32,1);
     }
-    .tool-card:hover { box-shadow: 10px 10px 0 var(--gold); transform: translate(-2px,-2px); }
+    .tool-card:hover {
+      box-shadow: 10px 10px 0 var(--gold), 0 0 40px rgba(245,194,0,0.15);
+      transform: translate(-2px,-2px);
+    }
     .tool-card-badge {
       position: absolute; top: 14px; right: 14px;
       background: var(--gold); color: var(--black);
@@ -1393,8 +1423,10 @@
 </div>
 
 <section class="section" id="herramientas" style="text-align:center;">
-  <h2 class="section-title" style="margin-bottom:12px;">Calculadoras y utilidades<br><span style="color:var(--gold)">sin registro ni letra chica</span></h2>
-  <p style="color:var(--muted);font-size:15px;max-width:500px;margin:0 auto 40px;line-height:1.65;">Herramientas gratuitas pensadas para pymes y trabajadores independientes en Chile.</p>
+  <div style="position:relative;z-index:1;">
+    <h2 class="section-title" style="margin-bottom:12px;">Calculadoras y utilidades<br><span style="color:var(--gold)">sin registro ni letra chica</span></h2>
+    <p style="color:var(--muted);font-size:15px;max-width:500px;margin:0 auto 40px;line-height:1.65;">Herramientas gratuitas pensadas para pymes y trabajadores independientes en Chile.</p>
+  </div>
   <div class="tools-grid-home">
     <a href="/herramientas/calculadora-honorarios/" class="tool-card reveal reveal-d1">
       <div class="tool-card-badge">GRATIS</div>
@@ -1404,7 +1436,7 @@
       <span class="tool-card-cta">Usar ahora →</span>
     </a>
   </div>
-  <a href="/herramientas/" style="display:inline-block;margin-top:28px;font-family:'Bangers',cursive;letter-spacing:2px;color:var(--muted);font-size:14px;text-decoration:none;">Ver todas las herramientas →</a>
+  <a href="/herramientas/" style="display:inline-block;margin-top:28px;font-family:'Bangers',cursive;letter-spacing:2px;color:var(--muted);font-size:14px;text-decoration:none;position:relative;z-index:1;">Ver todas las herramientas →</a>
 </section>
 
 <!-- Mister Inventario Banner -->
