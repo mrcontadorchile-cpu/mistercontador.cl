@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario Tributario PyME 2026 Chile | Mister Contador</title>
+  <meta name="description" content="Calendario de alertas tributarias para PyMEs y trabajadores independientes en Chile. F29, PreviRed, DT, patentes y más. Alertas personalizadas según tu perfil.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/calendario/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/calendario/">
+  <meta property="og:title"       content="Calendario Tributario PyME 2026 Chile | Mister Contador">
+  <meta property="og:description" content="Alertas tributarias personalizadas: F29, PreviRed, DT, patentes y más. Filtra según tu perfil de PyME.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/logo-oficial.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Calendario Tributario 2026 — Mister Contador">
+  <meta name="twitter:description" content="Nunca más te pille la fecha. Alertas tributarias para PyME Chile.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/logo-oficial.png">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calendario Tributario PyME 2026 Chile",
+    "url": "https://mistercontador.cl/herramientas/calendario/",
+    "description": "Herramienta gratuita de alertas tributarias para PyMEs y trabajadores independientes en Chile. Filtra por perfil y calcula plazos de vencimiento.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CLP" }
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+      --red: #e53935;
+      --yellow: #FFC107;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: transparent; backdrop-filter: blur(0px);
+      border-bottom: 1px solid transparent; padding: 12px 0;
+      transition: background .35s, border-color .35s, backdrop-filter .35s;
+    }
+    nav.nav-scrolled {
+      background: rgba(6,6,6,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(245,194,0,.2);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a {
+      color: #aaa; text-decoration: none; font-size: 14px;
+      font-weight: 500; margin-left: 28px; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav {
+      background: var(--gold); color: var(--black);
+      padding: 8px 18px; border-radius: 4px; font-weight: 700;
+      margin-left: 28px; font-size: 13px; text-transform: uppercase;
+    }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); color: var(--black); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
+    .mobile-menu {
+      display: none; position: fixed; top: 65px; left: 0; right: 0;
+      background: rgba(0,0,0,.97); backdrop-filter: blur(16px);
+      padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99;
+    }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a {
+      display: block; color: #ccc; text-decoration: none;
+      padding: 12px 0; border-bottom: 1px solid #1a1a1a;
+      font-size: 15px; font-weight: 500;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── PROGRESS BAR ── */
+    #read-progress {
+      position: fixed; top: 0; left: 0; height: 3px;
+      background: var(--gold); width: 0%; z-index: 200;
+      transition: width .1s linear;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 110px 24px clamp(40px,5vw,72px);
+      text-align: center;
+      background: linear-gradient(180deg, rgba(245,194,0,.06) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: '¡ALERTA!';
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(80px, 20vw, 200px);
+      color: rgba(245,194,0,.04);
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      white-space: nowrap; pointer-events: none; letter-spacing: 8px;
+    }
+    .breadcrumb {
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 20px; position: relative; z-index: 1;
+    }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .page-header h1 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(40px, 8vw, 80px);
+      letter-spacing: 4px; text-transform: uppercase;
+      line-height: 1; margin-bottom: 12px;
+      position: relative; z-index: 1;
+    }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle {
+      font-size: clamp(14px,2vw,17px);
+      color: var(--text-muted); max-width: 520px;
+      margin: 0 auto; position: relative; z-index: 1;
+    }
+
+    /* ── ADSENSE PLACEHOLDER ── */
+    .adsense-slot {
+      background: var(--surface); border: 1px dashed #2a2a2a;
+      border-radius: 4px; min-height: 90px;
+      display: flex; align-items: center; justify-content: center;
+      color: #333; font-size: 12px; font-family: monospace;
+    }
+
+    /* ── SPEECH BUBBLE ── */
+    .mascot-tip {
+      max-width: 700px; margin: 32px auto 0;
+      display: flex; align-items: flex-start; gap: 16px;
+      position: relative; z-index: 1;
+    }
+    .mascot-tip img {
+      width: 52px; height: 52px; object-fit: contain;
+      flex-shrink: 0; border-radius: 50%;
+      border: 2px solid var(--gold);
+    }
+    .speech-bubble {
+      background: #fff; color: #0a0a0a;
+      border: 3px solid #0a0a0a; border-radius: 8px;
+      padding: 14px 18px; position: relative;
+      font-size: 14px; line-height: 1.55; flex: 1;
+    }
+    .speech-bubble::before {
+      content: ''; position: absolute;
+      left: -14px; top: 18px;
+      border: 7px solid transparent;
+      border-right-color: #0a0a0a;
+    }
+    .speech-bubble::after {
+      content: ''; position: absolute;
+      left: -9px; top: 20px;
+      border: 5px solid transparent;
+      border-right-color: #fff;
+    }
+    .speech-bubble strong { font-weight: 700; }
+
+    /* ── MAIN WRAPPER ── */
+    .cal-wrapper {
+      max-width: 900px; margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* ── MONTH SELECTOR ── */
+    .month-nav {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .month-nav-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 13px; letter-spacing: 3px; color: var(--text-muted);
+    }
+    .month-btn {
+      font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px;
+      background: var(--surface); color: #555;
+      border: 2px solid var(--border); padding: 7px 14px;
+      border-radius: 2px; cursor: pointer; transition: all .18s;
+    }
+    .month-btn.active { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .month-btn:hover:not(.active) { color: var(--text); border-color: #444; }
+
+    /* ── PROFILE CHIPS ── */
+    .profile-section { margin-bottom: 36px; }
+    .profile-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 13px; letter-spacing: 3px;
+      color: var(--text-muted); margin-bottom: 14px;
+    }
+    .profile-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip {
+      font-family: 'Bangers', cursive; font-size: 14px; letter-spacing: 1.5px;
+      background: var(--surface); color: #555;
+      border: 2px solid var(--border); padding: 9px 18px;
+      border-radius: 2px; cursor: pointer;
+      transition: all .2s; user-select: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .chip .chip-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #333; flex-shrink: 0; transition: background .2s;
+    }
+    .chip.active {
+      background: rgba(245,194,0,.12);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+    .chip.active .chip-dot { background: var(--gold); }
+    .chip:hover:not(.active) { color: var(--text); border-color: #444; }
+
+    /* ── BOARD ── */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── CARDS ── */
+    .hito-card {
+      background: var(--surface);
+      border: 3px solid var(--gold);
+      box-shadow: 6px 6px 0 var(--gold);
+      padding: 22px 20px 18px;
+      border-radius: 2px;
+      position: relative;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      opacity: 0; transform: translateY(16px);
+      animation: cardIn .35s forwards;
+    }
+    .hito-card.alert-red {
+      border-color: var(--red);
+      box-shadow: 6px 6px 0 var(--red);
+    }
+    .hito-card.alert-yellow {
+      border-color: var(--yellow);
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+    .hito-card:hover { transform: translate(-3px,-3px); }
+    .hito-card.alert-red:hover { box-shadow: 9px 9px 0 var(--red); }
+    .hito-card.alert-yellow:hover { box-shadow: 9px 9px 0 var(--yellow); }
+    .hito-card:not(.alert-red):not(.alert-yellow):hover { box-shadow: 9px 9px 0 var(--gold); }
+
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .alert-badge {
+      position: absolute; top: -12px; right: 14px;
+      font-family: 'Bangers', cursive; font-size: 12px; letter-spacing: 2px;
+      padding: 3px 10px; border-radius: 2px;
+      border: 2px solid;
+    }
+    .alert-badge.red { background: var(--red); border-color: var(--red); color: #fff; }
+    .alert-badge.yellow { background: var(--yellow); border-color: var(--yellow); color: #000; }
+    .alert-badge.green { background: transparent; border-color: var(--gold); color: var(--gold); }
+
+    .hito-vence {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--text-muted); margin-bottom: 6px;
+    }
+    .hito-date {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(26px,4vw,34px);
+      letter-spacing: 2px; line-height: 1;
+      margin-bottom: 10px;
+    }
+    .hito-card.alert-red .hito-date { color: var(--red); }
+    .hito-card.alert-yellow .hito-date { color: var(--yellow); }
+    .hito-card:not(.alert-red):not(.alert-yellow) .hito-date { color: var(--gold); }
+
+    .hito-title {
+      font-size: 15px; font-weight: 700;
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .hito-desc {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.55; margin-bottom: 12px;
+    }
+    .hito-tip {
+      font-size: 12px; color: #4a4a4a;
+      background: rgba(245,194,0,.06);
+      border-left: 3px solid var(--gold);
+      padding: 8px 10px; border-radius: 0 2px 2px 0;
+      line-height: 1.5;
+    }
+    .hito-tags {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px;
+    }
+    .hito-tag {
+      font-family: 'Bebas Neue', cursive; font-size: 10px;
+      letter-spacing: 2px; color: #333;
+      border: 1px solid #222; padding: 2px 7px; border-radius: 2px;
+    }
+
+    /* ── CALCULATOR CARDS ── */
+    .calc-card {
+      background: var(--surface);
+      border: 3px solid var(--gold);
+      box-shadow: 6px 6px 0 var(--gold);
+      padding: 22px 20px 18px;
+      border-radius: 2px;
+      opacity: 0; transform: translateY(16px);
+      animation: cardIn .35s forwards;
+    }
+    .calc-card-title {
+      font-family: 'Bangers', cursive;
+      font-size: 20px; letter-spacing: 2px;
+      margin-bottom: 4px; color: var(--gold);
+    }
+    .calc-card-desc {
+      font-size: 13px; color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .calc-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+    .calc-field { flex: 1; min-width: 160px; }
+    .calc-field label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--text-muted); display: block; margin-bottom: 6px;
+    }
+    .calc-field input[type="date"] {
+      width: 100%;
+      background: var(--surface2); border: 2px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: 14px; padding: 10px 12px; border-radius: 3px;
+      outline: none; transition: border-color .2s; color-scheme: dark;
+    }
+    .calc-field input[type="date"]:focus { border-color: var(--gold); }
+    .calc-result {
+      margin-top: 14px; padding: 14px 16px;
+      background: rgba(245,194,0,.08);
+      border: 1.5px solid rgba(245,194,0,.3);
+      border-radius: 3px; display: none;
+    }
+    .calc-result.visible { display: block; }
+    .calc-result-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px; letter-spacing: 3px;
+      color: var(--text-muted); margin-bottom: 4px;
+    }
+    .calc-result-value {
+      font-family: 'Bangers', cursive;
+      font-size: 22px; letter-spacing: 1.5px;
+      color: var(--gold);
+    }
+    .calc-result-sub {
+      font-size: 12px; color: var(--text-muted); margin-top: 2px;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center; padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .empty-state-icon {
+      font-size: 48px; margin-bottom: 16px;
+    }
+    .empty-state h3 {
+      font-family: 'Bangers', cursive; font-size: 24px;
+      letter-spacing: 2px; color: #333; margin-bottom: 8px;
+    }
+
+    /* ── INFEED ADSENSE ── */
+    .adsense-infeed {
+      grid-column: 1 / -1;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      display: flex; align-items: center;
+      gap: 16px; margin: 40px 0 24px;
+    }
+    .section-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .section-divider-text {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 13px; letter-spacing: 4px;
+      color: var(--text-muted); white-space: nowrap;
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    .footer-logo img { height: 32px; margin-bottom: 16px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .board { grid-template-columns: 1fr; }
+      .month-nav { gap: 8px; }
+      .month-btn { font-size: 13px; padding: 6px 10px; }
+      .chip { font-size: 12px; padding: 7px 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hito-card, .calc-card { animation: none; opacity: 1; transform: none; }
+      .reveal { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="read-progress"></div>
+
+<!-- Nav -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" id="hamburger-btn" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="closeMobileMenu()">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="closeMobileMenu()">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="closeMobileMenu()">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="closeMobileMenu()">Contacto</a>
+  <a href="../../inventory.html">Mister Inventario</a>
+  <a href="/herramientas/">← Volver a Herramientas</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="https://mistercontador.cl/">Inicio</a> &rsaquo;
+    <a href="/herramientas/">Herramientas</a> &rsaquo;
+    Calendario Tributario
+  </div>
+  <h1>EL SANTORAL<br><span class="gold">TRIBUTARIO 2026</span></h1>
+  <p class="subtitle">Nunca más te pille la fecha. Alertas tributarias personalizadas para tu PyME.</p>
+
+  <div class="mascot-tip">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    <div class="speech-bubble">
+      <strong>Activa tu perfil</strong> y el tablero filtra solo lo que te aplica. Los colores te dicen si vas bien, si estás a tiempo o si <strong>¡URGE!</strong> mover el lápiz.
+    </div>
+  </div>
+</div>
+
+<!-- AdSense leaderboard -->
+<div style="max-width:900px;margin:24px auto 0;padding:0 20px;">
+  <div id="adsense-leaderboard" class="adsense-slot">
+    <!-- ADSENSE: pegar aquí el bloque &lt;ins&gt; de Google AdSense (728×90 / auto responsive) -->
+  </div>
+</div>
+
+<!-- Main -->
+<div class="cal-wrapper">
+
+  <!-- Month selector -->
+  <div class="reveal">
+    <p class="profile-title">MES EN CURSO</p>
+    <div class="month-nav" id="month-nav">
+      <!-- injected by JS -->
+    </div>
+  </div>
+
+  <!-- Profile chips -->
+  <div class="profile-section reveal">
+    <p class="profile-title">TU PERFIL — ACTIVA LO QUE TE APLICA</p>
+    <div class="profile-chips">
+      <div class="chip" data-tag="freelance" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+        <span class="chip-dot"></span>💼 Soy Independiente / Freelance
+      </div>
+      <div class="chip" data-tag="trabajadores" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+        <span class="chip-dot"></span>👥 Tengo Trabajadores
+      </div>
+      <div class="chip" data-tag="alta-rotacion" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+        <span class="chip-dot"></span>🔄 Alta Rotación de Personal
+      </div>
+      <div class="chip" data-tag="local" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+        <span class="chip-dot"></span>🏪 Tengo Local Físico
+      </div>
+    </div>
+  </div>
+
+  <!-- Calculadoras especiales -->
+  <div class="section-divider reveal">
+    <div class="section-divider-line"></div>
+    <span class="section-divider-text">CALCULA TU PLAZO ESPECÍFICO</span>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="board" id="calc-board">
+    <!-- injected by JS based on profile -->
+  </div>
+
+  <!-- Board de hitos -->
+  <div class="section-divider reveal" style="margin-top:48px;">
+    <div class="section-divider-line"></div>
+    <span class="section-divider-text" id="board-month-label">VENCIMIENTOS DEL MES</span>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="board" id="hitos-board">
+    <!-- injected by JS -->
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="footer-links">
+    <a href="https://mistercontador.cl/">Inicio</a>
+    <a href="/herramientas/">Herramientas</a>
+    <a href="https://wa.me/56940536523" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://mistercontador.cl/terminos.html">Términos</a>
+    <a href="https://mistercontador.cl/privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+<script>
+/* ─── DATA ─────────────────────────────────────────── */
+const HOLIDAYS_2026 = [
+  '2026-01-01','2026-04-03','2026-04-04','2026-05-01','2026-05-21',
+  '2026-06-29','2026-07-16','2026-08-15','2026-09-18','2026-09-19',
+  '2026-10-12','2026-10-31','2026-11-01','2026-12-08','2026-12-25'
+];
+
+const MONTH_NAMES = [
+  'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'
+];
+
+const HITOS = [
+  {
+    id: 'f29-sin-fe',
+    titulo: 'F29 — Sin Factura Electrónica',
+    descripcion: 'Declaración y pago mensual de IVA para contribuyentes sin factura electrónica.',
+    regla_dia: 12,
+    perfil_tags: ['todos'],
+    tip: 'Si no tienes factura electrónica, tu F29 vence el día 12. Considera pasarte a FE para ganar 8 días más.'
+  },
+  {
+    id: 'f29-con-fe',
+    titulo: 'F29 — Con Factura Electrónica',
+    descripcion: 'Declaración y pago de IVA para contribuyentes con factura electrónica activa (DTE).',
+    regla_dia: 20,
+    perfil_tags: ['todos'],
+    tip: 'La factura electrónica (DTE) te da hasta el día 20. Asegúrate de tener tu clave del SII activa.'
+  },
+  {
+    id: 'previred',
+    titulo: 'PreviRed — Cotizaciones Previsionales',
+    descripcion: 'Pago de cotizaciones AFP, Salud y Seguro de Cesantía de tus trabajadores.',
+    regla_dia: 13,
+    perfil_tags: ['trabajadores','alta-rotacion'],
+    tip: 'El no pago de cotizaciones conlleva multas y reajustes. PreviRed acepta pago hasta las 23:59 del día 13.'
+  },
+  {
+    id: 'libro-rem',
+    titulo: 'Libro de Remuneraciones DT',
+    descripcion: 'Actualización del libro de remuneraciones electrónico en la Dirección del Trabajo.',
+    regla_dia: 15,
+    perfil_tags: ['trabajadores','alta-rotacion'],
+    tip: 'El Libro de Remuneraciones Electrónico (LRE) debe estar actualizado antes del día 15 de cada mes.'
+  },
+  {
+    id: 'iva-exportadores',
+    titulo: 'IVA Exportadores (F29 Especial)',
+    descripcion: 'Declaración especial de IVA para exportadores con derecho a crédito fiscal.',
+    regla_dia: 20,
+    perfil_tags: ['todos'],
+    tip: 'Si exportas bienes o servicios, puedes recuperar el IVA del crédito fiscal vía F29 o solicitud especial.'
+  },
+  {
+    id: 'patentes-enero',
+    titulo: 'Patente Municipal — 1° Semestre',
+    descripcion: 'Pago de patente comercial correspondiente al primer semestre del año.',
+    regla_dia: 31,
+    solo_meses: [0],
+    perfil_tags: ['local','todos'],
+    tip: 'Las patentes municipales se pagan en dos cuotas: enero y julio. Consulta tu municipio para el monto exacto.'
+  },
+  {
+    id: 'patentes-julio',
+    titulo: 'Patente Municipal — 2° Semestre',
+    descripcion: 'Pago de patente comercial correspondiente al segundo semestre del año.',
+    regla_dia: 31,
+    solo_meses: [6],
+    perfil_tags: ['local','todos'],
+    tip: 'Segunda cuota de patente municipal. Si tienes más de un local, recuerda pagar en cada municipio.'
+  }
+];
+
+/* ─── HELPERS ────────────────────────────────────────── */
+function isHoliday(date) {
+  const str = date.toISOString().slice(0,10);
+  return HOLIDAYS_2026.includes(str);
+}
+
+function nextWorkday(date) {
+  const d = new Date(date);
+  while (d.getDay() === 0 || d.getDay() === 6 || isHoliday(d)) {
+    d.setDate(d.getDate() + 1);
+  }
+  return d;
+}
+
+function addWorkdays(date, n) {
+  const d = new Date(date);
+  let count = 0;
+  while (count < n) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() !== 0 && d.getDay() !== 6 && !isHoliday(d)) count++;
+  }
+  return d;
+}
+
+function addDays(date, n) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d;
+}
+
+function vencimientoReal(year, month, dia) {
+  let d = new Date(year, month, dia);
+  d = nextWorkday(d);
+  return d;
+}
+
+function formatDate(d) {
+  const days = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
+}
+
+function formatDateFull(d) {
+  return `${MONTH_NAMES[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+}
+
+function diasRestantes(vence) {
+  const now = new Date();
+  const hoy = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const v = new Date(vence.getFullYear(), vence.getMonth(), vence.getDate());
+  return Math.round((v - hoy) / 86400000);
+}
+
+function alertLevel(dias) {
+  if (dias < 0) return 'vencido';
+  if (dias < 3) return 'rojo';
+  if (dias < 7) return 'amarillo';
+  return 'verde';
+}
+
+/* ─── STATE ──────────────────────────────────────────── */
+const today = new Date();
+let activeMonth = today.getMonth();
+let activeProfiles = new Set();
+
+/* ─── URL SYNC ───────────────────────────────────────── */
+function readURL() {
+  const params = new URLSearchParams(window.location.search);
+  const perfil = params.get('perfil');
+  if (perfil) {
+    perfil.split(',').forEach(p => p.trim() && activeProfiles.add(p.trim()));
+  }
+}
+
+function writeURL() {
+  const params = new URLSearchParams(window.location.search);
+  if (activeProfiles.size) {
+    params.set('perfil', [...activeProfiles].join(','));
+  } else {
+    params.delete('perfil');
+  }
+  const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+  history.replaceState(null, '', newUrl);
+}
+
+/* ─── CHIPS ──────────────────────────────────────────── */
+function toggleChip(el) {
+  const tag = el.dataset.tag;
+  if (activeProfiles.has(tag)) {
+    activeProfiles.delete(tag);
+    el.classList.remove('active');
+    el.setAttribute('aria-checked','false');
+  } else {
+    activeProfiles.add(tag);
+    el.classList.add('active');
+    el.setAttribute('aria-checked','true');
+  }
+  writeURL();
+  render();
+}
+
+function syncChipsFromState() {
+  document.querySelectorAll('.chip').forEach(el => {
+    const tag = el.dataset.tag;
+    if (activeProfiles.has(tag)) {
+      el.classList.add('active');
+      el.setAttribute('aria-checked','true');
+    }
+  });
+}
+
+/* ─── MONTH NAV ──────────────────────────────────────── */
+function buildMonthNav() {
+  const nav = document.getElementById('month-nav');
+  nav.innerHTML = '';
+  MONTH_NAMES.forEach((name, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'month-btn' + (i === activeMonth ? ' active' : '');
+    btn.textContent = name.slice(0,3).toUpperCase();
+    btn.onclick = () => { activeMonth = i; buildMonthNav(); render(); };
+    nav.appendChild(btn);
+  });
+}
+
+/* ─── ADSENSE INFEED (every 4 cards) ─────────────────── */
+let infeedCount = 0;
+function maybeInfeed(board, cardIndex) {
+  if (cardIndex > 0 && cardIndex % 4 === 0) {
+    infeedCount++;
+    const div = document.createElement('div');
+    div.className = 'adsense-infeed';
+    div.innerHTML = `<div class="adsense-slot" id="adsense-infeed-${infeedCount}"><!-- ADSENSE infeed ${infeedCount} --></div>`;
+    board.appendChild(div);
+  }
+}
+
+/* ─── RENDER BOARD ───────────────────────────────────── */
+function render() {
+  renderCalcCards();
+  renderHitos();
+}
+
+function renderCalcCards() {
+  const board = document.getElementById('calc-board');
+  board.innerHTML = '';
+  let idx = 0;
+
+  const showAll = activeProfiles.size === 0;
+
+  // Registro Contrato DT
+  const showDT = showAll || activeProfiles.has('trabajadores') || activeProfiles.has('alta-rotacion');
+  if (showDT) {
+    maybeInfeed(board, idx);
+    board.appendChild(buildDTCard());
+    idx++;
+  }
+
+  // Aceptación de Factura
+  const showFact = showAll || activeProfiles.has('todos') || true; // todos siempre
+  if (showFact) {
+    maybeInfeed(board, idx);
+    board.appendChild(buildFacturaCard());
+    idx++;
+  }
+
+  if (idx === 0) board.style.display = 'none';
+  else board.style.display = 'grid';
+}
+
+function buildDTCard() {
+  const card = document.createElement('div');
+  card.className = 'calc-card';
+  card.style.animationDelay = '0ms';
+  card.innerHTML = `
+    <div class="calc-card-title">📋 REGISTRO CONTRATO DT</div>
+    <div class="calc-card-desc">¿Cuándo ingresó el trabajador? Calcula el plazo de 15 días hábiles para registrar en la DT.</div>
+    <div class="calc-row">
+      <div class="calc-field">
+        <label>Fecha de ingreso</label>
+        <input type="date" id="dt-fecha" max="${today.toISOString().slice(0,10)}" onchange="calcDT(this.value)">
+      </div>
+    </div>
+    <div class="calc-result" id="dt-result">
+      <div class="calc-result-label">TU PLAZO VENCE EL</div>
+      <div class="calc-result-value" id="dt-result-value"></div>
+      <div class="calc-result-sub" id="dt-result-sub"></div>
+    </div>
+    <div class="hito-tip" style="margin-top:12px;">El empleador tiene 15 días hábiles desde el primer día de trabajo para registrar el contrato en la Dirección del Trabajo.</div>
+    <div class="hito-tags"><span class="hito-tag">TRABAJADORES</span><span class="hito-tag">ALTA ROTACIÓN</span></div>
+  `;
+  return card;
+}
+
+function calcDT(val) {
+  if (!val) return;
+  const base = new Date(val + 'T12:00:00');
+  const vence = addWorkdays(base, 15);
+  const dias = diasRestantes(vence);
+  const el = document.getElementById('dt-result');
+  el.classList.add('visible');
+  document.getElementById('dt-result-value').textContent = formatDateFull(vence);
+  document.getElementById('dt-result-sub').textContent = dias < 0
+    ? '⚠️ Plazo vencido — regula cuanto antes'
+    : dias === 0
+    ? '¡Hoy es el último día!'
+    : `Quedan ${dias} día${dias===1?'':'s'}`;
+}
+
+function buildFacturaCard() {
+  const card = document.createElement('div');
+  card.className = 'calc-card';
+  card.style.animationDelay = '80ms';
+  card.innerHTML = `
+    <div class="calc-card-title">🧾 ACEPTACIÓN DE FACTURA</div>
+    <div class="calc-card-desc">Calcula los 8 días corridos para aceptar o reclamar una factura electrónica recibida.</div>
+    <div class="calc-row">
+      <div class="calc-field">
+        <label>Fecha de emisión de la factura</label>
+        <input type="date" id="fact-fecha" onchange="calcFactura(this.value)">
+      </div>
+    </div>
+    <div class="calc-result" id="fact-result">
+      <div class="calc-result-label">PLAZO DE ACEPTACIÓN HASTA EL</div>
+      <div class="calc-result-value" id="fact-result-value"></div>
+      <div class="calc-result-sub" id="fact-result-sub"></div>
+    </div>
+    <div class="hito-tip" style="margin-top:12px;">Si no rechazas una factura dentro de los 8 días corridos, se entiende aceptada tácitamente y el pago puede ser exigible.</div>
+    <div class="hito-tags"><span class="hito-tag">TODOS</span></div>
+  `;
+  return card;
+}
+
+function calcFactura(val) {
+  if (!val) return;
+  const base = new Date(val + 'T12:00:00');
+  const vence = addDays(base, 8);
+  const dias = diasRestantes(vence);
+  const el = document.getElementById('fact-result');
+  el.classList.add('visible');
+  document.getElementById('fact-result-value').textContent = formatDateFull(vence);
+  document.getElementById('fact-result-sub').textContent = dias < 0
+    ? '⚠️ Plazo vencido — la factura fue aceptada tácitamente'
+    : dias === 0
+    ? '¡Hoy es el último día para reclamar!'
+    : `Quedan ${dias} día${dias===1?'':'s'} para aceptar o reclamar`;
+}
+
+function renderHitos() {
+  const board = document.getElementById('hitos-board');
+  board.innerHTML = '';
+  infeedCount = 0;
+
+  const label = document.getElementById('board-month-label');
+  label.textContent = `VENCIMIENTOS — ${MONTH_NAMES[activeMonth].toUpperCase()} 2026`;
+
+  const year = 2026;
+  const showAll = activeProfiles.size === 0;
+
+  const hitosFiltrados = HITOS.filter(h => {
+    // filtro por mes
+    if (h.solo_meses && !h.solo_meses.includes(activeMonth)) return false;
+    // filtro por perfil
+    if (showAll) return true;
+    if (h.perfil_tags.includes('todos')) return true;
+    return h.perfil_tags.some(t => activeProfiles.has(t));
+  });
+
+  if (hitosFiltrados.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state';
+    empty.innerHTML = `
+      <div class="empty-state-icon">📭</div>
+      <h3>SIN VENCIMIENTOS</h3>
+      <p>No hay hitos para tu perfil en este mes. Activa más filtros o revisa otro mes.</p>
+    `;
+    board.appendChild(empty);
+    return;
+  }
+
+  hitosFiltrados.forEach((h, idx) => {
+    maybeInfeed(board, idx);
+    const vence = vencimientoReal(year, activeMonth, h.regla_dia);
+    const dias = diasRestantes(vence);
+    const level = alertLevel(dias);
+
+    const card = document.createElement('div');
+    card.className = 'hito-card' + (level === 'rojo' ? ' alert-red' : level === 'amarillo' ? ' alert-yellow' : '');
+    card.style.animationDelay = (idx * 60) + 'ms';
+
+    let badgeClass = level === 'rojo' ? 'red' : level === 'amarillo' ? 'yellow' : 'green';
+    let badgeText = level === 'vencido' ? 'VENCIDO' : level === 'rojo' ? 'URGENTE' : level === 'amarillo' ? 'PRONTO' : 'OK';
+
+    const tagsHTML = h.perfil_tags
+      .filter(t => t !== 'todos')
+      .map(t => `<span class="hito-tag">${t.replace('-',' ').toUpperCase()}</span>`)
+      .join('');
+
+    card.innerHTML = `
+      <span class="alert-badge ${badgeClass}">${badgeText}</span>
+      <div class="hito-vence">VENCE EL</div>
+      <div class="hito-date">${formatDate(vence).toUpperCase()}</div>
+      <div class="hito-title">${h.titulo}</div>
+      <div class="hito-desc">${h.descripcion}</div>
+      ${h.tip ? `<div class="hito-tip">💡 ${h.tip}</div>` : ''}
+      ${tagsHTML ? `<div class="hito-tags">${tagsHTML}</div>` : ''}
+    `;
+    board.appendChild(card);
+  });
+}
+
+/* ─── NAV ────────────────────────────────────────────── */
+function toggleMenu(btn) {
+  const menu = document.getElementById('mobile-menu');
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', !expanded);
+  menu.classList.toggle('active', !expanded);
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('active');
+  document.getElementById('hamburger-btn').setAttribute('aria-expanded','false');
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────── */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ─── PROGRESS BAR + NAV ─────────────────────────────── */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+
+  const bar = document.getElementById('read-progress');
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.width = (total > 0 ? (window.scrollY / total * 100) : 0) + '%';
+});
+
+/* ─── INIT ────────────────────────────────────────────── */
+readURL();
+buildMonthNav();
+syncChipsFromState();
+render();
+</script>
+</body>
+</html>
