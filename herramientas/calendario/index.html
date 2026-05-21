@@ -423,6 +423,99 @@
       color: var(--text-muted); white-space: nowrap;
     }
 
+    /* ── SECTION HEADERS ── */
+    .seccion-header {
+      display: flex; align-items: center; gap: 14px;
+      grid-column: 1 / -1; margin: 36px 0 20px;
+    }
+    .seccion-line { flex: 1; height: 1px; background: var(--border); }
+    .seccion-icon { font-size: 20px; flex-shrink: 0; }
+    .seccion-title {
+      font-family: 'Bebas Neue', cursive; font-size: 15px;
+      letter-spacing: 4px; color: var(--gold); white-space: nowrap;
+    }
+    .seccion-board { margin-bottom: 0; }
+
+    /* ── MINI-CALENDAR ── */
+    .mini-cal-wrapper {
+      margin-top: 56px;
+      background: var(--surface);
+      border: 3px solid var(--border);
+      border-radius: 2px;
+      padding: 28px 24px 22px;
+    }
+    .mini-cal-heading {
+      font-family: 'Bangers', cursive; font-size: 22px;
+      letter-spacing: 3px; color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .mini-cal-sub {
+      font-size: 12px; color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .mcal-header {
+      display: grid; grid-template-columns: repeat(7,1fr);
+      margin-bottom: 4px;
+    }
+    .mcal-dh {
+      font-family: 'Bebas Neue', cursive; font-size: 12px;
+      letter-spacing: 2px; color: var(--text-muted);
+      text-align: center; padding: 4px 0;
+    }
+    .mcal-grid {
+      display: grid; grid-template-columns: repeat(7,1fr); gap: 4px;
+    }
+    .mcal-cell {
+      aspect-ratio: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2px;
+      border-radius: 3px; border: 1.5px solid transparent;
+      position: relative; cursor: default;
+      transition: background .15s;
+    }
+    .mcal-cell.empty { background: none; }
+    .mcal-num {
+      font-family: 'Inter', sans-serif; font-size: clamp(11px,1.8vw,14px);
+      font-weight: 600; line-height: 1;
+    }
+    .mcal-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+    }
+    .mcal-cell.is-today {
+      background: rgba(245,194,0,.1);
+      border-color: var(--gold);
+    }
+    .mcal-cell.is-today .mcal-num { color: var(--gold); }
+    .mcal-cell.has-event.level-verde  { background: rgba(76,175,80,.08); border-color: rgba(76,175,80,.35); }
+    .mcal-cell.has-event.level-amarillo { background: rgba(255,193,7,.1); border-color: rgba(255,193,7,.5); }
+    .mcal-cell.has-event.level-rojo   { background: rgba(229,57,53,.12); border-color: rgba(229,57,53,.5); }
+    .mcal-cell.has-event.level-vencido { background: rgba(100,100,100,.1); border-color: #333; }
+    .mcal-cell.has-event.level-verde .mcal-dot   { background: #4CAF50; }
+    .mcal-cell.has-event.level-amarillo .mcal-dot { background: var(--yellow); }
+    .mcal-cell.has-event.level-rojo .mcal-dot    { background: var(--red); }
+    .mcal-cell.has-event.level-vencido .mcal-dot  { background: #555; }
+    .mcal-legend {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      margin-top: 16px; padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .mcal-leg-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--text-muted);
+    }
+    .mcal-leg-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+    .mcal-leg-dot.level-rojo     { background: var(--red); }
+    .mcal-leg-dot.level-amarillo { background: var(--yellow); }
+    .mcal-leg-dot.level-verde    { background: #4CAF50; }
+    .mcal-leg-dot.is-today-dot   { background: var(--gold); }
+
+    @media (max-width: 480px) {
+      .mcal-num { font-size: 10px; }
+      .mcal-dot { width: 5px; height: 5px; }
+      .mini-cal-wrapper { padding: 18px 12px 16px; }
+    }
+
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -561,8 +654,15 @@
     <div class="section-divider-line"></div>
   </div>
 
-  <div class="board" id="hitos-board">
+  <div id="hitos-board">
     <!-- injected by JS -->
+  </div>
+
+  <!-- Mini-calendario -->
+  <div class="mini-cal-wrapper reveal">
+    <div class="mini-cal-heading" id="mini-cal-heading">MAYO 2026</div>
+    <div class="mini-cal-sub">Las fechas marcadas corresponden a los vencimientos de tu perfil</div>
+    <div id="mini-calendar"><!-- injected by JS --></div>
   </div>
 
 </div>
@@ -598,6 +698,7 @@ const MONTH_NAMES = [
 const HITOS = [
   {
     id: 'f29-sin-fe',
+    seccion: 'Cumplimiento Tributario',
     titulo: 'F29 — Sin Factura Electrónica',
     descripcion: 'Declaración y pago mensual de IVA para contribuyentes sin factura electrónica.',
     regla_dia: 12,
@@ -605,7 +706,17 @@ const HITOS = [
     tip: 'Si no tienes factura electrónica, tu F29 vence el día 12. Considera pasarte a FE para ganar 8 días más.'
   },
   {
+    id: 'iva-exportadores',
+    seccion: 'Cumplimiento Tributario',
+    titulo: 'IVA Exportadores (F29 Especial)',
+    descripcion: 'Declaración especial de IVA para exportadores con derecho a crédito fiscal.',
+    regla_dia: 20,
+    perfil_tags: ['todos'],
+    tip: 'Si exportas bienes o servicios, puedes recuperar el IVA del crédito fiscal vía F29 o solicitud especial.'
+  },
+  {
     id: 'f29-con-fe',
+    seccion: 'Cumplimiento Tributario',
     titulo: 'F29 — Con Factura Electrónica',
     descripcion: 'Declaración y pago de IVA para contribuyentes con factura electrónica activa (DTE).',
     regla_dia: 20,
@@ -614,6 +725,7 @@ const HITOS = [
   },
   {
     id: 'previred',
+    seccion: 'Laboral y Previsional',
     titulo: 'PreviRed — Cotizaciones Previsionales',
     descripcion: 'Pago de cotizaciones AFP, Salud y Seguro de Cesantía de tus trabajadores.',
     regla_dia: 13,
@@ -622,6 +734,7 @@ const HITOS = [
   },
   {
     id: 'libro-rem',
+    seccion: 'Laboral y Previsional',
     titulo: 'Libro de Remuneraciones DT',
     descripcion: 'Actualización del libro de remuneraciones electrónico en la Dirección del Trabajo.',
     regla_dia: 15,
@@ -629,15 +742,8 @@ const HITOS = [
     tip: 'El Libro de Remuneraciones Electrónico (LRE) debe estar actualizado antes del día 15 de cada mes.'
   },
   {
-    id: 'iva-exportadores',
-    titulo: 'IVA Exportadores (F29 Especial)',
-    descripcion: 'Declaración especial de IVA para exportadores con derecho a crédito fiscal.',
-    regla_dia: 20,
-    perfil_tags: ['todos'],
-    tip: 'Si exportas bienes o servicios, puedes recuperar el IVA del crédito fiscal vía F29 o solicitud especial.'
-  },
-  {
     id: 'patentes-enero',
+    seccion: 'Municipal',
     titulo: 'Patente Municipal — 1° Semestre',
     descripcion: 'Pago de patente comercial correspondiente al primer semestre del año.',
     regla_dia: 31,
@@ -647,6 +753,7 @@ const HITOS = [
   },
   {
     id: 'patentes-julio',
+    seccion: 'Municipal',
     titulo: 'Patente Municipal — 2° Semestre',
     descripcion: 'Pago de patente comercial correspondiente al segundo semestre del año.',
     regla_dia: 31,
@@ -903,67 +1010,159 @@ function calcFactura(val) {
     : `Quedan ${dias} día${dias===1?'':'s'} para aceptar o reclamar`;
 }
 
+const SECCION_ORDER = ['Cumplimiento Tributario','Laboral y Previsional','Municipal'];
+const SECCION_ICON  = { 'Cumplimiento Tributario':'📋', 'Laboral y Previsional':'👥', 'Municipal':'🏛️' };
+
+function buildHitoCard(h, idx, vence) {
+  const dias  = diasRestantes(vence);
+  const level = alertLevel(dias);
+  const card  = document.createElement('div');
+  card.className = 'hito-card' + (level === 'rojo' ? ' alert-red' : level === 'amarillo' ? ' alert-yellow' : '');
+  card.style.animationDelay = (idx * 55) + 'ms';
+
+  const badgeClass = level === 'rojo' ? 'red' : level === 'amarillo' ? 'yellow' : 'green';
+  const badgeText  = level === 'vencido' ? 'VENCIDO' : level === 'rojo' ? 'URGENTE' : level === 'amarillo' ? 'PRONTO' : 'OK';
+
+  const tagsHTML = h.perfil_tags
+    .filter(t => t !== 'todos')
+    .map(t => `<span class="hito-tag">${t.replace('-',' ').toUpperCase()}</span>`)
+    .join('');
+
+  card.innerHTML = `
+    <span class="alert-badge ${badgeClass}">${badgeText}</span>
+    <div class="hito-vence">VENCE EL</div>
+    <div class="hito-date">${formatDate(vence).toUpperCase()}</div>
+    <div class="hito-title">${h.titulo}</div>
+    <div class="hito-desc">${h.descripcion}</div>
+    ${h.tip ? `<div class="hito-tip">💡 ${h.tip}</div>` : ''}
+    ${tagsHTML ? `<div class="hito-tags">${tagsHTML}</div>` : ''}
+  `;
+  return card;
+}
+
 function renderHitos() {
-  const board = document.getElementById('hitos-board');
-  board.innerHTML = '';
+  const wrapper = document.getElementById('hitos-board');
+  wrapper.innerHTML = '';
   infeedCount = 0;
 
   const label = document.getElementById('board-month-label');
   label.textContent = `VENCIMIENTOS — ${MONTH_NAMES[activeMonth].toUpperCase()} 2026`;
 
-  const year = 2026;
+  const year   = 2026;
   const showAll = activeProfiles.size === 0;
 
-  const hitosFiltrados = HITOS.filter(h => {
-    // filtro por mes
-    if (h.solo_meses && !h.solo_meses.includes(activeMonth)) return false;
-    // filtro por perfil
-    if (showAll) return true;
-    if (h.perfil_tags.includes('todos')) return true;
-    return h.perfil_tags.some(t => activeProfiles.has(t));
-  });
+  const filtrados = HITOS
+    .filter(h => {
+      if (h.solo_meses && !h.solo_meses.includes(activeMonth)) return false;
+      if (showAll) return true;
+      if (h.perfil_tags.includes('todos')) return true;
+      return h.perfil_tags.some(t => activeProfiles.has(t));
+    })
+    .map(h => ({ ...h, _vence: vencimientoReal(year, activeMonth, h.regla_dia) }))
+    .sort((a, b) => a._vence - b._vence);
 
-  if (hitosFiltrados.length === 0) {
+  if (filtrados.length === 0) {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
-    empty.innerHTML = `
-      <div class="empty-state-icon">📭</div>
-      <h3>SIN VENCIMIENTOS</h3>
-      <p>No hay hitos para tu perfil en este mes. Activa más filtros o revisa otro mes.</p>
-    `;
-    board.appendChild(empty);
+    empty.innerHTML = `<div class="empty-state-icon">📭</div><h3>SIN VENCIMIENTOS</h3><p>No hay hitos para tu perfil en este mes. Activa más filtros o revisa otro mes.</p>`;
+    wrapper.appendChild(empty);
+    renderMiniCalendar([]);
     return;
   }
 
-  hitosFiltrados.forEach((h, idx) => {
-    maybeInfeed(board, idx);
-    const vence = vencimientoReal(year, activeMonth, h.regla_dia);
-    const dias = diasRestantes(vence);
-    const level = alertLevel(dias);
-
-    const card = document.createElement('div');
-    card.className = 'hito-card' + (level === 'rojo' ? ' alert-red' : level === 'amarillo' ? ' alert-yellow' : '');
-    card.style.animationDelay = (idx * 60) + 'ms';
-
-    let badgeClass = level === 'rojo' ? 'red' : level === 'amarillo' ? 'yellow' : 'green';
-    let badgeText = level === 'vencido' ? 'VENCIDO' : level === 'rojo' ? 'URGENTE' : level === 'amarillo' ? 'PRONTO' : 'OK';
-
-    const tagsHTML = h.perfil_tags
-      .filter(t => t !== 'todos')
-      .map(t => `<span class="hito-tag">${t.replace('-',' ').toUpperCase()}</span>`)
-      .join('');
-
-    card.innerHTML = `
-      <span class="alert-badge ${badgeClass}">${badgeText}</span>
-      <div class="hito-vence">VENCE EL</div>
-      <div class="hito-date">${formatDate(vence).toUpperCase()}</div>
-      <div class="hito-title">${h.titulo}</div>
-      <div class="hito-desc">${h.descripcion}</div>
-      ${h.tip ? `<div class="hito-tip">💡 ${h.tip}</div>` : ''}
-      ${tagsHTML ? `<div class="hito-tags">${tagsHTML}</div>` : ''}
-    `;
-    board.appendChild(card);
+  // agrupar por sección manteniendo orden de SECCION_ORDER
+  const bySeccion = {};
+  filtrados.forEach(h => {
+    const s = h.seccion || 'Otros';
+    if (!bySeccion[s]) bySeccion[s] = [];
+    bySeccion[s].push(h);
   });
+
+  const secciones = SECCION_ORDER.filter(s => bySeccion[s]);
+  Object.keys(bySeccion).forEach(s => { if (!secciones.includes(s)) secciones.push(s); });
+
+  let globalIdx = 0;
+  secciones.forEach(seccion => {
+    const items = bySeccion[seccion];
+
+    // cabecera de sección
+    const header = document.createElement('div');
+    header.className = 'seccion-header';
+    header.innerHTML = `
+      <div class="seccion-line"></div>
+      <span class="seccion-icon">${SECCION_ICON[seccion] || '📌'}</span>
+      <span class="seccion-title">${seccion.toUpperCase()}</span>
+      <div class="seccion-line"></div>
+    `;
+    wrapper.appendChild(header);
+
+    // grid de cards de esta sección
+    const grid = document.createElement('div');
+    grid.className = 'board seccion-board';
+    items.forEach(h => {
+      maybeInfeed(grid, globalIdx);
+      grid.appendChild(buildHitoCard(h, globalIdx, h._vence));
+      globalIdx++;
+    });
+    wrapper.appendChild(grid);
+  });
+
+  renderMiniCalendar(filtrados);
+}
+
+/* ─── MINI-CALENDAR ──────────────────────────────────── */
+function renderMiniCalendar(hitosConFecha) {
+  const el = document.getElementById('mini-calendar');
+  if (!el) return;
+  const heading = document.getElementById('mini-cal-heading');
+  if (heading) heading.textContent = `${MONTH_NAMES[month].toUpperCase()} ${year}`;
+
+  const year  = 2026;
+  const month = activeMonth;
+  const firstDay = new Date(year, month, 1).getDay(); // 0=Dom
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  // convertir domingo=0 → lunes=0
+  const startOffset = (firstDay + 6) % 7;
+
+  // mapa día → nivel de alerta más urgente
+  const dayMap = {};
+  hitosConFecha.forEach(h => {
+    const d = h._vence.getDate();
+    const level = alertLevel(diasRestantes(h._vence));
+    const priority = { vencido:4, rojo:3, amarillo:2, verde:1 };
+    if (!dayMap[d] || priority[level] > priority[dayMap[d].level]) {
+      dayMap[d] = { level, titulo: h.titulo };
+    }
+  });
+
+  const DAY_HEADERS = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+  let html = `<div class="mcal-header">${DAY_HEADERS.map(d => `<div class="mcal-dh">${d}</div>`).join('')}</div><div class="mcal-grid">`;
+
+  // celdas vacías iniciales
+  for (let i = 0; i < startOffset; i++) html += `<div class="mcal-cell empty"></div>`;
+
+  for (let d = 1; d <= totalDays; d++) {
+    const info  = dayMap[d];
+    const isToday = year === today.getFullYear() && month === today.getMonth() && d === today.getDate();
+    const levelClass = info ? `has-event level-${info.level}` : '';
+    const todayClass = isToday ? ' is-today' : '';
+    html += `<div class="mcal-cell ${levelClass}${todayClass}" title="${info ? info.titulo : ''}">
+      <span class="mcal-num">${d}</span>
+      ${info ? `<span class="mcal-dot"></span>` : ''}
+    </div>`;
+  }
+
+  html += `</div>`;
+
+  // leyenda
+  html += `<div class="mcal-legend">
+    <span class="mcal-leg-item"><span class="mcal-leg-dot level-rojo"></span>Urgente (&lt;3 días)</span>
+    <span class="mcal-leg-item"><span class="mcal-leg-dot level-amarillo"></span>Pronto (&lt;7 días)</span>
+    <span class="mcal-leg-item"><span class="mcal-leg-dot level-verde"></span>OK</span>
+    <span class="mcal-leg-item"><span class="mcal-leg-dot is-today-dot"></span>Hoy</span>
+  </div>`;
+
+  el.innerHTML = html;
 }
 
 /* ─── NAV ────────────────────────────────────────────── */
