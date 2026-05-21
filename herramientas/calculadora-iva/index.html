@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculadora de IVA Chile 2025 | Mister Contador</title>
+  <title>Calculadora de IVA Chile 2026 | Mister Contador</title>
   <meta name="description" content="Calcula el IVA chileno (19%) al instante. Convierte precio neto a total con IVA o desglosa el IVA incluido. Gratis para PyMEs.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-iva/">
@@ -12,7 +12,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://mistercontador.cl/herramientas/calculadora-iva/">
-  <meta property="og:title"       content="Calculadora de IVA Chile 2025 | Mister Contador">
+  <meta property="og:title"       content="Calculadora de IVA Chile 2026 | Mister Contador">
   <meta property="og:description" content="Calcula el IVA chileno (19%) al instante. Neto, IVA y total con un solo clic. Gratis para PyMEs.">
   <meta property="og:image"       content="https://mistercontador.cl/img/og-calculadora.png">
   <meta name="twitter:card"       content="summary_large_image">
@@ -207,6 +207,10 @@
       .hamburger { display: block; }
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
     }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary::before { content: '▶ '; color: var(--gold); }
+  details[open] > summary::before { content: '▼ '; }
+  details:hover { border-color: var(--gold) !important; }
   </style>
 </head>
 <body>
@@ -267,12 +271,12 @@
       <div class="cta-banner-icon">&#129518;</div>
       <div class="cta-banner-text">
         <div class="cta-banner-badge">&#9733; SERVICIO PROFESIONAL</div>
-        <strong>&#191;TIENES DUDAS CON TU <span>IVA O CONTABILIDAD</span>?</strong>
-        <p>Un contador real te responde en minutos &mdash; sin letra chica, sin cobros sorpresa.</p>
+        <strong>&#191;EL IVA TE EST&#193; COMIENDO <span>LA CAJA</span>?</strong>
+        <p>Te ayudamos a ordenar tus ventas, compras y F29 sin hablarte en difícil.</p>
       </div>
       <a href="https://wa.me/56940536523?text=Hola%2C%20calculé%20el%20IVA%20de%20una%20operación%20y%20tengo%20dudas%2C%20%C2%BFme%20pueden%20ayudar%3F" target="_blank" rel="noopener" class="cta-banner-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        CONSULTAR GRATIS
+        QUIERO ORDENAR MI IVA
       </a>
     </div>
   </div>
@@ -280,7 +284,7 @@
   <!-- Speech bubble -->
   <div class="speech-bubble">
     <img src="../../img/logo-oficial.png" alt="Mister Contador">
-    <p>&#191;Sab&#237;as que puedes usar el IVA de tus compras como cr&#233;dito fiscal? &#161;Lleva un buen registro y ahorra en tu declaraci&#243;n!</p>
+    <p>Si tu empresa está afecta a IVA, las compras relacionadas al giro pueden ayudarte a usar crédito fiscal. Pero ojo: no todo IVA se recupera. &#161;Lleva un buen registro!</p>
   </div>
 
   <!-- Mode toggle -->
@@ -311,33 +315,62 @@
     <div class="results-grid">
 
       <div class="result-block" id="block-neto">
-        <div class="result-block-label">NETO (SIN IVA)</div>
+        <div class="result-block-label">PRECIO ANTES DEL IVA</div>
         <div class="result-block-value" id="val-neto">&mdash;</div>
         <div class="result-block-note">Base imponible</div>
         <button class="btn-field-copy" onclick="copyResult('val-neto', this)">&#128203; COPIAR</button>
       </div>
 
       <div class="result-block" id="block-iva">
-        <div class="result-block-label">IVA 19%</div>
+        <div class="result-block-label">IVA QUE DEBES CONSIDERAR</div>
         <div class="result-block-value" id="val-iva">&mdash;</div>
         <div class="result-block-note">Impuesto al valor agregado</div>
         <button class="btn-field-copy" onclick="copyResult('val-iva', this)">&#128203; COPIAR</button>
       </div>
 
       <div class="result-block result-full" id="block-total">
-        <div class="result-block-label">TOTAL CON IVA</div>
+        <div class="result-block-label">PRECIO FINAL PARA TU CLIENTE</div>
         <div class="result-block-value" id="val-total">&mdash;</div>
         <div class="result-block-note">Lo que paga el cliente final</div>
         <button class="btn-field-copy" onclick="copyResult('val-total', this)">&#128203; COPIAR TOTAL</button>
       </div>
 
     </div>
+    <p style="text-align:center;color:var(--text-muted);font-size:13px;margin-top:12px;font-family:'Inter',sans-serif;">Esto te ayuda a cotizar mejor, no perder margen y evitar errores al declarar.</p>
   </div>
 
   <!-- Clear -->
   <div class="clear-row">
     <button class="btn-clear" onclick="clearAll()">&#10005; Limpiar</button>
   </div>
+
+  <!-- FAQ SEO -->
+  <section style="max-width:680px;margin:0 auto 48px;padding:0 16px;">
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,4vw,36px);color:var(--gold);letter-spacing:2px;margin-bottom:24px;">PREGUNTAS FRECUENTES SOBRE EL IVA</h2>
+    <div class="faq-list" style="display:flex;flex-direction:column;gap:12px;">
+
+      <details style="background:var(--surface);border:2px solid var(--border);padding:16px 20px;">
+        <summary style="font-family:'Inter',sans-serif;font-weight:700;color:var(--text);cursor:pointer;list-style:none;">¿Cómo calcular el IVA en Chile?</summary>
+        <p style="font-family:'Inter',sans-serif;color:var(--text-muted);font-size:14px;margin-top:10px;line-height:1.6;">El IVA en Chile es del 19%. Para calcularlo, multiplica el precio neto por 0.19. Por ejemplo: $100.000 neto × 0.19 = $19.000 de IVA. El total a pagar sería $119.000.</p>
+      </details>
+
+      <details style="background:var(--surface);border:2px solid var(--border);padding:16px 20px;">
+        <summary style="font-family:'Inter',sans-serif;font-weight:700;color:var(--text);cursor:pointer;list-style:none;">¿Cómo sacar el IVA incluido de un precio?</summary>
+        <p style="font-family:'Inter',sans-serif;color:var(--text-muted);font-size:14px;margin-top:10px;line-height:1.6;">Si ya tienes el precio con IVA incluido, divídelo por 1.19 para obtener el neto. Ejemplo: $119.000 ÷ 1.19 = $100.000 neto. El IVA sería la diferencia: $19.000.</p>
+      </details>
+
+      <details style="background:var(--surface);border:2px solid var(--border);padding:16px 20px;">
+        <summary style="font-family:'Inter',sans-serif;font-weight:700;color:var(--text);cursor:pointer;list-style:none;">¿Cuál es la diferencia entre neto, IVA y total?</summary>
+        <p style="font-family:'Inter',sans-serif;color:var(--text-muted);font-size:14px;margin-top:10px;line-height:1.6;"><strong style="color:var(--text);">Neto</strong> es el precio antes del impuesto. <strong style="color:var(--text);">IVA</strong> es el impuesto del 19% que se agrega. <strong style="color:var(--text);">Total</strong> es lo que finalmente paga el cliente (neto + IVA). En tus boletas y facturas siempre verás los tres por separado.</p>
+      </details>
+
+      <details style="background:var(--surface);border:2px solid var(--border);padding:16px 20px;">
+        <summary style="font-family:'Inter',sans-serif;font-weight:700;color:var(--text);cursor:pointer;list-style:none;">¿El IVA de mis compras siempre se puede usar como crédito fiscal?</summary>
+        <p style="font-family:'Inter',sans-serif;color:var(--text-muted);font-size:14px;margin-top:10px;line-height:1.6;">No siempre. Solo pueden usar crédito fiscal los contribuyentes afectos a IVA, y únicamente por compras relacionadas al giro del negocio respaldadas con documentos tributarios válidos (facturas). Gastos personales u operaciones fuera del giro no aplican.</p>
+      </details>
+
+    </div>
+  </section>
 
   <!-- AdSense BOTTOM -->
   <div id="adsense-bottom" class="adsense-slot" style="margin-bottom:28px;">
