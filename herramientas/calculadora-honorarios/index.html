@@ -146,10 +146,11 @@
 
     .field-wrap { position: relative; }
     .field-prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-family: 'Bangers', cursive; font-size: 20px; color: #555; pointer-events: none; transition: opacity .2s; }
-    .field-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Bangers', cursive; font-size: clamp(22px, 3.5vw, 30px); letter-spacing: 1px; text-align: right; padding: 14px 38px 14px 36px; border-radius: 4px; outline: none; transition: border-color .2s, background .2s; -moz-appearance: textfield; }
+    .field-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Bangers', cursive; font-size: clamp(22px, 3.5vw, 30px); letter-spacing: 1px; text-align: right; padding: 14px 16px 14px 36px; border-radius: 4px; outline: none; transition: border-color .2s, background .2s; -moz-appearance: textfield; }
     .field-input::-webkit-outer-spin-button, .field-input::-webkit-inner-spin-button { -webkit-appearance: none; }
     .field-input:focus { border-color: var(--gold); background: var(--surface2); }
     .field-input::placeholder { color: #2a2a2a; }
+    body.mode-uf .field-input { padding-right: 48px; }
 
     /* Líquido — destacado */
     .field-block.is-liquido { grid-column: 1 / -1; }
@@ -163,7 +164,7 @@
     body.mode-uf .field-suffix { display: block; }
     body.mode-uf .field-input { font-size: clamp(18px, 3vw, 24px); }
 
-    .field-suffix { position: absolute; right: 36px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px; color: #444; pointer-events: none; display: none; }
+    .field-suffix { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px; color: #666; pointer-events: none; display: none; }
     .field-clp-equiv { font-size: 11px; color: #444; min-height: 16px; transition: color .2s; }
     .field-clp-equiv.has-val { color: var(--text-muted); }
 
