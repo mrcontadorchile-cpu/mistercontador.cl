@@ -59,6 +59,8 @@
       --text-muted: #777777;
       --red: #e53935;
       --yellow: #FFC107;
+      --orange: #FF8A00;
+      --orange-dark: #E67600;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -274,10 +276,23 @@
       border-color: var(--yellow);
       box-shadow: 6px 6px 0 var(--yellow);
     }
+    .hito-card.alert-vencido {
+      border-color: var(--orange);
+      box-shadow: 6px 6px 0 var(--orange);
+      background: linear-gradient(180deg, rgba(255,138,0,.06) 0%, var(--surface) 100%);
+    }
+    .hito-card.alert-vencido::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px dashed rgba(255,138,0,.4);
+      pointer-events: none;
+    }
     .hito-card:hover { transform: translate(-3px,-3px); }
     .hito-card.alert-red:hover { box-shadow: 9px 9px 0 var(--red); }
     .hito-card.alert-yellow:hover { box-shadow: 9px 9px 0 var(--yellow); }
-    .hito-card:not(.alert-red):not(.alert-yellow):hover { box-shadow: 9px 9px 0 var(--gold); }
+    .hito-card.alert-vencido:hover { box-shadow: 9px 9px 0 var(--orange-dark); }
+    .hito-card:not(.alert-red):not(.alert-yellow):not(.alert-vencido):hover { box-shadow: 9px 9px 0 var(--gold); }
 
     @keyframes cardIn {
       to { opacity: 1; transform: translateY(0); }
@@ -292,6 +307,7 @@
     .alert-badge.red { background: var(--red); border-color: var(--red); color: #fff; }
     .alert-badge.yellow { background: var(--yellow); border-color: var(--yellow); color: #000; }
     .alert-badge.green { background: transparent; border-color: var(--gold); color: var(--gold); }
+    .alert-badge.orange { background: #111; border-color: var(--orange); color: var(--orange); transform: rotate(-2deg); box-shadow: 3px 3px 0 rgba(0,0,0,.35); }
 
     .hito-vence {
       font-family: 'Bebas Neue', cursive;
@@ -306,7 +322,9 @@
     }
     .hito-card.alert-red .hito-date { color: var(--red); }
     .hito-card.alert-yellow .hito-date { color: var(--yellow); }
-    .hito-card:not(.alert-red):not(.alert-yellow) .hito-date { color: var(--gold); }
+    .hito-card.alert-vencido .hito-date { color: var(--orange); }
+    .hito-card.alert-vencido .hito-tip { background: rgba(255,138,0,.08); border-left-color: var(--orange); }
+    .hito-card:not(.alert-red):not(.alert-yellow):not(.alert-vencido) .hito-date { color: var(--gold); }
 
     .hito-title {
       font-size: 15px; font-weight: 700;
@@ -1025,11 +1043,12 @@ function buildHitoCard(h, idx, vence) {
   const dias  = diasRestantes(vence);
   const level = alertLevel(dias);
   const card  = document.createElement('div');
-  card.className = 'hito-card' + (level === 'rojo' ? ' alert-red' : level === 'amarillo' ? ' alert-yellow' : '');
+  let cardStateClass = '', badgeClass = 'green', badgeText = 'OK';
+  if (level === 'vencido')      { cardStateClass = ' alert-vencido'; badgeClass = 'orange'; badgeText = 'VENCIDO'; }
+  else if (level === 'rojo')    { cardStateClass = ' alert-red';     badgeClass = 'red';    badgeText = 'URGENTE'; }
+  else if (level === 'amarillo'){ cardStateClass = ' alert-yellow';  badgeClass = 'yellow'; badgeText = 'PRONTO';  }
+  card.className = 'hito-card' + cardStateClass;
   card.style.animationDelay = (idx * 55) + 'ms';
-
-  const badgeClass = level === 'rojo' ? 'red' : level === 'amarillo' ? 'yellow' : 'green';
-  const badgeText  = level === 'vencido' ? 'VENCIDO' : level === 'rojo' ? 'URGENTE' : level === 'amarillo' ? 'PRONTO' : 'OK';
 
   const tagsHTML = h.perfil_tags
     .filter(t => t !== 'todos')
