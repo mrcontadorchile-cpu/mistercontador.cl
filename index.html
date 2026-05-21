@@ -793,18 +793,24 @@
     #herramientas {
       position: relative; overflow: hidden;
       background:
-        radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.09) 0%, transparent 60%),
-        radial-gradient(ellipse at 50% 100%, rgba(245,194,0,0.04) 0%, transparent 50%);
+        radial-gradient(ellipse at 50% 0%, rgba(245,194,0,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(245,194,0,0.05) 0%, transparent 50%);
       border-top: 1px solid rgba(245,194,0,0.18);
       border-bottom: 1px solid rgba(245,194,0,0.18);
     }
-    /* halftone dots layer */
+    /* 3D perspective grid floor */
     #herramientas::before {
       content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: radial-gradient(circle, rgba(245,194,0,0.06) 1px, transparent 1px);
-      background-size: 28px 28px;
-      animation: halftone-breathe 5s ease-in-out infinite;
+      position: absolute; bottom: 0; left: -30%; right: -30%; height: 65%;
+      background:
+        linear-gradient(rgba(245,194,0,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,194,0,0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      transform: perspective(280px) rotateX(60deg);
+      transform-origin: bottom center;
+      pointer-events: none;
+      mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
     }
     /* watermark text */
     #herramientas::after {
@@ -812,9 +818,21 @@
       position: absolute;
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(140px, 22vw, 220px);
-      color: rgba(245,194,0,0.035);
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: rgba(245,194,0,0.03);
+      top: 42%; left: 50%; transform: translate(-50%, -50%);
       white-space: nowrap; letter-spacing: 14px; pointer-events: none;
+    }
+    /* 3D card reveal animation */
+    .reveal-3d {
+      opacity: 0;
+      transform: perspective(800px) rotateX(28deg) translateY(60px) scale(0.94);
+      transition:
+        opacity 0.75s cubic-bezier(0.23,1,0.32,1),
+        transform 0.75s cubic-bezier(0.23,1,0.32,1);
+    }
+    .reveal-3d.visible {
+      opacity: 1;
+      transform: perspective(800px) rotateX(0deg) translateY(0) scale(1);
     }
     .tools-grid-home {
       display: grid;
@@ -1428,7 +1446,7 @@
     <p style="color:var(--muted);font-size:15px;max-width:500px;margin:0 auto 40px;line-height:1.65;">Herramientas gratuitas pensadas para pymes y trabajadores independientes en Chile.</p>
   </div>
   <div class="tools-grid-home">
-    <a href="/herramientas/calculadora-honorarios/" class="tool-card reveal reveal-d1">
+    <a href="/herramientas/calculadora-honorarios/" class="tool-card reveal-3d">
       <div class="tool-card-badge">GRATIS</div>
       <div class="tool-card-icon">🧾</div>
       <h3>Calculadora de Honorarios 2026</h3>
@@ -1669,7 +1687,7 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll('.reveal').forEach(function(el){
+  document.querySelectorAll('.reveal, .reveal-3d').forEach(function(el){
     obs.observe(el);
   });
 })();
