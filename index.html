@@ -789,6 +789,38 @@
     }
     .faq-item.open .faq-a { max-height: 220px; padding-bottom: 20px; }
 
+    /* ── Herramientas ────────────────── */
+    .tools-grid-home {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px; max-width: 900px; margin: 0 auto;
+    }
+    .tool-card {
+      background: var(--surface);
+      border: 3px solid var(--gold);
+      box-shadow: 6px 6px 0 var(--gold);
+      padding: 28px 24px 24px;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; gap: 12px;
+      position: relative;
+      transition: box-shadow 0.25s cubic-bezier(0.23,1,0.32,1), transform 0.25s cubic-bezier(0.23,1,0.32,1);
+    }
+    .tool-card:hover { box-shadow: 10px 10px 0 var(--gold); transform: translate(-2px,-2px); }
+    .tool-card-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--gold); color: var(--black);
+      font-family: 'Bangers', cursive; font-size: 11px;
+      letter-spacing: 2px; padding: 2px 8px;
+    }
+    .tool-card-icon { font-size: 36px; line-height: 1; }
+    .tool-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px; letter-spacing: 1px; line-height: 1.1;
+    }
+    .tool-card p { font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; }
+    .tool-card-cta { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 2px; color: var(--gold); }
+    @media (max-width: 600px) { .tools-grid-home { grid-template-columns: 1fr; } }
+
     /* ── Inventory Banner ────────────────── */
     .inventory-banner {
       text-align: center; padding: 100px 24px;
@@ -1352,13 +1384,28 @@
   </div>
 </section>
 
-<div class="chapter-divider">
+<div class="chapter-divider reveal">
   <div class="ch-line"></div>
   <span class="ch-num">CAPÍTULO 06</span>
   <span class="ch-sep">—</span>
-  <span class="ch-title">EL ARSENAL</span>
+  <span class="ch-title">HERRAMIENTAS GRATIS</span>
   <div class="ch-line right"></div>
 </div>
+
+<section class="section" id="herramientas" style="text-align:center;">
+  <h2 class="section-title" style="margin-bottom:12px;">Calculadoras y utilidades<br><span style="color:var(--gold)">sin registro ni letra chica</span></h2>
+  <p style="color:var(--muted);font-size:15px;max-width:500px;margin:0 auto 40px;line-height:1.65;">Herramientas gratuitas pensadas para pymes y trabajadores independientes en Chile.</p>
+  <div class="tools-grid-home">
+    <a href="/herramientas/calculadora-honorarios/" class="tool-card reveal reveal-d1">
+      <div class="tool-card-badge">GRATIS</div>
+      <div class="tool-card-icon">🧾</div>
+      <h3>Calculadora de Honorarios 2026</h3>
+      <p>Calcula bruto, líquido y retención al instante. Incluye gross up y conversión a UF histórica.</p>
+      <span class="tool-card-cta">Usar ahora →</span>
+    </a>
+  </div>
+  <a href="/herramientas/" style="display:inline-block;margin-top:28px;font-family:'Bangers',cursive;letter-spacing:2px;color:var(--muted);font-size:14px;text-decoration:none;">Ver todas las herramientas →</a>
+</section>
 
 <!-- Mister Inventario Banner -->
 <section class="inventory-banner">
