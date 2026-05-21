@@ -162,12 +162,7 @@
     }
 
     /* ── ADSENSE PLACEHOLDER ── */
-    .adsense-slot {
-      background: var(--surface); border: 1px dashed #2a2a2a;
-      border-radius: 4px; min-height: 90px;
-      display: flex; align-items: center; justify-content: center;
-      color: #333; font-size: 12px; font-family: monospace;
-    }
+    .adsense-slot { min-height: 0; }
 
     /* ── SPEECH BUBBLE ── */
     .mascot-tip {
@@ -542,6 +537,19 @@
       .month-btn { font-size: 13px; padding: 6px 10px; }
       .chip { font-size: 12px; padding: 7px 12px; }
     }
+    @media (max-width: 520px) {
+      .cal-wrapper { padding: 28px 14px 64px; }
+      .mascot-tip { flex-direction: column; align-items: center; }
+      .speech-bubble::before, .speech-bubble::after { display: none; }
+      .month-nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; }
+      .month-btn { flex: 0 0 auto; }
+      .profile-chips { display: grid; grid-template-columns: 1fr; }
+      .chip { width: 100%; justify-content: flex-start; }
+      .section-divider-text, .seccion-title { white-space: normal; text-align: center; letter-spacing: 2px; }
+      .hito-card, .calc-card { padding: 20px 16px 16px; box-shadow: 4px 4px 0 var(--gold); }
+      .hito-card.alert-red { box-shadow: 4px 4px 0 var(--red); }
+      .hito-card.alert-yellow { box-shadow: 4px 4px 0 var(--yellow); }
+    }
     @media (prefers-reduced-motion: reduce) {
       .hito-card, .calc-card { animation: none; opacity: 1; transform: none; }
       .reveal { transition: none; }
@@ -588,8 +596,8 @@
     <a href="/herramientas/">Herramientas</a> &rsaquo;
     Calendario Tributario
   </div>
-  <h1>EL SANTORAL<br><span class="gold">TRIBUTARIO 2026</span></h1>
-  <p class="subtitle">Nunca más te pille la fecha. Alertas tributarias personalizadas para tu PyME.</p>
+  <h1>CALENDARIO<br><span class="gold">TRIBUTARIO 2026</span></h1>
+  <p class="subtitle">El santoral tributario de tu PyME: fechas clave sin hablar en difícil.</p>
 
   <div class="mascot-tip">
     <img src="../../img/logo-oficial.png" alt="Mister Contador">
@@ -621,16 +629,16 @@
   <div class="profile-section reveal">
     <p class="profile-title">TU PERFIL — ACTIVA LO QUE TE APLICA</p>
     <div class="profile-chips">
-      <div class="chip" data-tag="freelance" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+      <div class="chip" data-tag="freelance" onclick="toggleChip(this)" role="checkbox" aria-checked="false" tabindex="0">
         <span class="chip-dot"></span>🧑‍💼 Soy el único trabajador de mi empresa
       </div>
-      <div class="chip" data-tag="trabajadores" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+      <div class="chip" data-tag="trabajadores" onclick="toggleChip(this)" role="checkbox" aria-checked="false" tabindex="0">
         <span class="chip-dot"></span>👥 Tengo Trabajadores
       </div>
-      <div class="chip" data-tag="alta-rotacion" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+      <div class="chip" data-tag="alta-rotacion" onclick="toggleChip(this)" role="checkbox" aria-checked="false" tabindex="0">
         <span class="chip-dot"></span>🔄 Alta Rotación de Personal
       </div>
-      <div class="chip" data-tag="local" onclick="toggleChip(this)" role="checkbox" aria-checked="false">
+      <div class="chip" data-tag="local" onclick="toggleChip(this)" role="checkbox" aria-checked="false" tabindex="0">
         <span class="chip-dot"></span>🏪 Tengo Local Físico
       </div>
     </div>
@@ -921,7 +929,7 @@ function renderCalcCards() {
   }
 
   // Aceptación de Factura
-  const showFact = showAll || activeProfiles.has('todos') || true; // todos siempre
+  const showFact = true;
   if (showFact) {
     maybeInfeed(board, idx);
     board.appendChild(buildFacturaCard());
@@ -938,10 +946,10 @@ function buildDTCard() {
   card.style.animationDelay = '0ms';
   card.innerHTML = `
     <div class="calc-card-title">📋 REGISTRO CONTRATO DT</div>
-    <div class="calc-card-desc">¿Cuándo ingresó el trabajador? Calcula el plazo de 15 días hábiles para registrar en la DT.</div>
+    <div class="calc-card-desc">Calcula el plazo de 15 días hábiles siguientes a la celebración del contrato para registrarlo en la DT.</div>
     <div class="calc-row">
       <div class="calc-field">
-        <label>Fecha de ingreso</label>
+        <label>Fecha de celebración / firma del contrato</label>
         <input type="date" id="dt-fecha" max="${today.toISOString().slice(0,10)}" onchange="calcDT(this.value)">
       </div>
     </div>
@@ -977,10 +985,10 @@ function buildFacturaCard() {
   card.style.animationDelay = '80ms';
   card.innerHTML = `
     <div class="calc-card-title">🧾 ACEPTACIÓN DE FACTURA</div>
-    <div class="calc-card-desc">Calcula los 8 días corridos para aceptar o reclamar una factura electrónica recibida.</div>
+    <div class="calc-card-desc">Calcula los 8 días corridos desde la recepción del DTE en el SII para aceptar o reclamar.</div>
     <div class="calc-row">
       <div class="calc-field">
-        <label>Fecha de emisión de la factura</label>
+        <label>Fecha de recepción del DTE en el SII</label>
         <input type="date" id="fact-fecha" onchange="calcFactura(this.value)">
       </div>
     </div>
@@ -1114,11 +1122,12 @@ function renderHitos() {
 function renderMiniCalendar(hitosConFecha) {
   const el = document.getElementById('mini-calendar');
   if (!el) return;
-  const heading = document.getElementById('mini-cal-heading');
-  if (heading) heading.textContent = `${MONTH_NAMES[month].toUpperCase()} ${year}`;
 
   const year  = 2026;
   const month = activeMonth;
+
+  const heading = document.getElementById('mini-cal-heading');
+  if (heading) heading.textContent = `${MONTH_NAMES[month].toUpperCase()} ${year}`;
   const firstDay = new Date(year, month, 1).getDay(); // 0=Dom
   const totalDays = new Date(year, month + 1, 0).getDate();
   // convertir domingo=0 → lunes=0
@@ -1198,6 +1207,12 @@ readURL();
 buildMonthNav();
 syncChipsFromState();
 render();
+
+document.querySelectorAll('.chip').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleChip(el); }
+  });
+});
 </script>
 </body>
 </html>
