@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Costo Laboral Chile 2026 — ¿Cuánto cuesta contratar? | Mister Contador</title>
+  <meta name="description" content="Calcula cuánto cuesta realmente contratar un trabajador en Chile. SIS, AFC y Mutual con topes en UF actualizados en tiempo real. Gratis para PyMEs.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/costo-empresa/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/costo-empresa/">
+  <meta property="og:title"       content="Simulador de Costo Laboral Chile 2026 — ¿Cuánto cuesta contratar? | Mister Contador">
+  <meta property="og:description" content="Calcula cuánto cuesta realmente contratar un trabajador en Chile. SIS, AFC y Mutual con topes en UF actualizados en tiempo real.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/logo-oficial.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Simulador Costo Laboral Chile 2026 — Mister Contador">
+  <meta name="twitter:description" content="SIS, AFC, Mutual y topes UF en tiempo real. Gratis, sin registro.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/logo-oficial.png">
+
+  <!-- Schema.org WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Simulador de Costo Laboral Chile 2026",
+    "url": "https://mistercontador.cl/herramientas/costo-empresa/",
+    "description": "Calcula cuánto cuesta realmente contratar un trabajador en Chile. SIS, AFC y Mutual con topes en UF actualizados en tiempo real.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CLP" },
+    "provider": { "@type": "Organization", "name": "Mister Contador SpA", "url": "https://mistercontador.cl/" }
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5930774950622246" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.65; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
+    nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); }
+    .btn-manga { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px; color: var(--text); border: 2px solid var(--text); padding: 8px 20px; border-radius: 2px; text-decoration: none; display: inline-block; box-shadow: 4px 4px 0 var(--text); transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; }
+    .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: block; color: #ccc; text-decoration: none; font-size: 16px; font-weight: 600; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* Page header */
+    .page-header { padding: 110px 24px clamp(16px,3vw,48px); text-align: center; background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-header-sfx { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bangers', cursive; font-size: clamp(80px, 20vw, 180px); letter-spacing: 8px; color: rgba(245,194,0,.04); pointer-events: none; user-select: none; white-space: nowrap; }
+    .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; position: relative; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-header h1 { font-family: 'Bangers', cursive; font-size: clamp(36px,6vw,64px); letter-spacing: 4px; text-transform: uppercase; line-height: 1; margin-bottom: 10px; position: relative; }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle { font-size: 15px; color: var(--text-muted); position: relative; }
+
+    .calc-wrapper { max-width: 780px; margin: 0 auto; padding: 24px 20px 80px; }
+    .adsense-slot { max-width: 740px; margin: 0 auto; min-height: 0; }
+
+    /* UF display */
+    .uf-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 8px 14px; margin-bottom: 28px; font-size: 13px; color: var(--text-muted); }
+    .uf-badge strong { color: var(--gold); font-family: 'Bebas Neue', cursive; font-size: 16px; letter-spacing: 1px; }
+    .uf-badge .uf-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; flex-shrink: 0; }
+    .uf-badge.loading .uf-dot { background: #777; }
+
+    /* Mode toggle */
+    .mode-toggle-wrap { margin-bottom: 24px; }
+    .mode-label { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 8px; }
+    .mode-toggle { display: flex; border: 2px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .mode-btn { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px; background: var(--surface2); color: #555; border: none; padding: 12px 20px; cursor: pointer; transition: all .18s; flex: 1; text-align: center; }
+    .mode-btn.active { background: var(--gold); color: var(--black); }
+    .mode-btn:hover:not(.active) { color: var(--text); }
+
+    /* Input block */
+    .input-block { margin-bottom: 24px; }
+    .input-label { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; display: block; }
+    .input-wrap { position: relative; }
+    .input-prefix { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-family: 'Bangers', cursive; font-size: 24px; color: #555; pointer-events: none; }
+    .main-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Bangers', cursive; font-size: clamp(28px, 5vw, 42px); letter-spacing: 1px; text-align: right; padding: 18px 20px 18px 48px; border-radius: 4px; outline: none; transition: border-color .2s, background .2s; }
+    .main-input:focus { border-color: var(--gold); background: var(--surface2); }
+    .main-input::placeholder { color: #222; }
+
+    /* Selector */
+    .select-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; padding: 14px 16px; border-radius: 4px; outline: none; transition: border-color .2s; appearance: none; cursor: pointer; }
+    .select-input:focus { border-color: var(--gold); }
+    .small-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; padding: 12px 14px; border-radius: 4px; outline: none; transition: border-color .2s; }
+    .small-input:focus { border-color: var(--gold); }
+
+    /* Calc button */
+    .btn-calc { width: 100%; font-family: 'Bangers', cursive; font-size: 24px; letter-spacing: 2px; background: var(--black); color: var(--gold); border: 3px solid var(--gold); padding: 18px 24px; border-radius: 4px; cursor: pointer; box-shadow: 6px 6px 0 var(--gold); transition: transform .15s, box-shadow .15s; margin-top: 8px; text-transform: uppercase; }
+    .btn-calc:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--gold); }
+    .btn-calc:active { transform: translate(1px,1px); box-shadow: 4px 4px 0 var(--gold); }
+
+    /* Results */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .results-card { background: var(--surface); border: 2px solid var(--border); border-radius: 6px; padding: 24px 20px; margin-top: 32px; animation: fadeSlideUp .35s ease-out; }
+    .results-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 12px; flex-wrap: wrap; }
+    .results-row:last-child { border-bottom: none; }
+    .results-row.divider { border-bottom: 2px solid var(--border); padding-bottom: 16px; }
+    .results-row.total { padding-top: 20px; border-top: 2px solid var(--gold); border-bottom: none; }
+    .row-label { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 2px; color: var(--text-muted); }
+    .row-label.highlight { color: var(--gold); font-size: 16px; }
+    .row-right { display: flex; align-items: center; gap: 10px; }
+    .row-value { font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 1px; color: var(--text); }
+    .row-value.total-val { font-size: clamp(28px,5vw,40px); color: var(--gold); }
+    .btn-field-copy { font-family: 'Bangers', cursive; font-size: 13px; letter-spacing: 1.5px; background: rgba(245,194,0,.08); border: 1.5px solid rgba(245,194,0,.3); color: var(--gold); padding: 5px 10px; border-radius: 2px; cursor: pointer; box-shadow: 2px 2px 0 rgba(212,168,0,.4); transition: transform .15s, box-shadow .15s, background .15s; white-space: nowrap; }
+    .btn-field-copy:hover { background: rgba(245,194,0,.15); border-color: var(--gold); box-shadow: 4px 4px 0 var(--gold-dark); transform: translate(-2px,-2px); }
+    .btn-field-copy.copied-ok { color: #4ade80 !important; border-color: #4ade80 !important; background: rgba(74,222,128,.08) !important; box-shadow: 2px 2px 0 #2d9e5e !important; transform: none !important; }
+
+    .results-meta { font-size: 12px; color: #555; margin-top: 14px; line-height: 1.6; }
+    .results-meta strong { color: #777; }
+    .liquido-note { font-size: 12px; color: #555; margin-top: 8px; font-style: italic; line-height: 1.5; }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+    footer a:hover { opacity: .8; }
+    .social-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
+    .social-links a { color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color .2s; }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .social-links { flex-direction: column; align-items: center; gap: 12px; }
+      .results-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .calc-wrapper { padding: 18px 14px 64px; }
+      .page-header { padding-left: 16px; padding-right: 16px; }
+      .main-input { font-size: 30px; padding: 16px 16px 16px 42px; }
+      .input-prefix { font-size: 20px; left: 12px; }
+      .btn-calc { font-size: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="/herramientas/" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">&larr; Volver a Herramientas</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="page-header-sfx">COSTO</div>
+  <div class="breadcrumb">
+    <a href="https://mistercontador.cl/">Inicio</a> &rsaquo;
+    <a href="/herramientas/">Herramientas</a> &rsaquo;
+    Simulador de Costo Laboral
+  </div>
+  <h1>¿CUÁNTO CUESTA<br><span class="gold">CONTRATAR?</span></h1>
+  <p class="subtitle">SIS, AFC y Mutual con topes UF en tiempo real &mdash; Chile 2026</p>
+</div>
+
+<!-- AdSense TOP -->
+<div style="max-width:780px;margin:24px auto 0;padding:0 20px;">
+  <div id="adsense-top" class="adsense-slot">
+    <!-- AdSense Top -->
+  </div>
+</div>
+
+<div class="calc-wrapper">
+
+  <!-- UF Badge -->
+  <div id="uf-badge" class="uf-badge loading">
+    <span class="uf-dot"></span>
+    <span id="uf-text">Cargando UF...</span>
+  </div>
+
+  <!-- Modo Bruto / Líquido -->
+  <div class="mode-toggle-wrap">
+    <div class="mode-label">Tipo de sueldo a ingresar</div>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="btn-bruto" onclick="setMode('bruto')">Sueldo Bruto</button>
+      <button class="mode-btn" id="btn-liquido" onclick="setMode('liquido')">Sueldo Líquido</button>
+    </div>
+  </div>
+
+  <!-- Input sueldo -->
+  <div class="input-block">
+    <label class="input-label" id="sueldo-label" for="input-sueldo">Sueldo Bruto (CLP)</label>
+    <div class="input-wrap">
+      <span class="input-prefix">$</span>
+      <input class="main-input" id="input-sueldo" type="text" inputmode="numeric" placeholder="0" autocomplete="off">
+    </div>
+    <p class="liquido-note" id="liquido-note" style="display:none;">* Estimación referencial asumiendo Fonasa y AFP promedio. No incluye Impuesto Único progresivo.</p>
+  </div>
+
+  <!-- Tipo de contrato -->
+  <div class="input-block">
+    <label class="input-label" for="select-contrato">Tipo de Contrato</label>
+    <select class="select-input" id="select-contrato">
+      <option value="indefinido">Indefinido (AFC 2,4%)</option>
+      <option value="plazo">Plazo Fijo / Obra (AFC 3,0%)</option>
+    </select>
+  </div>
+
+  <!-- Tasa adicional Mutual -->
+  <div class="input-block">
+    <label class="input-label" for="input-mutual">Tasa Riesgo Adicional Mutual % <span style="font-family:'Inter',sans-serif;font-size:10px;color:#444;">(opcional, default 0)</span></label>
+    <input class="small-input" id="input-mutual" type="number" step="0.01" min="0" max="10" placeholder="0" value="0">
+  </div>
+
+  <!-- Botón calcular -->
+  <button class="btn-calc" onclick="calcular()">CALCULAR COSTO EMPRESA ⚡</button>
+
+  <!-- Resultados -->
+  <div id="results" style="display:none;"></div>
+
+  <!-- AdSense BOTTOM -->
+  <div id="adsense-bottom" class="adsense-slot" style="margin-top:28px;">
+    <!-- AdSense Bottom -->
+  </div>
+
+</div><!-- /calc-wrapper -->
+
+<!-- SEO Article -->
+<section style="max-width:780px; margin:48px auto; padding:32px 16px 0; border-top: 1px solid var(--border); font-family:'Inter', sans-serif;">
+  <h2 style="font-family:'Bebas Neue', sans-serif; font-size:28px; color:var(--gold); letter-spacing:2px; margin-bottom:16px;">¿CUÁNTO CUESTA REALMENTE CONTRATAR A UN TRABAJADOR EN CHILE?</h2>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Uno de los errores financieros más letales que puede cometer una PyME al momento de expandir su equipo es confundir el "Sueldo Líquido" o el "Sueldo Bruto" con el costo real que saldrá de la caja de la empresa. En la legislación laboral chilena, el empleador tiene la obligación legal de financiar una serie de seguros y coberturas sociales adicionales al salario que percibe el trabajador. A este conjunto de gastos se le conoce como <strong>Aportes Patronales</strong>, y si no los tienes calculados y provisionados en tu flujo de caja, tu negocio podría enfrentar serios problemas de liquidez o multas ante la Dirección del Trabajo y PreviRed.</p>
+  <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">LOS APORTES PATRONALES OBLIGATORIOS: SIS, AFC Y MUTUAL</h3>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Independiente de la AFP o Isapre/Fonasa que tenga el trabajador (descuentos que salen de su propio sueldo bruto), la empresa debe pagar de su bolsillo tres ítems fundamentales:<br><br><strong>1. El Seguro de Invalidez y Sobrevivencia (SIS):</strong> Equivalente al 1,54% de la remuneración imponible.<br><strong>2. El Seguro de Cesantía (AFC):</strong> Donde el empleador aporta el 2,4% en contratos indefinidos y el 3,0% en contratos a plazo fijo o por obra.<br><strong>3. El Seguro de Accidentes del Trabajo (Mutualidad):</strong> Que consta de una tasa base obligatoria del 0,90%, más el 0,03% correspondiente a la Ley Sanna, sumado a una tasa de siniestralidad adicional dependiendo del riesgo de tu actividad económica.</p>
+  <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">EL PELIGRO DE NEGOCIAR EL CONTRATO EN "SUELDO LÍQUIDO"</h3>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Es una práctica común en Chile negociar las contrataciones hablando del dinero que llegará "al bolsillo". Sin embargo, llevar un sueldo líquido a bruto (y luego a costo empresa) requiere considerar el Impuesto Único de Segunda Categoría (IUSC), las variaciones en los planes de salud expresados en UF y las comisiones exactas de cada Administradora de Fondos de Pensiones. Nuestra calculadora te entrega una aproximación matemática inmediata para que puedas tomar decisiones de contratación rápidas sin que tu presupuesto se descarrile.</p>
+  <div style="background:var(--surface2); border-left:3px solid var(--gold); padding:16px; border-radius:4px; margin-top:24px;">
+    <strong style="font-family:'Bebas Neue', sans-serif; font-size:14px; color:var(--gold); letter-spacing:2px; display:block; margin-bottom:6px;">⚡ CONSEJO DE MISTER CONTADOR</strong>
+    <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">El pago atrasado de estas cotizaciones sociales no solo te expone a multas millonarias, sino que te impide participar en licitaciones del Estado o solicitar financiamiento bancario. Si el cálculo de planillas te quita tiempo y enfoque comercial, en <a href="https://mistercontador.cl/" style="color:var(--gold); text-decoration:none; font-weight:700;">Mister Contador</a> externalizamos tu proceso de remuneraciones completo, emitiendo las liquidaciones y gestionando el pago exacto en PreviRed para blindar tu negocio.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">T&eacute;rminos y Condiciones</a>
+    <a href="../../privacidad.html">Pol&iacute;tica de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Regi&oacute;n Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  // Nav scroll
+  document.addEventListener('scroll', function() {
+    document.getElementById('main-nav').classList.toggle('nav-scrolled', window.scrollY > 20);
+  });
+
+  function toggleMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const open = menu.classList.toggle('active');
+    btn.setAttribute('aria-expanded', open);
+  }
+
+  // State
+  let ufValor = 40500;
+  let ufFecha = '';
+  let mode = 'bruto';
+
+  // Fetch UF
+  (async function fetchUF() {
+    const badge = document.getElementById('uf-badge');
+    const text = document.getElementById('uf-text');
+    try {
+      const res = await fetch('https://mindicador.cl/api/uf');
+      const data = await res.json();
+      ufValor = data.serie[0].valor;
+      const raw = data.serie[0].fecha;
+      ufFecha = raw ? raw.slice(0, 10) : '';
+      badge.classList.remove('loading');
+      text.innerHTML = 'UF del día: <strong>$' + formatCLP(ufValor) + '</strong>' + (ufFecha ? ' <span style="font-size:11px;color:#444;">(' + ufFecha + ')</span>' : '');
+    } catch(e) {
+      badge.classList.remove('loading');
+      text.innerHTML = 'UF (fallback): <strong>$' + formatCLP(ufValor) + '</strong>';
+    }
+  })();
+
+  function setMode(m) {
+    mode = m;
+    document.getElementById('btn-bruto').classList.toggle('active', m === 'bruto');
+    document.getElementById('btn-liquido').classList.toggle('active', m === 'liquido');
+    const lbl = document.getElementById('sueldo-label');
+    lbl.textContent = m === 'bruto' ? 'Sueldo Bruto (CLP)' : 'Sueldo Líquido (CLP)';
+    document.getElementById('liquido-note').style.display = m === 'liquido' ? 'block' : 'none';
+    document.getElementById('results').style.display = 'none';
+  }
+
+  // Format helpers
+  function formatCLP(n) {
+    return Math.round(n).toLocaleString('es-CL');
+  }
+  function parseCLP(s) {
+    return parseInt((s || '0').replace(/\D/g, ''), 10) || 0;
+  }
+
+  // Input formatting
+  const inputSueldo = document.getElementById('input-sueldo');
+  inputSueldo.addEventListener('input', function() {
+    const pos = this.selectionStart;
+    const raw = parseCLP(this.value);
+    const fmt = raw ? formatCLP(raw) : '';
+    this.value = fmt;
+  });
+
+  function calcular() {
+    const raw = parseCLP(inputSueldo.value);
+    if (!raw) { inputSueldo.focus(); return; }
+
+    let bruto;
+    if (mode === 'bruto') {
+      bruto = raw;
+    } else {
+      bruto = Math.round(raw / 0.8113);
+    }
+
+    const contrato = document.getElementById('select-contrato').value;
+    const tasaAdicional = parseFloat(document.getElementById('input-mutual').value) || 0;
+
+    // Topes
+    const tope84 = Math.round(ufValor * 84.3);
+    const tope126 = Math.round(ufValor * 126.6);
+
+    const basePrevisional = Math.min(bruto, tope84);
+    const baseAFC = Math.min(bruto, tope126);
+
+    const tasaSIS = 0.0154;
+    const tasaMutual = (0.93 + tasaAdicional) / 100;
+    const tasaAFCval = contrato === 'indefinido' ? 0.024 : 0.030;
+
+    const sis = Math.round(basePrevisional * tasaSIS);
+    const mutual = Math.round(basePrevisional * tasaMutual);
+    const afc = Math.round(baseAFC * tasaAFCval);
+    const total = bruto + sis + mutual + afc;
+
+    const afcLabel = contrato === 'indefinido' ? '2,4%' : '3,0%';
+    const mutualPct = (0.93 + tasaAdicional).toFixed(2);
+
+    const html = `
+      <div class="results-card">
+        <div class="results-row divider">
+          <span class="row-label">Sueldo Bruto</span>
+          <div class="row-right">
+            <span class="row-value">$ ${formatCLP(bruto)}</span>
+            <button class="btn-field-copy" onclick="copyVal(this, ${bruto})">COPIAR</button>
+          </div>
+        </div>
+        <div class="results-row">
+          <span class="row-label">SIS (1,54%)</span>
+          <div class="row-right">
+            <span class="row-value">$ ${formatCLP(sis)}</span>
+            <button class="btn-field-copy" onclick="copyVal(this, ${sis})">COPIAR</button>
+          </div>
+        </div>
+        <div class="results-row">
+          <span class="row-label">Mutual (${mutualPct}%)</span>
+          <div class="row-right">
+            <span class="row-value">$ ${formatCLP(mutual)}</span>
+            <button class="btn-field-copy" onclick="copyVal(this, ${mutual})">COPIAR</button>
+          </div>
+        </div>
+        <div class="results-row divider">
+          <span class="row-label">AFC (${afcLabel})</span>
+          <div class="row-right">
+            <span class="row-value">$ ${formatCLP(afc)}</span>
+            <button class="btn-field-copy" onclick="copyVal(this, ${afc})">COPIAR</button>
+          </div>
+        </div>
+        <div class="results-row total">
+          <span class="row-label highlight">COSTO TOTAL EMPRESA</span>
+          <div class="row-right">
+            <span class="row-value total-val">$ ${formatCLP(total)}</span>
+            <button class="btn-field-copy" onclick="copyVal(this, ${total})">COPIAR</button>
+          </div>
+        </div>
+        <div class="results-meta">
+          <strong>UF utilizada:</strong> $${formatCLP(ufValor)}${ufFecha ? ' (' + ufFecha + ')' : ''} &nbsp;|&nbsp;
+          <strong>Tope imponible SIS/Mutual:</strong> $${formatCLP(tope84)} &nbsp;|&nbsp;
+          <strong>Tope AFC:</strong> $${formatCLP(tope126)}
+        </div>
+        ${mode === 'liquido' ? '<p class="liquido-note">* Sueldo bruto estimado desde líquido asumiendo Fonasa y AFP promedio. No incluye Impuesto Único progresivo.</p>' : ''}
+      </div>
+    `;
+
+    const el = document.getElementById('results');
+    el.innerHTML = html;
+    el.style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function copyVal(btn, val) {
+    navigator.clipboard.writeText(String(Math.round(val))).then(function() {
+      btn.textContent = '✓ COPIADO';
+      btn.classList.add('copied-ok');
+      setTimeout(function() {
+        btn.textContent = 'COPIAR';
+        btn.classList.remove('copied-ok');
+      }, 1800);
+    });
+  }
+
+  // Allow Enter key to trigger calculation
+  document.getElementById('input-sueldo').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') calcular();
+  });
+</script>
+</body>
+</html>
