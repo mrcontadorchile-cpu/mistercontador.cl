@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IVA Chile 2025 | Mister Contador</title>
+  <meta name="description" content="Calcula el IVA chileno (19%) al instante. Convierte precio neto a total con IVA o desglosa el IVA incluido. Gratis para PyMEs.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-iva/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/calculadora-iva/">
+  <meta property="og:title"       content="Calculadora de IVA Chile 2025 | Mister Contador">
+  <meta property="og:description" content="Calcula el IVA chileno (19%) al instante. Neto, IVA y total con un solo clic. Gratis para PyMEs.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/og-calculadora.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Calculadora IVA Chile 19% — Mister Contador">
+  <meta name="twitter:description" content="Calcula el IVA chileno (19%) al instante. Gratis, sin registro.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/og-calculadora.png">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Calcular IVA Chile 19%",
+    "description": "Calcula el IVA chileno (19%) desde precio neto o desde total con IVA incluido.",
+    "step": [
+      { "@type": "HowToStep", "name": "Selecciona el modo", "text": "Elige si ingresas el precio neto (sin IVA) o el total con IVA incluido." },
+      { "@type": "HowToStep", "name": "Ingresa el monto", "text": "Escribe el valor en pesos chilenos." },
+      { "@type": "HowToStep", "name": "Obtén el resultado", "text": "El neto, IVA (19%) y total aparecen al instante." }
+    ]
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.65; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
+    nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); }
+    .btn-manga { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px; color: var(--text); border: 2px solid var(--text); padding: 8px 20px; border-radius: 2px; text-decoration: none; display: inline-block; box-shadow: 4px 4px 0 var(--text); transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; }
+    .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: block; color: #ccc; text-decoration: none; font-size: 16px; font-weight: 600; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* Page header */
+    .page-header { padding: 110px 24px 48px; text-align: center; background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-header-sfx { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bangers', cursive; font-size: clamp(80px, 20vw, 180px); letter-spacing: 8px; color: rgba(245,194,0,.04); pointer-events: none; user-select: none; white-space: nowrap; }
+    .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; position: relative; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-header h1 { font-family: 'Bangers', cursive; font-size: clamp(36px,6vw,64px); letter-spacing: 4px; text-transform: uppercase; line-height: 1; margin-bottom: 10px; position: relative; }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle { font-size: 15px; color: var(--text-muted); position: relative; }
+
+    .calc-wrapper { max-width: 780px; margin: 0 auto; padding: 24px 20px 80px; }
+    .adsense-slot { max-width: 740px; margin: 0 auto; min-height: 0; }
+
+    /* Speech bubble */
+    .speech-bubble { background: #fff; color: #0a0a0a; border: 3px solid #0a0a0a; border-radius: 8px; padding: 18px 22px 18px 16px; position: relative; display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+    .speech-bubble::after { content:''; position:absolute; bottom:-14px; left:28px; border-left:10px solid transparent; border-right:10px solid transparent; border-top:14px solid #0a0a0a; }
+    .speech-bubble::before { content:''; position:absolute; bottom:-11px; left:29px; border-left:9px solid transparent; border-right:9px solid transparent; border-top:13px solid #fff; z-index:1; }
+    .speech-bubble img { height: 36px; object-fit: contain; flex-shrink: 0; filter: brightness(0); }
+    .speech-bubble p { font-size: 14px; font-weight: 600; line-height: 1.45; color: #111; }
+
+    /* Mode toggle */
+    .mode-toggle-wrap { margin-bottom: 24px; }
+    .mode-label { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 8px; }
+    .mode-toggle { display: flex; border: 2px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .mode-btn { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px; background: var(--surface2); color: #555; border: none; padding: 12px 20px; cursor: pointer; transition: all .18s; flex: 1; text-align: center; }
+    .mode-btn.active { background: var(--gold); color: var(--black); }
+    .mode-btn:hover:not(.active) { color: var(--text); }
+
+    /* Input block */
+    .input-block { margin-bottom: 28px; }
+    .input-label { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; display: block; }
+    .input-wrap { position: relative; }
+    .input-prefix { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-family: 'Bangers', cursive; font-size: 24px; color: #555; pointer-events: none; }
+    .main-input { width: 100%; background: var(--surface); border: 2px solid var(--border); color: var(--text); font-family: 'Bangers', cursive; font-size: clamp(28px, 5vw, 42px); letter-spacing: 1px; text-align: right; padding: 18px 20px 18px 48px; border-radius: 4px; outline: none; transition: border-color .2s, background .2s; }
+    .main-input:focus { border-color: var(--gold); background: var(--surface2); }
+    .main-input::placeholder { color: #222; }
+
+    /* Results grid */
+    .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .result-full { grid-column: 1 / -1; }
+    @media (max-width: 500px) { .results-grid { grid-template-columns: 1fr; } .result-full { grid-column: 1; } }
+
+    .result-block { background: var(--surface); border: 2px solid var(--border); border-radius: 4px; padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 8px; transition: border-color .2s; }
+    .result-block.highlighted { background: rgba(245,194,0,.07); border: 3px solid var(--gold); box-shadow: 6px 6px 0 var(--gold-dark); }
+    .result-block-label { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; color: var(--text-muted); }
+    .result-block.highlighted .result-block-label { color: var(--gold); }
+    .result-block-value { font-family: 'Bangers', cursive; font-size: clamp(22px, 3.5vw, 30px); letter-spacing: 1px; color: var(--text); min-height: 36px; }
+    .result-block.highlighted .result-block-value { font-size: clamp(28px, 5vw, 40px); color: var(--gold); }
+    .result-block-note { font-size: 11px; color: #444; }
+
+    @keyframes result-pop {
+      0%   { box-shadow: 0 0 0 4px rgba(245,194,0,.5); }
+      100% { box-shadow: none; }
+    }
+    .result-block.just-updated { animation: result-pop .5s ease-out forwards; }
+
+    /* Copy button inside result */
+    .btn-field-copy {
+      font-family: 'Bangers', cursive; font-size: 13px; letter-spacing: 1.5px;
+      background: rgba(245,194,0,.08);
+      border: 1.5px solid rgba(245,194,0,.3);
+      color: var(--gold);
+      padding: 7px 12px; border-radius: 2px; cursor: pointer;
+      box-shadow: 2px 2px 0 rgba(212,168,0,.4);
+      transition: transform .15s, box-shadow .15s, background .15s;
+      white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;
+      align-self: flex-start;
+    }
+    .btn-field-copy:hover { background: rgba(245,194,0,.15); border-color: var(--gold); box-shadow: 4px 4px 0 var(--gold-dark); transform: translate(-2px,-2px); }
+    .btn-field-copy.copied-ok { color: #4ade80 !important; border-color: #4ade80 !important; background: rgba(74,222,128,.08) !important; box-shadow: 2px 2px 0 #2d9e5e !important; transform: none !important; }
+
+    /* Clear row */
+    .clear-row { text-align: right; margin-bottom: 20px; }
+    .btn-clear { background: none; border: none; font-size: 12px; color: #444; cursor: pointer; transition: color .2s; }
+    .btn-clear:hover { color: var(--text-muted); }
+
+    /* Info box */
+    .info-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: 4px; padding: 18px 20px; margin-bottom: 28px; }
+    .info-box-title { font-family: 'Bebas Neue', cursive; font-size: 13px; letter-spacing: 3px; color: var(--gold); margin-bottom: 12px; }
+    .formula-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .formula-list li { font-family: 'Inter', monospace; font-size: 13px; color: #888; }
+    .formula-list li strong { color: var(--text); font-weight: 700; }
+
+    /* CTA Banner */
+    @keyframes spin-border { to { transform: rotate(360deg); } }
+    @keyframes banner-outer-pulse {
+      0%, 100% { box-shadow: 0 0 18px rgba(245,194,0,.35), 0 0 40px rgba(245,194,0,.1); }
+      50%       { box-shadow: 0 0 32px rgba(245,194,0,.65), 0 0 60px rgba(245,194,0,.25); }
+    }
+    .cta-banner { margin-top: 0; margin-bottom: 28px; position: relative; border-radius: 8px; padding: 2px; overflow: hidden; background: transparent; animation: banner-outer-pulse 2.5s ease-in-out infinite; }
+    .cta-banner::before { content: ''; position: absolute; inset: -60%; background: conic-gradient(from 0deg, transparent 0deg, #D4A800 60deg, #F5C200 90deg, #fff8cc 120deg, #F5C200 150deg, #D4A800 180deg, transparent 240deg, #F5C200 300deg, #fff8cc 330deg, #F5C200 360deg); animation: spin-border 3.5s linear infinite; z-index: 0; border-radius: 50%; }
+    .cta-banner-inner { position: relative; z-index: 1; background: #0d0d0d; border-radius: 7px; padding: 22px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; background-image: repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(245,194,0,.025) 18px, rgba(245,194,0,.025) 19px); }
+    .cta-banner-icon { font-size: 32px; flex-shrink: 0; }
+    .cta-banner-text { flex: 1; min-width: 180px; }
+    .cta-banner-text strong { font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px; color: var(--text); display: block; line-height: 1.1; margin-bottom: 4px; }
+    .cta-banner-text strong span { color: var(--gold); }
+    .cta-banner-text p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+    .cta-banner-badge { display: inline-block; font-family: 'Bebas Neue', cursive; font-size: 10px; letter-spacing: 2px; background: var(--gold); color: var(--black); padding: 2px 7px; border-radius: 2px; margin-bottom: 6px; }
+    @keyframes btn-pulse {
+      0%, 100% { box-shadow: 3px 3px 0 #128C7E, 0 0 0 0 rgba(37,211,102,0); }
+      50%       { box-shadow: 3px 3px 0 #128C7E, 0 0 0 8px rgba(37,211,102,.3); }
+    }
+    .cta-banner-btn { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1.5px; background: #25D366; color: #fff; border: none; padding: 14px 24px; border-radius: 4px; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 8px; white-space: nowrap; flex-shrink: 0; box-shadow: 3px 3px 0 #128C7E; animation: btn-pulse 2.5s ease-in-out infinite; transition: transform .15s, box-shadow .15s; }
+    .cta-banner-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #128C7E; animation: none; }
+    @media (max-width: 500px) { .cta-banner-inner { flex-direction: column; align-items: flex-start; } .cta-banner-btn { width: 100%; justify-content: center; } }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+    footer a:hover { opacity: .8; }
+    .social-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
+    .social-links a { color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color .2s; }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+    .info-note { font-size: 12px; color: #444; text-align: center; margin-top: 20px; line-height: 1.6; }
+    .info-note a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .social-links { flex-direction: column; align-items: center; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="/herramientas/" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">&larr; Volver a Herramientas</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="page-header-sfx">&#161;IVA!</div>
+  <div class="breadcrumb">
+    <a href="https://mistercontador.cl/">Inicio</a> &rsaquo;
+    <a href="/herramientas/">Herramientas</a> &rsaquo;
+    Calculadora IVA
+  </div>
+  <h1>CALCULA EL IVA<br><span class="gold">EN SEGUNDOS</span></h1>
+  <p class="subtitle">IVA chileno 19% &mdash; desde neto o desde total con IVA incluido</p>
+</div>
+
+<!-- AdSense TOP -->
+<div style="max-width:780px;margin:24px auto 0;padding:0 20px;">
+  <div id="adsense-top" class="adsense-slot">
+    <!-- AdSense Top -->
+  </div>
+</div>
+
+<div class="calc-wrapper">
+
+  <!-- CTA Banner -->
+  <div class="cta-banner">
+    <div class="cta-banner-inner">
+      <div class="cta-banner-icon">&#129518;</div>
+      <div class="cta-banner-text">
+        <div class="cta-banner-badge">&#9733; SERVICIO PROFESIONAL</div>
+        <strong>&#191;TIENES DUDAS CON TU <span>IVA O CONTABILIDAD</span>?</strong>
+        <p>Un contador real te responde en minutos &mdash; sin letra chica, sin cobros sorpresa.</p>
+      </div>
+      <a href="https://wa.me/56940536523?text=Hola%2C%20calculé%20el%20IVA%20de%20una%20operación%20y%20tengo%20dudas%2C%20%C2%BFme%20pueden%20ayudar%3F" target="_blank" rel="noopener" class="cta-banner-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        CONSULTAR GRATIS
+      </a>
+    </div>
+  </div>
+
+  <!-- Speech bubble -->
+  <div class="speech-bubble">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    <p>&#191;Sab&#237;as que puedes usar el IVA de tus compras como cr&#233;dito fiscal? &#161;Lleva un buen registro y ahorra en tu declaraci&#243;n!</p>
+  </div>
+
+  <!-- Mode toggle -->
+  <div class="mode-toggle-wrap">
+    <div class="mode-label">MODO DE C&#193;LCULO</div>
+    <div class="mode-toggle" role="group" aria-label="Modo de cálculo">
+      <button class="mode-btn active" id="btn-neto" onclick="setMode('neto')">Precio sin IVA (neto)</button>
+      <button class="mode-btn" id="btn-total" onclick="setMode('total')">Precio con IVA incluido</button>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="input-block">
+    <label class="input-label" id="input-label" for="main-input">PRECIO NETO (SIN IVA)</label>
+    <div class="input-wrap">
+      <span class="input-prefix">$</span>
+      <input id="main-input" class="main-input" type="text" inputmode="decimal" placeholder="1.000.000" autocomplete="off" aria-label="Monto a calcular">
+    </div>
+  </div>
+
+  <!-- AdSense MID -->
+  <div id="adsense-mid" class="adsense-slot" style="margin-bottom:24px;">
+    <!-- AdSense Mid -->
+  </div>
+
+  <!-- Results -->
+  <div aria-live="polite" aria-atomic="false" aria-label="Resultados del cálculo IVA">
+    <div class="results-grid">
+
+      <div class="result-block" id="block-neto">
+        <div class="result-block-label">NETO (SIN IVA)</div>
+        <div class="result-block-value" id="val-neto">&mdash;</div>
+        <div class="result-block-note">Base imponible</div>
+        <button class="btn-field-copy" onclick="copyResult('val-neto', this)">&#128203; COPIAR</button>
+      </div>
+
+      <div class="result-block" id="block-iva">
+        <div class="result-block-label">IVA 19%</div>
+        <div class="result-block-value" id="val-iva">&mdash;</div>
+        <div class="result-block-note">Impuesto al valor agregado</div>
+        <button class="btn-field-copy" onclick="copyResult('val-iva', this)">&#128203; COPIAR</button>
+      </div>
+
+      <div class="result-block result-full" id="block-total">
+        <div class="result-block-label">TOTAL CON IVA</div>
+        <div class="result-block-value" id="val-total">&mdash;</div>
+        <div class="result-block-note">Lo que paga el cliente final</div>
+        <button class="btn-field-copy" onclick="copyResult('val-total', this)">&#128203; COPIAR TOTAL</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Clear -->
+  <div class="clear-row">
+    <button class="btn-clear" onclick="clearAll()">&#10005; Limpiar</button>
+  </div>
+
+  <!-- AdSense BOTTOM -->
+  <div id="adsense-bottom" class="adsense-slot" style="margin-bottom:28px;">
+    <!-- AdSense Bottom -->
+  </div>
+
+  <!-- Info box -->
+  <div class="info-box">
+    <div class="info-box-title">F&#211;RMULAS IVA CHILE 19%</div>
+    <ul class="formula-list">
+      <li><strong>IVA</strong> = Neto &times; 0,19</li>
+      <li><strong>Total</strong> = Neto &times; 1,19</li>
+      <li><strong>Neto</strong> = Total &divide; 1,19</li>
+      <li><strong>IVA (desde total)</strong> = Total &minus; (Total &divide; 1,19)</li>
+    </ul>
+  </div>
+
+  <p class="info-note">
+    Tasa IVA vigente: 19% (Art. 14 DL 825 de 1974)<br>
+    &#191;Tienes dudas sobre c&#243;mo declarar el IVA? <a href="https://mistercontador.cl/#contacto">Cons&#250;ltanos gratis &rarr;</a>
+  </p>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">T&eacute;rminos y Condiciones</a>
+    <a href="../../privacidad.html">Pol&iacute;tica de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Regi&oacute;n Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  // Nav scroll
+  document.addEventListener('scroll', function() {
+    document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  var currentMode = 'neto'; // 'neto' | 'total'
+  var mainInput   = document.getElementById('main-input');
+
+  // Mode labels
+  var modeConfig = {
+    neto:  { label: 'PRECIO NETO (SIN IVA)',        placeholder: '1.000.000' },
+    total: { label: 'PRECIO TOTAL (CON IVA INCLUIDO)', placeholder: '1.190.000' }
+  };
+
+  // Highlighted block per mode
+  var highlightMap = {
+    neto:  'block-total',   // when typing neto, highlight total
+    total: 'block-neto'     // when typing total, highlight neto
+  };
+
+  function setMode(mode) {
+    if (mode === currentMode) return;
+    currentMode = mode;
+    document.getElementById('btn-neto').classList.toggle('active', mode === 'neto');
+    document.getElementById('btn-total').classList.toggle('active', mode === 'total');
+    document.getElementById('input-label').textContent = modeConfig[mode].label;
+    mainInput.placeholder = modeConfig[mode].placeholder;
+    mainInput.value = '';
+    resetResults();
+    mainInput.focus();
+  }
+
+  // Calculation
+  function calcularDesdeNeto(neto) {
+    var iva   = neto * 0.19;
+    var total = neto * 1.19;
+    return { neto: neto, iva: iva, total: total };
+  }
+
+  function calcularDesdeTotal(total) {
+    var neto = total / 1.19;
+    var iva  = total - neto;
+    return { neto: neto, iva: iva, total: total };
+  }
+
+  function formatCLP(n) {
+    return '$ ' + Math.round(n).toLocaleString('es-CL');
+  }
+
+  function parseInput(s) {
+    var raw = s.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '');
+    var n = parseFloat(raw);
+    return isNaN(n) ? null : n;
+  }
+
+  function animateBlock(id) {
+    var el = document.getElementById(id);
+    el.classList.remove('just-updated');
+    void el.offsetWidth;
+    el.classList.add('just-updated');
+    el.addEventListener('animationend', function(){ el.classList.remove('just-updated'); }, { once: true });
+  }
+
+  function resetResults() {
+    document.getElementById('val-neto').textContent  = '—';
+    document.getElementById('val-iva').textContent   = '—';
+    document.getElementById('val-total').textContent = '—';
+    // Remove all highlights
+    ['block-neto','block-iva','block-total'].forEach(function(id){
+      document.getElementById(id).classList.remove('highlighted');
+    });
+  }
+
+  function showResults(r) {
+    document.getElementById('val-neto').textContent  = formatCLP(r.neto);
+    document.getElementById('val-iva').textContent   = formatCLP(r.iva);
+    document.getElementById('val-total').textContent = formatCLP(r.total);
+
+    // Highlight the calculated key value
+    ['block-neto','block-iva','block-total'].forEach(function(id){
+      document.getElementById(id).classList.remove('highlighted');
+    });
+    document.getElementById(highlightMap[currentMode]).classList.add('highlighted');
+
+    animateBlock('block-neto');
+    animateBlock('block-iva');
+    animateBlock('block-total');
+  }
+
+  // Input formatting (CLP style: dots as thousands separator)
+  mainInput.addEventListener('input', function() {
+    var raw = this.value.replace(/\./g, '').replace(/[^\d]/g, '');
+    var prev = this.selectionStart;
+    var prevLen = this.value.length;
+    if (raw) {
+      var num = parseInt(raw, 10);
+      this.value = num.toLocaleString('es-CL');
+      try {
+        var diff = this.value.length - prevLen;
+        this.setSelectionRange(prev + diff, prev + diff);
+      } catch(e) {}
+      var result = currentMode === 'neto'
+        ? calcularDesdeNeto(num)
+        : calcularDesdeTotal(num);
+      showResults(result);
+    } else {
+      this.value = '';
+      resetResults();
+    }
+  });
+
+  function clearAll() {
+    mainInput.value = '';
+    resetResults();
+    mainInput.focus();
+  }
+
+  // Copy result
+  function copyResult(valId, btn) {
+    var el = document.getElementById(valId);
+    var text = el.textContent;
+    if (!text || text === '—') return;
+    // Copy just the number (no $, no spaces)
+    var num = text.replace(/[^0-9]/g, '');
+    navigator.clipboard.writeText(num).then(function() {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '&#10003; COPIADO';
+      btn.classList.add('copied-ok');
+      setTimeout(function() {
+        btn.innerHTML = orig;
+        btn.classList.remove('copied-ok');
+      }, 1800);
+    }).catch(function() {
+      // fallback
+      var ta = document.createElement('textarea');
+      ta.value = num;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+  }
+</script>
+
+</body>
+</html>
