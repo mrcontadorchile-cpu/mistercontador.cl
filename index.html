@@ -859,7 +859,7 @@
     }
     .tools-grid-home {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px; max-width: 1000px; margin: 0 auto;
       position: relative; z-index: 1;
     }
@@ -1497,6 +1497,13 @@
       <h3>Generador de Cotizaciones PDF</h3>
       <p>Crea cotizaciones profesionales en PDF al instante. Con IVA o exentas. Sin registro.</p>
       <span class="tool-card-cta">Generar cotización →</span>
+    </a>
+    <a href="/herramientas/costo-empresa/" class="tool-card reveal-3d">
+      <div class="tool-card-badge">NUEVO</div>
+      <div class="tool-card-icon">💼</div>
+      <h3>Simulador de Costo Laboral</h3>
+      <p>Calcula cuánto cuesta realmente contratar. SIS, AFC, Mutual y topes UF en tiempo real.</p>
+      <span class="tool-card-cta">Simular ahora →</span>
     </a>
   </div>
   <a href="/herramientas/" style="display:inline-block;margin-top:28px;font-family:'Bangers',cursive;letter-spacing:2px;color:var(--muted);font-size:14px;text-decoration:none;position:relative;z-index:1;">Ver todas las herramientas →</a>
