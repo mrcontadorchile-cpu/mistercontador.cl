@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Finiquito Chile 2026 — Indemnizaciones y Vacaciones | Mister Contador</title>
+  <meta name="description" content="Calcula tu finiquito en Chile: indemnización por años de servicio, aviso previo y vacaciones pendientes según Art. 159 (renuncia) o Art. 161 (necesidades empresa). Gratis para PyMEs.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-finiquitos/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/calculadora-finiquitos/">
+  <meta property="og:title"       content="Calculadora de Finiquito Chile 2026 — Indemnizaciones y Vacaciones | Mister Contador">
+  <meta property="og:description" content="Estima indemnizaciones por años de servicio, aviso previo y vacaciones pendientes según Art. 159 o 161. Cálculo inmediato, gratis.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/logo-oficial.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Calculadora de Finiquito Chile 2026 — Mister Contador">
+  <meta name="twitter:description" content="Art. 159 o 161 — calcula indemnizaciones, aviso previo y vacaciones pendientes al instante.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/logo-oficial.png">
+
+  <!-- Schema.org WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de Finiquito Chile 2026",
+    "url": "https://mistercontador.cl/herramientas/calculadora-finiquitos/",
+    "description": "Calcula finiquitos en Chile: indemnización por años de servicio, aviso previo y vacaciones pendientes según Art. 159 o 161 del Código del Trabajo.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CLP" },
+    "provider": { "@type": "Organization", "name": "Mister Contador SpA", "url": "https://mistercontador.cl/" }
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5930774950622246" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.65; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
+    nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); }
+    .btn-manga { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px; color: var(--text); border: 2px solid var(--text); padding: 8px 20px; border-radius: 2px; text-decoration: none; display: inline-block; box-shadow: 4px 4px 0 var(--text); transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; }
+    .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: block; color: #ccc; text-decoration: none; font-size: 16px; font-weight: 600; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* Page header */
+    .page-header { padding: 110px 24px clamp(16px,3vw,48px); text-align: center; background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-header-sfx { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bangers', cursive; font-size: clamp(80px, 20vw, 180px); letter-spacing: 8px; color: rgba(245,194,0,.04); pointer-events: none; user-select: none; white-space: nowrap; }
+    .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; position: relative; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-header h1 { font-family: 'Bangers', cursive; font-size: clamp(36px,6vw,64px); letter-spacing: 4px; text-transform: uppercase; line-height: 1; margin-bottom: 10px; position: relative; }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle { font-size: 15px; color: var(--text-muted); position: relative; }
+
+    .calc-wrapper { max-width: 780px; margin: 0 auto; padding: 24px 20px 80px; }
+    .adsense-slot { max-width: 740px; margin: 0 auto; min-height: 0; }
+
+    /* Form card */
+    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+    .form-card h2 { font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 2px; color: var(--gold); margin-bottom: 20px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 580px) { .form-grid { grid-template-columns: 1fr; } }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .field input, .field select {
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      padding: 12px 14px; border-radius: 4px; font-size: 15px; font-family: 'Inter', sans-serif;
+      transition: border-color .2s;
+    }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--gold); }
+    .field input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) brightness(.6); }
+    .field select option { background: #111; }
+    .checkbox-row { display: flex; align-items: center; gap: 10px; padding: 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; transition: border-color .2s; }
+    .checkbox-row:hover { border-color: var(--gold); }
+    .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--gold); cursor: pointer; }
+    .checkbox-row label { font-size: 14px; color: var(--text-muted); cursor: pointer; line-height: 1.4; }
+    #aviso-row { display: none; }
+
+    /* Calc button */
+    .btn-calc {
+      width: 100%; margin-top: 8px;
+      font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px;
+      background: var(--black); color: var(--gold);
+      border: 3px solid var(--gold); box-shadow: 6px 6px 0 var(--gold);
+      padding: 16px; border-radius: 4px; cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-calc:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--gold); }
+    .btn-calc:active { transform: translate(1px,1px); box-shadow: 4px 4px 0 var(--gold); }
+
+    /* Results */
+    .result-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 28px; margin-bottom: 24px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .4s ease, transform .4s ease;
+      pointer-events: none;
+    }
+    .result-card.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .result-card h2 { font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 2px; color: var(--gold); margin-bottom: 20px; }
+
+    .result-time { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .result-time .label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .result-time .value { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 1px; color: var(--text); }
+
+    .result-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; gap: 12px; flex-wrap: wrap; }
+    .result-row .row-label { font-size: 14px; color: var(--text-muted); flex: 1; min-width: 160px; }
+    .result-row .row-right { display: flex; align-items: center; gap: 10px; }
+    .result-row .row-amount { font-size: 15px; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .result-row .row-amount.na { color: var(--text-muted); font-weight: 400; font-style: italic; }
+    .btn-copy { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 11px; padding: 4px 8px; border-radius: 3px; cursor: pointer; transition: border-color .2s, color .2s; white-space: nowrap; }
+    .btn-copy:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-copy.copied { border-color: #25D366; color: #25D366; }
+
+    .result-total { background: var(--surface2); border: 1px solid rgba(245,194,0,.3); border-radius: 6px; padding: 20px; margin-top: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .result-total .total-label { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 2px; color: var(--text-muted); }
+    .result-total .total-amount { font-family: 'Bangers', cursive; font-size: 36px; letter-spacing: 2px; color: var(--gold); }
+    .result-note { font-size: 12px; color: #555; margin-top: 14px; line-height: 1.6; font-style: italic; }
+
+    /* CTA Banner */
+    @keyframes spin-cta-border { to { transform: rotate(360deg); } }
+    .mc-cta-banner { margin: 32px 0; position: relative; border-radius: 8px; padding: 2px; overflow: hidden; background: transparent; }
+    .mc-cta-banner::before { content: ''; position: absolute; inset: -100%; background: conic-gradient(from 0deg, transparent 0deg, #D4A800 60deg, #F5C200 90deg, #fff8cc 120deg, #F5C200 150deg, #D4A800 180deg, transparent 240deg, #F5C200 300deg, #fff8cc 330deg, #F5C200 360deg); animation: spin-cta-border 4s linear infinite; z-index: 0; border-radius: 50%; }
+    .mc-cta-inner { position: relative; z-index: 1; background: #0d0d0d; border-radius: 7px; padding: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; background-image: repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(245,194,0,.025) 18px, rgba(245,194,0,.025) 19px); }
+    .mc-cta-text { flex: 1; min-width: 220px; }
+    .mc-cta-badge { display: inline-block; font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px; background: #F5C200; color: #000; padding: 3px 8px; border-radius: 2px; margin-bottom: 8px; }
+    .mc-cta-text strong { font-family: 'Bangers', cursive; font-size: 24px; letter-spacing: 2px; color: #fff; display: block; line-height: 1.1; margin-bottom: 6px; }
+    .mc-cta-text strong span { color: #F5C200; }
+    .mc-cta-text p { font-size: 13px; color: #aaa; line-height: 1.5; margin: 0; }
+    @keyframes mc-btn-pulse { 0%, 100% { box-shadow: 4px 4px 0 #128C7E, 0 0 0 0 rgba(37,211,102,0); } 50% { box-shadow: 4px 4px 0 #128C7E, 0 0 0 8px rgba(37,211,102,.2); } }
+    .mc-cta-btn { font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: 1.5px; background: #25D366; color: #fff; border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; box-shadow: 4px 4px 0 #128C7E; animation: mc-btn-pulse 2.5s ease-in-out infinite; transition: transform .15s, box-shadow .15s; }
+    .mc-cta-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #128C7E; animation: none; color: #fff; }
+    @media (max-width: 580px) { .mc-cta-inner { flex-direction: column; align-items: flex-start; } .mc-cta-btn { width: 100%; justify-content: center; } }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+    footer a:hover { opacity: .8; }
+    .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 16px 0; }
+    .social-links a { font-size: 13px; }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 600px) { .hamburger { display: block; } .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="/herramientas/" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">&larr; Volver a Herramientas</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="page-header-sfx">FINIQUITO</div>
+  <div class="breadcrumb">
+    <a href="https://mistercontador.cl/">Inicio</a> &rsaquo;
+    <a href="/herramientas/">Herramientas</a> &rsaquo;
+    Calculadora de Finiquitos
+  </div>
+  <h1>CALCULADORA DE<br><span class="gold">FINIQUITOS</span></h1>
+  <p class="subtitle">Indemnizaciones, aviso previo y vacaciones &mdash; Art. 159 y 161 &mdash; Chile 2026</p>
+</div>
+
+<!-- AdSense TOP -->
+<div style="max-width:780px;margin:24px auto 0;padding:0 20px;">
+  <div id="adsense-top" class="adsense-slot">
+    <!-- AdSense Top -->
+  </div>
+</div>
+
+<div class="calc-wrapper">
+
+  <!-- Form -->
+  <div class="form-card">
+    <h2>DATOS DEL CONTRATO</h2>
+    <div class="form-grid">
+      <div class="field">
+        <label for="fecha-inicio">Fecha inicio contrato</label>
+        <input type="date" id="fecha-inicio">
+      </div>
+      <div class="field">
+        <label for="fecha-termino">Fecha término</label>
+        <input type="date" id="fecha-termino">
+      </div>
+      <div class="field">
+        <label for="sueldo">Sueldo base mensual (CLP)</label>
+        <input type="text" id="sueldo" inputmode="numeric" placeholder="Ej: 800.000">
+      </div>
+      <div class="field">
+        <label for="vacaciones">Días de vacaciones pendientes</label>
+        <input type="number" id="vacaciones" min="0" placeholder="Ej: 15">
+      </div>
+      <div class="field full">
+        <label for="causal">Causal de término</label>
+        <select id="causal">
+          <option value="159">Art. 159 — Renuncia / Mutuo Acuerdo</option>
+          <option value="161">Art. 161 — Necesidades de la Empresa</option>
+        </select>
+      </div>
+      <div class="field full" id="aviso-row">
+        <div class="checkbox-row">
+          <input type="checkbox" id="aviso-previo" checked>
+          <label for="aviso-previo">Se dio aviso con 30 días de anticipación (carta de aviso previo)</label>
+        </div>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcular()">CALCULAR FINIQUITO ⚡</button>
+  </div>
+
+  <!-- Results -->
+  <div class="result-card" id="result-card">
+    <h2>RESUMEN DEL FINIQUITO</h2>
+
+    <div class="result-time">
+      <span class="label">Tiempo trabajado</span>
+      <span class="value" id="res-tiempo">—</span>
+    </div>
+
+    <hr class="result-divider">
+
+    <div class="result-row">
+      <span class="row-label">Vacaciones pendientes</span>
+      <div class="row-right">
+        <span class="row-amount" id="res-vacaciones">—</span>
+        <button class="btn-copy" onclick="copiarItem(this, 'res-vacaciones')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="result-row">
+      <span class="row-label">Indemnización años de servicio</span>
+      <div class="row-right">
+        <span class="row-amount" id="res-indemnizacion">—</span>
+        <button class="btn-copy" id="btn-copy-indem" onclick="copiarItem(this, 'res-indemnizacion')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="result-row">
+      <span class="row-label">Aviso previo sustitutivo</span>
+      <div class="row-right">
+        <span class="row-amount" id="res-aviso">—</span>
+        <button class="btn-copy" id="btn-copy-aviso" onclick="copiarItem(this, 'res-aviso')">Copiar</button>
+      </div>
+    </div>
+
+    <hr class="result-divider">
+
+    <div class="result-total">
+      <span class="total-label">TOTAL ESTIMADO</span>
+      <span class="total-amount" id="res-total">—</span>
+    </div>
+
+    <p class="result-note">*Cálculo referencial. El monto exacto puede variar según cotizaciones adeudadas, gratificaciones u otros beneficios pactados en contrato.</p>
+  </div>
+
+  <!-- CTA WhatsApp -->
+  <div class="mc-cta-banner">
+    <div class="mc-cta-inner">
+      <div class="mc-cta-text">
+        <div class="mc-cta-badge">&#9733; FINIQUITO SIN SORPRESAS NI MULTAS</div>
+        <strong>&#191;DESPIDO QUE TE ESTÁ <span>QUITANDO EL SUEÑO</span>?</strong>
+        <p>Te ayudamos a calcular el finiquito exacto, pagar las cotizaciones y desvincular sin riesgo de demanda en la DT.</p>
+      </div>
+      <a href="https://wa.me/56940536523?text=Hola%20Mister%20Contador!%20Necesito%20ayuda%20para%20calcular%20y%20pagar%20un%20finiquito%20correctamente%20y%20evitar%20problemas%20en%20la%20Direcci%C3%B3n%20del%20Trabajo." target="_blank" rel="noopener" class="mc-cta-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        HABLAR CON MISTER CONTADOR
+      </a>
+    </div>
+  </div>
+
+  <!-- AdSense BOTTOM -->
+  <div id="adsense-bottom" class="adsense-slot" style="margin-top:28px;">
+    <!-- AdSense Bottom -->
+  </div>
+
+</div><!-- /calc-wrapper -->
+
+<!-- SEO Article -->
+<section style="max-width:780px; margin:48px auto; padding:32px 16px 0; border-top: 1px solid var(--border); font-family:'Inter', sans-serif;">
+  <h2 style="font-family:'Bebas Neue', sans-serif; font-size:28px; color:var(--gold); letter-spacing:2px; margin-bottom:16px;">¿CÓMO SE CALCULA UN FINIQUITO DE TRABAJO EN CHILE?</h2>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">El término de una relación laboral es uno de los momentos más delicados para la salud financiera de una PyME. En Chile, la Dirección del Trabajo (DT) es sumamente estricta con los plazos y montos que deben pagarse al momento de desvincular a un colaborador. Un finiquito es el documento legal que formaliza el fin del contrato y establece el pago de las indemnizaciones correspondientes. Entender si el despido ocurre bajo el Artículo 159 (Renuncia o Mutuo Acuerdo) o el Artículo 161 (Necesidades de la Empresa) es vital, ya que esto determina qué conceptos indemnizatorios deben pagarse y cuáles no.</p>
+  <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">LAS 3 INDEMNIZACIONES CLAVE EN LA LEGISLACIÓN LABORAL</h3>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Dependiendo de la causal aplicada, un empleador podría verse en la obligación de pagar hasta tres grandes conceptos:<br><br><strong>1. Vacaciones Pendientes:</strong> Todo trabajador en Chile acumula 1.25 días de feriado legal por cada mes trabajado (15 días hábiles al año). Si al momento del despido o renuncia quedan días a favor en el saldo del trabajador, el empleador debe pagarlos. Este derecho es irrenunciable y se paga bajo cualquier causal.<br><strong>2. Mes de Aviso Previo:</strong> Si aplicas "Necesidades de la Empresa" (Art. 161) y no le avisas al trabajador mediante una carta formal con al menos 30 días de anticipación, la ley te obliga a pagarle una indemnización sustitutiva equivalente a su última remuneración mensual.<br><strong>3. Años de Servicio:</strong> También exclusiva del Art. 161, obliga al pago de un mes de sueldo por cada año de servicio continuo prestado a la empresa. Además, la ley chilena establece que toda fracción de tiempo superior a seis meses se aproxima automáticamente al año siguiente.</p>
+  <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">EVITA DEMANDAS EN LA INSPECCIÓN DEL TRABAJO</h3>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">El plazo legal para otorgar y pagar el finiquito es de solo 10 días hábiles desde la separación del trabajador. Un cálculo erróneo de los haberes o la falta de pago de las cotizaciones previsionales en PreviRed (Ley Bustos) puede invalidar el despido, exponiendo a la PyME a recargos legales que van desde un 30% hasta un 150% sobre el valor original de las indemnizaciones. Esta calculadora te otorga una simulación de los montos base brutos para que puedas provisionar el efectivo en tu flujo de caja.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">T&eacute;rminos y Condiciones</a>
+    <a href="../../privacidad.html">Pol&iacute;tica de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Regi&oacute;n Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  // Nav scroll
+  document.addEventListener('scroll', function() {
+    document.getElementById('main-nav').classList.toggle('nav-scrolled', window.scrollY > 20);
+  });
+
+  function toggleMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const open = menu.classList.toggle('active');
+    btn.setAttribute('aria-expanded', open);
+  }
+
+  // Set default fecha-termino to today
+  (function() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    document.getElementById('fecha-termino').value = yyyy + '-' + mm + '-' + dd;
+  })();
+
+  // Sueldo formatting
+  document.getElementById('sueldo').addEventListener('input', function() {
+    const raw = this.value.replace(/\D/g, '');
+    this.value = raw ? parseInt(raw).toLocaleString('es-CL') : '';
+  });
+
+  // Show/hide aviso checkbox
+  document.getElementById('causal').addEventListener('change', function() {
+    document.getElementById('aviso-row').style.display = this.value === '161' ? 'block' : 'none';
+  });
+
+  function clp(n) {
+    return '$ ' + Math.round(n).toLocaleString('es-CL');
+  }
+
+  function calcular() {
+    const fi = document.getElementById('fecha-inicio').value;
+    const ft = document.getElementById('fecha-termino').value;
+    const sueldoRaw = document.getElementById('sueldo').value.replace(/\./g, '').replace(/[^\d]/g, '');
+    const sueldo = parseInt(sueldoRaw) || 0;
+    const diasVac = parseFloat(document.getElementById('vacaciones').value) || 0;
+    const causal = document.getElementById('causal').value;
+    const avisoMarcado = document.getElementById('aviso-previo').checked;
+
+    if (!fi || !ft || !sueldo) {
+      alert('Por favor completa fecha inicio, fecha término y sueldo base.');
+      return;
+    }
+
+    const dInicio = new Date(fi);
+    const dTermino = new Date(ft);
+    if (dTermino <= dInicio) {
+      alert('La fecha de término debe ser posterior a la fecha de inicio.');
+      return;
+    }
+
+    // Time worked
+    let anios = dTermino.getFullYear() - dInicio.getFullYear();
+    let meses = dTermino.getMonth() - dInicio.getMonth();
+    let dias = dTermino.getDate() - dInicio.getDate();
+    if (dias < 0) { meses -= 1; const prevMonth = new Date(dTermino.getFullYear(), dTermino.getMonth(), 0); dias += prevMonth.getDate(); }
+    if (meses < 0) { anios -= 1; meses += 12; }
+
+    const mesesTotales = anios * 12 + meses;
+
+    // Vacaciones
+    const vacaciones = (sueldo / 30) * diasVac;
+
+    // Indemnizacion años
+    let indemnizacion = 0;
+    let indemnizacionLabel = 'No aplica — Art. 159';
+    if (causal === '161') {
+      let aniosCalc = Math.floor(mesesTotales / 12);
+      const fraccionMeses = mesesTotales % 12;
+      if (fraccionMeses >= 6) aniosCalc += 1;
+      aniosCalc = Math.min(aniosCalc, 11);
+      indemnizacion = aniosCalc * sueldo;
+      indemnizacionLabel = null;
+    }
+
+    // Aviso previo
+    let aviso = 0;
+    let avisoLabel = 'No aplica';
+    if (causal === '161' && !avisoMarcado) {
+      aviso = sueldo;
+      avisoLabel = null;
+    }
+
+    const total = vacaciones + indemnizacion + aviso;
+
+    // Tiempo worked string
+    let tiempoStr = '';
+    if (anios > 0) tiempoStr += anios + (anios === 1 ? ' año' : ' años');
+    if (meses > 0) tiempoStr += (tiempoStr ? ', ' : '') + meses + (meses === 1 ? ' mes' : ' meses');
+    if (dias > 0) tiempoStr += (tiempoStr ? ', ' : '') + dias + (dias === 1 ? ' día' : ' días');
+    if (!tiempoStr) tiempoStr = 'Menos de 1 día';
+
+    document.getElementById('res-tiempo').textContent = tiempoStr;
+    document.getElementById('res-vacaciones').textContent = clp(vacaciones);
+    document.getElementById('res-vacaciones').classList.remove('na');
+
+    const elIndem = document.getElementById('res-indemnizacion');
+    const btnIndem = document.getElementById('btn-copy-indem');
+    if (indemnizacionLabel) {
+      elIndem.textContent = indemnizacionLabel;
+      elIndem.classList.add('na');
+      btnIndem.style.display = 'none';
+    } else {
+      elIndem.textContent = clp(indemnizacion);
+      elIndem.classList.remove('na');
+      btnIndem.style.display = '';
+    }
+
+    const elAviso = document.getElementById('res-aviso');
+    const btnAviso = document.getElementById('btn-copy-aviso');
+    if (avisoLabel) {
+      elAviso.textContent = avisoLabel;
+      elAviso.classList.add('na');
+      btnAviso.style.display = 'none';
+    } else {
+      elAviso.textContent = clp(aviso);
+      elAviso.classList.remove('na');
+      btnAviso.style.display = '';
+    }
+
+    document.getElementById('res-total').textContent = clp(total);
+
+    const card = document.getElementById('result-card');
+    card.classList.add('visible');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function copiarItem(btn, id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
