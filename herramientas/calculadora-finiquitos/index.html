@@ -259,8 +259,8 @@
         <input type="text" id="sueldo" inputmode="numeric" placeholder="Ej: 800.000">
       </div>
       <div class="field">
-        <label for="vacaciones">Días de vacaciones pendientes</label>
-        <input type="number" id="vacaciones" min="0" placeholder="Ej: 15">
+        <label for="vacaciones">Días hábiles de vacaciones pendientes</label>
+        <input type="number" id="vacaciones" min="0" placeholder="Ej: 15 días hábiles">
       </div>
       <div class="field full">
         <label for="causal">Causal de término</label>
@@ -291,7 +291,7 @@
     <hr class="result-divider">
 
     <div class="result-row">
-      <span class="row-label">Vacaciones pendientes</span>
+      <span class="row-label">Vacaciones pendientes (días hábiles)</span>
       <div class="row-right">
         <span class="row-amount" id="res-vacaciones">—</span>
         <button class="btn-copy" onclick="copiarItem(this, 'res-vacaciones')">Copiar</button>
