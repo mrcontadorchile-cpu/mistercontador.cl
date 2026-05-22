@@ -954,6 +954,8 @@
       .hero h1 { letter-spacing: 1px; }
       .hero-logo-wrap img { height: 44px; }
       .section { padding: 70px 20px; }
+      #herramientas.section { padding-bottom: 90px; }
+      .tool-card { box-shadow: 4px 4px 0 var(--gold); }
       .services-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; border: none; }
       .price-card { border-right: none; border-bottom: 2px solid rgba(255,255,255,0.08); }
@@ -1781,6 +1783,13 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
   @keyframes wa-pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.08); }
+  }
+  @media (max-width: 768px) {
+    #wa-float {
+      width: 48px; height: 48px;
+      bottom: 16px; right: 16px;
+    }
+    #wa-float svg { width: 22px; height: 22px; }
   }
 </style>
 
