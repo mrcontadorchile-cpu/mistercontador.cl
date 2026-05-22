@@ -440,7 +440,8 @@
     const mesesTotales = anios * 12 + meses;
 
     // Vacaciones
-    const vacaciones = (sueldo / 30) * diasVac;
+    // Días hábiles → días calendario (×7/5), luego tasa diaria (÷30)
+    const vacaciones = (sueldo / 30) * diasVac * (7 / 5);
 
     // Indemnizacion años
     let indemnizacion = 0;
