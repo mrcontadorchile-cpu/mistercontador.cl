@@ -255,7 +255,7 @@
         <input type="date" id="fecha-termino">
       </div>
       <div class="field">
-        <label for="sueldo">Sueldo base mensual (CLP)</label>
+        <label for="sueldo">Sueldo líquido mensual (CLP)</label>
         <input type="text" id="sueldo" inputmode="numeric" placeholder="Ej: 800.000">
       </div>
       <div class="field">
@@ -322,6 +322,14 @@
       </div>
     </div>
 
+    <div class="result-row">
+      <span class="row-label">Gratificación proporcional <span id="res-grat-label" style="font-size:11px;color:#555;"></span></span>
+      <div class="row-right">
+        <span class="row-amount" id="res-grat">—</span>
+        <button class="btn-copy" onclick="copiarItem(this, 'res-grat')">Copiar</button>
+      </div>
+    </div>
+
     <hr class="result-divider">
 
     <div class="result-total">
@@ -329,7 +337,7 @@
       <span class="total-amount" id="res-total">—</span>
     </div>
 
-    <p class="result-note">*Cálculo referencial basado en sueldo fijo. Las vacaciones se calculan proyectando días hábiles (Lun–Vie) hacia adelante desde la fecha de término y pagando los días de corrido resultantes. Si existen feriados legales en ese período, el monto real será mayor. El total puede variar por cotizaciones adeudadas, gratificaciones, remuneración variable u otros beneficios pactados en contrato.*</p>
+    <p class="result-note">*Cálculo referencial basado en sueldo líquido. Vacaciones estimadas convirtiendo días hábiles a calendario (×7/5), sin considerar feriados exactos. Gratificación calculada al 4,75% proporcional al año en curso. El monto exacto puede variar por cotizaciones adeudadas, remuneración variable u otros beneficios pactados en contrato.*</p>
   </div>
 
   <!-- CTA WhatsApp -->
@@ -417,21 +425,6 @@
     return '$ ' + Math.round(n).toLocaleString('es-CL');
   }
 
-  // Proyecta N días hábiles (Lun-Vie) desde el día siguiente a fechaTermino
-  // y devuelve los días de corrido (días calendario abarcados)
-  function diasCorridoVacaciones(fechaTermino, diasHabiles) {
-    if (diasHabiles <= 0) return 0;
-    var cursor = new Date(fechaTermino.getTime());
-    cursor.setDate(cursor.getDate() + 1); // primer día del período vacacional
-    var habiles = 0;
-    while (habiles < diasHabiles) {
-      var dow = cursor.getDay();
-      if (dow >= 1 && dow <= 5) habiles++; // Lun-Vie
-      if (habiles < diasHabiles) cursor.setDate(cursor.getDate() + 1);
-    }
-    // días de corrido: desde fechaTermino hasta cursor (inclusive)
-    return Math.round((cursor - fechaTermino) / 86400000);
-  }
 
   function calcular() {
     var fi = document.getElementById('fecha-inicio').value;
@@ -471,9 +464,8 @@
     var valorDiario  = sueldo / 30;
     var pagoDias     = valorDiario * diaTermino;
 
-    // ── Feriado proporcional (días de corrido) ───────────────────────
-    var corrido      = diasCorridoVacaciones(dTermino, diasVac);
-    var vacaciones   = valorDiario * corrido;
+    // ── Feriado proporcional (×7/5 para convertir hábiles a calendario) ──
+    var vacaciones = valorDiario * diasVac * (7 / 5);
 
     // ── Indemnización años de servicio ───────────────────────────────
     var indemnizacion = 0;
@@ -496,7 +488,16 @@
       avisoLabel = null;
     }
 
-    var total = pagoDias + vacaciones + indemnizacion + aviso;
+    // ── Gratificación proporcional (4.75% / 12 × meses año en curso) ──
+    var añoTermino   = dTermino.getFullYear();
+    var inicioAño    = new Date(añoTermino, 0, 1, 12);
+    var inicioGrat   = dInicio > inicioAño ? dInicio : inicioAño;
+    var mesesGrat    = (dTermino.getFullYear() - inicioGrat.getFullYear()) * 12
+                     + (dTermino.getMonth() - inicioGrat.getMonth()) + 1;
+    mesesGrat        = Math.max(1, Math.min(mesesGrat, 12));
+    var gratificacion = sueldo * 0.0475 * mesesGrat / 12;
+
+    var total = pagoDias + vacaciones + indemnizacion + aviso + gratificacion;
 
     // ── Render tiempo trabajado ───────────────────────────────────────
     var tiempoStr = '';
@@ -512,15 +513,14 @@
     document.getElementById('res-dias').classList.remove('na');
 
     // ── Render vacaciones ─────────────────────────────────────────────
-    if (diasVac > 0) {
-      document.getElementById('res-vac-label').textContent = '(' + diasVac + ' días hábiles = ' + corrido + ' días corrido)';
-      document.getElementById('res-vacaciones').textContent = clp(vacaciones);
-      document.getElementById('res-vacaciones').classList.remove('na');
-    } else {
-      document.getElementById('res-vac-label').textContent = '';
-      document.getElementById('res-vacaciones').textContent = '$ 0';
-      document.getElementById('res-vacaciones').classList.remove('na');
-    }
+    document.getElementById('res-vac-label').textContent = diasVac > 0 ? '(' + diasVac + ' días hábiles)' : '';
+    document.getElementById('res-vacaciones').textContent = diasVac > 0 ? clp(vacaciones) : '$ 0';
+    document.getElementById('res-vacaciones').classList.remove('na');
+
+    // ── Render gratificación ──────────────────────────────────────────
+    document.getElementById('res-grat-label').textContent = '(' + mesesGrat + (mesesGrat === 1 ? ' mes' : ' meses') + ' año ' + añoTermino + ')';
+    document.getElementById('res-grat').textContent = clp(gratificacion);
+    document.getElementById('res-grat').classList.remove('na');
 
     // ── Render indemnización ──────────────────────────────────────────
     var elIndem  = document.getElementById('res-indemnizacion');
