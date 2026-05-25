@@ -291,7 +291,15 @@
     <hr class="result-divider">
 
     <div class="result-row">
-      <span class="row-label">Vacaciones pendientes (días hábiles)</span>
+      <span class="row-label">Remuneración días trabajados <span id="res-dias-label" style="font-size:11px;color:#555;"></span></span>
+      <div class="row-right">
+        <span class="row-amount" id="res-dias">—</span>
+        <button class="btn-copy" onclick="copiarItem(this, 'res-dias')">Copiar</button>
+      </div>
+    </div>
+
+    <div class="result-row">
+      <span class="row-label">Feriado proporcional <span id="res-vac-label" style="font-size:11px;color:#555;"></span></span>
       <div class="row-right">
         <span class="row-amount" id="res-vacaciones">—</span>
         <button class="btn-copy" onclick="copiarItem(this, 'res-vacaciones')">Copiar</button>
@@ -299,7 +307,7 @@
     </div>
 
     <div class="result-row">
-      <span class="row-label">Indemnización años de servicio</span>
+      <span class="row-label">Indemnización años de servicio <span id="res-indem-label" style="font-size:11px;color:#555;"></span></span>
       <div class="row-right">
         <span class="row-amount" id="res-indemnizacion">—</span>
         <button class="btn-copy" id="btn-copy-indem" onclick="copiarItem(this, 'res-indemnizacion')">Copiar</button>
@@ -317,11 +325,11 @@
     <hr class="result-divider">
 
     <div class="result-total">
-      <span class="total-label">TOTAL ESTIMADO</span>
+      <span class="total-label">TOTAL BRUTO ESTIMADO</span>
       <span class="total-amount" id="res-total">—</span>
     </div>
 
-    <p class="result-note">*Cálculo referencial. Las vacaciones se estiman convirtiendo días hábiles a días calendario (×7/5), sin considerar el calendario exacto ni feriados legales — el monto real puede variar levemente. El total también puede diferir según cotizaciones adeudadas, gratificaciones u otros beneficios pactados en contrato.*</p>
+    <p class="result-note">*Cálculo referencial basado en sueldo fijo. Las vacaciones se calculan proyectando días hábiles (Lun–Vie) hacia adelante desde la fecha de término y pagando los días de corrido resultantes. Si existen feriados legales en ese período, el monto real será mayor. El total puede variar por cotizaciones adeudadas, gratificaciones, remuneración variable u otros beneficios pactados en contrato.*</p>
   </div>
 
   <!-- CTA WhatsApp -->
@@ -409,87 +417,129 @@
     return '$ ' + Math.round(n).toLocaleString('es-CL');
   }
 
+  // Proyecta N días hábiles (Lun-Vie) desde el día siguiente a fechaTermino
+  // y devuelve los días de corrido (días calendario abarcados)
+  function diasCorridoVacaciones(fechaTermino, diasHabiles) {
+    if (diasHabiles <= 0) return 0;
+    var cursor = new Date(fechaTermino.getTime());
+    cursor.setDate(cursor.getDate() + 1); // primer día del período vacacional
+    var habiles = 0;
+    while (habiles < diasHabiles) {
+      var dow = cursor.getDay();
+      if (dow >= 1 && dow <= 5) habiles++; // Lun-Vie
+      if (habiles < diasHabiles) cursor.setDate(cursor.getDate() + 1);
+    }
+    // días de corrido: desde fechaTermino hasta cursor (inclusive)
+    return Math.round((cursor - fechaTermino) / 86400000);
+  }
+
   function calcular() {
-    const fi = document.getElementById('fecha-inicio').value;
-    const ft = document.getElementById('fecha-termino').value;
-    const sueldoRaw = document.getElementById('sueldo').value.replace(/\./g, '').replace(/[^\d]/g, '');
-    const sueldo = parseInt(sueldoRaw) || 0;
-    const diasVac = parseFloat(document.getElementById('vacaciones').value) || 0;
-    const causal = document.getElementById('causal').value;
-    const avisoMarcado = document.getElementById('aviso-previo').checked;
+    var fi = document.getElementById('fecha-inicio').value;
+    var ft = document.getElementById('fecha-termino').value;
+    var sueldoRaw = document.getElementById('sueldo').value.replace(/\./g, '').replace(/[^\d]/g, '');
+    var sueldo = parseInt(sueldoRaw) || 0;
+    var diasVac = parseFloat(document.getElementById('vacaciones').value) || 0;
+    var causal = document.getElementById('causal').value;
+    var avisoMarcado = document.getElementById('aviso-previo').checked;
 
     if (!fi || !ft || !sueldo) {
       alert('Por favor completa fecha inicio, fecha término y sueldo base.');
       return;
     }
 
-    const dInicio = new Date(fi);
-    const dTermino = new Date(ft);
+    // Construir fechas como UTC noon para evitar desfase de timezone
+    var partsI = fi.split('-');
+    var partsT = ft.split('-');
+    var dInicio  = new Date(+partsI[0], +partsI[1]-1, +partsI[2], 12);
+    var dTermino = new Date(+partsT[0], +partsT[1]-1, +partsT[2], 12);
+
     if (dTermino <= dInicio) {
       alert('La fecha de término debe ser posterior a la fecha de inicio.');
       return;
     }
 
-    // Time worked
-    let anios = dTermino.getFullYear() - dInicio.getFullYear();
-    let meses = dTermino.getMonth() - dInicio.getMonth();
-    let dias = dTermino.getDate() - dInicio.getDate();
-    if (dias < 0) { meses -= 1; const prevMonth = new Date(dTermino.getFullYear(), dTermino.getMonth(), 0); dias += prevMonth.getDate(); }
+    // ── Tiempo trabajado ─────────────────────────────────────────────
+    var anios = dTermino.getFullYear() - dInicio.getFullYear();
+    var meses = dTermino.getMonth()    - dInicio.getMonth();
+    var dias  = dTermino.getDate()     - dInicio.getDate();
+    if (dias  < 0) { meses -= 1; var prev = new Date(dTermino.getFullYear(), dTermino.getMonth(), 0); dias += prev.getDate(); }
     if (meses < 0) { anios -= 1; meses += 12; }
+    var mesesTotales = anios * 12 + meses;
 
-    const mesesTotales = anios * 12 + meses;
+    // ── Días trabajados del último mes ───────────────────────────────
+    var diaTermino   = dTermino.getDate(); // ej: 14 si termina el día 14
+    var valorDiario  = sueldo / 30;
+    var pagoDias     = valorDiario * diaTermino;
 
-    // Vacaciones
-    // Días hábiles → días calendario (×7/5), luego tasa diaria (÷30)
-    const vacaciones = (sueldo / 30) * diasVac * (7 / 5);
+    // ── Feriado proporcional (días de corrido) ───────────────────────
+    var corrido      = diasCorridoVacaciones(dTermino, diasVac);
+    var vacaciones   = valorDiario * corrido;
 
-    // Indemnizacion años
-    let indemnizacion = 0;
-    let indemnizacionLabel = 'No aplica — Art. 159';
+    // ── Indemnización años de servicio ───────────────────────────────
+    var indemnizacion = 0;
+    var aniosReconocidos = 0;
+    var indemnizacionLabel = 'No aplica — Art. 159';
     if (causal === '161') {
-      let aniosCalc = Math.floor(mesesTotales / 12);
-      const fraccionMeses = mesesTotales % 12;
-      if (fraccionMeses >= 6) aniosCalc += 1;
-      aniosCalc = Math.min(aniosCalc, 11);
-      indemnizacion = aniosCalc * sueldo;
+      aniosReconocidos = Math.floor(mesesTotales / 12);
+      var fraccion = mesesTotales % 12;
+      if (fraccion >= 6) aniosReconocidos += 1;
+      aniosReconocidos = Math.min(aniosReconocidos, 11);
+      indemnizacion = aniosReconocidos * sueldo;
       indemnizacionLabel = null;
     }
 
-    // Aviso previo
-    let aviso = 0;
-    let avisoLabel = 'No aplica';
+    // ── Aviso previo ─────────────────────────────────────────────────
+    var aviso = 0;
+    var avisoLabel = 'No aplica';
     if (causal === '161' && !avisoMarcado) {
       aviso = sueldo;
       avisoLabel = null;
     }
 
-    const total = vacaciones + indemnizacion + aviso;
+    var total = pagoDias + vacaciones + indemnizacion + aviso;
 
-    // Tiempo worked string
-    let tiempoStr = '';
-    if (anios > 0) tiempoStr += anios + (anios === 1 ? ' año' : ' años');
-    if (meses > 0) tiempoStr += (tiempoStr ? ', ' : '') + meses + (meses === 1 ? ' mes' : ' meses');
-    if (dias > 0) tiempoStr += (tiempoStr ? ', ' : '') + dias + (dias === 1 ? ' día' : ' días');
+    // ── Render tiempo trabajado ───────────────────────────────────────
+    var tiempoStr = '';
+    if (anios  > 0) tiempoStr += anios  + (anios  === 1 ? ' año'  : ' años');
+    if (meses  > 0) tiempoStr += (tiempoStr ? ', ' : '') + meses  + (meses  === 1 ? ' mes'  : ' meses');
+    if (dias   > 0) tiempoStr += (tiempoStr ? ', ' : '') + dias   + (dias   === 1 ? ' día'  : ' días');
     if (!tiempoStr) tiempoStr = 'Menos de 1 día';
-
     document.getElementById('res-tiempo').textContent = tiempoStr;
-    document.getElementById('res-vacaciones').textContent = clp(vacaciones);
-    document.getElementById('res-vacaciones').classList.remove('na');
 
-    const elIndem = document.getElementById('res-indemnizacion');
-    const btnIndem = document.getElementById('btn-copy-indem');
+    // ── Render días trabajados ────────────────────────────────────────
+    document.getElementById('res-dias-label').textContent = '(días ' + diaTermino + ' de ' + dTermino.toLocaleString('es-CL', {month:'long'}) + ')';
+    document.getElementById('res-dias').textContent = clp(pagoDias);
+    document.getElementById('res-dias').classList.remove('na');
+
+    // ── Render vacaciones ─────────────────────────────────────────────
+    if (diasVac > 0) {
+      document.getElementById('res-vac-label').textContent = '(' + diasVac + ' días hábiles = ' + corrido + ' días corrido)';
+      document.getElementById('res-vacaciones').textContent = clp(vacaciones);
+      document.getElementById('res-vacaciones').classList.remove('na');
+    } else {
+      document.getElementById('res-vac-label').textContent = '';
+      document.getElementById('res-vacaciones').textContent = '$ 0';
+      document.getElementById('res-vacaciones').classList.remove('na');
+    }
+
+    // ── Render indemnización ──────────────────────────────────────────
+    var elIndem  = document.getElementById('res-indemnizacion');
+    var btnIndem = document.getElementById('btn-copy-indem');
     if (indemnizacionLabel) {
       elIndem.textContent = indemnizacionLabel;
       elIndem.classList.add('na');
       btnIndem.style.display = 'none';
+      document.getElementById('res-indem-label').textContent = '';
     } else {
       elIndem.textContent = clp(indemnizacion);
       elIndem.classList.remove('na');
       btnIndem.style.display = '';
+      document.getElementById('res-indem-label').textContent = '(' + aniosReconocidos + (aniosReconocidos === 1 ? ' año reconocido' : ' años reconocidos') + (aniosReconocidos === 11 ? ' — tope legal' : '') + ')';
     }
 
-    const elAviso = document.getElementById('res-aviso');
-    const btnAviso = document.getElementById('btn-copy-aviso');
+    // ── Render aviso previo ───────────────────────────────────────────
+    var elAviso  = document.getElementById('res-aviso');
+    var btnAviso = document.getElementById('btn-copy-aviso');
     if (avisoLabel) {
       elAviso.textContent = avisoLabel;
       elAviso.classList.add('na');
@@ -502,7 +552,7 @@
 
     document.getElementById('res-total').textContent = clp(total);
 
-    const card = document.getElementById('result-card');
+    var card = document.getElementById('result-card');
     card.classList.add('visible');
     card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
