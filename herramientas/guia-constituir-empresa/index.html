@@ -137,12 +137,6 @@
   .btn-outline { font-family: 'Bangers', cursive; font-size: 20px; letter-spacing: 2px; background: transparent; color: var(--text); border: 2px solid rgba(255,255,255,.3); padding: 14px 32px; border-radius: 4px; cursor: pointer; text-decoration: none; transition: border-color .2s, color .2s; }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-  /* PROGRESS BAR */
-  .progress-wrap { max-width: 680px; margin: 40px auto 0; display: none; }
-  .progress-wrap.visible { display: block; }
-  .progress-label { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; text-align: left; }
-  .progress-bar-track { background: var(--surface2); border-radius: 4px; height: 6px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: var(--gold); border-radius: 4px; transition: width .4s ease; width: 0%; }
 
   /* PROBLEMA */
   .section { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
@@ -154,40 +148,108 @@
   .problem-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
   .key-message { border-left: 3px solid var(--gold); padding: 16px 20px; background: var(--surface); border-radius: 0 4px 4px 0; font-size: 14px; color: #ccc; font-style: italic; }
 
-  /* CHECKLIST */
-  .checklist-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 64px; }
-  .checklist-wrap h2 { font-family: 'Bebas Neue', cursive; font-size: 32px; letter-spacing: 3px; text-align: center; margin-bottom: 32px; }
-  .question-block { display: none; animation: fadeInUp .35s ease; }
-  .question-block.active { display: block; }
+  /* CHECKLIST SECTION */
+  .checklist-section {
+    background: #0d0d0d;
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+    padding: 64px 24px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .checklist-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(245,194,0,.04) 39px, rgba(245,194,0,.04) 40px),
+                      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(245,194,0,.04) 39px, rgba(245,194,0,.04) 40px);
+    pointer-events: none;
+  }
+  .checklist-header { text-align: center; margin-bottom: 48px; position: relative; z-index: 1; }
+  .checklist-eyebrow { font-family: 'Bebas Neue', cursive; font-size: 13px; letter-spacing: 5px; color: var(--gold); background: rgba(245,194,0,.1); border: 1px solid rgba(245,194,0,.3); display: inline-block; padding: 6px 18px; border-radius: 2px; margin-bottom: 16px; }
+  .checklist-title { font-family: 'Bangers', cursive; font-size: clamp(42px, 8vw, 80px); letter-spacing: 4px; line-height: 1; color: var(--text); margin-bottom: 12px; }
+  .checklist-title span { color: var(--gold); }
+  .checklist-sub { font-size: 15px; color: #888; max-width: 500px; margin: 0 auto; }
+
+  /* PROGRESS inside card */
+  .cl-progress { margin-bottom: 24px; }
+  .cl-progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .cl-progress-label { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 2px; color: var(--gold); }
+  .cl-progress-pct { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 1px; color: var(--text-muted); }
+  .cl-progress-track { background: rgba(255,255,255,.07); border-radius: 3px; height: 5px; overflow: hidden; }
+  .cl-progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); border-radius: 3px; transition: width .5s cubic-bezier(.4,0,.2,1); width: 0%; }
+
+  .checklist-wrap { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+  .question-block { display: none; }
+  .question-block.active { display: block; animation: punchIn .3s cubic-bezier(.2,1.4,.5,1); }
+  @keyframes punchIn { from { opacity:0; transform: scale(.94) translateY(12px); } to { opacity:1; transform: scale(1) translateY(0); } }
   @keyframes fadeInUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-  .question-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 28px; }
-  .question-card h3 { font-family: 'Bebas Neue', cursive; font-size: 22px; letter-spacing: 2px; margin-bottom: 6px; }
-  .question-hint { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+
+  .question-card {
+    background: var(--surface);
+    border: 3px solid var(--gold);
+    border-radius: 4px;
+    box-shadow: 8px 8px 0 var(--gold-dark);
+    padding: 32px 28px 28px;
+    position: relative;
+  }
+  .q-number {
+    position: absolute; top: -18px; left: 24px;
+    font-family: 'Bangers', cursive; font-size: 13px; letter-spacing: 3px;
+    background: var(--gold); color: var(--black); padding: 4px 14px; border-radius: 2px;
+  }
+  .question-card h3 { font-family: 'Bebas Neue', cursive; font-size: clamp(20px, 3.5vw, 26px); letter-spacing: 2px; margin-bottom: 8px; line-height: 1.2; }
+  .question-hint { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
   .options { display: flex; flex-direction: column; gap: 10px; }
-  .opt-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; text-align: left; color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; cursor: pointer; transition: border-color .2s, background .2s; }
-  .opt-btn:hover { border-color: var(--gold); background: rgba(245,194,0,.06); }
-  .sub-questions { margin-top: 20px; display: none; animation: fadeInUp .3s ease; }
+  .opt-btn {
+    background: var(--surface2);
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    text-align: left; color: var(--text);
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: border-color .15s, background .15s, transform .15s, box-shadow .15s;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .opt-btn:hover {
+    border-color: var(--gold);
+    background: rgba(245,194,0,.07);
+    transform: translateX(4px);
+    box-shadow: -4px 0 0 var(--gold);
+  }
+  .opt-btn:active { transform: translateX(2px); }
+
+  .sub-questions { margin-top: 24px; display: none; animation: fadeInUp .3s ease; border-top: 1px dashed rgba(245,194,0,.3); padding-top: 20px; }
   .sub-questions.visible { display: block; }
   .sub-q { margin-bottom: 20px; }
-  .sub-q h4 { font-family: 'Bebas Neue', cursive; font-size: 16px; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; }
+  .sub-q h4 { font-family: 'Bebas Neue', cursive; font-size: 15px; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; }
   .sub-options { display: flex; flex-direction: column; gap: 8px; }
-  .sub-opt { background: var(--black); border: 1px solid #2a2a2a; border-radius: 5px; padding: 10px 14px; text-align: left; color: #bbb; font-family: 'Inter', sans-serif; font-size: 13px; cursor: pointer; transition: border-color .2s; }
-  .sub-opt:hover { border-color: var(--gold); color: var(--text); }
+  .sub-opt { background: var(--black); border: 1px solid #2a2a2a; border-radius: 4px; padding: 11px 14px; text-align: left; color: #bbb; font-family: 'Inter', sans-serif; font-size: 13px; cursor: pointer; transition: border-color .15s, transform .15s; }
+  .sub-opt:hover { border-color: var(--gold); color: var(--text); transform: translateX(3px); }
   .sub-opt.selected { border-color: var(--gold); background: rgba(245,194,0,.08); color: var(--text); }
   .sub-continue { font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: 2px; background: var(--gold); color: var(--black); border: none; padding: 12px 28px; border-radius: 4px; cursor: pointer; margin-top: 16px; display: none; box-shadow: 3px 3px 0 var(--gold-dark); transition: transform .15s; }
-  .sub-continue:hover { transform: translate(-1px,-1px); }
+  .sub-continue:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--gold-dark); }
 
   /* RESULTADO */
-  .resultado-card { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 32px; text-align: center; animation: fadeInUp .4s ease; }
-  .resultado-card.visible { display: block; }
-  .res-badge { display: inline-block; font-family: 'Bebas Neue', cursive; font-size: 13px; letter-spacing: 2px; padding: 5px 14px; border-radius: 3px; margin-bottom: 20px; }
-  .res-badge.green { background: #14532d; color: #4ade80; }
-  .res-badge.yellow { background: #713f12; color: #fbbf24; }
-  .res-badge.red { background: #7f1d1d; color: #f87171; }
-  .resultado-card h3 { font-family: 'Bebas Neue', cursive; font-size: 28px; letter-spacing: 2px; margin-bottom: 16px; }
-  .resultado-card p { font-size: 14px; color: #aaa; line-height: 1.7; margin-bottom: 24px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .resultado-card {
+    display: none;
+    border: 3px solid var(--gold);
+    border-radius: 4px;
+    box-shadow: 8px 8px 0 var(--gold-dark);
+    padding: 40px 28px;
+    text-align: center;
+    background: var(--surface);
+    position: relative;
+  }
+  .resultado-card.visible { display: block; animation: punchIn .4s cubic-bezier(.2,1.4,.5,1); }
+  .res-badge { display: inline-block; font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 3px; padding: 6px 20px; border-radius: 3px; margin-bottom: 20px; }
+  .res-badge.green { background: #14532d; color: #4ade80; border: 1px solid #166534; }
+  .res-badge.yellow { background: #713f12; color: #fbbf24; border: 1px solid #92400e; }
+  .res-badge.red { background: #7f1d1d; color: #f87171; border: 1px solid #991b1b; }
+  .resultado-card h3 { font-family: 'Bebas Neue', cursive; font-size: clamp(24px, 4vw, 36px); letter-spacing: 2px; margin-bottom: 16px; }
+  .resultado-card p { font-size: 14px; color: #aaa; line-height: 1.75; margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
   .res-cta { font-family: 'Bangers', cursive; font-size: 20px; letter-spacing: 2px; background: #25D366; color: #fff; border: none; padding: 14px 32px; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 4px 4px 0 #128C7E; transition: transform .15s; margin-bottom: 16px; }
-  .res-cta:hover { transform: translate(-2px,-2px); color: #fff; }
+  .res-cta:hover { transform: translate(-2px,-2px); color: #fff; box-shadow: 6px 6px 0 #128C7E; }
   .btn-restart { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 2px; background: none; color: var(--text-muted); border: 1px solid var(--border); padding: 10px 24px; border-radius: 4px; cursor: pointer; margin-top: 8px; display: inline-block; transition: color .2s, border-color .2s; }
   .btn-restart:hover { color: var(--gold); border-color: var(--gold); }
 
@@ -251,8 +313,6 @@
   .social-links a { font-size: 13px; color: #555; }
   .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
 
-  /* WRAPPER */
-  .checklist-container { max-width: 900px; margin: 0 auto; }
 </style>
 </head>
 <body>
@@ -302,10 +362,6 @@
       <a href="#checklist" class="btn-primary" id="btn-start">COMENZAR CHECKLIST ⚡</a>
       <a href="https://wa.me/56940536523?text=Hola%20Mister%20Contador!%20Quiero%20orientaci%C3%B3n%20para%20crear%20mi%20empresa%20correctamente%20en%20Chile." target="_blank" rel="noopener" class="btn-outline">QUIERO ORIENTACIÓN</a>
     </div>
-    <div class="progress-wrap" id="progress-wrap">
-      <div class="progress-label" id="progress-label">Pregunta 1 de 10</div>
-      <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-bar"></div></div>
-    </div>
   </div>
 </section>
 
@@ -338,14 +394,27 @@
 </section>
 
 <!-- CHECKLIST -->
-<div class="checklist-container" id="checklist">
+<section class="checklist-section" id="checklist">
+  <div class="checklist-header">
+    <div class="checklist-eyebrow">⚡ DIAGNÓSTICO GRATUITO</div>
+    <div class="checklist-title">¿ESTÁS LISTO PARA<br><span>CREAR TU EMPRESA</span>?</div>
+    <p class="checklist-sub">10 preguntas · 3 minutos · Resultado inmediato</p>
+  </div>
+
   <div class="checklist-wrap">
-    <h2>CHECKLIST INTERACTIVO</h2>
 
     <!-- Q1 -->
     <div class="question-block active" id="q1">
       <div class="question-card">
-        <h3>1. ¿Tienes claro qué tipo de sociedad necesitas crear?</h3>
+        <div class="q-number">PREGUNTA 1 DE 10</div>
+        <div class="cl-progress">
+          <div class="cl-progress-top">
+            <span class="cl-progress-label">PROGRESO</span>
+            <span class="cl-progress-pct">0%</span>
+          </div>
+          <div class="cl-progress-track"><div class="cl-progress-fill" style="width:0%"></div></div>
+        </div>
+        <h3>¿Tienes claro qué tipo de sociedad necesitas crear?</h3>
         <p class="question-hint">SpA, EIRL, Sociedad Limitada — cada una tiene reglas distintas de administración, socios y responsabilidad.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(0, 0)">✅ Sí, ya sé exactamente qué tipo de empresa necesito</button>
@@ -358,7 +427,9 @@
     <!-- Q2 -->
     <div class="question-block" id="q2">
       <div class="question-card">
-        <h3>2. ¿Tienes definida la razón social (nombre legal) de tu empresa?</h3>
+        <div class="q-number">PREGUNTA 2 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">10%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:10%"></div></div></div>
+        <h3>¿Tienes definida la razón social (nombre legal) de tu empresa?</h3>
         <p class="question-hint">La razón social es el nombre que aparecerá en el RUT de tu empresa. Es distinto al nombre de fantasía o marca comercial.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(1, 0)">✅ Sí, tengo claro el nombre legal de mi empresa</button>
@@ -371,7 +442,9 @@
     <!-- Q3 -->
     <div class="question-block" id="q3">
       <div class="question-card">
-        <h3>3. ¿Sabes cuál será el giro o actividad principal de tu empresa?</h3>
+        <div class="q-number">PREGUNTA 3 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">20%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:20%"></div></div></div>
+        <h3>¿Sabes cuál será el giro o actividad principal de tu empresa?</h3>
         <p class="question-hint">El giro define qué puede hacer y facturar tu empresa. Un giro mal definido puede impedirte facturar ciertos servicios o productos.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(2, 0)">✅ Sí, tengo claro el giro que declararé ante el SII</button>
@@ -384,7 +457,9 @@
     <!-- Q4 -->
     <div class="question-block" id="q4">
       <div class="question-card">
-        <h3>4. ¿Sabes cuánto capital inicial declararás al constituir la empresa?</h3>
+        <div class="q-number">PREGUNTA 4 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">30%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:30%"></div></div></div>
+        <h3>¿Sabes cuánto capital inicial declararás al constituir la empresa?</h3>
         <p class="question-hint">En Chile no hay capital mínimo obligatorio, pero el capital declarado puede importar para licitaciones, créditos y contratos.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(3, 0)">✅ Sí, tengo definido el monto de capital inicial</button>
@@ -397,7 +472,9 @@
     <!-- Q5 (con sub-preguntas) -->
     <div class="question-block" id="q5">
       <div class="question-card">
-        <h3>5. ¿Tu empresa tendrá socios?</h3>
+        <div class="q-number">PREGUNTA 5 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">40%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:40%"></div></div></div>
+        <h3>¿Tu empresa tendrá socios?</h3>
         <p class="question-hint">Si tendrás socios, hay decisiones importantes que deben quedar definidas desde el inicio para evitar conflictos futuros.</p>
         <div class="options" id="q5-main-opts">
           <button class="opt-btn" onclick="showSubQuestions(0)">👥 Sí, tendré uno o más socios</button>
@@ -437,7 +514,9 @@
     <!-- Q6 -->
     <div class="question-block" id="q6">
       <div class="question-card">
-        <h3>6. ¿Tienes definido el domicilio donde funcionará la empresa?</h3>
+        <div class="q-number">PREGUNTA 6 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">50%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:50%"></div></div></div>
+        <h3> ¿Tienes definido el domicilio donde funcionará la empresa?</h3>
         <p class="question-hint">El domicilio determina la municipalidad donde obtendrás la patente comercial. Puede ser tu casa, oficina arrendada o domicilio de uso compartido.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(5, 0)">✅ Sí, tengo claro la dirección que usaré</button>
@@ -450,7 +529,9 @@
     <!-- Q7 -->
     <div class="question-block" id="q7">
       <div class="question-card">
-        <h3>7. ¿Sabes en qué régimen tributario te conviene iniciar?</h3>
+        <div class="q-number">PREGUNTA 7 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">60%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:60%"></div></div></div>
+        <h3> ¿Sabes en qué régimen tributario te conviene iniciar?</h3>
         <p class="question-hint">14D, 14A, Pro PyME — el régimen tributario que elijas afecta cómo pagas impuestos y cuánto llevas de la empresa para ti.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(6, 0)">✅ Sí, conozco los regímenes y sé cuál me conviene</button>
@@ -463,7 +544,9 @@
     <!-- Q8 -->
     <div class="question-block" id="q8">
       <div class="question-card">
-        <h3>8. ¿Tienes claro cómo emitirás boletas o facturas electrónicas?</h3>
+        <div class="q-number">PREGUNTA 8 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">70%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:70%"></div></div></div>
+        <h3> ¿Tienes claro cómo emitirás boletas o facturas electrónicas?</h3>
         <p class="question-hint">Una vez constituida la empresa, deberás emitir documentos tributarios electrónicos desde el SII o un software autorizado. Si no lo tienes claro, puede haber problemas al facturar.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(7, 0)">✅ Sí, sé cómo obtener folios y emitir documentos electrónicos</button>
@@ -476,7 +559,9 @@
     <!-- Q9 -->
     <div class="question-block" id="q9">
       <div class="question-card">
-        <h3>9. ¿Sabes que después de crear la empresa deberás declarar el F29 cada mes?</h3>
+        <div class="q-number">PREGUNTA 9 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">80%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:80%"></div></div></div>
+        <h3> ¿Sabes que después de crear la empresa deberás declarar el F29 cada mes?</h3>
         <p class="question-hint">El Formulario 29 es la declaración mensual de IVA y PPM. Si no lo declaras a tiempo, el SII te puede multar aunque no hayas vendido nada ese mes.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(8, 0)">✅ Sí, estoy al tanto de las obligaciones tributarias mensuales</button>
@@ -489,7 +574,9 @@
     <!-- Q10 -->
     <div class="question-block" id="q10">
       <div class="question-card">
-        <h3>10. ¿Tienes un contador o asesor para acompañarte después de crear la empresa?</h3>
+        <div class="q-number">PREGUNTA 10 DE 10</div>
+        <div class="cl-progress"><div class="cl-progress-top"><span class="cl-progress-label">PROGRESO</span><span class="cl-progress-pct">90%</span></div><div class="cl-progress-track"><div class="cl-progress-fill" style="width:90%"></div></div></div>
+        <h3> ¿Tienes un contador o asesor para acompañarte después de crear la empresa?</h3>
         <p class="question-hint">Contar con un contador desde el inicio no es un gasto, es una inversión. Evita multas, errores tributarios y te ayuda a tomar mejores decisiones financieras.</p>
         <div class="options">
           <button class="opt-btn" onclick="answer(9, 0)">✅ Sí, ya tengo un contador o asesor definido</button>
@@ -512,7 +599,7 @@
     </div>
 
   </div>
-</div>
+</section>
 
 <!-- AdSense BOTTOM -->
 <div id="adsense-bottom" class="adsense-slot">
@@ -684,13 +771,6 @@
     document.querySelectorAll('.question-block').forEach(function(b) { b.classList.remove('active'); });
     var el = document.getElementById('q' + n);
     if (el) { el.classList.add('active'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    updateProgress(n);
-  }
-
-  function updateProgress(n) {
-    document.getElementById('progress-wrap').classList.add('visible');
-    document.getElementById('progress-label').textContent = 'Pregunta ' + n + ' de ' + totalQuestions;
-    document.getElementById('progress-bar').style.width = ((n - 1) / totalQuestions * 100) + '%';
   }
 
   function answer(qIndex, val, skipSub) {
@@ -762,8 +842,6 @@
     }
 
     card.classList.add('visible');
-    document.getElementById('progress-bar').style.width = '100%';
-    document.getElementById('progress-label').textContent = '¡Checklist completado!';
     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
@@ -777,7 +855,6 @@
     document.getElementById('sub-q5').classList.remove('visible');
     document.getElementById('sub-continue-btn').style.display = 'none';
     document.querySelectorAll('.sub-opt').forEach(function(b) { b.classList.remove('selected'); });
-    document.getElementById('progress-wrap').classList.remove('visible');
     showQuestion(1);
   }
 
