@@ -115,14 +115,17 @@
   #read-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); width: 0%; z-index: 9999; transition: width .1s; }
 
   /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 65px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: rgba(10,10,10,.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); transition: background .3s; }
-  nav.glass { background: rgba(10,10,10,.97); }
-  .nav-logo img { height: 34px; display: block; }
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
+  nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+  .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo img { height: 36px; object-fit: contain; }
   .nav-links { display: flex; align-items: center; }
   .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
   .nav-links a:hover { color: var(--gold); }
   .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
-  .nav-links .btn-nav:hover { background: var(--gold-dark); color: var(--black); }
+  .nav-links .btn-nav:hover { background: var(--gold-dark); }
+  .nav-links .btn-manga { color: var(--gold) !important; font-size: 13px; }
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
   .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
   .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
@@ -293,10 +296,15 @@
   .reveal-d5 { transition-delay: .5s; }
 
   /* FOOTER */
-  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
-  footer p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
-  footer a { color: var(--gold); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
+  footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
+  .footer-logo { margin-bottom: 20px; }
+  .footer-logo img { height: 36px; object-fit: contain; }
+  footer p { font-size: 13px; color: #444; }
+  footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+  footer a:hover { opacity: .8; }
+  .social-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 16px; margin-bottom: 16px; }
+  .social-links a { font-size: 13px; color: #555; }
+  .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -305,18 +313,31 @@
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="/" class="nav-logo"><img src="../../img/logo-oficial.png" alt="Mister Contador"></a>
-  <div class="nav-links">
-    <a href="/herramientas/">← Volver a Herramientas</a>
-    <a href="https://wa.me/56940536523" target="_blank" rel="noopener" class="btn-nav">Hablar con un Contador</a>
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <button class="hamburger" onclick="document.getElementById('mob-menu').classList.toggle('active')" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
-<div class="mobile-menu" id="mob-menu">
-  <a href="/herramientas/" onclick="document.getElementById('mob-menu').classList.remove('active')">← Volver a Herramientas</a>
-  <a href="https://wa.me/56940536523" target="_blank" rel="noopener" onclick="document.getElementById('mob-menu').classList.remove('active')">Hablar con un Contador</a>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="/herramientas/" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">&larr; Volver a Herramientas</a>
 </div>
 
 <!-- ADSENSE TOP -->
@@ -862,10 +883,20 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>
-    <a href="/">mistercontador.cl</a> — Servicios contables y tributarios para PyMEs chilenas.<br>
-    <a href="/herramientas/">← Ver todas las herramientas gratuitas</a>
-  </p>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">T&eacute;rminos y Condiciones</a>
+    <a href="../../privacidad.html">Pol&iacute;tica de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Regi&oacute;n Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
 </footer>
 
 <script>
@@ -1009,15 +1040,20 @@ var observer = new IntersectionObserver(function(entries) {
 }, { threshold: 0.12 });
 revealEls.forEach(function(el) { observer.observe(el); });
 
-// ===== NAV GLASS + PROGRESS =====
-window.addEventListener('scroll', function() {
-  var nav = document.getElementById('main-nav');
-  if (window.scrollY > 40) nav.classList.add('glass'); else nav.classList.remove('glass');
+// ===== NAV SCROLL + PROGRESS =====
+document.addEventListener('scroll', function() {
+  document.getElementById('main-nav').classList.toggle('nav-scrolled', window.scrollY > 20);
   var doc = document.documentElement;
   var scrolled = (doc.scrollTop || document.body.scrollTop);
   var total = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
   document.getElementById('read-progress').style.width = (scrolled / total * 100) + '%';
 });
+
+function toggleMenu(btn) {
+  var menu = document.getElementById('mobile-menu');
+  var open = menu.classList.toggle('active');
+  btn.setAttribute('aria-expanded', open);
+}
 </script>
 </body>
 </html>
