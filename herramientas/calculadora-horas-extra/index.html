@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Horas Extra Chile 2026 | Mister Contador</title>
+  <meta name="description" content="Calcula el valor bruto y líquido aproximado de tus horas extra en Chile según sueldo base, jornada, recargo, AFP, salud y tipo de contrato.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mistercontador.cl/herramientas/calculadora-horas-extra/">
+  <link rel="icon" type="image/png" href="../../img/icon-oficial.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://mistercontador.cl/herramientas/calculadora-horas-extra/">
+  <meta property="og:title"       content="Calculadora de Horas Extra Chile 2026 | Mister Contador">
+  <meta property="og:description" content="Calcula el valor bruto y líquido aproximado de tus horas extra en Chile según sueldo base, jornada, recargo, AFP, salud y tipo de contrato.">
+  <meta property="og:image"       content="https://mistercontador.cl/img/logo-oficial.png">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Calculadora Horas Extra Chile 2026 — Mister Contador">
+  <meta name="twitter:description" content="Calcula bruto y líquido de tus horas extra según AFP, salud, jornada y recargo. Gratis.">
+  <meta name="twitter:image"      content="https://mistercontador.cl/img/logo-oficial.png">
+
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto se paga una hora extra en Chile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En Chile, las horas extra se pagan con un recargo mínimo del 50% sobre el valor de la hora ordinaria. El valor de la hora ordinaria se obtiene dividiendo el sueldo base mensual por las horas mensuales de la jornada pactada (jornada semanal × 4.33)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Las horas extra tienen descuentos previsionales?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Las horas extraordinarias son remuneración imponible y están sujetas a descuentos de AFP (10% + comisión), salud (7% u otro porcentaje) y Seguro de Cesantía (0,6% en contratos indefinidos)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuántas horas extra se pueden trabajar por mes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El Código del Trabajo establece un máximo de 2 horas extra diarias y hasta 12 horas extra a la semana. Mensualmente esto equivale aproximadamente a 52 horas extraordinarias como tope legal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Se pueden pactar horas extra con recargo mayor al 50%?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. El 50% es el recargo mínimo legal, pero empleador y trabajador pueden pactar un recargo mayor mediante acuerdo escrito. El acuerdo debe constar en el contrato o en un anexo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo se calcula el valor de la hora ordinaria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El valor de la hora ordinaria se calcula dividiendo el sueldo base mensual por las horas mensuales de la jornada. Las horas mensuales se obtienen multiplicando la jornada semanal pactada por 4.33 (semanas promedio del mes)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RTB206P81H');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5930774950622246" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #F5C200;
+      --gold-dark: #D4A800;
+      --black: #0a0a0a;
+      --surface: #111111;
+      --surface2: #1a1a1a;
+      --border: #1e1e1e;
+      --text: #ffffff;
+      --text-muted: #777777;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.65; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: transparent; backdrop-filter: blur(0px); border-bottom: 1px solid transparent; padding: 12px 0; transition: background .35s, border-color .35s, backdrop-filter .35s; }
+    nav.nav-scrolled { background: rgba(6,6,6,.88); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(245,194,0,.2); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links a { color: #aaa; text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 28px; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-nav { background: var(--gold); color: var(--black); padding: 8px 18px; border-radius: 4px; font-weight: 700; margin-left: 28px; font-size: 13px; text-transform: uppercase; }
+    .nav-links .btn-nav:hover { background: var(--gold-dark); }
+    .btn-manga { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1.5px; color: var(--text); border: 2px solid var(--text); padding: 8px 20px; border-radius: 2px; text-decoration: none; display: inline-block; box-shadow: 4px 4px 0 var(--text); transition: transform .15s, box-shadow .15s, color .15s, border-color .15s; }
+    .btn-manga:hover { transform: translate(-2px,-2px); color: var(--gold); border-color: var(--gold); box-shadow: 6px 6px 0 var(--gold); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; }
+    .mobile-menu { display: none; position: fixed; top: 65px; left: 0; right: 0; background: rgba(0,0,0,.97); backdrop-filter: blur(16px); padding: 20px 24px; border-bottom: 2px solid var(--gold); z-index: 99; }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: block; color: #ccc; text-decoration: none; font-size: 16px; font-weight: 600; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* Page header */
+    .page-header { padding: 110px 24px clamp(16px,3vw,48px); text-align: center; background: linear-gradient(180deg, rgba(245,194,0,.05) 0%, transparent 100%); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .page-header-sfx { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bangers', cursive; font-size: clamp(80px, 20vw, 180px); letter-spacing: 8px; color: rgba(245,194,0,.04); pointer-events: none; user-select: none; white-space: nowrap; }
+    .breadcrumb { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; position: relative; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-header h1 { font-family: 'Bangers', cursive; font-size: clamp(36px,6vw,64px); letter-spacing: 4px; text-transform: uppercase; line-height: 1; margin-bottom: 10px; position: relative; }
+    .page-header h1 .gold { color: var(--gold); }
+    .page-header .subtitle { font-size: 15px; color: var(--text-muted); position: relative; }
+
+    .calc-wrapper { max-width: 780px; margin: 0 auto; padding: 24px 20px 80px; }
+    .adsense-slot { max-width: 740px; margin: 0 auto; min-height: 0; }
+
+    /* Saved data banner */
+    .saved-banner { border: 2px solid var(--gold); border-radius: 6px; padding: 18px 20px; margin-bottom: 28px; background: rgba(245,194,0,.04); }
+    .saved-banner p { font-size: 14px; color: var(--text); margin-bottom: 14px; line-height: 1.5; }
+    .saved-banner-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .saved-btn { font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1px; padding: 9px 18px; border-radius: 2px; cursor: pointer; border: 2px solid; transition: transform .15s, box-shadow .15s; }
+    .saved-btn-use { background: var(--gold); color: var(--black); border-color: var(--gold); box-shadow: 3px 3px 0 var(--gold-dark); }
+    .saved-btn-use:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--gold-dark); }
+    .saved-btn-clear { background: transparent; color: var(--text-muted); border-color: var(--border); }
+    .saved-btn-clear:hover { color: var(--text); border-color: #555; }
+    .saved-btn-new { background: transparent; color: var(--text-muted); border-color: var(--border); }
+    .saved-btn-new:hover { color: var(--text); border-color: #555; }
+
+    /* Progress */
+    .progress-wrap { margin-bottom: 24px; }
+    .progress-label { font-family: 'Bebas Neue', cursive; font-size: 13px; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 8px; }
+    .progress-bar-bg { background: var(--surface2); border-radius: 2px; height: 4px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width .4s cubic-bezier(.4,0,.2,1); }
+
+    /* Steps */
+    .step { display: none; animation: fadeSlideUp .3s ease; }
+    .step.active { display: block; }
+    @keyframes fadeSlideUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+    .step-title { font-family: 'Bebas Neue', cursive; font-size: 22px; letter-spacing: 2px; color: var(--text); margin-bottom: 6px; }
+    .step-help { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5; }
+
+    /* Input */
+    .inp { width: 100%; background: var(--surface2); border: 2px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 18px; padding: 14px 16px; outline: none; border-radius: 4px; transition: border-color .2s; }
+    .inp:focus { border-color: var(--gold); }
+    .inp.highlight { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,194,0,.15); }
+    .inp-prefix { position: relative; }
+    .inp-prefix .prefix { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text-muted); pointer-events: none; }
+    .inp-prefix .inp { padding-left: 32px; }
+
+    /* Pills */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .pill { font-family: 'Bebas Neue', cursive; font-size: 15px; letter-spacing: 1px; padding: 10px 18px; background: var(--surface2); border: 2px solid var(--border); color: var(--text-muted); border-radius: 2px; cursor: pointer; transition: all .18s; }
+    .pill:hover { border-color: #555; color: var(--text); }
+    .pill.selected { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .pill-extra-input { margin-top: 10px; display: none; }
+    .pill-extra-input.visible { display: block; }
+
+    /* Nav buttons */
+    .step-nav { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+    .btn-back { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1px; padding: 12px 24px; background: transparent; color: var(--text-muted); border: 2px solid var(--border); border-radius: 2px; cursor: pointer; transition: all .18s; }
+    .btn-back:hover { color: var(--text); border-color: #555; }
+    .btn-next { font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: 1.5px; padding: 13px 32px; background: var(--gold); color: var(--black); border: none; border-radius: 2px; cursor: pointer; box-shadow: 4px 4px 0 var(--gold-dark); transition: transform .15s, box-shadow .15s; }
+    .btn-next:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--gold-dark); }
+    .btn-next:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: 4px 4px 0 var(--gold-dark); }
+    .btn-calc { font-family: 'Bangers', cursive; font-size: 20px; letter-spacing: 2px; padding: 14px 36px; background: var(--gold); color: var(--black); border: none; border-radius: 2px; cursor: pointer; box-shadow: 5px 5px 0 var(--gold-dark); transition: transform .15s, box-shadow .15s; }
+    .btn-calc:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--gold-dark); }
+
+    /* Toggle */
+    .toggle-wrap { display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
+    .toggle-track { width: 52px; height: 28px; background: var(--surface2); border: 2px solid var(--border); border-radius: 14px; position: relative; transition: background .2s, border-color .2s; flex-shrink: 0; cursor: pointer; }
+    .toggle-track.on { background: var(--gold); border-color: var(--gold); }
+    .toggle-thumb { position: absolute; width: 20px; height: 20px; background: #fff; border-radius: 50%; top: 2px; left: 2px; transition: left .2s; }
+    .toggle-track.on .toggle-thumb { left: 26px; }
+    .toggle-label { font-size: 14px; color: var(--text); line-height: 1.4; }
+
+    /* Result card */
+    .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 24px; margin-bottom: 28px; animation: fadeSlideUp .4s ease; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+    .result-row:last-child { border-bottom: none; }
+    .result-row .label { color: var(--text-muted); }
+    .result-row .value { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 1px; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .result-divider { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+    .result-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 8px; }
+    .result-total .label { font-family: 'Bebas Neue', cursive; font-size: 16px; letter-spacing: 2px; color: var(--text); }
+    .result-total .value { font-family: 'Bangers', cursive; font-size: 36px; letter-spacing: 2px; color: var(--gold); }
+    .result-note { font-size: 12px; color: #555; margin-top: 12px; font-style: italic; line-height: 1.5; }
+
+    /* Desglose colapsable */
+    .desglose-toggle { background: none; border: none; color: var(--text-muted); font-size: 12px; font-family: 'Inter', sans-serif; cursor: pointer; padding: 6px 0; text-decoration: underline; transition: color .2s; }
+    .desglose-toggle:hover { color: var(--text); }
+    .desglose-body { display: none; background: var(--surface2); border-radius: 4px; padding: 12px 16px; margin-top: 8px; }
+    .desglose-body.open { display: block; animation: fadeSlideUp .2s ease; }
+    .desglose-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.04); color: var(--text-muted); }
+    .desglose-row:last-child { border-bottom: none; }
+
+    /* Copy btn */
+    .btn-copy { background: none; border: 1px solid var(--border); border-radius: 3px; padding: 3px 8px; font-size: 11px; color: var(--text-muted); cursor: pointer; margin-left: 6px; transition: all .15s; }
+    .btn-copy:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-copy.copied { border-color: #4ade80; color: #4ade80; }
+
+    /* CTAs */
+    .cta-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    @media (max-width: 560px) { .cta-pair { grid-template-columns: 1fr; } }
+    .cta-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 20px; }
+    .cta-card h3 { font-family: 'Bebas Neue', cursive; font-size: 16px; letter-spacing: 2px; color: var(--gold); margin-bottom: 8px; line-height: 1.2; }
+    .cta-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 14px; }
+    .btn-wa { display: flex; align-items: center; gap: 8px; background: #25D366; color: #fff; font-family: 'Bangers', cursive; font-size: 15px; letter-spacing: 1px; padding: 11px 18px; border-radius: 4px; text-decoration: none; box-shadow: 3px 3px 0 #128C7E; transition: transform .15s, box-shadow .15s; }
+    .btn-wa:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 #128C7E; color: #fff; }
+    .btn-wa svg { flex-shrink: 0; }
+
+    /* Plasma CTA banner */
+    @keyframes spin-cta-border { to { transform: rotate(360deg); } }
+    .mc-cta-banner { margin: 32px 0; position: relative; border-radius: 8px; padding: 2px; overflow: hidden; background: transparent; }
+    .mc-cta-banner::before { content: ''; position: absolute; inset: -100%; background: conic-gradient(from 0deg, transparent 0deg, #D4A800 60deg, #F5C200 90deg, #fff8cc 120deg, #F5C200 150deg, #D4A800 180deg, transparent 240deg, #F5C200 300deg, #fff8cc 330deg, #F5C200 360deg); animation: spin-cta-border 4s linear infinite; z-index: 0; border-radius: 50%; }
+    .mc-cta-inner { position: relative; z-index: 1; background: #0d0d0d; border-radius: 7px; padding: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; background-image: repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(245,194,0,.025) 18px, rgba(245,194,0,.025) 19px); }
+    .mc-cta-text { flex: 1; min-width: 220px; }
+    .mc-cta-badge { display: inline-block; font-family: 'Bebas Neue', cursive; font-size: 12px; letter-spacing: 2px; background: #F5C200; color: #000; padding: 3px 8px; border-radius: 2px; margin-bottom: 8px; }
+    .mc-cta-text strong { font-family: 'Bangers', cursive; font-size: 24px; letter-spacing: 2px; color: #fff; display: block; line-height: 1.1; margin-bottom: 6px; }
+    .mc-cta-text strong span { color: #F5C200; }
+    .mc-cta-text p { font-size: 13px; color: #aaa; line-height: 1.5; margin: 0; }
+    @keyframes mc-btn-pulse { 0%, 100% { box-shadow: 4px 4px 0 #128C7E, 0 0 0 0 rgba(37,211,102,0); } 50% { box-shadow: 4px 4px 0 #128C7E, 0 0 0 8px rgba(37,211,102,.2); } }
+    .mc-cta-btn { font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: 1.5px; background: #25D366; color: #fff; border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; box-shadow: 4px 4px 0 #128C7E; animation: mc-btn-pulse 2.5s ease-in-out infinite; transition: transform .15s, box-shadow .15s; }
+    .mc-cta-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #128C7E; animation: none; color: #fff; }
+    @media (max-width: 580px) { .mc-cta-inner { flex-direction: column; align-items: flex-start; } .mc-cta-btn { width: 100%; justify-content: center; } }
+
+    /* Save data section */
+    .save-data-section { margin: 28px 0 8px; padding: 20px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; }
+    .save-data-section h4 { font-family: 'Bebas Neue', cursive; font-size: 16px; letter-spacing: 2px; color: var(--text); margin-bottom: 8px; }
+    .btn-save { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 1px; padding: 11px 24px; background: var(--surface); color: var(--gold); border: 2px solid var(--gold); border-radius: 2px; cursor: pointer; box-shadow: 3px 3px 0 var(--gold-dark); transition: transform .15s, box-shadow .15s; }
+    .btn-save:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--gold-dark); }
+    .privacy-note { font-size: 12px; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+
+    /* Capture form */
+    .capture-form-wrap { margin: 32px 0; padding: 24px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; }
+    .capture-form-wrap h3 { font-family: 'Bebas Neue', cursive; font-size: 20px; letter-spacing: 2px; color: var(--gold); margin-bottom: 16px; }
+    .cf-group { margin-bottom: 16px; }
+    .cf-group label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #aaa; margin-bottom: 6px; }
+    .cf-group input, .cf-group select, .cf-group textarea { width: 100%; background: var(--surface); border: 2px solid rgba(245,194,0,.2); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; padding: 11px 13px; outline: none; border-radius: 4px; transition: border-color .2s; }
+    .cf-group select option { background: var(--surface); }
+    .cf-group input:focus, .cf-group select:focus, .cf-group textarea:focus { border-color: var(--gold); }
+    .cf-group textarea { resize: vertical; min-height: 80px; }
+    .btn-wa-form { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: #25D366; color: #fff; font-family: 'Bangers', cursive; font-size: 18px; letter-spacing: 1.5px; padding: 14px; border: none; border-radius: 4px; cursor: pointer; box-shadow: 4px 4px 0 #128C7E; transition: transform .15s, box-shadow .15s; }
+    .btn-wa-form:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #128C7E; }
+
+    /* FAQ */
+    .faq-section { margin: 40px 0; }
+    .faq-section h2 { font-family: 'Bebas Neue', cursive; font-size: 24px; letter-spacing: 3px; color: var(--text); margin-bottom: 20px; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; background: none; border: none; color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; padding: 18px 0; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; transition: color .2s; }
+    .faq-q:hover { color: var(--gold); }
+    .faq-q .faq-icon { font-size: 20px; font-weight: 300; color: var(--gold); flex-shrink: 0; transition: transform .25s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { display: none; padding: 0 0 18px; font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .faq-item.open .faq-a { display: block; animation: fadeSlideUp .25s ease; }
+
+    /* Recalc */
+    .btn-recalc { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 2px; padding: 10px 20px; background: transparent; color: var(--text-muted); border: 1px solid var(--border); border-radius: 2px; cursor: pointer; margin-bottom: 24px; transition: all .18s; }
+    .btn-recalc:hover { border-color: #555; color: var(--text); }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,.05); padding: 48px 24px; text-align: center; background: #000; }
+    .footer-logo { margin-bottom: 20px; }
+    .footer-logo img { height: 36px; object-fit: contain; }
+    footer p { font-size: 13px; color: #444; }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity .2s; }
+    footer a:hover { opacity: .8; }
+    .social-links { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: center; }
+    .social-links a { color: #555; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color .2s; }
+    .social-links a:hover { color: var(--gold); }
+    footer .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="https://mistercontador.cl/" class="nav-logo">
+      <img src="../../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="https://mistercontador.cl/#servicios">Servicios</a>
+      <a href="https://mistercontador.cl/#planes">Planes</a>
+      <a href="https://mistercontador.cl/#testimonios">Clientes</a>
+      <a href="https://mistercontador.cl/#faq">FAQ</a>
+      <a href="https://mistercontador.cl/#contacto">Contacto</a>
+      <a href="../../inventory.html" class="btn-nav">Mister Inventario</a>
+      <a href="/herramientas/" class="btn-manga">&larr; Volver a Herramientas</a>
+    </div>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="https://mistercontador.cl/#servicios" onclick="this.parentElement.classList.remove('active')">Servicios</a>
+  <a href="https://mistercontador.cl/#planes" onclick="this.parentElement.classList.remove('active')">Planes</a>
+  <a href="https://mistercontador.cl/#testimonios" onclick="this.parentElement.classList.remove('active')">Clientes</a>
+  <a href="https://mistercontador.cl/#faq" onclick="this.parentElement.classList.remove('active')">FAQ</a>
+  <a href="https://mistercontador.cl/#contacto" onclick="this.parentElement.classList.remove('active')">Contacto</a>
+  <a href="/herramientas/" style="color:#F5C200;" onclick="this.parentElement.classList.remove('active')">&larr; Volver a Herramientas</a>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="page-header-sfx">HORAS EXTRA</div>
+  <div class="breadcrumb">
+    <a href="https://mistercontador.cl/">Inicio</a> &rsaquo;
+    <a href="/herramientas/">Herramientas</a> &rsaquo;
+    Calculadora de Horas Extra
+  </div>
+  <h1>CALCULADORA DE<br><span class="gold">HORAS EXTRA</span></h1>
+  <p class="subtitle">Bruto y l&iacute;quido aproximado seg&uacute;n AFP, salud, jornada y recargo &mdash; Chile 2026</p>
+</div>
+
+<!-- AdSense TOP -->
+<div style="max-width:780px;margin:24px auto 0;padding:0 20px;">
+  <div id="adsense-top" class="adsense-slot">
+    <!-- AdSense Top -->
+  </div>
+</div>
+
+<div class="calc-wrapper">
+
+  <!-- Saved data banner -->
+  <div id="saved-banner" class="saved-banner" style="display:none;">
+    <p>&#128204; Encontramos datos guardados en este dispositivo. Puedes reutilizarlos y cambiar solo las horas extra.</p>
+    <div class="saved-banner-btns">
+      <button class="saved-btn saved-btn-use" onclick="useSavedData()">USAR MIS DATOS</button>
+      <button class="saved-btn saved-btn-clear" onclick="clearSavedData()">BORRAR DATOS</button>
+      <button class="saved-btn saved-btn-new" onclick="hideSavedBanner()">EMPEZAR DE CERO</button>
+    </div>
+  </div>
+
+  <!-- Calculator -->
+  <div id="calculator">
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-label" id="progress-label">Paso 1 de 8</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar" style="width:12.5%"></div>
+      </div>
+    </div>
+
+    <!-- Step 1: Sueldo base -->
+    <div class="step active" id="step-1">
+      <div class="step-title">&#128181; Sueldo base mensual</div>
+      <div class="step-help">Usa el sueldo base de tu contrato, no el l&iacute;quido.</div>
+      <div class="inp-prefix">
+        <span class="prefix">$</span>
+        <input type="text" class="inp" id="sueldo-base" inputmode="numeric" placeholder="Ej: 650.000" oninput="formatCLP(this)">
+      </div>
+      <div class="step-nav">
+        <button class="btn-next" onclick="nextStep(1)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Jornada -->
+    <div class="step" id="step-2">
+      <div class="step-title">&#128336; Jornada semanal</div>
+      <div class="step-help">Mientras menor tu jornada pactada, mayor el valor de cada hora ordinaria.</div>
+      <div class="pills" id="pills-jornada">
+        <div class="pill" onclick="selectPill('jornada',45,this)">45h</div>
+        <div class="pill" onclick="selectPill('jornada',44,this)">44h</div>
+        <div class="pill" onclick="selectPill('jornada',42,this)">42h</div>
+        <div class="pill" onclick="selectPill('jornada',40,this)">40h</div>
+        <div class="pill" onclick="selectPill('jornada','otra',this)">Otra</div>
+      </div>
+      <div class="pill-extra-input" id="jornada-otra-wrap">
+        <input type="number" class="inp" id="jornada-otra" placeholder="Ej: 38" min="1" max="45">
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(2)">&#8592; ATRÁS</button>
+        <button class="btn-next" onclick="nextStep(2)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Horas extra -->
+    <div class="step" id="step-3">
+      <div class="step-title">&#9201; Horas extra a calcular</div>
+      <div class="step-help">Ingresa el total mensual, ej: 5, 10 o 15 horas.</div>
+      <input type="number" class="inp" id="horas-extra" placeholder="Ej: 10" min="1" max="200">
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(3)">&#8592; ATRÁS</button>
+        <button class="btn-next" onclick="nextStep(3)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Recargo -->
+    <div class="step" id="step-4">
+      <div class="step-title">&#128200; Recargo</div>
+      <div class="step-help">En Chile el recargo m&iacute;nimo legal es 50%. Si no sabes, usa 50%.</div>
+      <div class="pills" id="pills-recargo">
+        <div class="pill" onclick="selectPill('recargo',50,this)">50% (legal m&iacute;nimo)</div>
+        <div class="pill" onclick="selectPill('recargo','otro',this)">Otro %</div>
+      </div>
+      <div class="pill-extra-input" id="recargo-otro-wrap">
+        <input type="number" class="inp" id="recargo-otro" placeholder="Ej: 75" min="1" max="500">
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(4)">&#8592; ATRÁS</button>
+        <button class="btn-next" onclick="nextStep(4)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Tipo contrato -->
+    <div class="step" id="step-5">
+      <div class="step-title">&#128196; Tipo de contrato</div>
+      <div class="step-help">Afecta el descuento del Seguro de Cesant&iacute;a.</div>
+      <div class="pills" id="pills-contrato">
+        <div class="pill" onclick="selectPill('contrato','indefinido',this)">Indefinido</div>
+        <div class="pill" onclick="selectPill('contrato','plazo_fijo',this)">Plazo fijo</div>
+        <div class="pill" onclick="selectPill('contrato','obra',this)">Obra/faena</div>
+        <div class="pill" onclick="selectPill('contrato','no_se',this)">No s&eacute;</div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(5)">&#8592; ATRÁS</button>
+        <button class="btn-next" onclick="nextStep(5)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 6: AFP -->
+    <div class="step" id="step-6">
+      <div class="step-title">&#127959; AFP</div>
+      <div class="step-help">Descuenta 10% obligatorio + comisi&oacute;n seg&uacute;n AFP.</div>
+      <div class="pills" id="pills-afp">
+        <div class="pill" onclick="selectPill('afp','capital',this)">Capital</div>
+        <div class="pill" onclick="selectPill('afp','cuprum',this)">Cuprum</div>
+        <div class="pill" onclick="selectPill('afp','habitat',this)">H&aacute;bitat</div>
+        <div class="pill" onclick="selectPill('afp','modelo',this)">Modelo</div>
+        <div class="pill" onclick="selectPill('afp','planvital',this)">PlanVital</div>
+        <div class="pill" onclick="selectPill('afp','provida',this)">ProVida</div>
+        <div class="pill" onclick="selectPill('afp','uno',this)">Uno</div>
+        <div class="pill" onclick="selectPill('afp','estimada',this)">No s&eacute;</div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(6)">&#8592; ATRÁS</button>
+        <button class="btn-next" onclick="nextStep(6)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Salud -->
+    <div class="step" id="step-7">
+      <div class="step-title">&#9877; Salud</div>
+      <div class="step-help">La cotizaci&oacute;n legal de salud es 7%. Isapre puede ser mayor seg&uacute;n tu plan.</div>
+      <div class="pills" id="pills-salud">
+        <div class="pill" onclick="selectPill('salud','fonasa7',this)">Fonasa (7%)</div>
+        <div class="pill" onclick="selectPill('salud','isapre7',this)">Isapre (7%)</div>
+        <div class="pill" onclick="selectPill('salud','isapre_mayor',this)">Isapre (mayor al 7%)</div>
+        <div class="pill" onclick="selectPill('salud','no_se',this)">No s&eacute;</div>
+      </div>
+      <div class="pill-extra-input" id="salud-mayor-wrap">
+        <input type="number" class="inp" id="salud-porcentaje" placeholder="Ej: 8.5" min="7" max="30" step="0.1">
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(7)">&#8592; ATRÁS</button>
+        <button class="btn-next" onclick="nextStep(7)">SIGUIENTE &#8594;</button>
+      </div>
+    </div>
+
+    <!-- Step 8: Calcular líquido -->
+    <div class="step" id="step-8">
+      <div class="step-title">&#128260; &iquest;Calcular l&iacute;quido?</div>
+      <div class="step-help">Las horas extra son remuneraci&oacute;n imponible y tienen descuentos previsionales.</div>
+      <div class="toggle-wrap" onclick="toggleLiquido()" style="margin-bottom:24px;">
+        <div class="toggle-track" id="toggle-liquido">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span class="toggle-label" id="toggle-liquido-label">S&iacute;, quiero ver el l&iacute;quido aproximado</span>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(8)">&#8592; ATRÁS</button>
+        <button class="btn-calc" onclick="calcular()">CALCULAR &#9889;</button>
+      </div>
+    </div>
+
+  </div><!-- /calculator -->
+
+  <!-- Results -->
+  <div id="results" style="display:none;">
+    <button class="btn-recalc" onclick="recalcular()">&#8592; NUEVO C&Aacute;LCULO</button>
+
+    <div class="result-card" id="result-card"></div>
+
+    <!-- AdSense BOTTOM -->
+    <div id="adsense-bottom" class="adsense-slot" style="margin-bottom:28px;">
+      <!-- AdSense Bottom -->
+    </div>
+
+    <!-- CTA pair -->
+    <div class="cta-pair">
+      <div class="cta-card">
+        <h3>&iquest;EL C&Aacute;LCULO NO COINCIDE CON TU LIQUIDACI&Oacute;N?</h3>
+        <p>Podemos ayudarte a revisar si tus horas extra est&aacute;n calculadas correctamente.</p>
+        <a href="https://wa.me/56940536523?text=Hola%20Mister%20Contador!%20Us%C3%A9%20la%20calculadora%20de%20horas%20extra%20y%20quiero%20revisar%20si%20mi%20liquidaci%C3%B3n%20est%C3%A1%20correcta." target="_blank" rel="noopener" class="btn-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Revisar mi liquidaci&oacute;n
+        </a>
+      </div>
+      <div class="cta-card">
+        <h3>&iquest;QUIERES EVITAR ERRORES EN TUS REMUNERACIONES?</h3>
+        <p>Te ayudamos a revisar remuneraciones, horas extra, descuentos y obligaciones laborales.</p>
+        <a href="https://wa.me/56940536523?text=Hola%20Mister%20Contador!%20Us%C3%A9%20la%20calculadora%20de%20horas%20extra%20y%20quiero%20revisar%20las%20remuneraciones%20de%20mi%20empresa." target="_blank" rel="noopener" class="btn-wa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Revisar mi empresa
+        </a>
+      </div>
+    </div>
+
+    <!-- Plasma CTA Banner -->
+    <div class="mc-cta-banner">
+      <div class="mc-cta-inner">
+        <div class="mc-cta-text">
+          <div class="mc-cta-badge">&#9733; REMUNERACIONES SIN ERRORES NI MULTAS</div>
+          <strong>&#191;TU EMPRESA PAGA LAS HORAS EXTRA <span>CORRECTAMENTE</span>?</strong>
+          <p>Revisamos tus liquidaciones, cotizaciones PreviRed y horas extra para que nunca enfrentes una multa de la DT.</p>
+        </div>
+        <a href="https://wa.me/56940536523?text=Hola%20Mister%20Contador!%20Quiero%20revisar%20si%20las%20horas%20extra%20de%20mi%20empresa%20est%C3%A1n%20calculadas%20correctamente." target="_blank" rel="noopener" class="mc-cta-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          HABLAR CON MISTER CONTADOR
+        </a>
+      </div>
+    </div>
+
+    <!-- Save data -->
+    <div class="save-data-section">
+      <h4>&#128190; GUARDAR MIS DATOS PARA FUTUROS C&Aacute;LCULOS</h4>
+      <button class="btn-save" onclick="saveData()">GUARDAR MIS DATOS &#128190;</button>
+      <p class="privacy-note">Tus datos se guardan solo en este dispositivo. No necesitas cuenta y puedes borrarlos cuando quieras.</p>
+    </div>
+
+    <!-- Capture form -->
+    <div class="capture-form-wrap">
+      <h3>&#128172; &iquest;QUIERES QUE TE CONTACTEMOS?</h3>
+      <form id="capture-form" onsubmit="submitCaptureForm(event)">
+        <div class="cf-group">
+          <label for="cf-nombre">Nombre</label>
+          <input type="text" id="cf-nombre" placeholder="Tu nombre o empresa">
+        </div>
+        <div class="cf-group">
+          <label for="cf-wa">WhatsApp</label>
+          <input type="tel" id="cf-wa" inputmode="numeric" placeholder="+56 9 XXXX XXXX">
+        </div>
+        <div class="cf-group">
+          <label for="cf-tipo">Soy</label>
+          <select id="cf-tipo">
+            <option value="">Selecciona...</option>
+            <option value="Trabajador">Trabajador</option>
+            <option value="Emprendedor / Empresa">Emprendedor / Empresa</option>
+            <option value="Contador">Contador</option>
+          </select>
+        </div>
+        <div class="cf-group">
+          <label for="cf-mensaje">Mensaje (opcional)</label>
+          <textarea id="cf-mensaje" placeholder="Cu&eacute;ntanos tu consulta..."></textarea>
+        </div>
+        <button type="submit" class="btn-wa-form">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar por WhatsApp
+        </button>
+      </form>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2>PREGUNTAS FRECUENTES</h2>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">&iquest;Cu&aacute;nto se paga una hora extra en Chile? <span class="faq-icon">+</span></button>
+        <div class="faq-a">En Chile, las horas extra se pagan con un recargo m&iacute;nimo del 50% sobre el valor de la hora ordinaria. El valor de la hora ordinaria se obtiene dividiendo el sueldo base mensual por las horas mensuales de la jornada pactada (jornada semanal &times; 4.33).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">&iquest;Las horas extra tienen descuentos previsionales? <span class="faq-icon">+</span></button>
+        <div class="faq-a">S&iacute;. Las horas extraordinarias son remuneraci&oacute;n imponible y est&aacute;n sujetas a descuentos de AFP (10% + comisi&oacute;n), salud (7% u otro porcentaje) y Seguro de Cesant&iacute;a (0,6% en contratos indefinidos).</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">&iquest;Cu&aacute;ntas horas extra se pueden trabajar por mes? <span class="faq-icon">+</span></button>
+        <div class="faq-a">El C&oacute;digo del Trabajo establece un m&aacute;ximo de 2 horas extra diarias y hasta 12 horas extra a la semana. Mensualmente esto equivale aproximadamente a 52 horas extraordinarias como tope legal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">&iquest;Se pueden pactar horas extra con recargo mayor al 50%? <span class="faq-icon">+</span></button>
+        <div class="faq-a">S&iacute;. El 50% es el recargo m&iacute;nimo legal, pero empleador y trabajador pueden pactar un recargo mayor mediante acuerdo escrito. El acuerdo debe constar en el contrato o en un anexo.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">&iquest;C&oacute;mo se calcula el valor de la hora ordinaria? <span class="faq-icon">+</span></button>
+        <div class="faq-a">El valor de la hora ordinaria se calcula dividiendo el sueldo base mensual por las horas mensuales de la jornada. Las horas mensuales se obtienen multiplicando la jornada semanal pactada por 4.33 (semanas promedio del mes).</div>
+      </div>
+    </div>
+
+  </div><!-- /results -->
+
+</div><!-- /calc-wrapper -->
+
+<!-- SEO Article -->
+<section style="max-width:780px; margin:48px auto; padding:32px 16px 0; border-top: 1px solid var(--border); font-family:'Inter', sans-serif;">
+  <h2 style="font-family:'Bebas Neue', sans-serif; font-size:28px; color:var(--gold); letter-spacing:2px; margin-bottom:16px;">&#191;C&Oacute;MO SE CALCULAN LAS HORAS EXTRA EN CHILE?</h2>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">En Chile, las horas extraordinarias est&aacute;n reguladas por el C&oacute;digo del Trabajo y corresponden a las horas trabajadas por sobre la jornada ordinaria pactada en el contrato. La legislaci&oacute;n establece que estas horas deben pagarse con un recargo m&iacute;nimo del 50% sobre el valor de la hora ordinaria, aunque las partes pueden pactar un recargo mayor. La hora ordinaria se calcula dividiendo el sueldo base mensual por las horas mensuales de la jornada pactada, y el resultado determina el valor base sobre el cual se aplica el recargo correspondiente.</p>
+  <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">POR QU&Eacute; EL BRUTO NO ES IGUAL AL L&Iacute;QUIDO</h3>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Uno de los errores m&aacute;s comunes entre trabajadores y empleadores es asumir que el monto bruto de las horas extra es exactamente lo que se recibir&aacute; en el pago o lo que costar&aacute; a la empresa. Las horas extraordinarias forman parte de la remuneraci&oacute;n imponible, por lo que est&aacute;n sujetas a descuentos previsionales: el 10% de cotizaci&oacute;n obligatoria para AFP, la comisi&oacute;n de la administradora (que var&iacute;a entre AFP), el 7% de cotizaci&oacute;n de salud para Fonasa o el plan de Isapre contratado, y el aporte al Seguro de Cesant&iacute;a para trabajadores con contrato indefinido. Todos estos descuentos reducen el monto neto que recibe el trabajador.</p>
+  <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">ERRORES FRECUENTES EN EL C&Aacute;LCULO DE HORAS EXTRA</h3>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Uno de los errores m&aacute;s frecuentes en las empresas es calcular la hora ordinaria usando el sueldo l&iacute;quido en lugar del sueldo base bruto, lo que subestima el valor real de cada hora. Otro error habitual es no considerar los topes imponibles vigentes, que limitan la base sobre la cual se calculan las cotizaciones cuando el sueldo supera cierto monto en UF. Adem&aacute;s, muchos empleadores olvidan que el pago de horas extra debe reflejarse correctamente en la liquidaci&oacute;n de sueldo mensual y registrarse en el libro de remuneraciones electr&oacute;nico de la Direcci&oacute;n del Trabajo.</p>
+  <div style="background:var(--surface2); border-left:3px solid var(--gold); padding:16px; border-radius:4px; margin-top:24px;">
+    <strong style="font-family:'Bebas Neue', sans-serif; font-size:14px; color:var(--gold); letter-spacing:2px; display:block; margin-bottom:6px;">&#9889; CONSEJO DE MISTER CONTADOR</strong>
+    <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Si trabajas con horas extra de forma habitual o tienes trabajadores con horas extraordinarias frecuentes, lo mejor es definir una pol&iacute;tica interna clara, pactar el recargo por escrito y llevar un registro mensual. En <a href="https://mistercontador.cl/" style="color:var(--gold); text-decoration:none; font-weight:700;">Mister Contador</a> te ayudamos a revisar tus liquidaciones, verificar que los c&aacute;lculos sean correctos y evitar errores que puedan derivar en multas o reclamos ante la Inspecci&oacute;n del Trabajo.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <img src="../../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="../../inventory.html">Mister Inventario</a>
+    <a href="../../socios.html">Portal Socios</a>
+    <a href="../../terminos.html">T&eacute;rminos y Condiciones</a>
+    <a href="../../privacidad.html">Pol&iacute;tica de Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Regi&oacute;n Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
+</footer>
+
+<script>
+  // ── Constantes configurables ──────────────────────────────────────────────
+  const WHATSAPP = "56940536523";
+
+  // Actualizar con fuente oficial vigente (SP y comisiones)
+  const AFP_RATES = {
+    capital: 0.0144, cuprum: 0.0144, habitat: 0.0127,
+    modelo: 0.0058, planvital: 0.0116, provida: 0.0145,
+    uno: 0.0049, estimada: 0.0127
+  };
+
+  // ── Estado ────────────────────────────────────────────────────────────────
+  let currentStep = 1;
+  const state = {
+    sueldoBase: null,
+    jornadaSemanal: null,
+    horasExtra: null,
+    recargo: null,
+    tipoContrato: null,
+    afp: null,
+    porcentajeSalud: null,
+    calcularLiquido: true
+  };
+
+  // ── Nav scroll ────────────────────────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').classList.toggle('nav-scrolled', window.scrollY > 20);
+  });
+
+  function toggleMenu(btn) {
+    const menu = document.getElementById('mobile-menu');
+    const open = menu.classList.toggle('active');
+    btn.setAttribute('aria-expanded', open);
+  }
+
+  // ── Formato CLP ───────────────────────────────────────────────────────────
+  function formatCLP(input) {
+    const raw = input.value.replace(/\D/g, '');
+    input.value = raw ? parseInt(raw).toLocaleString('es-CL') : '';
+  }
+
+  function parseCLP(val) {
+    return parseInt(val.replace(/\./g, '').replace(',', '')) || 0;
+  }
+
+  function fmtCLP(n) {
+    return '$ ' + Math.round(n).toLocaleString('es-CL');
+  }
+
+  // ── Pills ─────────────────────────────────────────────────────────────────
+  function selectPill(group, value, el) {
+    document.querySelectorAll(`#pills-${group} .pill`).forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+
+    if (group === 'jornada') {
+      state.jornadaSemanal = value === 'otra' ? null : value;
+      const wrap = document.getElementById('jornada-otra-wrap');
+      wrap.classList.toggle('visible', value === 'otra');
+    } else if (group === 'recargo') {
+      state.recargo = value === 'otro' ? null : value;
+      const wrap = document.getElementById('recargo-otro-wrap');
+      wrap.classList.toggle('visible', value === 'otro');
+    } else if (group === 'contrato') {
+      state.tipoContrato = value;
+    } else if (group === 'afp') {
+      state.afp = value;
+    } else if (group === 'salud') {
+      if (value === 'fonasa7' || value === 'isapre7' || value === 'no_se') {
+        state.porcentajeSalud = 0.07;
+      } else {
+        state.porcentajeSalud = null;
+      }
+      const wrap = document.getElementById('salud-mayor-wrap');
+      wrap.classList.toggle('visible', value === 'isapre_mayor');
+    }
+  }
+
+  // ── Toggle líquido ────────────────────────────────────────────────────────
+  function toggleLiquido() {
+    state.calcularLiquido = !state.calcularLiquido;
+    const track = document.getElementById('toggle-liquido');
+    const label = document.getElementById('toggle-liquido-label');
+    track.classList.toggle('on', state.calcularLiquido);
+    label.textContent = state.calcularLiquido
+      ? 'Sí, quiero ver el líquido aproximado'
+      : 'No, solo el bruto';
+  }
+  // Inicializar toggle en ON
+  document.getElementById('toggle-liquido').classList.add('on');
+
+  // ── Progreso ──────────────────────────────────────────────────────────────
+  function updateProgress(step) {
+    document.getElementById('progress-label').textContent = `Paso ${step} de 8`;
+    document.getElementById('progress-bar').style.width = `${step * 12.5}%`;
+  }
+
+  // ── Validación por paso ───────────────────────────────────────────────────
+  function validateStep(step) {
+    if (step === 1) {
+      const v = parseCLP(document.getElementById('sueldo-base').value);
+      if (!v || v < 1000) { alert('Ingresa un sueldo base válido.'); return false; }
+      state.sueldoBase = v;
+    } else if (step === 2) {
+      const otra = document.getElementById('jornada-otra-wrap').classList.contains('visible');
+      if (otra) {
+        const v = parseFloat(document.getElementById('jornada-otra').value);
+        if (!v || v < 1 || v > 45) { alert('Ingresa una jornada válida (1-45 horas).'); return false; }
+        state.jornadaSemanal = v;
+      } else if (!state.jornadaSemanal) {
+        alert('Selecciona una jornada semanal.'); return false;
+      }
+    } else if (step === 3) {
+      const v = parseFloat(document.getElementById('horas-extra').value);
+      if (!v || v < 1) { alert('Ingresa la cantidad de horas extra.'); return false; }
+      state.horasExtra = v;
+    } else if (step === 4) {
+      const otro = document.getElementById('recargo-otro-wrap').classList.contains('visible');
+      if (otro) {
+        const v = parseFloat(document.getElementById('recargo-otro').value);
+        if (!v || v < 1) { alert('Ingresa un recargo válido.'); return false; }
+        state.recargo = v;
+      } else if (!state.recargo) {
+        alert('Selecciona el recargo.'); return false;
+      }
+    } else if (step === 5) {
+      if (!state.tipoContrato) { alert('Selecciona el tipo de contrato.'); return false; }
+    } else if (step === 6) {
+      if (!state.afp) { alert('Selecciona tu AFP.'); return false; }
+    } else if (step === 7) {
+      const mayorVisible = document.getElementById('salud-mayor-wrap').classList.contains('visible');
+      if (mayorVisible) {
+        const v = parseFloat(document.getElementById('salud-porcentaje').value);
+        if (!v || v < 7) { alert('Ingresa un porcentaje de salud válido (mín. 7%).'); return false; }
+        state.porcentajeSalud = v / 100;
+      } else if (state.porcentajeSalud === null) {
+        alert('Selecciona tu sistema de salud.'); return false;
+      }
+    }
+    return true;
+  }
+
+  // ── Navegación ────────────────────────────────────────────────────────────
+  function nextStep(from) {
+    if (!validateStep(from)) return;
+    document.getElementById(`step-${from}`).classList.remove('active');
+    currentStep = from + 1;
+    document.getElementById(`step-${currentStep}`).classList.add('active');
+    updateProgress(currentStep);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function prevStep(from) {
+    document.getElementById(`step-${from}`).classList.remove('active');
+    currentStep = from - 1;
+    document.getElementById(`step-${currentStep}`).classList.add('active');
+    updateProgress(currentStep);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function recalcular() {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('calculator').style.display = 'block';
+    currentStep = 1;
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-1').classList.add('active');
+    updateProgress(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Cálculo ───────────────────────────────────────────────────────────────
+  function calcular() {
+    const horasMensuales = state.jornadaSemanal * 4.33;
+    const valorHoraOrdinaria = state.sueldoBase / horasMensuales;
+    const valorHoraExtra = valorHoraOrdinaria * (1 + state.recargo / 100);
+    const totalBruto = valorHoraExtra * state.horasExtra;
+
+    const afpAhorro = 0.10;
+    const afpComision = AFP_RATES[state.afp] || AFP_RATES.estimada;
+    const salud = state.porcentajeSalud;
+    let cesantia = 0;
+    if (state.tipoContrato === 'indefinido' || state.tipoContrato === 'no_se') {
+      cesantia = 0.006;
+    }
+
+    const totalDescuentosPct = afpAhorro + afpComision + salud + cesantia;
+    const totalDescuentos = totalBruto * totalDescuentosPct;
+    const liquidoAproximado = totalBruto - totalDescuentos;
+
+    renderResult({
+      valorHoraOrdinaria, valorHoraExtra, totalBruto,
+      afpAhorro, afpComision, salud, cesantia,
+      totalDescuentos, liquidoAproximado
+    });
+  }
+
+  function renderResult(r) {
+    const showLiquido = state.calcularLiquido;
+    const recargoPct = state.recargo;
+
+    let desglose = `
+      <div class="desglose-row"><span>AFP ahorro (10%)</span><span>${fmtCLP(r.totalBruto * r.afpAhorro)}</span></div>
+      <div class="desglose-row"><span>AFP comisión (${(r.afpComision*100).toFixed(2)}%)</span><span>${fmtCLP(r.totalBruto * r.afpComision)}</span></div>
+      <div class="desglose-row"><span>Salud (${(r.salud*100).toFixed(1)}%)</span><span>${fmtCLP(r.totalBruto * r.salud)}</span></div>`;
+    if (r.cesantia > 0) {
+      desglose += `<div class="desglose-row"><span>Cesantía trab. (0.6%)</span><span>${fmtCLP(r.totalBruto * r.cesantia)}</span></div>`;
+    }
+
+    let html = `
+      <div class="result-row">
+        <span class="label">Valor hora ordinaria</span>
+        <span class="value">${fmtCLP(r.valorHoraOrdinaria)} <button class="btn-copy" onclick="copyVal(this,'${Math.round(r.valorHoraOrdinaria)}')">copiar</button></span>
+      </div>
+      <div class="result-row">
+        <span class="label">Valor hora extra (+${recargoPct}%)</span>
+        <span class="value">${fmtCLP(r.valorHoraExtra)} <button class="btn-copy" onclick="copyVal(this,'${Math.round(r.valorHoraExtra)}')">copiar</button></span>
+      </div>
+      <hr class="result-divider">
+      <div class="result-row">
+        <span class="label">Total horas extra bruto</span>
+        <span class="value">${fmtCLP(r.totalBruto)} <button class="btn-copy" onclick="copyVal(this,'${Math.round(r.totalBruto)}')">copiar</button></span>
+      </div>`;
+
+    if (showLiquido) {
+      html += `
+      <div class="result-row" style="flex-direction:column;align-items:flex-start;gap:6px;">
+        <div style="display:flex;justify-content:space-between;width:100%;">
+          <span class="label">Descuentos estimados</span>
+          <span class="value">${fmtCLP(r.totalDescuentos)} <button class="btn-copy" onclick="copyVal(this,'${Math.round(r.totalDescuentos)}')">copiar</button></span>
+        </div>
+        <button class="desglose-toggle" onclick="toggleDesglose(this)">Ver desglose ▾</button>
+        <div class="desglose-body">${desglose}</div>
+      </div>
+      <hr class="result-divider">
+      <div class="result-total">
+        <span class="label">LÍQUIDO APROXIMADO</span>
+        <span class="value">${fmtCLP(r.liquidoAproximado)} <button class="btn-copy" onclick="copyVal(this,'${Math.round(r.liquidoAproximado)}')">copiar</button></span>
+      </div>`;
+    }
+
+    html += `<p class="result-note">*Estimaci&oacute;n referencial. Puede variar seg&uacute;n topes imponibles, bonos, descuentos adicionales e impuesto &uacute;nico.*</p>`;
+
+    document.getElementById('result-card').innerHTML = html;
+    document.getElementById('calculator').style.display = 'none';
+    document.getElementById('results').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function toggleDesglose(btn) {
+    const body = btn.nextElementSibling;
+    body.classList.toggle('open');
+    btn.textContent = body.classList.contains('open') ? 'Ocultar desglose ▴' : 'Ver desglose ▾';
+  }
+
+  function copyVal(btn, val) {
+    navigator.clipboard.writeText(val).then(() => {
+      btn.textContent = '✓ copiado';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'copiar'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // ── localStorage ──────────────────────────────────────────────────────────
+  const LS_KEY = 'mc_horas_extra_datos';
+
+  function saveData() {
+    const datos = {
+      sueldoBase: document.getElementById('sueldo-base').value,
+      jornadaSemanal: state.jornadaSemanal,
+      tipoContrato: state.tipoContrato,
+      afp: state.afp,
+      porcentajeSalud: state.porcentajeSalud,
+      recargo: state.recargo,
+      calcularLiquido: state.calcularLiquido
+    };
+    localStorage.setItem(LS_KEY, JSON.stringify(datos));
+    alert('¡Datos guardados! La próxima vez solo ingresa tus horas extra.');
+  }
+
+  function loadSavedData() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (d.sueldoBase) {
+        document.getElementById('saved-banner').style.display = 'block';
+      }
+    } catch(e) {}
+  }
+
+  function useSavedData() {
+    try {
+      const d = JSON.parse(localStorage.getItem(LS_KEY));
+      if (!d) return;
+
+      if (d.sueldoBase) document.getElementById('sueldo-base').value = d.sueldoBase;
+      if (d.jornadaSemanal) {
+        state.jornadaSemanal = d.jornadaSemanal;
+        document.querySelectorAll('#pills-jornada .pill').forEach(p => {
+          if (p.textContent.trim() === d.jornadaSemanal + 'h') p.classList.add('selected');
+        });
+      }
+      if (d.tipoContrato) {
+        state.tipoContrato = d.tipoContrato;
+        document.querySelectorAll('#pills-contrato .pill').forEach(p => {
+          const map = { indefinido: 'Indefinido', plazo_fijo: 'Plazo fijo', obra: 'Obra/faena', no_se: 'No sé' };
+          if (p.textContent.trim() === map[d.tipoContrato]) p.classList.add('selected');
+        });
+      }
+      if (d.afp) {
+        state.afp = d.afp;
+        document.querySelectorAll('#pills-afp .pill').forEach(p => {
+          const map = { capital:'Capital', cuprum:'Cuprum', habitat:'Hábitat', modelo:'Modelo', planvital:'PlanVital', provida:'ProVida', uno:'Uno', estimada:'No sé' };
+          if (p.textContent.trim() === map[d.afp]) p.classList.add('selected');
+        });
+      }
+      if (d.porcentajeSalud !== undefined) state.porcentajeSalud = d.porcentajeSalud;
+      if (d.recargo) state.recargo = d.recargo;
+      if (d.calcularLiquido !== undefined) {
+        state.calcularLiquido = d.calcularLiquido;
+        document.getElementById('toggle-liquido').classList.toggle('on', state.calcularLiquido);
+        document.getElementById('toggle-liquido-label').textContent = state.calcularLiquido
+          ? 'Sí, quiero ver el líquido aproximado'
+          : 'No, solo el bruto';
+      }
+      hideSavedBanner();
+      // Ir directo al paso 3 (horas extra) y hacer highlight
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      currentStep = 3;
+      document.getElementById('step-3').classList.add('active');
+      updateProgress(3);
+      document.getElementById('horas-extra').classList.add('highlight');
+      document.getElementById('horas-extra').focus();
+    } catch(e) {}
+  }
+
+  function clearSavedData() {
+    localStorage.removeItem(LS_KEY);
+    hideSavedBanner();
+  }
+
+  function hideSavedBanner() {
+    document.getElementById('saved-banner').style.display = 'none';
+  }
+
+  // ── Formulario captación ──────────────────────────────────────────────────
+  function submitCaptureForm(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('cf-nombre').value.trim();
+    const wa = document.getElementById('cf-wa').value.trim();
+    const tipo = document.getElementById('cf-tipo').value;
+    const mensaje = document.getElementById('cf-mensaje').value.trim();
+    let text = `Hola Mister Contador! Usé la calculadora de horas extra.`;
+    if (nombre) text += ` Soy ${nombre}.`;
+    if (tipo) text += ` (${tipo})`;
+    if (wa) text += ` Mi WhatsApp: ${wa}.`;
+    if (mensaje) text += ` ${mensaje}`;
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank');
+  }
+
+  // ── FAQ accordion ─────────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  loadSavedData();
+</script>
+</body>
+</html>
