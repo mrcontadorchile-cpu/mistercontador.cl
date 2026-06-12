@@ -550,6 +550,7 @@
   @media (max-width: 720px) {
     section { padding: 70px 24px; }
     .form-card { padding: 28px 20px; }
+    #matrix-canvas { opacity: .22 !important; }
   }
 </style>
 </head>
@@ -592,15 +593,15 @@
       TUS DECISIONES <span class="neon">NO LOS USAN</span>.
     </div>
     <p class="hero-sub">
-      Conectamos tu sistema de gestión con inteligencia real.
-      Automatizamos procesos, construimos dashboards y entregamos datos útiles
-      para empresas que ya invirtieron en tecnología — y quieren que rinda al máximo.
+      Soy contador auditor, no una agencia. Integro tu ERP a mano,
+      construyo los dashboards que tu directorio necesita y automatizo
+      los procesos que hoy le cuestan horas a tu equipo.
     </p>
     <a href="#diagnostico" class="hero-cta">
-      &gt; EJECUTAR DIAGNÓSTICO<span class="cursor">_</span>
+      &gt; EJECUTAR DIAGNÓSTICO <small style="font-size:10px;opacity:.8;">(15 min · sin venta)</small><span class="cursor">_</span>
     </a>
     <div class="hero-meta">
-      SAP · DEFONTANA · SKUALO · NUBOX · SOFTLAND · POWER BI · PYTHON · BIGQUERY
+      Mister Contador SpA · RUT 78.343.698-1 · Las Condes, Santiago
     </div>
   </div>
 </section>
@@ -624,6 +625,8 @@
         <span class="source">// FUENTE: Diario Financiero · Estudio adopción IA empresas chilenas, 2025</span>
       </div>
     </div>
+
+    <div id="typing-line" style="margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--neon-g);min-height:20px;"></div>
   </div>
 </section>
 
@@ -749,6 +752,10 @@
       <div class="stack-item">+ CUALQUIER ERP</div>
     </div>
     <p class="stack-label">// ERPs CON LOS QUE TRABAJAMOS</p>
+    <p style="text-align:center;margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted);line-height:2;">
+      &gt; +12.000 empresas en Chile usan estos sistemas<br>
+      &gt; 0 integraciones nativas con BI — <span style="color:var(--neon-g)">ahí entro yo</span>
+    </p>
 
     <div class="stack-row reveal">
       <div class="stack-item">POWER_BI</div>
@@ -810,59 +817,43 @@
       </div>
 
       <form id="data-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="df-nombre">NOMBRE *</label>
-            <input type="text" id="df-nombre" required>
-          </div>
-          <div class="form-group">
-            <label for="df-cargo">CARGO *</label>
-            <input type="text" id="df-cargo" placeholder="Gerente de Operaciones, CFO, TI..." required>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="df-empresa">EMPRESA *</label>
-            <input type="text" id="df-empresa" required>
-          </div>
-          <div class="form-group">
-            <label for="df-empleados">N° EMPLEADOS</label>
-            <select id="df-empleados">
-              <option value="">Selecciona</option>
-              <option>10-50</option>
-              <option>50-200</option>
-              <option>200-500</option>
-              <option>500+</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="df-email">EMAIL *</label>
-            <input type="email" id="df-email" required>
-          </div>
-          <div class="form-group">
-            <label for="df-erp">ERP ACTUAL</label>
-            <select id="df-erp">
-              <option value="">Selecciona</option>
-              <option>Defontana</option>
-              <option>Skualo</option>
-              <option>Nubox</option>
-              <option>SAP</option>
-              <option>Softland</option>
-              <option>Manager</option>
-              <option>Otro</option>
-              <option>Sin ERP</option>
-            </select>
-          </div>
+        <div class="form-group">
+          <label for="df-nombre">NOMBRE *</label>
+          <input type="text" id="df-nombre" required placeholder="Tu nombre">
         </div>
         <div class="form-group">
-          <label for="df-objetivo">¿QUÉ QUIERES RESOLVER?</label>
-          <textarea id="df-objetivo" placeholder="Ej: cierres manuales que toman días, reportes que nadie usa, falta de visibilidad sobre márgenes, integrar 3 sistemas..."></textarea>
+          <label for="df-email">EMAIL *</label>
+          <input type="email" id="df-email" required placeholder="correo@empresa.cl">
+        </div>
+        <div class="form-group">
+          <label for="df-erp">¿QUÉ SISTEMA USA TU EMPRESA? *</label>
+          <select id="df-erp" required>
+            <option value="">Selecciona tu ERP</option>
+            <option>Defontana</option>
+            <option>Skualo</option>
+            <option>Nubox</option>
+            <option>SAP</option>
+            <option>Softland</option>
+            <option>Manager</option>
+            <option>Bsale</option>
+            <option>Otro</option>
+            <option>Sin ERP aún</option>
+          </select>
         </div>
 
-        <button type="submit" class="form-submit">&gt; ENVIAR &amp; AGENDAR REUNIÓN</button>
-        <p class="form-disclaimer">// La info se envía por WhatsApp · Respondemos en menos de 24 hrs</p>
+        <div style="background:rgba(0,255,65,.04);border:1px solid rgba(0,255,65,.2);padding:16px 20px;margin-bottom:20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);line-height:1.8;">
+          &gt; Recibirás: checklist de 7 puntos para tu ERP<br>
+          &gt; + resumen de quick wins en 48 hrs<br>
+          &gt; Sin venta. Sin compromiso.
+        </div>
+
+        <button type="submit" class="form-submit">&gt; EJECUTAR DIAGNÓSTICO (15 min · sin venta)_</button>
+        <p class="form-disclaimer" style="margin-top:12px;">
+          // WhatsApp abre con tus datos pre-cargados · Respondemos en menos de 24 hrs
+        </p>
+        <p style="text-align:center;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--neon-g);">
+          &gt; SLOTS_DISPONIBLES: <span id="slots-count">03</span>/05 ESTE MES
+        </p>
       </form>
     </div>
   </div>
@@ -962,31 +953,41 @@
 })();
 </script>
 
+<!-- Typing effect en stat block -->
+<script>
+(function(){
+  var el = document.getElementById('typing-line');
+  if (!el) return;
+  var text = '> analizando tu ERP... el problema no es el software. es que nadie lo conectó._';
+  var i = 0;
+  var started = false;
+  function type(){
+    if (i < text.length){
+      el.textContent = text.slice(0, ++i);
+      setTimeout(type, i === text.length ? 0 : 38);
+    }
+  }
+  var io = new IntersectionObserver(function(entries){
+    if (entries[0].isIntersecting && !started){ started = true; type(); }
+  }, { threshold: 0.5 });
+  io.observe(el);
+})();
+</script>
+
 <!-- Form → WhatsApp con info estructurada -->
 <script>
 document.getElementById('data-form').addEventListener('submit', function(e){
   e.preventDefault();
-  var nombre    = document.getElementById('df-nombre').value.trim();
-  var cargo     = document.getElementById('df-cargo').value.trim();
-  var empresa   = document.getElementById('df-empresa').value.trim();
-  var empleados = document.getElementById('df-empleados').value;
-  var email     = document.getElementById('df-email').value.trim();
-  var erp       = document.getElementById('df-erp').value;
-  var objetivo  = document.getElementById('df-objetivo').value.trim();
+  var nombre = document.getElementById('df-nombre').value.trim();
+  var email  = document.getElementById('df-email').value.trim();
+  var erp    = document.getElementById('df-erp').value;
 
-  if (!nombre || !cargo || !empresa || !email){
+  if (!nombre || !email || !erp){
     alert('Por favor completa los campos obligatorios (*)');
     return;
   }
 
-  var msg = '🔧 SOLICITUD DE DIAGNÓSTICO — DATA ANALYTICS\n\n';
-  msg += '👤 ' + nombre + ' · ' + cargo + '\n';
-  msg += '🏢 ' + empresa;
-  if (empleados) msg += ' (' + empleados + ' empleados)';
-  msg += '\n📧 ' + email + '\n';
-  if (erp) msg += '💻 ERP actual: ' + erp + '\n';
-  if (objetivo) msg += '\n🎯 Objetivo:\n' + objetivo + '\n';
-  msg += '\n— Enviado desde mistercontador.cl/data-analytics';
+  var msg = 'Hola, soy ' + nombre + '. Uso ' + erp + ' y quiero el diagnóstico gratuito de 15 min. Mi correo: ' + email + '\n\n— desde mistercontador.cl/data-analytics';
 
   if (typeof gtag === 'function'){
     gtag('event', 'data_analytics_lead', {
