@@ -116,7 +116,7 @@
     transition: color .2s;
   }
   .nav-links a:hover { color: var(--gold); }
-  .nav-links a.active { color: var(--neon-g); text-shadow: 0 0 8px var(--neon-g); }
+  .nav-links a.active { color: var(--gold); text-shadow: 0 0 8px rgba(245,194,0,.5); }
   .btn-nav {
     padding: 8px 16px; border: 1px solid var(--gold); color: var(--gold) !important;
     border-radius: 4px; font-weight: 600; font-size: 13px;
@@ -172,10 +172,10 @@
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px; letter-spacing: 3px;
-    color: var(--neon-g);
-    border: 1px solid var(--neon-g);
+    color: var(--gold);
+    border: 1px solid var(--gold);
     padding: 6px 14px; margin-bottom: 28px;
-    text-shadow: 0 0 10px var(--neon-g);
+    text-shadow: 0 0 10px rgba(245,194,0,.6);
     background: rgba(0,255,65,.04);
   }
   .hero h1 {
@@ -229,13 +229,13 @@
     display: flex; align-items: center; gap: 20px;
     margin-bottom: 60px;
     font-family: 'JetBrains Mono', monospace;
-    color: var(--neon-g);
+    color: var(--gold);
     font-size: 13px; letter-spacing: 3px;
   }
   .module-divider::before { content: '>'; color: var(--neon-c); font-weight: 700; }
   .module-divider::after {
     content: ''; flex: 1; height: 1px;
-    background: linear-gradient(90deg, var(--neon-g), transparent);
+    background: linear-gradient(90deg, var(--gold), transparent);
     opacity: .5;
   }
   .module-divider .blink { animation: blink 1.2s step-end infinite; color: var(--gold); }
@@ -257,7 +257,7 @@
   .stat-block {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--neon-g);
+    border-left: 4px solid var(--gold);
     padding: 40px;
     display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
   }
@@ -335,7 +335,7 @@
   .step-num {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
-    color: var(--neon-g);
+    color: var(--gold);
     letter-spacing: 2px;
     margin-bottom: 16px;
     display: block;
@@ -405,9 +405,9 @@
     position: relative;
   }
   .stack-item:hover {
-    border-color: var(--neon-g);
-    color: var(--neon-g);
-    text-shadow: 0 0 8px var(--neon-g);
+    border-color: var(--gold);
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(245,194,0,.5);
   }
   .stack-item.featured {
     border-color: var(--gold); color: var(--gold);
@@ -427,7 +427,7 @@
     margin-bottom: 12px;
     padding: 0;
   }
-  details[open] { border-color: var(--neon-g); }
+  details[open] { border-color: var(--gold); }
   summary {
     list-style: none;
     cursor: pointer;
@@ -441,7 +441,7 @@
   summary::after {
     content: '+';
     font-family: 'JetBrains Mono', monospace;
-    color: var(--neon-g);
+    color: var(--gold);
     font-size: 22px;
     transition: transform .25s;
   }
@@ -456,24 +456,24 @@
     background:
       radial-gradient(ellipse at 50% 0%, rgba(0,255,65,.08) 0%, transparent 60%),
       var(--black);
-    border-top: 2px solid var(--neon-g);
+    border-top: 2px solid var(--gold);
     box-shadow: 0 -20px 60px rgba(0,255,65,.05);
   }
   .form-card {
     max-width: 720px; margin: 0 auto;
     background: var(--surface);
-    border: 1px solid var(--neon-g);
+    border: 1px solid var(--gold);
     padding: 48px;
-    box-shadow: 0 0 40px rgba(0,255,65,.1);
+    box-shadow: 0 0 40px rgba(245,194,0,.1);
   }
   .form-header {
     text-align: center; margin-bottom: 36px;
   }
   .form-header .term-line {
     font-family: 'JetBrains Mono', monospace;
-    color: var(--neon-g);
+    color: var(--gold);
     font-size: 13px; margin-bottom: 12px;
-    text-shadow: 0 0 8px var(--neon-g);
+    text-shadow: 0 0 8px rgba(245,194,0,.6);
   }
   .form-header h2 {
     font-family: 'Bebas Neue', sans-serif;
@@ -485,7 +485,7 @@
   .form-group label {
     display: block; margin-bottom: 8px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; color: var(--neon-g); letter-spacing: 2px;
+    font-size: 11px; color: var(--gold); letter-spacing: 2px;
   }
   .form-group input,
   .form-group select,
@@ -502,8 +502,8 @@
   .form-group select:focus,
   .form-group textarea:focus {
     outline: none;
-    border-color: var(--neon-g);
-    box-shadow: 0 0 12px rgba(0,255,65,.15);
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(245,194,0,.15);
   }
   .form-group textarea { resize: vertical; min-height: 100px; }
   .form-row {
