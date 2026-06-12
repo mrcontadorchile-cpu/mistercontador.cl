@@ -77,9 +77,9 @@
     --text:       #ffffff;
     --text-muted: #888888;
     /* Matrix layer */
-    --neon-g:     #00ff41;
+    --neon-g:     #00b4ff;
     --neon-c:     #00cfff;
-    --neon-dim:   rgba(0,255,65,.4);
+    --neon-dim:   rgba(0,180,255,.4);
   }
 
   .sr-only { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
@@ -147,7 +147,7 @@
     padding: 120px 24px 60px;
     overflow: hidden;
     background:
-      radial-gradient(ellipse at 50% 50%, rgba(0,255,65,.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(0,180,255,.05) 0%, transparent 60%),
       var(--black);
   }
   #matrix-canvas {
@@ -176,7 +176,7 @@
     border: 1px solid var(--gold);
     padding: 6px 14px; margin-bottom: 28px;
     text-shadow: 0 0 10px rgba(245,194,0,.6);
-    background: rgba(0,255,65,.04);
+    background: rgba(0,180,255,.04);
   }
   .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
@@ -454,10 +454,10 @@
   /* ============ CTA FORM ============ */
   .cta-section {
     background:
-      radial-gradient(ellipse at 50% 0%, rgba(0,255,65,.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 0%, rgba(0,180,255,.08) 0%, transparent 60%),
       var(--black);
     border-top: 2px solid var(--gold);
-    box-shadow: 0 -20px 60px rgba(0,255,65,.05);
+    box-shadow: 0 -20px 60px rgba(0,180,255,.05);
   }
   .form-card {
     max-width: 720px; margin: 0 auto;
@@ -891,7 +891,7 @@
           </select>
         </div>
 
-        <div style="background:rgba(0,255,65,.04);border:1px solid rgba(0,255,65,.2);padding:16px 20px;margin-bottom:20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);line-height:1.8;">
+        <div style="background:rgba(0,180,255,.04);border:1px solid rgba(0,180,255,.2);padding:16px 20px;margin-bottom:20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);line-height:1.8;">
           &gt; Recibirás: checklist de 7 puntos para tu ERP<br>
           &gt; + resumen de quick wins en 48 hrs<br>
           &gt; Sin venta. Sin compromiso.
@@ -962,7 +962,7 @@
     ctx.fillStyle = 'rgba(10,10,10,0.07)';
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    ctx.fillStyle = '#00ff41';
+    ctx.fillStyle = '#00b4ff';
     ctx.font = fontSize + "px 'JetBrains Mono', monospace";
 
     for (var i = 0; i < drops.length; i++){
