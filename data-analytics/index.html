@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analytics Chile · Automatización y BI para empresas con Defontana, Skualo y Nubox | Mister Contador</title>
+<meta name="description" content="Capa de inteligencia sobre tu ERP. Integramos Defontana, Skualo y Nubox con Power BI, automatizamos procesos y entregamos decisiones en tiempo real. Para empresas medianas con datos.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mistercontador.cl/data-analytics/">
+
+<meta property="og:title" content="Data Analytics Chile · Mister Contador">
+<meta property="og:description" content="De Excel ciego a decisiones en tiempo real. Integramos tu ERP (Defontana, Skualo, Nubox) con Power BI y automatización.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mistercontador.cl/data-analytics/">
+<meta property="og:image" content="https://mistercontador.cl/img/logo-oficial.png">
+
+<link rel="icon" type="image/png" href="../img/icon-oficial.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Data Analytics y Automatización Empresarial",
+  "provider": {
+    "@type": "Organization",
+    "name": "Mister Contador SpA",
+    "url": "https://mistercontador.cl/"
+  },
+  "areaServed": "Chile",
+  "description": "Consultoría en data analytics, integración de ERPs (Defontana, Skualo, Nubox) con Power BI, automatización de procesos y modelos predictivos para empresas medianas.",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Empresas medianas 50-500 empleados con ERP cloud"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Se conectan con la API de Defontana?","acceptedAnswer":{"@type":"Answer","text":"Sí. Extraemos data desde Defontana vía API y la cargamos a Power BI, BigQuery o el destino que definamos en el diagnóstico."}},
+    {"@type":"Question","name":"¿Skualo permite exportación automatizada?","acceptedAnswer":{"@type":"Answer","text":"Sí. Conectamos Skualo a procesos automatizados que reemplazan los reportes manuales de margen, costos y proyectos."}},
+    {"@type":"Question","name":"¿Funciona si tenemos Nubox combinado con otro sistema?","acceptedAnswer":{"@type":"Answer","text":"Sí. Diseñamos una capa de integración que unifica Nubox con otros ERPs, CRMs o planillas para entregar una sola fuente de verdad."}},
+    {"@type":"Question","name":"¿Cuánto demora una implementación?","acceptedAnswer":{"@type":"Answer","text":"Los primeros quick wins se entregan en 30 días. Un roadmap completo de transformación dura entre 3 y 9 meses según el alcance."}},
+    {"@type":"Question","name":"¿Trabajan on-premise o en cloud?","acceptedAnswer":{"@type":"Answer","text":"Ambos. Soportamos cloud (Azure, GCP, AWS) y arquitecturas híbridas cuando hay datos sensibles que deben quedarse en infraestructura del cliente."}}
+  ]
+}
+</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RTB206P81H');
+</script>
+
+<style>
+  :root {
+    --gold:       #F5C200;
+    --gold-dark:  #D4A800;
+    --black:      #0a0a0a;
+    --surface:    #111111;
+    --surface2:   #1a1a1a;
+    --border:     #1e1e1e;
+    --text:       #ffffff;
+    --text-muted: #888888;
+    /* Matrix layer */
+    --neon-g:     #00ff41;
+    --neon-c:     #00cfff;
+    --neon-dim:   rgba(0,255,65,.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ============ NAV (igual a la home) ============ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+  }
+  .nav-inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px;
+  }
+  .nav-logo img { height: 38px; display: block; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--text-muted);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--neon-g); text-shadow: 0 0 8px var(--neon-g); }
+  .btn-nav {
+    padding: 8px 16px; border: 1px solid var(--gold); color: var(--gold) !important;
+    border-radius: 4px; font-weight: 600; font-size: 13px;
+  }
+  .btn-nav:hover { background: var(--gold); color: var(--black) !important; }
+
+  .hamburger { display: none; background: none; border: none; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+
+  .mobile-menu {
+    display: none; position: fixed; top: 66px; left: 0; right: 0;
+    background: var(--black); border-bottom: 1px solid var(--border); padding: 20px 24px;
+    flex-direction: column; gap: 16px; z-index: 99;
+  }
+  .mobile-menu.active { display: flex; }
+  .mobile-menu a { color: var(--text); font-size: 16px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+  }
+
+  /* ============ HERO MATRIX ============ */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 24px 60px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(0,255,65,.05) 0%, transparent 60%),
+      var(--black);
+  }
+  #matrix-canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; opacity: .35;
+    pointer-events: none;
+  }
+  /* CRT scanlines sutil sobre el hero */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 3px,
+      rgba(0,0,0,.15) 3px, rgba(0,0,0,.15) 4px
+    );
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1100px; width: 100%; text-align: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px;
+    color: var(--neon-g);
+    border: 1px solid var(--neon-g);
+    padding: 6px 14px; margin-bottom: 28px;
+    text-shadow: 0 0 10px var(--neon-g);
+    background: rgba(0,255,65,.04);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 7vw, 86px);
+    line-height: 1.02;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .hero h1 .gold { color: var(--gold); text-shadow: 0 0 30px rgba(245,194,0,.4); }
+  .hero h1 .neon { color: var(--neon-g); text-shadow: 0 0 20px var(--neon-g); }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #cccccc; max-width: 720px;
+    margin: 0 auto 40px;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--black) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 14px; letter-spacing: 2px;
+    padding: 18px 32px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 0 rgba(245,194,0,.4);
+    transition: all .25s;
+    text-transform: uppercase;
+  }
+  .hero-cta:hover {
+    background: transparent; color: var(--gold) !important;
+    box-shadow: 0 0 30px rgba(245,194,0,.5);
+    transform: translateY(-2px);
+  }
+  .hero-cta .cursor { display: inline-block; animation: blink 1s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .hero-meta {
+    margin-top: 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--neon-dim); letter-spacing: 2px;
+  }
+
+  /* ============ SECCIÓN GENÉRICA ============ */
+  section {
+    padding: 100px 24px;
+    position: relative;
+  }
+  .container { max-width: 1240px; margin: 0 auto; }
+
+  .module-divider {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 60px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-g);
+    font-size: 13px; letter-spacing: 3px;
+  }
+  .module-divider::before { content: '>'; color: var(--neon-c); font-weight: 700; }
+  .module-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--neon-g), transparent);
+    opacity: .5;
+  }
+  .module-divider .blink { animation: blink 1.2s step-end infinite; color: var(--gold); }
+
+  h2.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.1;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  h2.section-title .gold { color: var(--gold); }
+  .section-lead {
+    font-size: 18px; color: #cccccc; max-width: 780px; margin-bottom: 56px;
+  }
+
+  /* ============ PROBLEMA — bloque dato ============ */
+  .stat-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--neon-g);
+    padding: 40px;
+    display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
+  }
+  .stat-block .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 120px);
+    color: var(--neon-g);
+    line-height: .9;
+    text-shadow: 0 0 30px var(--neon-g);
+  }
+  .stat-block .big-num .pct { font-size: .5em; color: var(--text-muted); }
+  .stat-block p { font-size: 16px; color: #cccccc; }
+  .stat-block p strong { color: var(--text); }
+  .stat-block .source {
+    display: block; margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-muted);
+  }
+  @media (max-width: 720px) {
+    .stat-block { grid-template-columns: 1fr; text-align: center; }
+  }
+
+  /* ============ PILARES ============ */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .pillar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .pillar:hover {
+    border-color: var(--neon-c);
+    transform: translateY(-4px);
+    box-shadow: 0 0 30px rgba(0,207,255,.15);
+  }
+  .pillar::before {
+    content: attr(data-num);
+    position: absolute; top: 16px; right: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--neon-g); letter-spacing: 2px;
+    opacity: .6;
+  }
+  .pillar-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .pillar h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .pillar p { font-size: 14px; color: #bbbbbb; line-height: 1.6; }
+
+  /* ============ METODOLOGÍA — pasos terminal ============ */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .step {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+  @media (max-width: 900px) {
+    .step { border-right: none; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+  }
+  .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--neon-g);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .step h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; color: var(--text); margin-bottom: 12px; letter-spacing: 1px;
+  }
+  .step p { font-size: 13px; color: #aaaaaa; line-height: 1.6; }
+
+  /* ============ CASOS ============ */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), var(--neon-g));
+  }
+  .case-erp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--neon-c);
+    margin-bottom: 8px;
+  }
+  .case-industry {
+    font-size: 12px; color: var(--text-muted); margin-bottom: 20px;
+  }
+  .case-metric {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .case-metric .arrow { color: var(--neon-g); margin: 0 8px; }
+  .case-desc { font-size: 14px; color: #bbbbbb; line-height: 1.6; }
+
+  /* ============ STACK ============ */
+  .stack-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stack-row {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 20px 40px;
+    padding: 30px 0 60px;
+  }
+  .stack-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    color: var(--text);
+    padding: 14px 22px;
+    border: 1px solid var(--border);
+    background: var(--black);
+    letter-spacing: 1px;
+    transition: all .25s;
+    position: relative;
+  }
+  .stack-item:hover {
+    border-color: var(--neon-g);
+    color: var(--neon-g);
+    text-shadow: 0 0 8px var(--neon-g);
+  }
+  .stack-item.featured {
+    border-color: var(--gold); color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+  .stack-label {
+    text-align: center; margin-top: 50px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-muted); letter-spacing: 2px;
+  }
+
+  /* ============ FAQ ============ */
+  .faq-list { max-width: 880px; margin: 0 auto; }
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    padding: 0;
+  }
+  details[open] { border-color: var(--neon-g); }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 28px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--text);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-g);
+    font-size: 22px;
+    transition: transform .25s;
+  }
+  details[open] summary::after { content: '−'; }
+  details > p {
+    padding: 0 28px 24px;
+    color: #bbbbbb; font-size: 15px; line-height: 1.7;
+  }
+
+  /* ============ CTA FORM ============ */
+  .cta-section {
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(0,255,65,.08) 0%, transparent 60%),
+      var(--black);
+    border-top: 2px solid var(--neon-g);
+    box-shadow: 0 -20px 60px rgba(0,255,65,.05);
+  }
+  .form-card {
+    max-width: 720px; margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--neon-g);
+    padding: 48px;
+    box-shadow: 0 0 40px rgba(0,255,65,.1);
+  }
+  .form-header {
+    text-align: center; margin-bottom: 36px;
+  }
+  .form-header .term-line {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-g);
+    font-size: 13px; margin-bottom: 12px;
+    text-shadow: 0 0 8px var(--neon-g);
+  }
+  .form-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: var(--text); letter-spacing: 1px;
+  }
+  .form-header p { color: var(--text-muted); margin-top: 12px; font-size: 14px; }
+
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; margin-bottom: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--neon-g); letter-spacing: 2px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif; font-size: 15px;
+    transition: border-color .2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--neon-g);
+    box-shadow: 0 0 12px rgba(0,255,65,.15);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold); color: var(--black);
+    border: 2px solid var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 15px; letter-spacing: 2px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all .25s;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+  .form-submit:hover {
+    background: transparent; color: var(--gold);
+    box-shadow: 0 0 24px rgba(245,194,0,.4);
+  }
+  .form-disclaimer {
+    text-align: center; margin-top: 20px;
+    font-size: 12px; color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 50px 24px 30px;
+    text-align: center;
+  }
+  .footer-logo img { height: 42px; margin-bottom: 16px; }
+  footer p { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+  .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px; }
+  .social-links a { font-size: 13px; color: var(--text-muted); transition: color .2s; }
+  .social-links a:hover { color: var(--gold); }
+  .legal-info { font-size: 11px; color: #555; margin-top: 24px; }
+
+  /* ============ REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 720px) {
+    section { padding: 70px 24px; }
+    .form-card { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="../img/logo-oficial.png" alt="Mister Contador">
+    </a>
+    <div class="nav-links">
+      <a href="/#servicios">Servicios</a>
+      <a href="/#planes">Planes</a>
+      <a href="/data-analytics/" class="active">Data Analytics</a>
+      <a href="/herramientas/">Herramientas</a>
+      <a href="/inventory.html" class="btn-nav">Mister Inventario</a>
+    </div>
+    <button class="hamburger" aria-label="Menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="/#servicios">Servicios</a>
+  <a href="/#planes">Planes</a>
+  <a href="/data-analytics/">Data Analytics</a>
+  <a href="/herramientas/">Herramientas</a>
+  <a href="/inventory.html">Mister Inventario</a>
+</div>
+
+<!-- HERO MATRIX -->
+<section class="hero">
+  <canvas id="matrix-canvas"></canvas>
+  <div class="hero-inner">
+    <span class="hero-tag">> SYSTEM_ONLINE · DATA_LAYER_ACTIVATED</span>
+    <h1>
+      TU <span class="gold">ERP</span> GENERA DATOS.<br>
+      TUS DECISIONES <span class="neon">NO LOS USAN</span>.
+    </h1>
+    <p class="hero-sub">
+      Capa de inteligencia sobre Defontana, Skualo y Nubox.
+      Integramos, automatizamos y entregamos decisiones en tiempo real
+      para empresas que ya invirtieron en sistemas — y quieren que rindan.
+    </p>
+    <a href="#diagnostico" class="hero-cta">
+      &gt; EJECUTAR DIAGNÓSTICO<span class="cursor">_</span>
+    </a>
+    <div class="hero-meta">
+      DEFONTANA · SKUALO · NUBOX · POWER BI · PYTHON · BIGQUERY
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 01 — DIAGNÓSTICO DE MERCADO -->
+<section>
+  <div class="container">
+    <div class="module-divider reveal">MÓDULO_01 — DIAGNÓSTICO<span class="blink">_</span></div>
+    <h2 class="section-title reveal">EL DATO QUE <span class="gold">DUELE</span></h2>
+    <p class="section-lead reveal">
+      No es un problema de software. Es un problema de uso.
+      Tu empresa ya pagó por un ERP. Lo difícil es transformar esos registros en ventaja competitiva.
+    </p>
+
+    <div class="stat-block reveal">
+      <div class="big-num">3,6<span class="pct">%</span></div>
+      <div>
+        <p><strong>Solo el 3,6% de las empresas chilenas escala iniciativas de datos con valor medible.</strong>
+        El resto se queda en planillas, reportes manuales y decisiones intuitivas.
+        Mientras tanto, los datos siguen ahí — esperando ser usados.</p>
+        <span class="source">// FUENTE: Diario Financiero · Estudio adopción IA empresas chilenas, 2025</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 02 — QUÉ HACEMOS -->
+<section style="background: linear-gradient(180deg, var(--black) 0%, var(--surface) 100%);">
+  <div class="container">
+    <div class="module-divider reveal">MÓDULO_02 — CAPACIDADES<span class="blink">_</span></div>
+    <h2 class="section-title reveal">CUATRO <span class="gold">PILARES</span> DE TRANSFORMACIÓN</h2>
+    <p class="section-lead reveal">
+      Cada empresa entra por un dolor distinto. Salimos con una arquitectura de datos lista para escalar.
+    </p>
+
+    <div class="pillars-grid">
+      <div class="pillar reveal" data-num="01">
+        <span class="pillar-icon">🔌</span>
+        <h3>Integración ERP → BI</h3>
+        <p>Conectamos Defontana, Skualo y Nubox con Power BI vía API. Sin exportar a Excel, sin copiar-pegar. Datos vivos, actualizados solos.</p>
+      </div>
+      <div class="pillar reveal" data-num="02">
+        <span class="pillar-icon">⚡</span>
+        <h3>Automatización de Procesos</h3>
+        <p>Reportes que se construyen solos. Conciliaciones bancarias automáticas. Alertas por margen, stock o vencimientos. Sin código si no es necesario, Python cuando hace falta.</p>
+      </div>
+      <div class="pillar reveal" data-num="03">
+        <span class="pillar-icon">📊</span>
+        <h3>Modelos Predictivos</h3>
+        <p>Proyecciones de venta, demanda y flujo de caja. Detección de anomalías. Forecasting estacional con datos de tu propio negocio — no benchmarks genéricos.</p>
+      </div>
+      <div class="pillar reveal" data-num="04">
+        <span class="pillar-icon">🔐</span>
+        <h3>Data Governance</h3>
+        <p>Cumplimiento Ley 21.719. Roles, accesos, trazabilidad. Que tu directorio sepa exactamente quién ve qué y cuándo. Antes de la multa, no después.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 03 — CÓMO TRABAJAMOS -->
+<section>
+  <div class="container">
+    <div class="module-divider reveal">MÓDULO_03 — METODOLOGÍA<span class="blink">_</span></div>
+    <h2 class="section-title reveal">DEL <span class="gold">DIAGNÓSTICO</span> AL ROADMAP</h2>
+    <p class="section-lead reveal">
+      Sin contratos eternos ni promesas vagas. Cuatro etapas claras, con entregables y métricas verificables en cada una.
+    </p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step-num">STEP_01</span>
+        <h4>Diagnóstico</h4>
+        <p>Sesión técnica con tu equipo. Mapeamos sistemas, identificamos cuellos de botella y proponemos quick wins de 30 días.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">STEP_02</span>
+        <h4>Quick Wins</h4>
+        <p>30 días para entregar resultados visibles: 1 dashboard ejecutivo + 1 proceso automatizado. ROI demostrable antes del próximo paso.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">STEP_03</span>
+        <h4>Roadmap</h4>
+        <p>Plan a 6-12 meses priorizado por impacto y costo. Tu equipo entiende qué se hace, en qué orden y por qué.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">STEP_04</span>
+        <h4>Implementación</h4>
+        <p>Construimos junto a tu equipo. Documentación, transferencia de conocimiento y soporte posterior. No quedas dependiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULO 04 — CASOS -->
+<section style="background: var(--surface);">
+  <div class="container">
+    <div class="module-divider reveal">MÓDULO_04 — CASOS<span class="blink">_</span></div>
+    <h2 class="section-title reveal">DE DÍAS A <span class="gold">MINUTOS</span></h2>
+    <p class="section-lead reveal">
+      Casos representativos de implementaciones tipo. Cada empresa es distinta — los resultados también.
+    </p>
+
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-erp">// DEFONTANA</div>
+        <div class="case-industry">Retail · Distribución</div>
+        <div class="case-metric">5 días <span class="arrow">→</span> 4 hrs</div>
+        <p class="case-desc">Cierre mensual automatizado. Extracción vía API, validaciones cruzadas y dashboard ejecutivo entregado a las 9:00 am del día 1.</p>
+      </div>
+      <div class="case-card reveal">
+        <div class="case-erp">// SKUALO</div>
+        <div class="case-industry">Servicios B2B</div>
+        <div class="case-metric">Tiempo real</div>
+        <p class="case-desc">Margen por proyecto y consultor en vivo. Reemplazo de planilla semanal por dashboard que se actualiza con cada timesheet ingresado.</p>
+      </div>
+      <div class="case-card reveal">
+        <div class="case-erp">// NUBOX</div>
+        <div class="case-industry">Contabilidad · Pyme Grande</div>
+        <div class="case-metric">100% auto</div>
+        <p class="case-desc">Conciliación bancaria automática + dashboard de flujo de caja proyectado a 90 días. Sin intervención manual del equipo contable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="stack-section">
+  <div class="container">
+    <div class="module-divider reveal">MÓDULO_05 — STACK<span class="blink">_</span></div>
+    <h2 class="section-title reveal">INTEGRAMOS CON TU <span class="gold">ERP</span>. NO LO REEMPLAZAMOS.</h2>
+    <p class="section-lead reveal">
+      Trabajamos sobre lo que ya tienes. Tu inversión en sistemas se respeta — se potencia.
+    </p>
+
+    <div class="stack-row reveal">
+      <div class="stack-item featured">DEFONTANA</div>
+      <div class="stack-item featured">SKUALO</div>
+      <div class="stack-item featured">NUBOX</div>
+    </div>
+    <p class="stack-label">// ERPs INTEGRADOS</p>
+
+    <div class="stack-row reveal">
+      <div class="stack-item">POWER_BI</div>
+      <div class="stack-item">PYTHON</div>
+      <div class="stack-item">BIGQUERY</div>
+      <div class="stack-item">AZURE</div>
+      <div class="stack-item">EXCEL_AVANZADO</div>
+      <div class="stack-item">SQL</div>
+      <div class="stack-item">GA4</div>
+    </div>
+    <p class="stack-label">// HERRAMIENTAS DE DATOS</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="module-divider reveal">MÓDULO_06 — FAQ<span class="blink">_</span></div>
+    <h2 class="section-title reveal">PREGUNTAS <span class="gold">FRECUENTES</span></h2>
+    <p class="section-lead reveal">Lo que nos preguntan antes del diagnóstico.</p>
+
+    <div class="faq-list">
+      <details class="reveal">
+        <summary>¿Se conectan con la API de Defontana?</summary>
+        <p>Sí. Extraemos data desde Defontana vía API y la cargamos al destino que definamos en el diagnóstico (Power BI, BigQuery, SQL Server, etc.). La frecuencia se ajusta al caso de uso: tiempo real, horaria, diaria o mensual.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Skualo permite exportación automatizada?</summary>
+        <p>Sí. Conectamos Skualo a procesos automatizados que reemplazan los reportes manuales de margen, costos y avance de proyectos. Tu equipo deja de armar planillas semanales — los dashboards se actualizan solos.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Funciona si tenemos Nubox combinado con otros sistemas?</summary>
+        <p>Sí. Diseñamos una capa de integración que unifica Nubox con otros ERPs, CRMs, planillas y bases de datos. El objetivo siempre es una única fuente de verdad para toda la organización.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Cuánto demora una implementación?</summary>
+        <p>Los primeros quick wins se entregan en 30 días después del diagnóstico. Un roadmap completo de transformación toma entre 3 y 9 meses, según el alcance, la cantidad de fuentes y los niveles de aprobación interna.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Trabajan on-premise o en cloud?</summary>
+        <p>Ambos. Soportamos arquitecturas cloud (Azure, GCP, AWS) y entornos híbridos cuando hay datos sensibles que deben permanecer en infraestructura del cliente. La decisión se toma en el diagnóstico.</p>
+      </details>
+      <details class="reveal">
+        <summary>¿Mi equipo queda dependiente de ustedes?</summary>
+        <p>No. Todo lo que construimos queda documentado y transferimos el conocimiento al equipo interno. Nuestro éxito se mide por qué tan autónomo queda tu equipo después.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FORM -->
+<section class="cta-section" id="diagnostico">
+  <div class="container">
+    <div class="form-card reveal">
+      <div class="form-header">
+        <div class="term-line">&gt; INITIATE_DIAGNOSTIC_REQUEST</div>
+        <h2>AGENDAR DIAGNÓSTICO</h2>
+        <p>Cuéntanos sobre tu empresa antes de la reunión. Llegamos preparados.</p>
+      </div>
+
+      <form id="data-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="df-nombre">NOMBRE *</label>
+            <input type="text" id="df-nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="df-cargo">CARGO *</label>
+            <input type="text" id="df-cargo" placeholder="Gerente de Operaciones, CFO, TI..." required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="df-empresa">EMPRESA *</label>
+            <input type="text" id="df-empresa" required>
+          </div>
+          <div class="form-group">
+            <label for="df-empleados">N° EMPLEADOS</label>
+            <select id="df-empleados">
+              <option value="">Selecciona</option>
+              <option>10-50</option>
+              <option>50-200</option>
+              <option>200-500</option>
+              <option>500+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="df-email">EMAIL *</label>
+            <input type="email" id="df-email" required>
+          </div>
+          <div class="form-group">
+            <label for="df-erp">ERP ACTUAL</label>
+            <select id="df-erp">
+              <option value="">Selecciona</option>
+              <option>Defontana</option>
+              <option>Skualo</option>
+              <option>Nubox</option>
+              <option>SAP</option>
+              <option>Softland</option>
+              <option>Manager</option>
+              <option>Otro</option>
+              <option>Sin ERP</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="df-objetivo">¿QUÉ QUIERES RESOLVER?</label>
+          <textarea id="df-objetivo" placeholder="Ej: cierres manuales que toman días, reportes que nadie usa, falta de visibilidad sobre márgenes, integrar 3 sistemas..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">&gt; ENVIAR &amp; AGENDAR REUNIÓN</button>
+        <p class="form-disclaimer">// La info se envía por WhatsApp · Respondemos en menos de 24 hrs</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="../img/logo-oficial.png" alt="Mister Contador">
+  </div>
+  <p>&copy; 2026 Mister Contador SpA. Todos los derechos reservados.</p>
+  <div class="social-links">
+    <a href="https://wa.me/56940536523" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://www.instagram.com/mister.contador/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="mailto:contacto@mistercontador.cl">Email</a>
+    <a href="/">Inicio</a>
+    <a href="/inventory.html">Mister Inventario</a>
+    <a href="/herramientas/">Herramientas</a>
+    <a href="/terminos.html">Términos</a>
+    <a href="/privacidad.html">Privacidad</a>
+  </div>
+  <p class="legal-info">Mister Contador SpA · RUT: 78.343.698-1 · Los Militares 5620 Of. 905, Las Condes, RM, Chile · contacto@mistercontador.cl</p>
+</footer>
+
+<!-- ===== MATRIX RAIN — throttled, pausa fuera de viewport ===== -->
+<script>
+(function(){
+  var canvas = document.getElementById('matrix-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンDATA';
+  var fontSize = 14;
+  var columns, drops;
+
+  function resize(){
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    columns = Math.floor(canvas.width / fontSize);
+    drops = Array(columns).fill(0).map(function(){ return Math.random() * -100; });
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var lastTime = 0;
+  var fps = 24; // throttled
+  var interval = 1000 / fps;
+  var rafId;
+  var visible = true;
+
+  function draw(time){
+    rafId = requestAnimationFrame(draw);
+    if (!visible) return;
+    if (time - lastTime < interval) return;
+    lastTime = time;
+
+    ctx.fillStyle = 'rgba(10,10,10,0.07)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = '#00ff41';
+    ctx.font = fontSize + "px 'JetBrains Mono', monospace";
+
+    for (var i = 0; i < drops.length; i++){
+      var ch = chars.charAt(Math.floor(Math.random()*chars.length));
+      ctx.fillText(ch, i*fontSize, drops[i]*fontSize);
+      if (drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+
+  // IntersectionObserver: pausa si hero sale del viewport
+  var hero = document.querySelector('.hero');
+  if ('IntersectionObserver' in window && hero){
+    var io = new IntersectionObserver(function(entries){
+      visible = entries[0].isIntersecting;
+    }, { threshold: 0.05 });
+    io.observe(hero);
+  }
+
+  rafId = requestAnimationFrame(draw);
+})();
+</script>
+
+<!-- Scroll reveal -->
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+<!-- Form → WhatsApp con info estructurada -->
+<script>
+document.getElementById('data-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  var nombre    = document.getElementById('df-nombre').value.trim();
+  var cargo     = document.getElementById('df-cargo').value.trim();
+  var empresa   = document.getElementById('df-empresa').value.trim();
+  var empleados = document.getElementById('df-empleados').value;
+  var email     = document.getElementById('df-email').value.trim();
+  var erp       = document.getElementById('df-erp').value;
+  var objetivo  = document.getElementById('df-objetivo').value.trim();
+
+  if (!nombre || !cargo || !empresa || !email){
+    alert('Por favor completa los campos obligatorios (*)');
+    return;
+  }
+
+  var msg = '🔧 SOLICITUD DE DIAGNÓSTICO — DATA ANALYTICS\n\n';
+  msg += '👤 ' + nombre + ' · ' + cargo + '\n';
+  msg += '🏢 ' + empresa;
+  if (empleados) msg += ' (' + empleados + ' empleados)';
+  msg += '\n📧 ' + email + '\n';
+  if (erp) msg += '💻 ERP actual: ' + erp + '\n';
+  if (objetivo) msg += '\n🎯 Objetivo:\n' + objetivo + '\n';
+  msg += '\n— Enviado desde mistercontador.cl/data-analytics';
+
+  if (typeof gtag === 'function'){
+    gtag('event', 'data_analytics_lead', {
+      'event_category': 'conversion',
+      'event_label': erp || 'sin_erp'
+    });
+  }
+
+  var url = 'https://wa.me/56940536523?text=' + encodeURIComponent(msg)
+          + '&utm_source=data-analytics&utm_medium=form&utm_campaign=diagnostico';
+  window.open(url, '_blank');
+});
+</script>
+
+</body>
+</html>
