@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Analytics Chile · Automatización y BI para empresas con Defontana, Skualo y Nubox | Mister Contador</title>
+<title>Data Analytics Chile · Integración ERP y BI para Empresas | Mister Contador</title>
 <meta name="description" content="Capa de inteligencia sobre tu ERP. Integramos Defontana, Skualo y Nubox con Power BI, automatizamos procesos y entregamos decisiones en tiempo real. Para empresas medianas con datos.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://mistercontador.cl/data-analytics/">
 
-<meta property="og:title" content="Data Analytics Chile · Mister Contador">
+<meta property="og:title" content="Data Analytics Chile · Integración ERP y BI para Empresas | Mister Contador">
 <meta property="og:description" content="De Excel ciego a decisiones en tiempo real. Integramos tu ERP (Defontana, Skualo, Nubox) con Power BI y automatización.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mistercontador.cl/data-analytics/">
@@ -78,6 +78,7 @@
     --neon-dim:   rgba(0,255,65,.4);
   }
 
+  .sr-only { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
@@ -584,21 +585,22 @@
 <section class="hero">
   <canvas id="matrix-canvas"></canvas>
   <div class="hero-inner">
+    <h1 class="sr-only">Data Analytics Chile — Integración ERP y Business Intelligence para Empresas</h1>
     <span class="hero-tag">> SYSTEM_ONLINE · DATA_LAYER_ACTIVATED</span>
-    <h1>
+    <div aria-hidden="true" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,86px);line-height:1.02;letter-spacing:1px;color:var(--text);margin-bottom:24px;">
       TU <span class="gold">ERP</span> GENERA DATOS.<br>
       TUS DECISIONES <span class="neon">NO LOS USAN</span>.
-    </h1>
+    </div>
     <p class="hero-sub">
-      Capa de inteligencia sobre Defontana, Skualo y Nubox.
-      Integramos, automatizamos y entregamos decisiones en tiempo real
-      para empresas que ya invirtieron en sistemas — y quieren que rindan.
+      Conectamos tu sistema de gestión con inteligencia real.
+      Automatizamos procesos, construimos dashboards y entregamos datos útiles
+      para empresas que ya invirtieron en tecnología — y quieren que rinda al máximo.
     </p>
     <a href="#diagnostico" class="hero-cta">
       &gt; EJECUTAR DIAGNÓSTICO<span class="cursor">_</span>
     </a>
     <div class="hero-meta">
-      DEFONTANA · SKUALO · NUBOX · POWER BI · PYTHON · BIGQUERY
+      SAP · DEFONTANA · SKUALO · NUBOX · SOFTLAND · POWER BI · PYTHON · BIGQUERY
     </div>
   </div>
 </section>
@@ -704,20 +706,20 @@
 
     <div class="cases-grid">
       <div class="case-card reveal">
-        <div class="case-erp">// DEFONTANA</div>
-        <div class="case-industry">Retail · Distribución</div>
+        <div class="case-erp">// RETAIL · DISTRIBUCIÓN</div>
+        <div class="case-industry">ERP cloud · 80 empleados</div>
         <div class="case-metric">5 días <span class="arrow">→</span> 4 hrs</div>
-        <p class="case-desc">Cierre mensual automatizado. Extracción vía API, validaciones cruzadas y dashboard ejecutivo entregado a las 9:00 am del día 1.</p>
+        <p class="case-desc">Cierre mensual automatizado. Extracción vía API, validaciones cruzadas y dashboard ejecutivo listo en la mañana del día 1.</p>
       </div>
       <div class="case-card reveal">
-        <div class="case-erp">// SKUALO</div>
-        <div class="case-industry">Servicios B2B</div>
+        <div class="case-erp">// SERVICIOS B2B</div>
+        <div class="case-industry">Gestión de proyectos · 120 empleados</div>
         <div class="case-metric">Tiempo real</div>
-        <p class="case-desc">Margen por proyecto y consultor en vivo. Reemplazo de planilla semanal por dashboard que se actualiza con cada timesheet ingresado.</p>
+        <p class="case-desc">Margen por proyecto y consultor en vivo. Reemplazo de planilla semanal por dashboard que se actualiza con cada registro ingresado.</p>
       </div>
       <div class="case-card reveal">
-        <div class="case-erp">// NUBOX</div>
-        <div class="case-industry">Contabilidad · Pyme Grande</div>
+        <div class="case-erp">// CONTABILIDAD</div>
+        <div class="case-industry">Multi-empresa · 200 empleados</div>
         <div class="case-metric">100% auto</div>
         <p class="case-desc">Conciliación bancaria automática + dashboard de flujo de caja proyectado a 90 días. Sin intervención manual del equipo contable.</p>
       </div>
@@ -729,17 +731,24 @@
 <section class="stack-section">
   <div class="container">
     <div class="module-divider reveal">MÓDULO_05 — STACK<span class="blink">_</span></div>
-    <h2 class="section-title reveal">INTEGRAMOS CON TU <span class="gold">ERP</span>. NO LO REEMPLAZAMOS.</h2>
+    <h2 class="section-title reveal">INTEGRAMOS CON <span class="gold">CUALQUIER ERP</span>. NO LO REEMPLAZAMOS.</h2>
     <p class="section-lead reveal">
-      Trabajamos sobre lo que ya tienes. Tu inversión en sistemas se respeta — se potencia.
+      Trabajamos sobre lo que ya tienes — sea cual sea tu sistema de gestión.
+      Tu inversión en tecnología se respeta y se potencia.
     </p>
 
     <div class="stack-row reveal">
       <div class="stack-item featured">DEFONTANA</div>
       <div class="stack-item featured">SKUALO</div>
       <div class="stack-item featured">NUBOX</div>
+      <div class="stack-item featured">SAP</div>
+      <div class="stack-item featured">SOFTLAND</div>
+      <div class="stack-item">MANAGER</div>
+      <div class="stack-item">BSALE</div>
+      <div class="stack-item">ORACLE</div>
+      <div class="stack-item">+ CUALQUIER ERP</div>
     </div>
-    <p class="stack-label">// ERPs INTEGRADOS</p>
+    <p class="stack-label">// ERPs CON LOS QUE TRABAJAMOS</p>
 
     <div class="stack-row reveal">
       <div class="stack-item">POWER_BI</div>
