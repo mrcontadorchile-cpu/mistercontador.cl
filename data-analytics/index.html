@@ -262,15 +262,28 @@
     display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center;
   }
   .stat-block .big-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: clamp(60px, 10vw, 120px);
     color: var(--neon-g);
     line-height: .9;
     text-shadow: 0 0 30px var(--neon-g);
+    letter-spacing: -2px;
   }
-  .stat-block .big-num .pct { font-size: .5em; color: var(--text-muted); }
+  .stat-block .big-num .pct { font-size: .5em; color: var(--text-muted); letter-spacing: 0; }
   .stat-block p { font-size: 16px; color: #cccccc; }
   .stat-block p strong { color: var(--text); }
+
+  /* Dualidad tipográfica — datos duros dentro de copy persuasivo */
+  .data-inline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    color: var(--neon-g);
+    letter-spacing: 0.5px;
+    background: rgba(0,180,255,0.07);
+    padding: 1px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
   .stat-block .source {
     display: block; margin-top: 12px;
     font-family: 'JetBrains Mono', monospace;
@@ -726,7 +739,7 @@
       <div class="big-num">3,6<span class="pct">%</span></div>
       <div>
         <p><strong>Solo el 3,6% de las empresas chilenas escala iniciativas de datos con valor medible.</strong>
-        El <strong style="color:var(--neon-g)">96,4% restante</strong> se queda en planillas, reportes manuales y decisiones intuitivas.
+        El <span class="data-inline">96,4%</span> restante se queda en planillas, reportes manuales y decisiones intuitivas.
         Mientras tanto, los datos siguen ahí — dentro de tu ERP — esperando ser usados.</p>
         <span class="source">// FUENTE: Diario Financiero · Estudio adopción IA empresas chilenas, 2025</span>
       </div>
@@ -808,7 +821,7 @@
     <div class="module-divider reveal">MÓDULO_04 — DIAGNÓSTICO<span class="blink">_</span></div>
     <h2 class="section-title reveal">QUÉ REVISAMOS EN EL <span class="gold">DIAGNÓSTICO</span></h2>
     <p class="section-lead reveal">
-      30 minutos de conversación. 7 puntos concretos. Te vas con claridad de dónde están tus datos y qué se puede hacer hoy.
+      <span class="data-inline">30 min</span> de conversación. <span class="data-inline">7 puntos</span> concretos. Te vas con claridad de dónde están tus datos y qué se puede hacer hoy.
     </p>
 
     <div class="pillars-grid">
@@ -1140,7 +1153,7 @@
           // WhatsApp abre con tus datos pre-cargados · Respondemos en menos de 24 hrs
         </p>
         <p style="text-align:center;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-muted);">
-          &gt; Tomamos un proyecto nuevo por mes · próxima disponibilidad: julio 2026
+          &gt; Tomamos un proyecto nuevo por mes · próxima disponibilidad: <span class="data-inline">julio 2026</span>
         </p>
       </form>
     </div>
