@@ -913,31 +913,46 @@
 </section>
 
 <!-- FUNDADOR -->
+<style>
+  .founder-wrap { display:flex; align-items:center; gap:56px; max-width:900px; margin:0 auto; }
+  .founder-img-wrap { flex-shrink:0; position:relative; }
+  @media (max-width:700px) {
+    .founder-wrap { flex-direction:column; gap:24px; }
+    .founder-img-wrap { order:2; }
+    .founder-img-wrap img { width:140px; height:140px; }
+    .founder-header { order:1; }
+    .founder-body { order:3; }
+  }
+</style>
 <section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="container">
-    <div style="display:flex; align-items:center; gap:56px; max-width:900px; margin:0 auto;" class="reveal">
-      <div style="flex-shrink:0; position:relative;">
+    <div class="founder-wrap reveal">
+      <div class="founder-img-wrap">
         <img src="../img/fundador.jpg" alt="Diego Briceño — Mister Contador"
              style="width:180px; height:180px; object-fit:cover; object-position:top; border:3px solid var(--gold); filter:grayscale(20%);">
         <div style="position:absolute; bottom:-1px; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--gold),var(--neon-g));"></div>
       </div>
-      <div>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--neon-g); letter-spacing:3px; margin-bottom:12px;">> FUNDADOR</div>
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:1px; color:var(--text); margin-bottom:6px;">Diego Briceño</div>
-        <div style="font-size:14px; color:var(--gold); margin-bottom:20px; font-weight:500;">
-          Ingeniero en Control de Gestión · Mención en Ciencia de Datos<br>
-          <span style="color:var(--text-muted);">12 años en finanzas corporativas</span>
+      <div style="flex:1;">
+        <div class="founder-header">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--neon-g); letter-spacing:3px; margin-bottom:12px;">> FUNDADOR</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:1px; color:var(--text); margin-bottom:6px;">Diego Briceño</div>
+          <div style="font-size:14px; color:var(--gold); margin-bottom:20px; font-weight:500;">
+            Ingeniero en Control de Gestión · Mención en Ciencia de Datos<br>
+            <span style="color:var(--text-muted);">12 años en finanzas corporativas</span>
+          </div>
+          <p style="font-size:13px; color:var(--neon-g); font-style:italic; margin-bottom:16px; line-height:1.6; border-left:2px solid var(--neon-g); padding-left:12px;">
+            "Combino experiencia financiera con automatización y análisis de datos para empresas que necesitan reportes claros."
+          </p>
         </div>
-        <p style="font-size:13px; color:var(--neon-g); font-style:italic; margin-bottom:16px; line-height:1.6; max-width:520px; border-left:2px solid var(--neon-g); padding-left:12px;">
-          "Combino experiencia financiera con automatización y análisis de datos<br>para empresas que necesitan reportes claros."
-        </p>
-        <p style="font-size:15px; color:#bbbbbb; line-height:1.7; max-width:520px;">
-          Trabajo con un enfoque especializado en finanzas, datos y automatización.
-          A diferencia de las grandes consultoras, trabajas directamente conmigo —
-          sin intermediarios, sin juniors que no conocen tu negocio.
-          El dato que necesitas ya existe dentro de tus sistemas.
-          Nuestro trabajo es sacarlo.
-        </p>
+        <div class="founder-body">
+          <p style="font-size:15px; color:#bbbbbb; line-height:1.7;">
+            Trabajo con un enfoque especializado en finanzas, datos y automatización.
+            A diferencia de las grandes consultoras, trabajas directamente conmigo —
+            sin intermediarios, sin juniors que no conocen tu negocio.
+            El dato que necesitas ya existe dentro de tus sistemas.
+            Nuestro trabajo es sacarlo.
+          </p>
+        </div>
       </div>
     </div>
   </div>
