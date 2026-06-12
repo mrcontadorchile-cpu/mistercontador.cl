@@ -705,14 +705,18 @@
   <div class="hero-inner">
     <h1 class="sr-only">Data Analytics Chile — Integración ERP y Business Intelligence para Empresas</h1>
     <span class="hero-tag">> SYSTEM_ONLINE · DATA_LAYER_ACTIVATED</span>
-    <div aria-hidden="true" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,86px);line-height:1.02;letter-spacing:1px;color:var(--text);margin-bottom:24px;">
-      TU <span class="gold">ERP</span> GENERA DATOS.<br>
-      TUS DECISIONES <span class="neon">NO LOS USAN</span>.
+    <div aria-hidden="true" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,86px);line-height:1.02;letter-spacing:1px;color:var(--text);margin-bottom:20px;">
+      TU EMPRESA <span class="gold">CRECIÓ</span>.<br>
+      TU CLARIDAD FINANCIERA, <span class="neon">NO</span>.
     </div>
+    <p style="font-family:'Bebas Neue',sans-serif;font-size:clamp(18px,2.5vw,26px);color:var(--gold);letter-spacing:2px;margin-bottom:22px;text-shadow:0 0 18px rgba(245,194,0,.5);">
+      No son datos — es certeza.
+    </p>
     <p class="hero-sub">
-      ¿Ese viernes a las 11 PM armando el cierre en Excel?<br>
-      Conecto tu ERP con Power BI para que veas ventas, costos y flujo de caja
-      sin planillas manuales — y tu equipo llegue a la reunión con los números listos.
+      Tomas decisiones todos los días con información incompleta.<br>
+      Conectamos los datos que ya viven en tu ERP para mostrarte
+      dónde gana, dónde pierde y dónde se está quedando sin caja tu empresa.<br>
+      <strong style="color:var(--text);">No necesitas otro sistema. Necesitas ver mejor el que ya tienes.</strong>
     </p>
     <div id="typing-line" style="margin:20px 0;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--neon-g);min-height:20px;text-align:center;"></div>
     <a href="#diagnostico" class="hero-cta">
@@ -758,24 +762,28 @@
 
     <div class="pillars-grid">
       <div class="pillar reveal" data-num="01">
-        <span class="pillar-icon">🔌</span>
-        <h3>Integración ERP → BI</h3>
-        <p>Conectamos Defontana, Skualo y Nubox con Power BI vía API. Sin exportar a Excel, sin copiar-pegar. Datos vivos, actualizados solos.</p>
+        <span class="pillar-icon">📊</span>
+        <h3>Saber cuánto ganas, hoy</h3>
+        <p style="font-size:11px;color:var(--neon-g);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">Integración ERP → Power BI</p>
+        <p>Tu sistema de gestión ya tiene los números. El problema es que nadie los sacó de ahí. Conectamos tu ERP a un dashboard que te dice en 30 segundos si el mes va bien o mal — sin esperar el cierre.</p>
       </div>
       <div class="pillar reveal" data-num="02">
         <span class="pillar-icon">⚡</span>
-        <h3>Automatización de Procesos</h3>
-        <p>Reportes que se construyen solos. Conciliaciones bancarias automáticas. Alertas por margen, stock o vencimientos. Sin código si no es necesario, Python cuando hace falta.</p>
+        <h3>Que los reportes se hagan solos</h3>
+        <p style="font-size:11px;color:var(--neon-g);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">Automatización de Procesos</p>
+        <p>Cada semana alguien de tu equipo pierde horas armando un Excel que ya existía la semana anterior. Ese proceso desaparece. Los números llegan solos, a tiempo, sin que nadie los busque.</p>
       </div>
       <div class="pillar reveal" data-num="03">
-        <span class="pillar-icon">📊</span>
-        <h3>Modelos Predictivos</h3>
-        <p>Proyecciones de venta, demanda y flujo de caja. Detección de anomalías. Forecasting estacional con datos de tu propio negocio — no benchmarks genéricos.</p>
+        <span class="pillar-icon">🔭</span>
+        <h3>Ver lo que viene antes de que llegue</h3>
+        <p style="font-size:11px;color:var(--neon-g);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">Modelos Predictivos</p>
+        <p>¿Qué línea viene bajando? ¿Qué cliente está demorando más en pagar? ¿Cuándo podrías tener tensión de caja? Con tus propios datos históricos, construimos respuestas antes de que el problema llegue a tu escritorio.</p>
       </div>
       <div class="pillar reveal" data-num="04">
         <span class="pillar-icon">🔐</span>
-        <h3>Data Governance</h3>
-        <p>Cumplimiento Ley 21.719. Roles, accesos, trazabilidad. Que tu directorio sepa exactamente quién ve qué y cuándo. Antes de la multa, no después.</p>
+        <h3>Que cada uno vea solo lo que debe ver</h3>
+        <p style="font-size:11px;color:var(--neon-g);font-family:'JetBrains Mono',monospace;margin-bottom:8px;">Data Governance · Ley 21.719</p>
+        <p>Cuando tu empresa crece, la información descontrolada se vuelve un riesgo. Definimos quién accede a qué — cumpliendo la ley chilena de datos — para que tú tengas visibilidad total y tu equipo solo lo necesario.</p>
       </div>
     </div>
   </div>
@@ -1299,7 +1307,7 @@
 (function(){
   var el = document.getElementById('typing-line');
   if (!el) return;
-  var text = '> analizando tu ERP... el problema no es el software. es que nadie lo conectó._';
+  var text = '> diagnóstico: tu empresa tiene los datos. tú aún no puedes verlos._';
   var i = 0;
   var started = false;
   function type(){
