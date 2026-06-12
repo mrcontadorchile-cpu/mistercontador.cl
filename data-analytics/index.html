@@ -69,17 +69,13 @@
 <style>
   :root {
     --gold:       #F5C200;
-    --gold-dark:  #D4A800;
     --black:      #0a0a0a;
     --surface:    #111111;
-    --surface2:   #1a1a1a;
     --border:     #1e1e1e;
     --text:       #ffffff;
     --text-muted: #888888;
-    /* Matrix layer */
     --neon-g:     #00b4ff;
     --neon-c:     #00cfff;
-    --neon-dim:   rgba(0,180,255,.4);
   }
 
   .sr-only { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
@@ -460,41 +456,6 @@
   .step p { font-size: 13px; color: #aaaaaa; line-height: 1.6; }
 
   /* ============ CASOS ============ */
-  .cases-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-  }
-  .case-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 32px 28px;
-    position: relative;
-    overflow: hidden;
-  }
-  .case-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-    background: linear-gradient(180deg, var(--gold), var(--neon-g));
-  }
-  .case-erp {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; letter-spacing: 2px;
-    color: var(--neon-c);
-    margin-bottom: 8px;
-  }
-  .case-industry {
-    font-size: 12px; color: var(--text-muted); margin-bottom: 20px;
-  }
-  .case-metric {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; color: var(--gold);
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-  .case-metric .arrow { color: var(--neon-g); margin: 0 8px; }
-  .case-desc { font-size: 14px; color: #bbbbbb; line-height: 1.6; }
-
   /* ============ STACK ============ */
   .stack-section {
     background: var(--surface);
