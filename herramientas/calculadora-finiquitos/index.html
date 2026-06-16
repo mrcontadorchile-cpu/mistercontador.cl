@@ -34,6 +34,30 @@
     "provider": { "@type": "Organization", "name": "Mister Contador SpA", "url": "https://mistercontador.cl/" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Cómo calcular un finiquito en Chile",
+    "description": "Calcula indemnización por años de servicio, aviso previo y vacaciones pendientes según el Código del Trabajo.",
+    "step": [
+      { "@type": "HowToStep", "name": "Ingresa fechas y sueldo", "text": "Indica la fecha de inicio, la fecha de término y el último sueldo líquido del trabajador." },
+      { "@type": "HowToStep", "name": "Selecciona la causal", "text": "Elige Art. 159 (renuncia o mutuo acuerdo) o Art. 161 (necesidades de la empresa) y los días de vacaciones pendientes." },
+      { "@type": "HowToStep", "name": "Obtén el finiquito", "text": "Verás el detalle de vacaciones, gratificación, indemnización por años de servicio, aviso previo y el total a pagar." }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://mistercontador.cl/" },
+      { "@type": "ListItem", "position": 2, "name": "Herramientas", "item": "https://mistercontador.cl/herramientas/" },
+      { "@type": "ListItem", "position": 3, "name": "Calculadora de Finiquitos", "item": "https://mistercontador.cl/herramientas/calculadora-finiquitos/" }
+    ]
+  }
+  </script>
 
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTB206P81H"></script>
@@ -231,6 +255,7 @@
   </div>
   <h1>CALCULADORA DE<br><span class="gold">FINIQUITOS</span></h1>
   <p class="subtitle">Indemnizaciones, aviso previo y vacaciones &mdash; Art. 159 y 161 &mdash; Chile 2026</p>
+  <p style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);margin-top:10px;">Actualizado: junio 2026 · Sueldo mínimo $529.000 · Revisado por Mister Contador SpA</p>
 </div>
 
 <!-- AdSense TOP -->
@@ -340,6 +365,25 @@
     <p class="result-note">*Cálculo referencial basado en sueldo líquido. Vacaciones estimadas convirtiendo días hábiles a calendario (×7/5), sin considerar feriados exactos. Gratificación calculada al 4,75% proporcional al año en curso. El monto exacto puede variar por cotizaciones adeudadas, remuneración variable u otros beneficios pactados en contrato.*</p>
   </div>
 
+  <!-- Ejemplo numérico verificado -->
+  <section style="max-width:680px;margin:40px auto 0;padding:0 16px;">
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,4vw,30px);color:var(--gold);letter-spacing:2px;margin-bottom:8px;">EJEMPLO DE CÁLCULO DE FINIQUITO 2026</h2>
+    <p style="font-family:'Inter',sans-serif;color:var(--text-muted);font-size:14px;line-height:1.6;margin-bottom:16px;">Trabajador con <strong>1 año y 6 meses</strong> de antigüedad (ingreso 01-12-2024, término 30-06-2026), sueldo líquido <strong>$800.000</strong>, despido por <strong>necesidades de la empresa (Art. 161) sin aviso previo</strong> y con <strong>10 días hábiles</strong> de vacaciones pendientes:</p>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;font-size:14px;">
+        <tbody>
+          <tr><td style="padding:10px 14px;border:1px solid var(--border);">Días trabajados del mes (junio)</td><td style="text-align:right;padding:10px 14px;border:1px solid var(--border);">$800.000</td></tr>
+          <tr><td style="padding:10px 14px;border:1px solid var(--border);">Vacaciones pendientes (10 días hábiles ×7/5)</td><td style="text-align:right;padding:10px 14px;border:1px solid var(--border);">$373.333</td></tr>
+          <tr><td style="padding:10px 14px;border:1px solid var(--border);">Gratificación proporcional (4,75%, 6 meses)</td><td style="text-align:right;padding:10px 14px;border:1px solid var(--border);">$19.000</td></tr>
+          <tr><td style="padding:10px 14px;border:1px solid var(--border);">Indemnización años de servicio (2 años × $800.000)</td><td style="text-align:right;padding:10px 14px;border:1px solid var(--border);">$1.600.000</td></tr>
+          <tr><td style="padding:10px 14px;border:1px solid var(--border);">Aviso previo sustitutivo (Art. 161)</td><td style="text-align:right;padding:10px 14px;border:1px solid var(--border);">$800.000</td></tr>
+          <tr style="background:var(--surface2);"><td style="padding:12px 14px;border:1px solid var(--border);color:var(--gold);font-weight:700;">TOTAL FINIQUITO</td><td style="text-align:right;padding:12px 14px;border:1px solid var(--border);color:var(--gold);font-weight:700;">$3.592.333</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-family:'Inter',sans-serif;color:#555;font-size:12px;margin-top:10px;">Nota: la fracción superior a 6 meses se aproxima al año siguiente (18 meses → 2 años). Cifras referenciales; el monto exacto depende de cotizaciones, remuneración variable y otros pactos del contrato.</p>
+  </section>
+
   <!-- CTA WhatsApp -->
   <div class="mc-cta-banner">
     <div class="mc-cta-inner">
@@ -370,6 +414,25 @@
   <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Dependiendo de la causal aplicada, un empleador podría verse en la obligación de pagar hasta tres grandes conceptos:<br><br><strong>1. Vacaciones Pendientes:</strong> Todo trabajador en Chile acumula 1.25 días de feriado legal por cada mes trabajado (15 días hábiles al año). Si al momento del despido o renuncia quedan días a favor en el saldo del trabajador, el empleador debe pagarlos. Este derecho es irrenunciable y se paga bajo cualquier causal.<br><strong>2. Mes de Aviso Previo:</strong> Si aplicas "Necesidades de la Empresa" (Art. 161) y no le avisas al trabajador mediante una carta formal con al menos 30 días de anticipación, la ley te obliga a pagarle una indemnización sustitutiva equivalente a su última remuneración mensual.<br><strong>3. Años de Servicio:</strong> También exclusiva del Art. 161, obliga al pago de un mes de sueldo por cada año de servicio continuo prestado a la empresa. Además, la ley chilena establece que toda fracción de tiempo superior a seis meses se aproxima automáticamente al año siguiente.</p>
   <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">EVITA DEMANDAS EN LA INSPECCIÓN DEL TRABAJO</h3>
   <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">El plazo legal para otorgar y pagar el finiquito es de solo 10 días hábiles desde la separación del trabajador. Un cálculo erróneo de los haberes o la falta de pago de las cotizaciones previsionales en PreviRed (Ley Bustos) puede invalidar el despido, exponiendo a la PyME a recargos legales que van desde un 30% hasta un 150% sobre el valor original de las indemnizaciones. Esta calculadora te otorga una simulación de los montos base brutos para que puedas provisionar el efectivo en tu flujo de caja.</p>
+</section>
+
+<section style="max-width:900px;margin:0 auto;padding:48px 24px;">
+  <h2 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);letter-spacing:2px;text-align:center;margin-bottom:28px;">HERRAMIENTAS RELACIONADAS</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+    <a href="/herramientas/calculadora-horas-extra/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
+      <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de Horas Extra</strong>
+      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Recargo 50% sobre el sueldo según el Código del Trabajo.</span>
+    </a>
+    <a href="/herramientas/costo-empresa/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
+      <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora Costo Empresa</strong>
+      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Cuánto te cuesta realmente contratar a un trabajador.</span>
+    </a>
+    <a href="/herramientas/calendario/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
+      <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calendario Tributario 2026</strong>
+      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Plazos de PreviRed, F29 y Libro de Remuneraciones.</span>
+    </a>
+  </div>
+  <p style="text-align:center;margin-top:24px;"><a href="/herramientas/" style="color:var(--gold);font-weight:600;text-decoration:none;">Ver todas las herramientas →</a></p>
 </section>
 
 <footer>
