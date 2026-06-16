@@ -875,15 +875,12 @@
 
 <!-- FUNDADOR -->
 <style>
-  .founder-wrap { display:flex; align-items:center; gap:56px; max-width:900px; margin:0 auto; }
-  .founder-img-wrap { flex-shrink:0; position:relative; }
-  @media (max-width:700px) {
-    .founder-wrap { flex-direction:column; gap:24px; }
-    .founder-img-wrap { order:2; }
-    .founder-img-wrap img { width:140px; height:140px; }
-    .founder-header { order:1; }
-    .founder-body { order:3; }
-  }
+  .founder-wrap { display:flex; flex-direction:column; align-items:center; gap:28px; max-width:700px; margin:0 auto; text-align:center; }
+  .founder-img-wrap { order:2; position:relative; }
+  .founder-img-wrap img { width:160px; height:160px; }
+  .founder-header { order:1; width:100%; }
+  .founder-body { order:3; width:100%; }
+  .founder-header [style*="border-left"] { border-left:none !important; padding-left:0 !important; text-align:center; }
 </style>
 <section style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
   <div class="container">
