@@ -69,7 +69,7 @@
       --surface2: #161616;
       --border: #1e1e1e;
       --text: #ffffff;
-      --text-muted: #777777;
+      --text-muted: #888888;
       --red: #e53935;
       --yellow: #FFC107;
       --orange: #FF8A00;
@@ -585,7 +585,11 @@
       .hito-card, .calc-card { animation: none; opacity: 1; transform: none; }
       .reveal { transition: none; }
     }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -837,15 +841,15 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
     <a href="/herramientas/calculadora-iva/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de IVA</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Calcula el IVA 19% de tu F29 al instante.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Calcula el IVA 19% de tu F29 al instante.</span>
     </a>
     <a href="/herramientas/calculadora-honorarios/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de Honorarios</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Retención SII de tus boletas, bruto y líquido.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Retención SII de tus boletas, bruto y líquido.</span>
     </a>
     <a href="/herramientas/guia-cuentas-contables/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Guía de Cuentas Contables</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Ordena tu contabilidad para declarar sin errores.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Ordena tu contabilidad para declarar sin errores.</span>
     </a>
   </div>
   <p style="text-align:center;margin-top:24px;"><a href="/herramientas/" style="color:var(--gold);font-weight:600;text-decoration:none;">Ver todas las herramientas →</a></p>
@@ -1352,12 +1356,12 @@ function renderMiniCalendar(hitosConFecha) {
 }
 
 /* ─── NAV ────────────────────────────────────────────── */
-function toggleMenu(btn) {
-  const menu = document.getElementById('mobile-menu');
-  const expanded = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', !expanded);
-  menu.classList.toggle('active', !expanded);
-}
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 function closeMobileMenu() {
   document.getElementById('mobile-menu').classList.remove('active');
   document.getElementById('hamburger-btn').setAttribute('aria-expanded','false');

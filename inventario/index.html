@@ -275,7 +275,7 @@
       font-weight: 400; letter-spacing: 1px;
       margin-bottom: 16px; text-transform: uppercase; line-height: 1;
     }
-    .section-desc { font-size: 16px; color: #777; max-width: 580px; line-height: 1.65; margin-bottom: 52px; }
+    .section-desc { font-size: 16px; color: #888; max-width: 580px; line-height: 1.65; margin-bottom: 52px; }
     .section-centered { text-align: center; }
     .section-centered .section-label { justify-content: center; }
     .section-centered .section-label::after { display: none; }
@@ -458,7 +458,7 @@
       font-size: 20px; margin-bottom: 18px; position: relative; z-index: 1;
     }
     .feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; position: relative; z-index: 1; }
-    .feature-card p { font-size: 13px; color: #777; line-height: 1.6; position: relative; z-index: 1; }
+    .feature-card p { font-size: 13px; color: #888; line-height: 1.6; position: relative; z-index: 1; }
 
     /* ── Scalability ─────────────────────── */
     .scale-grid {
@@ -473,7 +473,7 @@
     }
     .scale-card:hover { border-color: rgba(245,194,0,0.5); background: rgba(245,194,0,0.06); }
     .scale-card h3 { font-size: 15px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
-    .scale-card p { font-size: 13px; color: #777; line-height: 1.6; }
+    .scale-card p { font-size: 13px; color: #888; line-height: 1.6; }
 
     /* ── Pricing ─────────────────────────── */
     .pricing-grid {
@@ -620,7 +620,7 @@
       font-weight: 400; margin-bottom: 16px;
       letter-spacing: 3px; text-transform: uppercase; line-height: 1;
     }
-    .cta p { color: #777; font-size: 17px; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .cta p { color: #888; font-size: 17px; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
     .cta-note { margin-top: 20px; font-size: 13px; color: #555; letter-spacing: 0.5px; }
 
     /* ── Download Buttons ────────────────── */
@@ -689,13 +689,18 @@
       .nav-links { display: none; }
       .hamburger { display: block; }
       .hero { padding: 100px 20px 60px; }
+      .hero-logo-wrap { display: none; }
       .section { padding: 60px 20px; }
       .pricing-grid { grid-template-columns: 1fr; }
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
       .chapter-divider { margin: 32px auto; }
       .project-sheet { padding: 28px 20px; }
     }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -715,7 +720,7 @@
       <a href="#download">Descargar</a>
       <a href="/" class="btn-nav">Mister Contador</a>
     </div>
-    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-expanded="false" aria-label="Abrir menú" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1414,5 +1419,13 @@
 })();
 </script>
 
+<script>
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+</script>
 </body>
 </html>

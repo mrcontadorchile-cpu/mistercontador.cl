@@ -99,7 +99,7 @@
     :root {
       --gold: #F5C200; --gold-dark: #D4A800;
       --black: #0a0a0a; --surface: #111111; --surface2: #161616;
-      --border: #1e1e1e; --text: #ffffff; --text-muted: #777777;
+      --border: #1e1e1e; --text: #ffffff; --text-muted: #888888;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -178,7 +178,11 @@
     .legal-info { font-size: 11px; color: #444; max-width: 640px; margin: 12px auto 0; line-height: 1.5; }
 
     @media (max-width: 720px) { .hamburger { display: flex; } .nav-links { display: none; } }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -195,7 +199,7 @@
       <a href="/inventario/" class="btn-nav">Mister Inventario</a>
       <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
     </div>
-    <button class="hamburger" aria-label="Abrir menú" onclick="toggleMenu(this)"><span></span><span></span><span></span></button>
+    <button class="hamburger" aria-expanded="false" aria-label="Abrir menú" onclick="toggleMenu(this)"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu">
@@ -407,9 +411,11 @@
 
 <script src="/herramientas/data/indicadores.js"></script>
 <script>
-  function toggleMenu(btn) {
+    function toggleMenu(btn) {
     var menu = document.querySelector('.mobile-menu');
-    menu.classList.toggle('active');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
   document.addEventListener('scroll', function() {
     document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 60);

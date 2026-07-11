@@ -134,7 +134,7 @@
     --surface2:   #1a1a1a;
     --border:     #1e1e1e;
     --text:       #ffffff;
-    --text-muted: #777777;
+    --text-muted: #888888;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -335,6 +335,10 @@
   .social-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 16px; margin-bottom: 16px; }
   .social-links a { font-size: 13px; color: #555; }
   .legal-info { font-size: 11px; color: #333; margin-top: 16px; line-height: 1.6; }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
 </style>
 </head>
 <body>
@@ -917,15 +921,15 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
     <a href="/herramientas/calculadora-iva/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de IVA</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Calcula el IVA 19% de tus compras y ventas al instante.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Calcula el IVA 19% de tus compras y ventas al instante.</span>
     </a>
     <a href="/herramientas/generador-cotizaciones/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Generador de Cotizaciones PDF</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Crea cotizaciones con IVA y total automáticos.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Crea cotizaciones con IVA y total automáticos.</span>
     </a>
     <a href="/herramientas/guia-constituir-empresa/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Checklist Crear Empresa</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Todo lo que necesitas decidir antes de formalizar.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Todo lo que necesitas decidir antes de formalizar.</span>
     </a>
   </div>
   <p style="text-align:center;margin-top:24px;"><a href="/herramientas/" style="color:var(--gold);font-weight:600;text-decoration:none;">Ver todas las herramientas →</a></p>
@@ -1099,11 +1103,12 @@ document.addEventListener('scroll', function() {
   document.getElementById('read-progress').style.width = (scrolled / total * 100) + '%';
 });
 
-function toggleMenu(btn) {
-  var menu = document.getElementById('mobile-menu');
-  var open = menu.classList.toggle('active');
-  btn.setAttribute('aria-expanded', open);
-}
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
 </script>
 </body>
 </html>

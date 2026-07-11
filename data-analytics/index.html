@@ -630,6 +630,10 @@
     .form-card { padding: 28px 20px; }
     #matrix-canvas { opacity: .22 !important; }
   }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
 </style>
 </head>
 <body>
@@ -647,7 +651,7 @@
       <a href="/herramientas/">Herramientas</a>
       <a href="/inventario/" class="btn-nav">Mister Inventario</a>
     </div>
-    <button class="hamburger" aria-label="Menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-expanded="false" aria-label="Menú" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1324,5 +1328,13 @@ document.getElementById('data-form').addEventListener('submit', function(e){
 });
 </script>
 
+<script>
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+</script>
 </body>
 </html>

@@ -450,7 +450,7 @@
       font-size: 16px; font-weight: 700; margin-bottom: 10px;
       letter-spacing: 0.3px; position: relative; z-index: 1;
     }
-    .service-card p { font-size: 14px; color: #777; line-height: 1.6; position: relative; z-index: 1; }
+    .service-card p { font-size: 14px; color: #888; line-height: 1.6; position: relative; z-index: 1; }
 
     /* ── Stats strip ─────────────────────── */
     .stats-strip {
@@ -572,7 +572,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 28px; color: var(--gold); line-height: 1; flex-shrink: 0;
     }
-    .scale-item p { font-size: 13px; color: #777; line-height: 1.5; }
+    .scale-item p { font-size: 13px; color: #888; line-height: 1.5; }
     .scale-item strong { color: #ccc; display: block; font-size: 13px; margin-bottom: 2px; }
 
     /* ── Consultoría Avanzada ─────────────── */
@@ -636,7 +636,7 @@
       font-weight: 400; margin-bottom: 16px;
       letter-spacing: 2px; text-transform: uppercase; line-height: 1;
     }
-    .cta p { color: #777; font-size: 17px; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .cta p { color: #888; font-size: 17px; margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
     /* ── Formulario contacto ─────────────── */
     .contact-form {
@@ -921,7 +921,7 @@
       position: relative; z-index: 1;
     }
     .inventory-banner p {
-      color: #777; font-size: 16px; margin-bottom: 32px;
+      color: #888; font-size: 16px; margin-bottom: 32px;
       max-width: 460px; margin-left: auto; margin-right: auto;
       line-height: 1.6; position: relative; z-index: 1;
     }
@@ -953,7 +953,7 @@
       .hamburger { display: block; }
       .hero { padding: 100px 20px 60px; }
       .hero h1 { letter-spacing: 1px; }
-      .hero-logo-wrap img { height: 44px; }
+      .hero-logo-wrap { display: none; }
       .section { padding: 70px 20px; }
       #herramientas.section { padding-bottom: 90px; }
       .tool-card { box-shadow: 4px 4px 0 var(--gold); }
@@ -1056,7 +1056,11 @@
     color: #555; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px;
   }
 
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -1088,7 +1092,7 @@
       <a href="/inventario/" class="btn-nav">Mister Inventario</a>
       <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
     </div>
-    <button class="hamburger" aria-label="Abrir menú de navegación" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-expanded="false" aria-label="Abrir menú de navegación" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -1916,5 +1920,13 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
 })();
 </script>
 
+<script>
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+</script>
 </body>
 </html>

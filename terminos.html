@@ -208,7 +208,11 @@
       .hamburger { display: block; }
       .legal-page { padding: 100px 20px 60px; }
     }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -224,7 +228,7 @@
       <a href="privacidad.html">Privacidad</a>
       <a href="/inventario/#download" class="btn-nav">Descargar</a>
     </div>
-    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-expanded="false" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -394,5 +398,13 @@
   <p class="legal-info">Mister Contador SpA &mdash; RUT: 78.343.698-1 &mdash; Los Militares 5620 Of. 905, Las Condes, Región Metropolitana, Chile &mdash; contacto@mistercontador.cl</p>
 </footer>
 
+<script>
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+</script>
 </body>
 </html>

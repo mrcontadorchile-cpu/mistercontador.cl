@@ -75,7 +75,7 @@
       --surface: #111111;
       --border: #1e1e1e;
       --text: #ffffff;
-      --text-muted: #777777;
+      --text-muted: #888888;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -223,6 +223,20 @@
       max-width: 1100px; margin: 0 auto;
       padding: 64px 24px 80px;
     }
+    .filter-pills {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 40px;
+    }
+    .filter-pill {
+      background: none; border: 2px solid var(--border); color: #999;
+      font-family: inherit; font-size: 13px; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      padding: 9px 18px; border-radius: 999px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-pill:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-pill.active { background: var(--gold); border-color: var(--gold); color: #000; }
+    .tool-card.hidden { display: none; }
     .tools-grid {
       display: flex;
       flex-wrap: wrap;
@@ -330,7 +344,11 @@
       .tool-card { max-width: 100%; min-width: 0; flex: 1 1 100%; }
       .social-links { flex-direction: column; align-items: center; gap: 12px; }
     }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -351,7 +369,7 @@
       <a href="/inventario/" class="btn-nav">Mister Inventario</a>
       <a href="https://mistercontador.cl/triple-impacto" class="btn-manga">★ Sobre Nosotros</a>
     </div>
-    <button class="hamburger" aria-label="Abrir menú" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+    <button class="hamburger" aria-expanded="false" aria-label="Abrir menú" onclick="toggleMenu(this)">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -372,11 +390,22 @@
 </div>
 
 <div class="tools-section">
+
+  <div class="filter-pills" role="group" aria-label="Filtrar herramientas por categoría">
+    <button class="filter-pill active" data-filter="todas" onclick="filterTools(this)">Todas</button>
+    <button class="filter-pill" data-filter="tributario" onclick="filterTools(this)">Tributario</button>
+    <button class="filter-pill" data-filter="laboral" onclick="filterTools(this)">Laboral</button>
+    <button class="filter-pill" data-filter="remuneraciones" onclick="filterTools(this)">Remuneraciones</button>
+    <button class="filter-pill" data-filter="ventas" onclick="filterTools(this)">Ventas</button>
+    <button class="filter-pill" data-filter="legal" onclick="filterTools(this)">Legal</button>
+    <button class="filter-pill" data-filter="educativo" onclick="filterTools(this)">Educativo</button>
+  </div>
+
   <div class="tools-grid">
 
     <!-- Calculadora Honorarios -->
     <!-- Calculadora Sueldo Líquido -->
-    <a href="/herramientas/calculadora-sueldo-liquido/" class="tool-card">
+    <a href="/herramientas/calculadora-sueldo-liquido/" class="tool-card" data-category="remuneraciones">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">💵</div>
       <div class="tool-label">Remuneraciones · 2026</div>
@@ -385,7 +414,7 @@
       <div class="tool-cta">Usar calculadora →</div>
     </a>
 
-    <a href="/herramientas/calculadora-honorarios/" class="tool-card">
+    <a href="/herramientas/calculadora-honorarios/" class="tool-card" data-category="tributario">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">🧮</div>
       <div class="tool-label">Tributario · 2026</div>
@@ -395,7 +424,7 @@
     </a>
 
     <!-- Calculadora IVA -->
-    <a class="tool-card" href="/herramientas/calculadora-iva/">
+    <a class="tool-card" href="/herramientas/calculadora-iva/" data-category="tributario">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">📊</div>
       <div class="tool-label">Tributario · 2026</div>
@@ -405,7 +434,7 @@
     </a>
 
     <!-- Calendario Tributario -->
-    <a class="tool-card" href="/herramientas/calendario/">
+    <a class="tool-card" href="/herramientas/calendario/" data-category="tributario">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">📅</div>
       <div class="tool-label">Tributario · 2026</div>
@@ -415,7 +444,7 @@
     </a>
 
     <!-- Generador de Cotizaciones -->
-    <a class="tool-card" href="/herramientas/generador-cotizaciones/">
+    <a class="tool-card" href="/herramientas/generador-cotizaciones/" data-category="ventas">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">📄</div>
       <div class="tool-label">Ventas · 2026</div>
@@ -425,7 +454,7 @@
     </a>
 
     <!-- Simulador Costo Laboral -->
-    <a href="/herramientas/costo-empresa/" class="tool-card">
+    <a href="/herramientas/costo-empresa/" class="tool-card" data-category="laboral">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">💼</div>
       <div class="tool-label">Laboral · 2026</div>
@@ -435,7 +464,7 @@
     </a>
 
     <!-- Calculadora Finiquitos -->
-    <a href="/herramientas/calculadora-finiquitos/" class="tool-card">
+    <a href="/herramientas/calculadora-finiquitos/" class="tool-card" data-category="laboral">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">📋</div>
       <div class="tool-label">Laboral · 2026</div>
@@ -444,7 +473,7 @@
       <div class="tool-cta">Calcular finiquito →</div>
     </a>
 
-    <a href="/herramientas/calculadora-horas-extra/" class="tool-card">
+    <a href="/herramientas/calculadora-horas-extra/" class="tool-card" data-category="laboral">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">⏱️</div>
       <div class="tool-label">Laboral · 2026</div>
@@ -453,7 +482,7 @@
       <div class="tool-cta">Calcular ahora →</div>
     </a>
 
-    <a href="/herramientas/guia-constituir-empresa/" class="tool-card">
+    <a href="/herramientas/guia-constituir-empresa/" class="tool-card" data-category="legal">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">🏢</div>
       <div class="tool-label">Legal · 2026</div>
@@ -462,7 +491,7 @@
       <div class="tool-cta">Iniciar checklist →</div>
     </a>
 
-    <a href="/herramientas/guia-cuentas-contables/" class="tool-card">
+    <a href="/herramientas/guia-cuentas-contables/" class="tool-card" data-category="educativo">
       <div class="tool-badge">NUEVO</div>
       <div class="tool-icon">📚</div>
       <div class="tool-label">Educativo · 2026</div>
@@ -512,6 +541,24 @@
       card.addEventListener('mouseleave', function() {
         card.style.transform = '';
       });
+    });
+  }
+</script>
+<script>
+  function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  function filterTools(btn) {
+    var filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.tool-card').forEach(function(card) {
+      var show = filter === 'todas' || card.getAttribute('data-category') === filter;
+      card.classList.toggle('hidden', !show);
     });
   }
 </script>

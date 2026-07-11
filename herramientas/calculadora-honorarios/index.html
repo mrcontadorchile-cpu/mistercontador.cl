@@ -103,7 +103,7 @@
       --surface2: #161616;
       --border: #1e1e1e;
       --text: #ffffff;
-      --text-muted: #777777;
+      --text-muted: #888888;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -460,7 +460,11 @@
       .hero-row .speech-bubble::before, .hero-row .speech-bubble::after { display: none; }
       .hero-row .hero-img { align-self: center; }
     }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -723,9 +727,10 @@
 <script>
 
   // Hamburger menu toggle with aria-expanded
-  function toggleMenu(btn) {
+    function toggleMenu(btn) {
     var menu = document.querySelector('.mobile-menu');
     var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
   // Nav scroll

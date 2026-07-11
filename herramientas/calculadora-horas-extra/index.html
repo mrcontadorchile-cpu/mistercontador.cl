@@ -117,7 +117,7 @@
       --surface2: #1a1a1a;
       --border: #1e1e1e;
       --text: #ffffff;
-      --text-muted: #777777;
+      --text-muted: #888888;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -315,7 +315,11 @@
       .nav-links { display: none; }
       .hamburger { display: block; }
     }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 </head>
 <body>
 
@@ -658,20 +662,20 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
     <a href="/herramientas/calculadora-finiquitos/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de Finiquitos</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Indemnizaciones, aviso previo y vacaciones al instante.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Indemnizaciones, aviso previo y vacaciones al instante.</span>
     </a>
     <a href="/herramientas/costo-empresa/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora Costo Empresa</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Cuánto te cuesta realmente contratar a un trabajador.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Cuánto te cuesta realmente contratar a un trabajador.</span>
     </a>
     <a href="/herramientas/calculadora-honorarios/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de Honorarios</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Bruto, líquido y retención SII de tus boletas.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Bruto, líquido y retención SII de tus boletas.</span>
     </a>
 
     <a href="/herramientas/calculadora-sueldo-liquido/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora Sueldo Líquido</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">De bruto a líquido: AFP, salud, cesantía e impuesto único.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">De bruto a líquido: AFP, salud, cesantía e impuesto único.</span>
     </a>
   </div>
   <p style="text-align:center;margin-top:24px;"><a href="/herramientas/" style="color:var(--gold);font-weight:600;text-decoration:none;">Ver todas las herramientas →</a></p>
@@ -723,10 +727,11 @@
     document.getElementById('main-nav').classList.toggle('nav-scrolled', window.scrollY > 20);
   });
 
-  function toggleMenu(btn) {
-    const menu = document.getElementById('mobile-menu');
-    const open = menu.classList.toggle('active');
-    btn.setAttribute('aria-expanded', open);
+    function toggleMenu(btn) {
+    var menu = document.querySelector('.mobile-menu');
+    var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   // ── Formato CLP ───────────────────────────────────────────────────────────

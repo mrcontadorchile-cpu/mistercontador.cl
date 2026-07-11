@@ -87,7 +87,7 @@
       --surface2: #161616;
       --border: #1e1e1e;
       --text: #ffffff;
-      --text-muted: #777777;
+      --text-muted: #888888;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -263,7 +263,11 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
-  </style>
+      .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu.active { bottom: 0; overflow-y: auto; }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -510,15 +514,15 @@
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
     <a href="/herramientas/generador-cotizaciones/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Generador de Cotizaciones PDF</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Crea cotizaciones con IVA 19% y total automáticos.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Crea cotizaciones con IVA 19% y total automáticos.</span>
     </a>
     <a href="/herramientas/calculadora-honorarios/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Calculadora de Honorarios</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">Bruto, líquido y retención SII al instante.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">Bruto, líquido y retención SII al instante.</span>
     </a>
     <a href="/herramientas/guia-cuentas-contables/" style="display:block;border:1px solid var(--border,#1e1e1e);border-radius:6px;padding:20px;text-decoration:none;background:var(--surface,#111);">
       <strong style="color:var(--gold);font-size:16px;display:block;margin-bottom:6px;">Guía de Cuentas Contables</strong>
-      <span style="color:var(--text-muted,#777);font-size:13px;line-height:1.5;">IVA crédito y débito fiscal explicados, con plantillas.</span>
+      <span style="color:var(--text-muted,#888);font-size:13px;line-height:1.5;">IVA crédito y débito fiscal explicados, con plantillas.</span>
     </a>
   </div>
   <p style="text-align:center;margin-top:24px;"><a href="/herramientas/" style="color:var(--gold);font-weight:600;text-decoration:none;">Ver todas las herramientas →</a></p>
@@ -594,9 +598,10 @@
     return '$ ' + Math.round(n).toLocaleString('es-CL');
   }
 
-  function toggleMenu(btn) {
+    function toggleMenu(btn) {
     var menu = document.querySelector('.mobile-menu');
     var open = menu.classList.toggle('active');
+    btn.classList.toggle('active', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
