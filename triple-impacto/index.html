@@ -15,8 +15,73 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
+            background:
+                radial-gradient(circle at 50% -15%, rgba(255, 215, 0, 0.09), transparent 34rem),
+                #070707;
             color: var(--mc-black);
+            position: relative;
+            isolation: isolate;
+            overflow-x: hidden;
+        }
+
+        body > *:not(#impact-fx):not(.impact-halo) {
+            position: relative;
+            z-index: 2;
+        }
+
+        #impact-fx,
+        .impact-halo {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #impact-fx {
+            z-index: 0;
+            opacity: 0.82;
+        }
+
+        .impact-halo {
+            z-index: 1;
+            overflow: hidden;
+            background:
+                radial-gradient(circle 26rem at var(--halo-x, 70%) var(--halo-y, 18%), rgba(255, 215, 0, 0.13), transparent 70%),
+                repeating-linear-gradient(115deg, transparent 0 58px, rgba(255, 215, 0, 0.025) 59px 60px);
+            mix-blend-mode: screen;
+        }
+
+        .impact-halo::before {
+            content: '';
+            position: absolute;
+            width: 38rem;
+            height: 38rem;
+            right: -18rem;
+            top: 8%;
+            border: 1px solid rgba(255, 215, 0, 0.17);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 5rem rgba(255, 215, 0, 0.018),
+                0 0 0 10rem rgba(255, 215, 0, 0.012);
+            animation: impact-orbit 18s linear infinite;
+        }
+
+        .impact-halo::after {
+            content: '01  /  DATOS   ·   ESTRATEGIA   ·   IMPACTO';
+            position: absolute;
+            right: -4rem;
+            top: 48%;
+            color: rgba(255, 215, 0, 0.11);
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1rem, 2vw, 1.75rem);
+            letter-spacing: 0.45rem;
+            transform: rotate(90deg);
+            white-space: nowrap;
+        }
+
+        @keyframes impact-orbit {
+            to { transform: rotate(360deg); }
         }
 
         .manga-header {
@@ -79,6 +144,15 @@
         .span-2-cols { grid-column: span 2; }
         .full-width { grid-column: 1 / -1; }
 
+        @media (max-width: 900px) {
+            .strategist-grid { grid-template-columns: 1fr !important; }
+            .strategist-profile { position: relative !important; top: auto !important; }
+        }
+
+        @media (max-width: 640px) {
+            .lore-grid { grid-template-columns: 1fr !important; }
+        }
+
         .mister-avatar {
             border: 4px solid var(--mc-black);
             background: white;
@@ -130,9 +204,23 @@
             transform: translate(-2px, -2px);
             box-shadow: 7px 7px 0 var(--mc-yellow);
         }
+
+        @media (max-width: 640px) {
+            #impact-fx { opacity: 0.58; }
+            .impact-halo::before { width: 25rem; height: 25rem; right: -18rem; }
+            .impact-halo::after { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .impact-halo::before { animation: none; }
+            #impact-fx { opacity: 0.48; }
+        }
     </style>
 <meta name="description" content="Conoce el propósito de Mister Contador y su propuesta para acompañar a las pymes chilenas con contabilidad, tecnología y control financiero."><link rel="canonical" href="https://mistercontador.cl/triple-impacto/"></head>
 <body class="p-4 md:p-10">
+
+    <canvas id="impact-fx" aria-hidden="true"></canvas>
+    <div class="impact-halo" aria-hidden="true"></div>
 
     <!-- Back button -->
     <div class="max-w-7xl mx-auto pt-2 pb-6">
@@ -178,10 +266,10 @@
         <!-- El Estratega — Ficha de Personaje -->
         <section class="mb-16">
 
-            <div style="display:grid; grid-template-columns: 1fr 2fr; gap:1.5rem; align-items:start;">
+            <div class="strategist-grid" style="display:grid; grid-template-columns: 1fr 2fr; gap:1.5rem; align-items:start;">
 
                 <!-- Columna izquierda: Perfil -->
-                <div class="manga-border" style="background:#1A1A1A; color:#FFD700; padding:2rem 1.5rem; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; position:sticky; top:80px;">
+                <div class="manga-border strategist-profile" style="background:#1A1A1A; color:#FFD700; padding:2rem 1.5rem; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; position:sticky; top:80px;">
 
                     <div style="border:4px solid #FFD700; box-shadow:6px 6px 0 #FFD700; background:#111; padding:12px; width:140px; height:140px; display:flex; align-items:center; justify-content:center;">
                         <svg viewBox="0 0 100 100" width="100" height="100">
@@ -211,7 +299,7 @@
                 </div>
 
                 <!-- Columna derecha: Lore 2x2 -->
-                <div style="display:grid; grid-template-columns: repeat(2,1fr); gap:1.5rem;">
+                <div class="lore-grid" style="display:grid; grid-template-columns: repeat(2,1fr); gap:1.5rem;">
 
                     <div class="manga-border bg-white p-5" style="position:relative;">
                         <div style="position:absolute;top:-12px;left:16px; background:#1A1A1A; color:#FFD700; font-family:'Bangers',cursive; font-size:2rem; padding:0 8px; line-height:1.1;">01</div>
@@ -370,6 +458,123 @@
         </div>
         <p class="text-gray-500 text-sm mt-4">Generado para Mister Contador - Estrategia Sostenible 2026</p>
     </footer>
+
+    <script>
+        (() => {
+            const canvas = document.getElementById('impact-fx');
+            const halo = document.querySelector('.impact-halo');
+            const context = canvas.getContext('2d', { alpha: true });
+            const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let width = 0;
+            let height = 0;
+            let frame = 0;
+            let nodes = [];
+            let pointer = { x: 0.68, y: 0.2, targetX: 0.68, targetY: 0.2 };
+
+            const makeNodes = () => {
+                const amount = width < 640 ? 22 : Math.min(62, Math.round(width / 24));
+                nodes = Array.from({ length: amount }, (_, index) => ({
+                    x: ((index * 47) % 101) / 100 * width,
+                    y: ((index * 73 + 19) % 103) / 102 * height,
+                    vx: (Math.sin(index * 2.4) * 0.08),
+                    vy: (Math.cos(index * 1.7) * 0.055),
+                    size: index % 9 === 0 ? 2.2 : 1.15
+                }));
+            };
+
+            const resize = () => {
+                const ratio = Math.min(devicePixelRatio || 1, 1.5);
+                width = innerWidth;
+                height = innerHeight;
+                canvas.width = Math.round(width * ratio);
+                canvas.height = Math.round(height * ratio);
+                canvas.style.width = `${width}px`;
+                canvas.style.height = `${height}px`;
+                context.setTransform(ratio, 0, 0, ratio, 0, 0);
+                makeNodes();
+            };
+
+            const drawMarketLine = (time) => {
+                const baseline = height * 0.76;
+                const amplitude = Math.min(54, height * 0.07);
+                const points = 9;
+                context.beginPath();
+                for (let index = 0; index < points; index += 1) {
+                    const x = index * (width / (points - 1));
+                    const rise = index * height * 0.018;
+                    const wave = Math.sin(index * 1.7 + time * 0.00035) * amplitude;
+                    const y = baseline - rise + wave;
+                    if (index === 0) context.moveTo(x, y);
+                    else context.lineTo(x, y);
+                }
+                const gradient = context.createLinearGradient(0, 0, width, 0);
+                gradient.addColorStop(0, 'rgba(255,215,0,0)');
+                gradient.addColorStop(0.42, 'rgba(255,215,0,0.13)');
+                gradient.addColorStop(1, 'rgba(255,215,0,0.02)');
+                context.strokeStyle = gradient;
+                context.lineWidth = 1.4;
+                context.stroke();
+            };
+
+            const render = (time = 0) => {
+                context.clearRect(0, 0, width, height);
+                pointer.x += (pointer.targetX - pointer.x) * 0.035;
+                pointer.y += (pointer.targetY - pointer.y) * 0.035;
+
+                const offsetX = (pointer.x - 0.5) * 18;
+                const offsetY = (pointer.y - 0.5) * 12;
+                const maxDistance = width < 640 ? 105 : 150;
+
+                nodes.forEach((node, index) => {
+                    if (!reducedMotion) {
+                        node.x += node.vx;
+                        node.y += node.vy;
+                        if (node.x < -10) node.x = width + 10;
+                        if (node.x > width + 10) node.x = -10;
+                        if (node.y < -10) node.y = height + 10;
+                        if (node.y > height + 10) node.y = -10;
+                    }
+
+                    for (let next = index + 1; next < nodes.length; next += 1) {
+                        const other = nodes[next];
+                        const distance = Math.hypot(node.x - other.x, node.y - other.y);
+                        if (distance < maxDistance) {
+                            context.beginPath();
+                            context.moveTo(node.x + offsetX, node.y + offsetY);
+                            context.lineTo(other.x + offsetX, other.y + offsetY);
+                            context.strokeStyle = `rgba(255,215,0,${(1 - distance / maxDistance) * 0.12})`;
+                            context.lineWidth = 0.75;
+                            context.stroke();
+                        }
+                    }
+
+                    context.beginPath();
+                    context.arc(node.x + offsetX, node.y + offsetY, node.size, 0, Math.PI * 2);
+                    context.fillStyle = index % 9 === 0 ? 'rgba(255,215,0,0.66)' : 'rgba(255,215,0,0.28)';
+                    context.fill();
+                });
+
+                drawMarketLine(time);
+                frame = requestAnimationFrame(render);
+            };
+
+            addEventListener('pointermove', event => {
+                pointer.targetX = event.clientX / innerWidth;
+                pointer.targetY = event.clientY / innerHeight;
+                halo.style.setProperty('--halo-x', `${pointer.targetX * 100}%`);
+                halo.style.setProperty('--halo-y', `${pointer.targetY * 100}%`);
+            }, { passive: true });
+
+            addEventListener('resize', resize, { passive: true });
+            document.addEventListener('visibilitychange', () => {
+                cancelAnimationFrame(frame);
+                if (!document.hidden) frame = requestAnimationFrame(render);
+            });
+
+            resize();
+            render();
+        })();
+    </script>
 
 </body>
 </html>
