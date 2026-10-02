@@ -1,3 +1,24 @@
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 900;
+      font-display: optional;
+      src: url('/assets/fonts/inter-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Bebas Neue';
+      font-style: normal;
+      font-weight: 400;
+      font-display: optional;
+      src: url('/assets/fonts/bebas-neue-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Bangers';
+      font-style: normal;
+      font-weight: 400;
+      font-display: optional;
+      src: url('/assets/fonts/bangers-latin.woff2') format('woff2');
+    }
 
     :root {
       --gold: #F5C200;
