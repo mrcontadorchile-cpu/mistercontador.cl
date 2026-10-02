@@ -12,10 +12,15 @@
     mobileMenu.querySelectorAll('a').forEach(function (link) { link.addEventListener('click', function () { mobileButton.setAttribute('aria-expanded', 'false'); mobileButton.classList.remove('active'); mobileMenu.hidden = true; mobileMenu.classList.remove('active'); }); });
   }
   var scrollPending = false;
+  var mainNav = document.querySelector('nav');
+  var readProgress = document.getElementById('read-progress');
   function updateScroll() {
-    document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 24);
+    /* Read layout first, then write styles to avoid a forced synchronous reflow. */
+    var scrollTop = window.scrollY;
     var height = document.documentElement.scrollHeight - window.innerHeight;
-    document.getElementById('read-progress').style.transform = 'scaleX(' + (height > 0 ? Math.min(1, window.scrollY / height) : 0) + ')';
+    var ratio = height > 0 ? Math.min(1, scrollTop / height) : 0;
+    if (mainNav) mainNav.classList.toggle('nav-scrolled', scrollTop > 24);
+    if (readProgress) readProgress.style.transform = 'scaleX(' + ratio + ')';
     scrollPending = false;
   }
   window.addEventListener('scroll', function () { if (!scrollPending) { scrollPending = true; requestAnimationFrame(updateScroll); } }, {passive:true});
