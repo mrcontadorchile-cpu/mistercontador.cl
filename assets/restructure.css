@@ -161,3 +161,19 @@ progress { width:100%; height:5px; margin:18px 0 28px; accent-color:var(--gold);
   .score-area { grid-template-columns:95px minmax(20px,1fr) 44px; gap:6px; }
   .contact-form input, .contact-form textarea { font-size:16px; }
 }
+@media (max-width:640px) {
+  .nav-logo,
+  .new-breadcrumb a,
+  .consulting-cta a,
+  .contact-form .micro a,
+  footer .social-links a,
+  .text-link {
+    display:inline-flex;
+    min-height:44px;
+    align-items:center;
+  }
+  .nav-logo { justify-content:center; }
+  .new-breadcrumb a { padding-inline:7px; }
+  footer .social-links { gap:4px; }
+  .skip-link { min-height:44px; display:flex; align-items:center; }
+}
