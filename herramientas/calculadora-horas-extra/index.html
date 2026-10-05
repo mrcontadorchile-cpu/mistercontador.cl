@@ -31,7 +31,7 @@
         "name": "¿Cuánto se paga una hora extra en Chile?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En Chile, las horas extra se pagan con un recargo mínimo del 50% sobre el valor de la hora ordinaria. El valor de la hora ordinaria se obtiene dividiendo el sueldo base mensual por las horas mensuales de la jornada pactada (jornada semanal × 4.33)."
+          "text": "En Chile, las horas extra se pagan con un recargo mínimo del 50% sobre el valor de la hora ordinaria. Para un sueldo mensual, la Dirección del Trabajo calcula la hora ordinaria dividiendo el sueldo por 30, multiplicando por 7 y dividiendo por la jornada semanal pactada."
         }
       },
       {
@@ -44,10 +44,10 @@
       },
       {
         "@type": "Question",
-        "name": "¿Cuántas horas extra se pueden trabajar por mes?",
+        "name": "¿Cuántas horas extra se pueden trabajar al día?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "El Código del Trabajo establece un máximo de 2 horas extra diarias y hasta 12 horas extra a la semana. Mensualmente esto equivale aproximadamente a 52 horas extraordinarias como tope legal."
+          "text": "Se pueden realizar hasta 2 horas extra por día. Deben responder a necesidades temporales de la empresa y pactarse por escrito por un período no superior a tres meses, renovable por acuerdo de las partes."
         }
       },
       {
@@ -63,7 +63,7 @@
         "name": "¿Cómo se calcula el valor de la hora ordinaria?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "El valor de la hora ordinaria se calcula dividiendo el sueldo base mensual por las horas mensuales de la jornada. Las horas mensuales se obtienen multiplicando la jornada semanal pactada por 4.33 (semanas promedio del mes)."
+          "text": "Para un sueldo mensual, la hora ordinaria se calcula así: sueldo mensual dividido por 30, multiplicado por 7 y dividido por las horas semanales pactadas. Con una jornada de 42 horas, equivale a dividir el sueldo mensual por 180."
         }
       }
     ]
@@ -360,9 +360,9 @@
     <a href="/herramientas/">Herramientas</a> &rsaquo;
     Calculadora de Horas Extra
   </div>
-  <h1>CALCULADORA DE<br><span class="gold">HORAS EXTRA</span></h1>
+  <h1>CALCULADORA DE<br><span class="gold">HORAS EXTRA CHILE 2026</span></h1>
   <p class="subtitle">Bruto y l&iacute;quido aproximado seg&uacute;n AFP, salud, jornada y recargo &mdash; Chile 2026</p>
-  <p style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);margin-top:10px;">Actualizado: junio 2026 · Recargo legal mínimo 50% · Revisado por Mister Contador SpA</p>
+  <p style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-muted);margin-top:10px;">Actualizado: octubre 2026 · Jornada máxima vigente: 42 horas · Fórmula verificada en la <a href="https://www.dt.gob.cl/portal/1628/w3-article-95182.html" target="_blank" rel="noopener noreferrer" style="color:var(--gold);">Dirección del Trabajo</a></p>
 </div>
 
 <!-- AdSense TOP -->
@@ -411,16 +411,14 @@
     <!-- Step 2: Jornada -->
     <div class="step" id="step-2">
       <div class="step-title">&#128336; Jornada semanal</div>
-      <div class="step-help">Mientras menor tu jornada pactada, mayor el valor de cada hora ordinaria.</div>
+      <div class="step-help">La jornada máxima ordinaria vigente desde el 26 de abril de 2026 es de 42 horas semanales.</div>
       <div class="pills" id="pills-jornada">
-        <div class="pill" onclick="selectPill('jornada',45,this)">45h</div>
-        <div class="pill" onclick="selectPill('jornada',44,this)">44h</div>
         <div class="pill" onclick="selectPill('jornada',42,this)">42h</div>
         <div class="pill" onclick="selectPill('jornada',40,this)">40h</div>
         <div class="pill" onclick="selectPill('jornada','otra',this)">Otra</div>
       </div>
       <div class="pill-extra-input" id="jornada-otra-wrap">
-        <input type="number" class="inp" id="jornada-otra" placeholder="Ej: 38" min="1" max="45">
+        <input type="number" class="inp" id="jornada-otra" placeholder="Ej: 38" min="1" max="42">
       </div>
       <div class="step-nav">
         <button class="btn-back" onclick="prevStep(2)">&#8592; ATRÁS</button>
@@ -619,15 +617,15 @@
       <h2>PREGUNTAS FRECUENTES</h2>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">&iquest;Cu&aacute;nto se paga una hora extra en Chile? <span class="faq-icon">+</span></button>
-        <div class="faq-a">En Chile, las horas extra se pagan con un recargo m&iacute;nimo del 50% sobre el valor de la hora ordinaria. El valor de la hora ordinaria se obtiene dividiendo el sueldo base mensual por las horas mensuales de la jornada pactada (jornada semanal &times; 4.33).</div>
+        <div class="faq-a">En Chile, las horas extra se pagan con un recargo m&iacute;nimo del 50% sobre el valor de la hora ordinaria. Para un sueldo mensual, la Direcci&oacute;n del Trabajo calcula la hora ordinaria dividiendo el sueldo por 30, multiplicando por 7 y dividiendo por la jornada semanal pactada.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">&iquest;Las horas extra tienen descuentos previsionales? <span class="faq-icon">+</span></button>
         <div class="faq-a">S&iacute;. Las horas extraordinarias son remuneraci&oacute;n imponible y est&aacute;n sujetas a descuentos de AFP (10% + comisi&oacute;n), salud (7% u otro porcentaje) y Seguro de Cesant&iacute;a (0,6% en contratos indefinidos).</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">&iquest;Cu&aacute;ntas horas extra se pueden trabajar por mes? <span class="faq-icon">+</span></button>
-        <div class="faq-a">El C&oacute;digo del Trabajo establece un m&aacute;ximo de 2 horas extra diarias y hasta 12 horas extra a la semana. Mensualmente esto equivale aproximadamente a 52 horas extraordinarias como tope legal.</div>
+        <button class="faq-q" aria-expanded="false">&iquest;Cu&aacute;ntas horas extra se pueden trabajar al d&iacute;a? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Se pueden realizar hasta 2 horas extra por d&iacute;a. Deben responder a necesidades temporales de la empresa y pactarse por escrito por un per&iacute;odo no superior a tres meses, renovable por acuerdo de las partes.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">&iquest;Se pueden pactar horas extra con recargo mayor al 50%? <span class="faq-icon">+</span></button>
@@ -635,7 +633,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">&iquest;C&oacute;mo se calcula el valor de la hora ordinaria? <span class="faq-icon">+</span></button>
-        <div class="faq-a">El valor de la hora ordinaria se calcula dividiendo el sueldo base mensual por las horas mensuales de la jornada. Las horas mensuales se obtienen multiplicando la jornada semanal pactada por 4.33 (semanas promedio del mes).</div>
+        <div class="faq-a">Para un sueldo mensual, la hora ordinaria se calcula as&iacute;: sueldo mensual dividido por 30, multiplicado por 7 y dividido por las horas semanales pactadas. Con una jornada de 42 horas, equivale a dividir el sueldo mensual por 180.</div>
       </div>
     </div>
 
@@ -646,14 +644,14 @@
 <!-- SEO Article -->
 <section style="max-width:780px; margin:48px auto; padding:32px 16px 0; border-top: 1px solid var(--border); font-family:'Inter', sans-serif;">
   <h2 style="font-family:'Bebas Neue', sans-serif; font-size:28px; color:var(--gold); letter-spacing:2px; margin-bottom:16px;">&#191;C&Oacute;MO SE CALCULAN LAS HORAS EXTRA EN CHILE?</h2>
-  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">En Chile, las horas extraordinarias est&aacute;n reguladas por el C&oacute;digo del Trabajo y corresponden a las horas trabajadas por sobre la jornada ordinaria pactada en el contrato. La legislaci&oacute;n establece que estas horas deben pagarse con un recargo m&iacute;nimo del 50% sobre el valor de la hora ordinaria, aunque las partes pueden pactar un recargo mayor. La hora ordinaria se calcula dividiendo el sueldo base mensual por las horas mensuales de la jornada pactada, y el resultado determina el valor base sobre el cual se aplica el recargo correspondiente.</p>
+  <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">En Chile, las horas extraordinarias est&aacute;n reguladas por el C&oacute;digo del Trabajo y corresponden a las horas trabajadas por sobre la jornada ordinaria pactada en el contrato. Deben pagarse con un recargo m&iacute;nimo del 50% sobre la hora ordinaria. Para trabajadores con sueldo mensual, la f&oacute;rmula oficial es: sueldo mensual &divide; 30 &times; 7 &divide; horas semanales pactadas. Para una jornada de 42 horas, la hora ordinaria equivale al sueldo mensual dividido por 180. <a href="https://www.dt.gob.cl/portal/1628/w3-article-95182.html" target="_blank" rel="noopener noreferrer" style="color:var(--gold);">Ver f&oacute;rmula oficial de la Direcci&oacute;n del Trabajo</a>.</p>
   <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">POR QU&Eacute; EL BRUTO NO ES IGUAL AL L&Iacute;QUIDO</h3>
   <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Uno de los errores m&aacute;s comunes entre trabajadores y empleadores es asumir que el monto bruto de las horas extra es exactamente lo que se recibir&aacute; en el pago o lo que costar&aacute; a la empresa. Las horas extraordinarias forman parte de la remuneraci&oacute;n imponible, por lo que est&aacute;n sujetas a descuentos previsionales: el 10% de cotizaci&oacute;n obligatoria para AFP, la comisi&oacute;n de la administradora (que var&iacute;a entre AFP), el 7% de cotizaci&oacute;n de salud para Fonasa o el plan de Isapre contratado, y el aporte al Seguro de Cesant&iacute;a para trabajadores con contrato indefinido. Todos estos descuentos reducen el monto neto que recibe el trabajador.</p>
   <h3 style="font-family:'Bebas Neue', sans-serif; font-size:20px; color:var(--text); letter-spacing:1.5px; margin-bottom:12px;">ERRORES FRECUENTES EN EL C&Aacute;LCULO DE HORAS EXTRA</h3>
   <p style="color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:20px;">Uno de los errores m&aacute;s frecuentes en las empresas es calcular la hora ordinaria usando el sueldo l&iacute;quido en lugar del sueldo base bruto, lo que subestima el valor real de cada hora. Otro error habitual es no considerar los topes imponibles vigentes, que limitan la base sobre la cual se calculan las cotizaciones cuando el sueldo supera cierto monto en UF. Adem&aacute;s, muchos empleadores olvidan que el pago de horas extra debe reflejarse correctamente en la liquidaci&oacute;n de sueldo mensual y registrarse en el libro de remuneraciones electr&oacute;nico de la Direcci&oacute;n del Trabajo.</p>
   <div style="background:var(--surface2); border-left:3px solid var(--gold); padding:16px; border-radius:4px; margin-top:24px;">
     <strong style="font-family:'Bebas Neue', sans-serif; font-size:14px; color:var(--gold); letter-spacing:2px; display:block; margin-bottom:6px;">&#9889; CONSEJO DE MISTER CONTADOR</strong>
-    <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Si trabajas con horas extra de forma habitual o tienes trabajadores con horas extraordinarias frecuentes, lo mejor es definir una pol&iacute;tica interna clara, pactar el recargo por escrito y llevar un registro mensual. En <a href="/" style="color:var(--gold); text-decoration:none; font-weight:700;">Mister Contador</a> te ayudamos a revisar tus liquidaciones, verificar que los c&aacute;lculos sean correctos y evitar errores que puedan derivar en multas o reclamos ante la Inspecci&oacute;n del Trabajo.</p>
+    <p style="color:var(--text-muted); font-size:13px; line-height:1.6; margin:0;">Si trabajas con horas extra de forma habitual o tienes trabajadores con horas extraordinarias frecuentes, lo mejor es definir una pol&iacute;tica interna clara, pactar el recargo por escrito y llevar un registro mensual. En <a href="/emprendedores/#servicios" style="color:var(--gold); text-decoration:none; font-weight:700;">nuestro servicio de remuneraciones</a> te ayudamos a revisar tus liquidaciones, verificar que los c&aacute;lculos sean correctos y evitar errores que puedan derivar en multas o reclamos ante la Inspecci&oacute;n del Trabajo.</p>
   </div>
 </section>
 
@@ -805,7 +803,7 @@
       const otra = document.getElementById('jornada-otra-wrap').classList.contains('visible');
       if (otra) {
         const v = parseFloat(document.getElementById('jornada-otra').value);
-        if (!v || v < 1 || v > 45) { alert('Ingresa una jornada válida (1-45 horas).'); return false; }
+        if (!v || v < 1 || v > 42) { alert('Ingresa una jornada válida (1-42 horas).'); return false; }
         state.jornadaSemanal = v;
       } else if (!state.jornadaSemanal) {
         alert('Selecciona una jornada semanal.'); return false;
@@ -870,8 +868,9 @@
 
   // ── Cálculo ───────────────────────────────────────────────────────────────
   function calcular() {
-    const horasMensuales = state.jornadaSemanal * 4.33;
-    const valorHoraOrdinaria = state.sueldoBase / horasMensuales;
+    // Fórmula para sueldo mensual publicada por la Dirección del Trabajo:
+    // sueldo / 30 × 7 / jornada semanal. Para 42 h equivale a sueldo / 180.
+    const valorHoraOrdinaria = (state.sueldoBase / 30 * 7) / state.jornadaSemanal;
     const valorHoraExtra = valorHoraOrdinaria * (1 + state.recargo / 100);
     const totalBruto = valorHoraExtra * state.horasExtra;
 
